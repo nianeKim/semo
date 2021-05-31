@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
+<!-- <style type="text/css">
 	@import url("css/fonts.css");
 	@import url("css/reset.css");
 	@import url("component.css");
-</style>
+</style> -->
 </head>
 <body>
 	<div class="container">

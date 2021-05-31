@@ -23,7 +23,7 @@ import service.CommandProcess;
 public class ControllerNa extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> commandMap = new HashMap<>();
-
+   
 	public void init(ServletConfig config) throws ServletException {
 		String props = config.getInitParameter("config");
 		// props : "/WEB-INF/command.properties"
