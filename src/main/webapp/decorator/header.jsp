@@ -12,7 +12,7 @@
 	<header>
 		<div class='header_inner'>
 			<div class='header_logo'>
-				<img src='../images/logo.svg'>
+				<img src='images/logo.svg'>
 			</div>
 			<nav>
 				<ul class='nav_sub'>
@@ -24,9 +24,9 @@
 					<li><a href="#">스토리</a></li>
 					<li><a href="#">마이페이지</a></li>
 					<li><a href="#"><img alt="북마크"
-							src="../images/icons/bookmark.png" ></a></li>
+							src="images/icons/bookmark.png" ></a></li>
 					<li><a href="#"><img alt="북마크"
-							src="../images/icons/search.png"></a></li>
+							src="images/icons/search.png"></a></li>
 				</ul>
 			</nav>
 		</div>
