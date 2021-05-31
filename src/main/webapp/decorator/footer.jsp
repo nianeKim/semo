@@ -24,7 +24,6 @@
 		bottom: 0;
 		
 	}
-
 	
 	.inner {
 		height: 134px;
