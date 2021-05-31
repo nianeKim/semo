@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="30px" viewBox="0 0 34 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 16</title>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mypage" transform="translate(-1213.000000, -428.000000)">
+            <g id="Group-5" transform="translate(476.000000, 389.000000)">
+                <g id="Group-4" transform="translate(402.000000, 15.000000)">
+                    <g id="Group-16" transform="translate(336.000000, 24.000000)">
+                        <polygon id="Fill-1" fill="#FFFFFF" points="0.840421053 28.6679579 31.3768421 28.6679579 31.3768421 2.98206316 0.840421053 2.98206316"></polygon>
+                        <polygon id="Stroke-2" stroke="#000000" stroke-width="1.8" points="0.842105263 28.6662737 31.3785263 28.6662737 31.3785263 2.98206316 0.842105263 2.98206316"></polygon>
+                        <path d="M0.841263158,10.8838737 L31.3776842,10.8838737 L0.841263158,10.8838737 Z" id="Fill-4" fill="#FFFFFF"></path>
+                        <line x1="0.841936842" y1="10.8837053" x2="31.3783579" y2="10.8837053" id="Stroke-5" stroke="#000000" stroke-width="1.8"></line>
+                        <path d="M8.61423158,0.000505263158 L8.61423158,6.57229474 L8.61423158,0.000505263158 Z" id="Fill-7" fill="#FFFFFF"></path>
+                        <line x1="8.61406316" y1="-0.000336842105" x2="8.61406316" y2="6.57313684" id="Stroke-8" stroke="#000000" stroke-width="1.8"></line>
+                        <path d="M23.6069053,0.000505263158 L23.6069053,6.57229474 L23.6069053,0.000505263158 Z" id="Fill-10" fill="#FFFFFF"></path>
+                        <line x1="23.6075789" y1="-0.000336842105" x2="23.6075789" y2="6.57313684" id="Stroke-11" stroke="#000000" stroke-width="1.8"></line>
+                        <g id="Group-15" transform="translate(11.789474, 16.034695)">
+                            <polyline id="Fill-13" fill="#FFFFFF" points="0.136252632 1.93448421 3.29751579 5.68353684 9.24951579 0.0245894737"></polyline>
+                            <polyline id="Stroke-14" stroke="#000000" stroke-width="1.8" points="0.136252632 1.93448421 3.29751579 5.68353684 9.24951579 0.0245894737"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
