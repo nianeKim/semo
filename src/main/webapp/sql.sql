@@ -83,7 +83,7 @@ CREATE TABLE board
     content    VARCHAR2(4000) NOT NULL,
     reg_date    DATE NOT NULL,
     read_cnt    NUMBER default 0 NOT NULL,
-    likes    NUMBER default 0 NOT NULL,
+    likes    NUMBER default 0,
     del    CHAR(1) default 'n' NOT NULL,
     mno    NUMBER constraint board_mno_fk references member NOT NULL
 );
