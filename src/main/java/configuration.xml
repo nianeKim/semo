@@ -3,8 +3,13 @@
 <configuration>
 	<properties resource="dbconnect.properties" />
 	<typeAliases>
-		<!-- ch17.model.Member를 짧게 member로 별명을 붙이자 -->
-		<typeAlias alias="member" type="ch17.model.Member" />
+		<typeAlias alias="member" type="model.Member" />
+		<typeAlias alias="display" type="model.Display" />
+		<typeAlias alias="bookmark" type="model.Bookmark" />
+		<typeAlias alias="reservation" type="model.Reservation" />
+		<typeAlias alias="review" type="model.Review" />
+		<typeAlias alias="board" type="model.Board" />
+		<typeAlias alias="reply" type="model.Reply" />
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -19,5 +24,11 @@
 	</environments>
 	<mappers>
 		<mapper resource="member.xml" />
+		<mapper resource="display.xml" />
+		<mapper resource="bookmark.xml" />
+		<mapper resource="reservation.xml" />
+		<mapper resource="review.xml" />
+		<mapper resource="board.xml" />
+		<mapper resource="reply.xml" />
 	</mappers>
 </configuration>
