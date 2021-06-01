@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardns">
-	
+	<insert id="insert" parameterType="board">
+		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0, 'n', #{mno})
+	</insert>
 </mapper>
