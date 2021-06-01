@@ -10,7 +10,7 @@
 <body>
 	<footer>
 		<div class="footer_inner">
-			<img class="footer_logo" alt="" src="images/logo.svg" width="130px">
+			<img class="footer_logo" alt="" src="../../images/logo.svg" width="130px">
 			<p>© 2021, semojeon. All Rights Reserved.</p>
 		</div>
 	</footer>
