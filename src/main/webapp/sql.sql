@@ -1,4 +1,5 @@
 drop table member;
+-- 회원
 CREATE TABLE member
 (
 	mno    NUMBER CONSTRAINT member_mno_PK PRIMARY KEY NOT NULL,
@@ -16,6 +17,7 @@ CREATE TABLE member
 select * from member;
 
 drop table display;
+-- 전시
 CREATE TABLE display -- fee에 default 추가
 (
     dno    NUMBER CONSTRAINT display_dno_PK PRIMARY KEY NOT NULL,
@@ -43,6 +45,7 @@ CREATE TABLE display -- fee에 default 추가
 select * from display;
 
 drop table bookmark;
+-- 북마크
 CREATE TABLE bookmark
 (
     bm_no    NUMBER CONSTRAINT bookmark_bm_no_PK PRIMARY KEY NOT NULL,
@@ -52,6 +55,7 @@ CREATE TABLE bookmark
 select * from bookmark;
 
 drop table reservation;
+-- 예매
 CREATE TABLE reservation
 (
     rs_no    NUMBER CONSTRAINT reservation_rs_no_PK PRIMARY KEY NOT NULL,
@@ -62,6 +66,8 @@ CREATE TABLE reservation
 select * from reservation;
 
 drop table review;
+
+-- 한줄 리뷰
 CREATE TABLE review -- likes, del 칼럼 추가
 (
     rv_no    NUMBER CONSTRAINT review_rv_no_PK PRIMARY KEY NOT NULL,
@@ -76,6 +82,7 @@ CREATE TABLE review -- likes, del 칼럼 추가
 select * from review;
 
 drop table board;
+-- 게시판(스토리)
 CREATE TABLE board
 (
     bno    NUMBER CONSTRAINT board_bno_PK PRIMARY KEY NOT NULL,
@@ -90,6 +97,7 @@ CREATE TABLE board
 select * from board;
 
 drop table reply;
+-- 게시판에 댓글(답글 포함)
 CREATE TABLE reply
 (
     re_no    NUMBER CONSTRAINT reply_re_no_PK PRIMARY KEY NOT NULL,
@@ -98,6 +106,7 @@ CREATE TABLE reply
     ref    NUMBER NOT NULL,
     ref_level    NUMBER NOT NULL,
     ref_step    NUMBER NOT NULL,
+    likes    NUMBER default 0,
     del    CHAR(1) default 'n' NOT NULL,
     mno    NUMBER constraint reply_mno_fk references member NOT NULL,
     bno    NUMBER constraint reply_bno_fk references board NOT NULL
