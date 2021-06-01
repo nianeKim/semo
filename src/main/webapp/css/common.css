@@ -69,6 +69,11 @@ nav li a img {
 	width: 566px;
 	margin: 0 auto;
 }
+.title {
+	font-size: 34px;
+	font-weight: 700;
+	text-align: center;
+}
 
 /* footer */
 
@@ -84,7 +89,6 @@ footer	{
 }
 
 .footer_inner {
-	margin: auto;
 	font-size: 14px;
 	font-weight: 300;
 	text-align: center;
