@@ -1,6 +1,6 @@
 drop table member;
-
-CREATE TABLE member(
+CREATE TABLE member
+(
 	mno    NUMBER CONSTRAINT member_mno_PK PRIMARY KEY NOT NULL,
     id    VARCHAR2(12) NOT NULL,
     password    VARCHAR2(20) NOT NULL,
@@ -13,12 +13,11 @@ CREATE TABLE member(
     del    CHAR(1) default 'n' NOT NULL ,
     reg_date    DATE NOT NULL
 );
-
 select * from member;
 
 drop table display;
-
-CREATE TABLE display(
+CREATE TABLE display -- fee에 default 추가
+(
     dno    NUMBER CONSTRAINT display_dno_PK PRIMARY KEY NOT NULL,
     dname    VARCHAR2(50) NOT NULL,
     start_date    DATE NOT NULL,
@@ -30,7 +29,7 @@ CREATE TABLE display(
     detail_img  BLOB,
     detail_txt VARCHAR2(1000),
     hours    DATE NOT NULL,
-    fee    NUMBER(6),
+    fee    NUMBER(6) default 0,
     fee_adult   NUMBER(6),
     fee_teen    NUMBER(6),
     fee_child   NUMBER(6),
@@ -41,14 +40,18 @@ CREATE TABLE display(
     del    CHAR(1) default 'n' NOT NULL,
     mno    NUMBER constraint display_mno_fk references member NOT NULL
 );
+select * from display;
 
+drop table bookmark;
 CREATE TABLE bookmark
 (
     bm_no    NUMBER CONSTRAINT bookmark_bm_no_PK PRIMARY KEY NOT NULL,
     mno    NUMBER constraint bookmark_mno_fk references member NOT NULL,
     dno    NUMBER constraint bookmark_dno_fk references display NOT NULL
 );
+select * from bookmark;
 
+drop table reservation;
 CREATE TABLE reservation
 (
     rs_no    NUMBER CONSTRAINT reservation_rs_no_PK PRIMARY KEY NOT NULL,
@@ -56,18 +59,23 @@ CREATE TABLE reservation
     mno    NUMBER constraint reservation_mno_fk references member NOT NULL,
     dno    NUMBER constraint reservation_dno_fk references display NOT NULL
 );
+select * from reservation;
 
-
-CREATE TABLE review
+drop table review;
+CREATE TABLE review -- likes, del 칼럼 추가
 (
     rv_no    NUMBER CONSTRAINT review_rv_no_PK PRIMARY KEY NOT NULL,
     star_rate    NUMBER(1,1) NOT NULL,
     content    VARCHAR2(500) NOT NULL,
     reg_date    DATE NOT NULL,
+    likes    NUMBER default 0 NOT NULL,
+    del    CHAR(1) default 'n' NOT NULL,
     mno    NUMBER constraint review_mno_fk references member NOT NULL,
     dno    NUMBER constraint review_dno_fk references display NOT NULL
 );
+select * from review;
 
+drop table board;
 CREATE TABLE board
 (
     bno    NUMBER CONSTRAINT board_bno_PK PRIMARY KEY NOT NULL,
@@ -79,7 +87,9 @@ CREATE TABLE board
     del    CHAR(1) default 'n' NOT NULL,
     mno    NUMBER constraint board_mno_fk references member NOT NULL
 );
+select * from board;
 
+drop table reply;
 CREATE TABLE reply
 (
     re_no    NUMBER CONSTRAINT reply_re_no_PK PRIMARY KEY NOT NULL,
@@ -92,3 +102,4 @@ CREATE TABLE reply
     mno    NUMBER constraint reply_mno_fk references member NOT NULL,
     bno    NUMBER constraint reply_bno_fk references board NOT NULL
 );
+select * from reply;
