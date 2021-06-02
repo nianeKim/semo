@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import model.Member;
+
 public class MemberDao {
 	private static MemberDao instance = new MemberDao();
 	private MemberDao() {
@@ -26,5 +28,8 @@ public class MemberDao {
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
+		}
+		public Member select(String id) {
+			return (Member) session.selectOne("memberns.select",id);
 		}
 }
