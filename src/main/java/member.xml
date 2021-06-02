@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
+	<select id="select" parameterType="String" resultType="member">
+		select * from member where id=#{id} and del='n'
+	</select>
 	
+	<insert id="insert" parameterType="member">
+		insert into member values(#{mno},#{id},#{password},#{name},#{nick_nm},
+			#{phone},#{gender},#{age},#{loc},'n',sysdate)
+	</insert>
+	
+	<update id="update" parameterType="member">
+		update member set password=#{password}, name=#{name}, nick_nm=#{nick_nm},
+			phone=#{phone}, gender=#{gender}, age=#{age}, loc=#{loc} where id=#{id}
+	</update>
+	
+	<update id="delete" parameterType="String">
+		update member set del='y' where id=#{id}	
+	</update>
+	
+	<select id="findId" parameterType="String" resultType="member">
+		select * from member where name=#{name} and phone=#{phone}
+	</select>
+	
+	<select	id="findPassword" parameterType="String" resultType="member">
+		select * from member where id=#{id} and name=#{name}
+	</select>
+	
+	<select id="confirmId" parameterType="String" resultType="">
+		select * from member where id=#{id}
+	</select>
 </mapper>
