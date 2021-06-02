@@ -25,8 +25,8 @@
 			<h1 class="title">로그인하기</h1>
 			<!-- input -->
 			<input type="text" name="id" required="required"
-				autofocus="autofocus" placeholder="아이디(이메일)"> <input
-				type="text" name="password" required="required" placeholder="비밀번호">
+				autofocus="autofocus" placeholder="아이디(이메일)"> 
+			<input type="password" name="password" required="required" placeholder="비밀번호">
 
 			<input type="submit" class="btn" value="로그인">
 		</form>
