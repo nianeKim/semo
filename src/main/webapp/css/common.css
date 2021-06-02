@@ -123,6 +123,7 @@ input {
 	outline: 0;
 	font-size: 15px;
 	margin-bottom: 16px;
+	font-family: inherit;
 }
 
 input::placeholder {
@@ -130,7 +131,7 @@ input::placeholder {
 }
 
 /* button */
-
+ 
 .btn {
 	width: 100%;
 	height: 56px;
@@ -140,10 +141,19 @@ input::placeholder {
 	font-weight: 600;
 	color: #fff;
 	margin-bottom: 24px;
+	cursor: pointer;
 }
 
 .btn_stroke {
 	border: 1px solid var(--point-color);
 	color: var(--point-color);
 	background: none;
+}
+
+.btn_small {
+	display: inline-block;
+	width: 150px;
+	height: 50px;
+	text-align: center;
+	padding: 14px 0;
 }
