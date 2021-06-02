@@ -14,7 +14,7 @@ public class Member {
 	private String del;
 	private Date reg_date;
 	
-	
+	 
 	public int getMno() {
 		return mno;
 	}
