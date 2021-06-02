@@ -4,6 +4,10 @@
 	<select id="select" parameterType="string" resultType="member">
 		select * from member where id=#{id} and del='n'
 	</select>
+	 
+	<select id="selectMno" parameterType="string" resultType="integer">
+		select mno from member where id=#{id}
+	</select>
 	
 <!-- 	<insert id="insert" parameterType="member">
 		insert into member values(#{mno},#{id},#{password},#{name},#{nick_nm},
