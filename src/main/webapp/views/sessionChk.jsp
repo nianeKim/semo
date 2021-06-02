@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body> 
 	<c:set var="id" value="${sessionScope.id }"></c:set>
 	<c:if test="${empty id }">
 		<script type="text/javascript">
