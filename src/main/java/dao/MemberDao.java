@@ -30,6 +30,10 @@ public class MemberDao {
 			}
 		}
 		public Member select(String id) {
-			return (Member) session.selectOne("memberns.select",id);
+			return (Member) session.selectOne("memberns.select", id);
+		}
+
+		public int selectMno(String id) {
+			return (int) session.selectOne("memberns.selectMno", id);
 		}
 }
