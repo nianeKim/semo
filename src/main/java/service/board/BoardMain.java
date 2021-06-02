@@ -16,6 +16,8 @@ public class BoardMain implements CommandProcess {
 		BoardDao bd = BoardDao.getInstance();
 		List<Board> list = bd.list();
 		
+		request.setAttribute("list", list);
+		
 		return "boardMain";
 	}
 

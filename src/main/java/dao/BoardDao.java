@@ -39,8 +39,7 @@ public class BoardDao {
 	}
 
 	public List<Board> list() {
-		// TODO Auto-generated method stub
-		return null;
+		return session.selectList("boardns.select");
 	}
 	
 }
