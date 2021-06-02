@@ -15,6 +15,7 @@ CREATE TABLE member
     reg_date    DATE NOT NULL
 );
 select * from member;
+insert into member values (0, 'admin', '1234', '관리자', '관리자', '010-111-1111', 'f', 0,'0','n', sysdate) 
 
 -- 전시
 drop table display;

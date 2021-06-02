@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberns">
-	<select id="select" parameterType="String" resultType="member">
+	<select id="select" parameterType="string" resultType="member">
 		select * from member where id=#{id} and del='n'
 	</select>
 	
-	<insert id="insert" parameterType="member">
+<!-- 	<insert id="insert" parameterType="member">
 		insert into member values(#{mno},#{id},#{password},#{name},#{nick_nm},
 			#{phone},#{gender},#{age},#{loc},'n',sysdate)
 	</insert>
@@ -29,5 +29,5 @@
 	
 	<select id="confirmId" parameterType="String" resultType="">
 		select * from member where id=#{id}
-	</select>
+	</select> -->
 </mapper>
