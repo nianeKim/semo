@@ -1,0 +1,221 @@
+@charset "UTF-8";
+
+/* tab */
+
+.display_tab {
+	text-align: center;
+}
+
+.display_tab li {
+	display: inline-block;
+	margin-right: 70px;
+	cursor: pointer;
+}
+
+.display_tab li:last-child {
+	margin-right: 0;
+}
+
+.display_tab li a.active {
+	position: relative;
+}
+
+.display_tab li a.active::after {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 49%;
+	background-color: var(--point-color);
+	opacity: 0.3;
+	transform: translate(-50%, -50%) rotate(4deg);
+	padding: 0 8px 0 8px;
+}
+
+/* filter */
+
+.filter {
+	text-align: right;
+	cursor: pointer;
+}
+
+.filter img {
+	width: 22px;
+	margin-right: 2px;
+	vertical-align: bottom;
+}
+
+.filter span {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+/* display list */
+
+.display_list {
+	padding-top: 20px;
+}
+
+.display_list ul {
+	font-size: 0;
+	margin: 0 -10px 0 -10px;
+}
+
+.display_list ul li {
+	display: inline-block;
+	width: 25%;
+	padding: 0 10px 56px 10px;
+}
+
+.display_list ul li img {
+	width: 100%;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.display_list .text_area .date {
+	font-size: 14px;
+	padding-top: 16px;
+}
+
+.display_list .text_area .dp_list_title {
+	font-size: 18px;
+	font-weight: 600;
+	padding-top: 6px;
+}
+
+.display_list .text_area .location {
+	font-size: 14px;
+	color: #7b7b7b;
+	padding-top: 8px;
+}
+
+/* paging */
+
+.paging {
+	text-align: center;
+}
+
+.paging div,button {
+	display: inline-block;
+}
+
+.paging button {
+	border: none;
+	outline: 0;
+	background: none;
+	width: 18px;
+	cursor: pointer;
+}
+
+.paging img {
+	width: 100%;
+	height: 100%;
+	vertical-align: bottom;
+}
+
+.paging .number {
+	padding: 0 4px 0 4px;
+}
+
+
+/* modal : start */
+
+.filter_modal {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	z-index: 100;
+}
+
+.filter_modal .dim_box {
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.5;
+}
+
+.filter_modal .close {
+	position: absolute;
+	width: 20px;
+	top: 24px;
+	right: 24px;
+	cursor: pointer;
+}
+
+.filter_modal .modal_content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	width: 60%;
+	min-height: 50vh;
+	padding: 60px;
+}
+
+.modal_content .content_inner {
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+	padding-bottom: 56px;
+}
+
+.modal_content .modal_title {
+	font-size: 20px;
+	font-weight: 600;
+	padding-bottom: 20px;
+}
+
+/* left content */
+
+.modal_content .left {
+	display: inline-block;
+	width: 50%;
+	padding-right: 16px;
+	vertical-align: top; /* inline-block끼리 높이가 안맞을때 상위 공백 설정 */
+}
+
+.tag_box .tag {
+	display: inline-block;
+	color: #666;
+	border: 1px solid #e6e6e6;
+	padding: 6px 10px 4px 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	margin: 0 8px 10px 0;
+	cursor: pointer;
+}
+
+.tag_box .tag.active {
+	color: var(--point-color);
+	border: 1px solid var(--point-color);
+}
+
+.modal_content .left .block:last-child {
+	margin-top: 36px;
+}
+
+/* right content */
+
+.modal_content .right {
+	display: inline-block;
+	width: 50%;
+	padding-left: 16px;
+	vertical-align: top; /* inline-block끼리 높이가 안맞을때 상위 공백 설정 */
+}
+
+.filter_modal .btn {
+	margin-bottom: 0;
+	max-width: 60%;
+}
+
+.filter_modal .btn_box {
+	text-align: center;
+}
+
+/* modal : end */
