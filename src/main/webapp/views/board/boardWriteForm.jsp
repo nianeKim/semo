@@ -13,26 +13,15 @@
 	width: 70%;
 	margin: 0 auto;
 }
-.btnArea {
+
+.btn_area {
 	width: 100%;
 	text-align: center;
 	margin-top: 30px;
 }
-.btn_small {
-    display: inline-block;
-    vertical-align: middle;
-    width: 60px;
-    height: 32px;
-    font-size: 14px;
-    padding: 6px 0; 
-    border: 1px solid #000;
-    margin: 0;
-    background: none;
-    cursor: pointer;
-}
-.btn_small:hover {
-	color: var(--point-color);
-	border: 1px solid var(--point-color);;
+
+.btn_right {
+	vertical-align: top;
 }
 </style>
 <script type="text/javascript">
@@ -45,7 +34,6 @@
 			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
 			lang : "ko-KR", // 한글 설정
 			placeholder : '최대 2048자까지 쓸 수 있습니다' //placeholder 설정
-
 		});
 	});
 </script>
@@ -54,14 +42,14 @@
 	<div class="container_wide">
 		<div class="container_inner">
 			<h1 class="title">스토리 작성</h1>
-			
-			<form action="boardWriteResult.wo">
+
+			<form action="boardWriteResult.wo" method="post">
 				<input type="text" name="title" placeholder="제목">
 				<textarea id="summernote" name="content"></textarea>
-				
-				<div class="btnArea">
-					<input class="btn_small" type="submit" value="글작성">
-					<a class="btn_small" href="boardMain.wo">목록</a>
+
+				<div class="btn_area">
+					<input class="btn btn_small" type="submit" value="글작성">
+					<a class="btn btn_stroke btn_small btn_right" href="boardMain.wo">목록</a>
 				</div>
 			</form>
 		</div>
