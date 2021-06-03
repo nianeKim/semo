@@ -33,8 +33,7 @@ public class JoinResult implements CommandProcess {
 		MemberDao md = MemberDao.getInstance();
 		Member m1 = md.select(id);
 		int result = 0;
-		if(m1 == null) 
-			result = md.insert(member);
+		if(m1 == null) result=md.insert(member);
 		else result = -1;
 		request.setAttribute("result", result);
 		return "joinResult";

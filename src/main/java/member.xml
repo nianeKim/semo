@@ -9,12 +9,17 @@
 		select mno from member where id=#{id}
 	</select>
 	
-<!-- 	<insert id="insert" parameterType="member">
+	<insert id="insert" parameterType="member">
+		<selectKey keyProperty="mno" order="BEFORE" resultType="integer">
+			select nvl(max(mno), 0) + 1 mno from member
+		</selectKey>
 		insert into member values(#{mno},#{id},#{password},#{name},#{nick_nm},
 			#{phone},#{gender},#{age},#{loc},'n',sysdate)
 	</insert>
 	
-	<update id="update" parameterType="member">
+
+	
+	<!-- <update id="update" parameterType="member">
 		update member set password=#{password}, name=#{name}, nick_nm=#{nick_nm},
 			phone=#{phone}, gender=#{gender}, age=#{age}, loc=#{loc} where id=#{id}
 	</update>
@@ -33,5 +38,5 @@
 	
 	<select id="confirmId" parameterType="String" resultType="">
 		select * from member where id=#{id}
-	</select> -->
+	</select>  -->
 </mapper>
