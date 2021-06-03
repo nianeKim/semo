@@ -11,7 +11,7 @@
 	<c:if test="${result>0 }">
 		<script>
 			alert("로그인 되었습니다")
-			location.href="main.do";
+			location.href="../display/dpMain.do";
 		</script>
 	</c:if>
 	

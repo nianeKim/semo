@@ -58,4 +58,37 @@ textarea {
 	font-family: inherit;
 }
 
+.option_title {
+	display: block;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 16px 0 8px 0;
+}
 
+.fee_box {
+	display: flex;
+	justify-content: center;
+}
+
+.fee_box input {
+	width: calc(33.333% - 10px);
+	margin-right: 10px;
+}
+
+.fee_box input:nth-child(2) {
+	margin-left: 10px;
+}
+
+.fee_box input:last-child {
+	margin-right: 0;
+	margin-left: 10px;
+}
+
+.pd {
+	margin-bottom: 24px;
+}
+
+.column_box p {
+	text-align: center;
+	line-height: 56px;
+}

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	@import url("../../css/dpMain.css")
+	@import url("../../css/display/dpMain.css")
 </style>
 <script type="text/javascript">
 	$(function () {
