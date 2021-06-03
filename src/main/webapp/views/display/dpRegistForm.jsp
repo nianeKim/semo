@@ -27,6 +27,9 @@
 			<input type="text" name="hours" placeholder="관람 시간 (예시 : 오전 10:00 ~ 오후 8:00)" required>
 			<input type="text" name="loc" placeholder="관람 장소">
 			<input type="number" name="fee" placeholder="관람료 ('원'또는 ','없이 숫자만 입력해주세요.)">
+			<div class="fee_box">
+				
+			</div>
 			<textarea name="tag"></textarea>
 			<textarea name="intro" required>전시에 대한 간략한 소개를 작성해주세요.</textarea>
 			<div class="column_box">

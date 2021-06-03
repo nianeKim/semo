@@ -7,4 +7,6 @@
 		</selectKey>
 		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0, 'n', #{mno})
 	</insert>
+	
+	<select id=""></select>
 </mapper>

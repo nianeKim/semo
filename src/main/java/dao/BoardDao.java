@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -35,6 +36,10 @@ public class BoardDao {
 
 	public int insert(Board board) {
 		return session.insert("boardns.insert", board);
+	}
+
+	public List<Board> list() {
+		return session.selectList("boardns.select");
 	}
 	
 }
