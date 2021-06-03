@@ -3,6 +3,8 @@ package service.login;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.MemberDao;
+import model.Member;
 import service.CommandProcess;
 
 public class JoinResult implements CommandProcess {
@@ -17,7 +19,25 @@ public class JoinResult implements CommandProcess {
 		String gender = request.getParameter("gender");
 		String loc = request.getParameter("loc");
 		int age = Integer.parseInt(request.getParameter("age"));
-		return null;
+		
+		Member member = new Member();
+		member.setId(id);
+		member.setPassword(password);
+		member.setName(name);
+		member.setNick_nm(nick_nm);
+		member.setPhone(phone);
+		member.setGender(gender);
+		member.setLoc(loc);
+		member.setAge(age);
+		
+		MemberDao md = MemberDao.getInstance();
+		Member m1 = md.select(id);
+		int result = 0;
+		if(m1 == null) 
+			result = md.insert(member);
+		else result = -1;
+		request.setAttribute("result", result);
+		return "joinResult";
 	}
 
 }

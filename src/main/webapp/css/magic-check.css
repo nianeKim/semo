@@ -71,15 +71,16 @@
   border-radius: 50%; }
 
 .magic-radio + label:after {
-  top: 5px;
-  left: 5px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ff5f06; }
+   top: 6px;
+   left: 6px;
+   width: 10px;
+   height: 10px;
+   border-radius: 50%;
+   background: #ffffff; }
 
 .magic-radio:checked + label:before {
-  border: 1px solid #ff5f06; }
+  border: 1px solid #ff5f06; 
+  background: #ff5f06;}
 
 .magic-radio:checked[disabled] + label:before {
   border: 1px solid #c9e2f9; }

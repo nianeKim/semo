@@ -13,7 +13,7 @@ public class MemberDao {
 	private static MemberDao instance = new MemberDao();
 	private MemberDao() {
 	}
-	
+	 
 	public static MemberDao getInstance() {
 		return instance;
 	}
@@ -30,6 +30,15 @@ public class MemberDao {
 			}
 		}
 		public Member select(String id) {
-			return (Member) session.selectOne("memberns.select",id);
+			return (Member) session.selectOne("memberns.select", id);
+		}
+
+		public int selectMno(String id) {
+			return (int) session.selectOne("memberns.selectMno", id);
+		}
+
+		public int insert(Member member) {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 }
