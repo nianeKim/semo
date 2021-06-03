@@ -36,4 +36,9 @@ public class MemberDao {
 		public int selectMno(String id) {
 			return (int) session.selectOne("memberns.selectMno", id);
 		}
+
+		public int insert(Member member) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 }

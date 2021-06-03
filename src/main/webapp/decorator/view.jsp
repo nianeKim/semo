@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/fonts.css">
 <link rel="stylesheet" type="text/css" href="../../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../../css/common.css">
+<link rel="stylesheet" type="text/css" href="../../css/magic-check.css">
 <script type="text/javascript" src="../../js/jquery.js"></script>
 <deco:head></deco:head>
 </head>
