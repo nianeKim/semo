@@ -4,8 +4,8 @@
 	<properties resource="dbconnect.properties" />
 	<typeAliases>
 		<typeAlias alias="member" type="model.Member" />
-		<!-- <typeAlias alias="display" type="model.Display" />
-		<typeAlias alias="bookmark" type="model.Bookmark" />
+		<typeAlias alias="display" type="model.Display" />
+		<!-- <typeAlias alias="bookmark" type="model.Bookmark" />
 		<typeAlias alias="reservation" type="model.Reservation" />
 		<typeAlias alias="review" type="model.Review" />  -->
 		<typeAlias alias="board" type="model.Board" />

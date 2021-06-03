@@ -7,6 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import model.Display;
+
+
+
 public class DisplayDao {
 	// singletone
 	private static DisplayDao instance = new DisplayDao();
@@ -21,11 +25,13 @@ public class DisplayDao {
 		try {
 			Reader reader = Resources.getResourceAsReader("configuration.xml");
 			SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
-			session = ssf.openSession(true); // true로 해야 입력,수정,삭제한 후에 commit실행
+			session = ssf.openSession(true);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 	}
 	
-	
+	public int insert(Display dp) {
+		return session.insert("displayns.insert", dp); 
+	}
 }

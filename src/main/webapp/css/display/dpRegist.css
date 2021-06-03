@@ -51,11 +51,14 @@ textarea {
 	border: 1px solid #000;
 	outline: 0;
 	font-size: 15px;
-	color: #aaa;
 	padding: 10px 12px;
 	line-height: 22px;
 	margin-bottom: 16px;
 	font-family: inherit;
+}
+
+textarea::placeholder {
+	color: #aaa;
 }
 
 .option_title {

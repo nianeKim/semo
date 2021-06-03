@@ -11,7 +11,7 @@
 </style>
 <script>
 	$(function() {
-		$('textarea[name="tag"]').val("관련 태그가 있다면 콤마(, )로 구분하여 작성해주세요.\n예시 : 혼자보기좋은전시, 모던한, 디자인");
+		$('textarea[name="tag"]').attr('placeholder', "관련 태그가 있다면 콤마(, )로 구분하여 작성해주세요.\n예시 : 혼자보기좋은전시, 모던한, 디자인");
 	})
 </script>
 </head>
@@ -29,7 +29,10 @@
 			
 			<!-- 관람료 -->
 			<p class="option_title">단일 관람료</p>
-			<input type="number" name="fee" placeholder="관람료 ('원'또는 ','없이 숫자만 입력해주세요.)">
+			<div class="column_box">			
+				<input type="number" class="column" name="fee" placeholder="관람료 ('원'또는 ','없이 숫자만 입력해주세요.)">
+				<input type="number" class="column" name="discount" placeholder="할인율 (%없이 숫자만 입력해주세요.)">
+			</div>
 			
 			<p class="option_title">세부 관람료</p>
 			<div class="fee_box">
@@ -40,7 +43,7 @@
 			
 			<!-- 전시 소개 -->
 			<p class="option_title">전시 소개</p>
-			<textarea name="intro" required>전시에 대한 간략한 소개를 작성해주세요.</textarea>
+			<textarea name="intro" placeholder="전시에 대한 간략한 소개를 작성해주세요." required></textarea>
 			
 			<!-- 관련 태그 -->
 			<p class="option_title">관련 태그</p>
@@ -52,7 +55,7 @@
 			
 			<!-- 상세 내용 -->
 			<p class="option_title">상세 내용</p>
-			<textarea name="detail_txt" required>상세 정보에 대한 내용이 있다면 입력해주세요.</textarea>
+			<textarea name="detail_txt" placeholder="상세 정보에 대한 내용이 있다면 입력해주세요." required></textarea>
 			
 			<!-- 이미지 업로드 -->
 			<div class="column_box pd">
@@ -61,8 +64,8 @@
 					<input type="file" id="f1" name="detail_img">
 				</div>
 				<div class="column">
-					<label for="f1" class="file_label">포스터 이미지 업로드</label>
-					<input type="file" id="f1" name="poster" required>
+					<label for="f2" class="file_label">포스터 이미지 업로드</label>
+					<input type="file" id="f2" name="poster" required>
 				</div>
 			</div>
 			
