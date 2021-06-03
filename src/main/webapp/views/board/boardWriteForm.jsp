@@ -18,7 +18,7 @@
 	text-align: center;
 	margin-top: 30px;
 }
-.btnArea input, .btnArea p {
+.btn_small {
     display: inline-block;
     vertical-align: middle;
     width: 60px;
@@ -30,7 +30,7 @@
     background: none;
     cursor: pointer;
 }
-.btnArea input:hover, .btnArea p:hover {
+.btn_small:hover {
 	color: var(--point-color);
 	border: 1px solid var(--point-color);;
 }
@@ -40,7 +40,7 @@
 		//여기 아래 부분
 		$('#summernote').summernote({
 			height : 400, // 에디터 높이
-			minHeight : null, // 최소 높이
+			minHeight : 400, // 최소 높이
 			maxHeight : null, // 최대 높이
 			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
 			lang : "ko-KR", // 한글 설정
@@ -60,11 +60,10 @@
 				<textarea id="summernote" name="content"></textarea>
 				
 				<div class="btnArea">
-					<input type="submit" value="글작성">
-					<p onclick="location.href='boardMain.wo'">목록</p>
+					<input class="btn_small" type="submit" value="글작성">
+					<a class="btn_small" href="boardMain.wo">목록</a>
 				</div>
 			</form>
-			
 		</div>
 	</div>
 </body>
