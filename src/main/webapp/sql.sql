@@ -45,7 +45,12 @@ CREATE TABLE display
 );
 select * from display;
 
+-- display column type 수정
 alter table display modify(hours varchar2(20));
+alter table display modify(fee number(6) default 0);
+alter table display modify(fee_adult number(6) default 0);
+alter table display modify(fee_teen number(6) default 0);
+alter table display modify(fee_child number(6) default 0);
 
 -- 북마크
 drop table bookmark;
@@ -100,6 +105,8 @@ CREATE TABLE board
     mno    NUMBER constraint board_mno_fk references member NOT NULL
 );
 select * from board;
+
+alter table board add(poster blob);
 
 -- 게시판에 댓글(답글 포함)
 drop table reply;
