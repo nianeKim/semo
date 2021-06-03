@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Display {
 	private int dno;
-	private String danme;
+	private String dname;
 	private Date start_date;
 	private Date end_date;
 	private String loc;
@@ -13,7 +13,7 @@ public class Display {
 	private String intro;
 	private String detail_img;
 	private String detail_txt;
-	private Date hours;
+	private String hours;
 	private int fee;
 	private int fee_adult;
 	private int fee_teen;
@@ -33,12 +33,12 @@ public class Display {
 		this.dno = dno;
 	}
 	
-	public String getDanme() {
-		return danme;
+	public String getDname() {
+		return dname;
 	}
 
-	public void setDanme(String danme) {
-		this.danme = danme;
+	public void setDname(String dname) {
+		this.dname = dname;
 	}
 
 	public Date getStart_date() {
@@ -105,11 +105,11 @@ public class Display {
 		this.detail_txt = detail_txt;
 	}
 
-	public Date getHours() {
+	public String getHours() {
 		return hours;
 	}
 
-	public void setHours(Date hours) {
+	public void setHours(String hours) {
 		this.hours = hours;
 	}
 

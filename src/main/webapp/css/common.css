@@ -123,6 +123,7 @@ input {
 	outline: 0;
 	font-size: 15px;
 	margin-bottom: 16px;
+	font-family: inherit;
 }
 
 input::placeholder {

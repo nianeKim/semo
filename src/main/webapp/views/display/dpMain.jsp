@@ -8,13 +8,12 @@
 <style type="text/css">
 	@import url("../../css/dpMain.css")
 </style>
-<script src="../../js/jquery.js"></script>
 <script type="text/javascript">
 	$(function () {
 		// tab active
-		$('.display_tab li').on('click', function() {
+		$('.display_tab li a').on('click', function() {
 			if (!$(this).hasClass('active')) {
-				$('.display_tab li').removeClass('active');
+				$('.display_tab li a').removeClass('active');
 				$(this).addClass('active');
 			}
 		})
@@ -28,8 +27,27 @@
 		// filter modal close
 		$('.close, .dim_box, .btn').on('click', function() {
 			$('.filter_modal').hide();
-			$('himl body').css('overflow', 'auto');
+			$('html body').css('overflow', 'auto');
 		})
+		
+		// tag active : loc
+		$('input[name="loc"]').on('change', function() {
+			if ($(this).is(":checked")) {
+				$(this).siblings("label").addClass('active');
+			} else {
+				$(this).siblings("label").removeClass('active');
+			}
+		})
+		
+		// tag active : tag
+		$('input[name="tag"]').on('change', function() {
+			if ($(this).is(":checked")) {
+				$(this).siblings("label").addClass('active');
+			} else {
+				$(this).siblings("label").removeClass('active');
+			}
+		})
+		
 	})
 </script>
 </head>
@@ -47,10 +65,19 @@
 					<a href="#">예정 전시</a>
 				</li>
 			</ul>
-			<div href="#" class="filter">
-				<img alt="필터" src="../../images/icons/filter.png">
-				<span>필터</span>
+			
+			<div class="button_box">
+				<!-- 필터 -->
+				<a href="#" class="filter">
+					<img alt="필터" src="../../images/icons/filter.png">
+					<span>필터</span>
+				</a>
+				<!-- 전시 등록 버튼 -->
+				<div class="confirm_btn">
+					<button class="btn btn_stroke" onclick="location.href='dpRegistForm.do'">전시 등록하기</button>
+				</div>
 			</div>
+			
 			
 			<!-- display list -->
 			<div class="display_list">
@@ -164,27 +191,37 @@
 					<div class="block">
 						<p class="modal_title">지역</p>
 						<div class="tag_box">
-							<span class="tag active">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-						</div>
+							<!-- tag -->
+							<div class="label_box">
+								<label class="tag active" for="l1">서울</label><input type="checkbox" name="loc" id="l1" value="l1" checked="checked">
+							</div>
+							<div class="label_box">
+								<label class="tag" for="l2">서울</label><input type="checkbox" name="loc" id="l2" value="l2">
+							</div>
+							<div class="label_box">
+								<label class="tag" for="l3">서울</label><input type="checkbox" name="loc" id="l3" value="l3">
+							</div>
+							<div class="label_box">
+								<label class="tag" for="l4">서울</label><input type="checkbox" name="loc" id="l4" value="l4">
+							</div>
+							<div class="label_box">
+								<label class="tag" for="l5">서울</label><input type="checkbox" name="loc" id="l5" value="l5">
+							</div>
+							<div class="label_box">
+								<label class="tag" for="l6">서울</label><input type="checkbox" name="loc" id="l6" value="l6">
+							</div>
+						</div>	
 					</div>
 					<div class="block">
 						<p class="modal_title">태그</p>
 						<div class="tag_box">
-							<span class="tag active">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
-							<span class="tag">서울</span>
+							<!-- tag -->
+							<div class="label_box">
+								<label class="tag active" for="t1">혼자보기좋은</label><input type="checkbox" name="tag" id="t1" value="t1" checked>
+							</div>
+							<div class="label_box">
+								<label class="tag" for="t2">갬성</label><input type="checkbox" name="tag" id="t2" value="t2">
+							</div>
 						</div>
 					</div>
 				</div>

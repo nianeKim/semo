@@ -45,6 +45,8 @@ CREATE TABLE display
 );
 select * from display;
 
+alter table display modify(hours varchar2(20));
+
 -- 북마크
 drop table bookmark;
 CREATE TABLE bookmark

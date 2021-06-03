@@ -20,7 +20,7 @@
 	position: relative;
 }
 
-.display_tab li a.active::after {
+.display_tab li .active::after {
 	display: block;
 	content: '';
 	position: absolute;
@@ -37,8 +37,8 @@
 /* filter */
 
 .filter {
-	text-align: right;
 	cursor: pointer;
+	flex: none;
 }
 
 .filter img {
@@ -53,6 +53,25 @@
 	font-weight: 600;
 }
 
+/* 전시 등록 버튼 */
+
+.confirm_btn {
+	flex: none;
+	width: 150px;
+	margin-left: auto;
+}
+
+.confirm_btn .btn {
+	margin-bottom: 0;
+	height: 50px;
+	font-size: 15px;
+}
+
+.button_box {
+	display: flex;
+	align-items: center;
+}
+
 /* display list */
 
 .display_list {
@@ -61,13 +80,13 @@
 
 .display_list ul {
 	font-size: 0;
-	margin: 0 -10px 0 -10px;
+	margin: 0 -12px 0 -12px;
 }
 
 .display_list ul li {
 	display: inline-block;
-	width: 25%;
-	padding: 0 10px 56px 10px;
+	width: 20%;
+	padding: 0 12px 56px 12px;
 }
 
 .display_list ul li img {
@@ -180,15 +199,32 @@
 	vertical-align: top; /* inline-block끼리 높이가 안맞을때 상위 공백 설정 */
 }
 
-.tag_box .tag {
+.tag_box .label_box {
+	position: relative;
 	display: inline-block;
+	margin: 0 8px 10px 0;
+	padding-bottom: 12px;
+}
+
+.tag_box .tag {
 	color: #666;
 	border: 1px solid #e6e6e6;
 	padding: 6px 10px 4px 10px;
 	border-radius: 16px;
 	font-size: 14px;
-	margin: 0 8px 10px 0;
 	cursor: pointer;
+	background: #fff;
+}
+
+.tag_box input {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: inherit;
+	height: inherit;
+	margin-bottom: 0;
+	z-index: -1;
 }
 
 .tag_box .tag.active {
@@ -219,3 +255,4 @@
 }
 
 /* modal : end */
+

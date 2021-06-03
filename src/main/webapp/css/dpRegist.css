@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+.column_box {
+	font-size: 0;
+}
+
+.column_box .column {
+	display: inline-block;
+	width: calc(50% - 10px);
+	margin-right: 10px;
+}
+
+.column_box .column:last-child {
+	margin-right: 0;
+	margin-left: 10px;
+}
+
+.file_label {
+	display: inline-block;
+	width: 100%;
+	line-height: 43px;
+	border: none;
+	border: 1px solid var(--point-color);
+	outline: 0;
+	font-size: 15px;
+	text-align: center;
+	color: var(--point-color);
+	margin-bottom: 16px;
+	cursor: pointer;
+	padding: 10px 12px;
+}
+
+input[type="file"] { /* input 사라지게 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+}
+
+input[type="number"]::-webkit-inner-spin-button { /* number 화살표 가리 */
+	-webkit-appearance: none;
+}
+
+textarea {
+	display: block;
+	width: 100%;
+	height: 90px;
+	border: 1px solid #000;
+	outline: 0;
+	font-size: 15px;
+	color: #aaa;
+	padding: 10px 12px;
+	line-height: 22px;
+	margin-bottom: 16px;
+	font-family: inherit;
+}
+
+
