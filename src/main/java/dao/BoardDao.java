@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -28,6 +29,7 @@ public class BoardDao {
 			SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(reader);
 //			openSession(true) : 입력/삭제/수정 후에 commit
 			session = ssf.openSession(true);
+			reader.close();
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

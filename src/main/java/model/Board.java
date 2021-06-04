@@ -11,6 +11,15 @@ public class Board {
 	private int likes;
 	private String del;
 	private int mno;
+	private String poster;
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 
 	public int getBno() {
 		return bno;

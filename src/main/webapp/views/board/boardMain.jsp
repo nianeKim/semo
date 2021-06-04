@@ -12,31 +12,44 @@
 <body>
 	<div class="container_wide">
 		<h1 class="title">세모들의 이야기</h1>
-		
+
 		<!-- 글쓰기 버튼 -->
 		<div class="write">
-			<a href="boardWriteForm.wo" class="btn btn_stroke btn_small btn_padding">
-				<img alt="연필" src="../../images/icons/write.png">글쓰기
+			<a href="boardWriteForm.wo"
+				class="btn btn_stroke btn_small btn_padding"> <img alt="연필"
+				src="../../images/icons/write.png">글쓰기
 			</a>
 		</div>
 
 		<!-- board list -->
 		<div class="board_list">
 			<ul>
-				<c:forEach var="board" items=${list }>
+				<c:forEach var="board" items="${list}">
 					<li><a href="#"> <img alt="포스터"
 							src="../../images/dummy.gif">
 							<div class="text_area">
-								<p class="bd_text_title">앤디워홀은 언제나 옳다</p>
-								<p class="bd_text_content">달궈진 팬에 고기를 넣어서 볶아줍니다. 센불에서 볶아주면 물도
-									안나오고 좋아요! 센불에서 볶다 …</p>
-								<div class="bd_text_bottom"></div>
+								<p class="bd_text_title">${board.title}</p>
+								<pre class="bd_text_content">${board.content}</pre>
+								<div class="bd_text_bottom">
+									<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes }</span>
+									<img alt="댓글" src="../../images/icons/comment.png"> <span>0</span>
+									<div class="bd_text_bottom_right">
+										<img alt="댓글" src="../../images/icons/by.svg"> <span>닉네임</span>
+									</div>
+								</div>
 							</div>
 					</a></li>
 				</c:forEach>
 			</ul>
 		</div>
-
+		<!-- pre 태그 안의 css 요소 삭제 -->
+		<script type="text/javascript">
+			$(".bd_text_content").find("*").css({
+				"all" : "unset",
+				"color" : "#000"
+			})
+		</script>
+		
 		<!-- paging -->
 		<div class="paging">
 			<button class="prev">

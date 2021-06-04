@@ -105,8 +105,10 @@ CREATE TABLE board
     mno    NUMBER constraint board_mno_fk references member NOT NULL
 );
 select * from board;
-
-alter table board add(poster blob);
+delete from board;
+alter table board add(poster VARCHAR2(100) not null);
+alter table board modify(poster VARCHAR2(100) not null);
+alter table board drop column poster;
 
 -- 게시판에 댓글(답글 포함)
 drop table reply;
