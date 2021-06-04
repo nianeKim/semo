@@ -9,6 +9,14 @@
 		select mno from member where id=#{id}
 	</select>
 	
+	<select id="selectNick" parameterType="integer" resultType="string">
+		select nick_nm from member where mno=#{mno}
+	</select>
+	
+	<select id="confirmNick" parameterType="string" resultType="member">
+		select * from member where nick_nm=#{nick_nm} and del='n'
+	</select>
+	
 	<insert id="insert" parameterType="member">
 		<selectKey keyProperty="mno" order="BEFORE" resultType="integer">
 			select nvl(max(mno), 0) + 1 mno from member
@@ -16,14 +24,6 @@
 		insert into member values(#{mno},#{id},#{password},#{name},#{nick_nm},
 			#{phone},#{gender},#{age},#{loc},'n',sysdate)
 	</insert>
-	
-	<select id="confirmId" parameterType="string" resultType="member">
-		select * from member where id=#{id} and del='n'
-	</select>  
-	
-	<select id="selectNick" parameterType="string" resultType="member">
-		select * from member where nick_nm=#{nick_nm} and del='n'
-	</select>
 	
 	<!-- <update id="update" parameterType="member">
 		update member set password=#{password}, name=#{name}, nick_nm=#{nick_nm},
