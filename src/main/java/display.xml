@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="displayns">
-	<selectKey keyProperty="dno" order="BEFORE" resultType="integer">
-			select nvl(max(dno), 0) + 1 dno from display
-	</selectKey>
 	<insert id="insert" parameterType="display">
+		<selectKey keyProperty="dno" order="BEFORE" resultType="integer">
+				select nvl(max(dno), 0) + 1 dno from display
+		</selectKey>
 		insert into display values(#{dno}, #{dname}, #{start_date}, #{end_date},
-		#{loc}, #{poster}, #{tag}, #{intro}, #{detail_img}, #{detail_txt}, #{hours},
-		#{fee}, #{fee_adult}, #{fee_teen}, #{fee_child}, #{discount}, #{artist},
-		#{tel}, #{home_pg}, 'n', #{mno})
+		#{loc}, #{poster}, #{tag,jdbcType=VARCHAR}, #{intro}, #{detail_img,jdbcType=VARCHAR}, #{detail_txt,jdbcType=VARCHAR}, #{hours},
+		#{fee,jdbcType=INTEGER}, #{fee_adult,jdbcType=INTEGER}, #{fee_teen,jdbcType=INTEGER},
+		#{fee_child,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, #{artist,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR}, #{home_pg,jdbcType=VARCHAR}, 'n', #{mno})
 	</insert>
+	
+	<select id="selectList" resultType="display">
+		select * from display order by dno desc
+	</select>
+	
+	<select id="select" parameterType="string" resultType="display">
+		select * from display where dname = #{dname}
+	</select>
 </mapper>

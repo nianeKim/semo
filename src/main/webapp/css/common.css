@@ -157,3 +157,8 @@ input::placeholder {
 	text-align: center;
 	padding: 14px 0;
 }
+
+.err {
+	color: var(--point-color);
+	font-size: 13px;
+}

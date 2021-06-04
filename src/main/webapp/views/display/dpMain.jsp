@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,90 +79,21 @@
 				</div>
 			</div>
 			
-			
 			<!-- display list -->
 			<div class="display_list">
 				<ul>
-					<li>
-						<a href="#">
-							<img alt="포스터" src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="date">05/20(목) ~ 05/23(일)</p>
-								<p class="dp_list_title">데이비드 호크니</p>
-								<p class="location">대림미술관</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img alt="포스터" src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="date">05/20(목) ~ 05/23(일)</p>
-								<p class="dp_list_title">데이비드 호크니</p>
-								<p class="location">대림미술관</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img alt="포스터" src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="date">05/20(목) ~ 05/23(일)</p>
-								<p class="dp_list_title">데이비드 호크니</p>
-								<p class="location">대림미술관</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img alt="포스터" src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="date">05/20(목) ~ 05/23(일)</p>
-								<p class="dp_list_title">데이비드 호크니</p>
-								<p class="location">대림미술관</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img alt="포스터" src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="date">05/20(목) ~ 05/23(일)</p>
-								<p class="dp_list_title">데이비드 호크니</p>
-								<p class="location">대림미술관</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img alt="포스터" src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="date">05/20(목) ~ 05/23(일)</p>
-								<p class="dp_list_title">데이비드 호크니</p>
-								<p class="location">대림미술관</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img alt="포스터" src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="date">05/20(목) ~ 05/23(일)</p>
-								<p class="dp_list_title">데이비드 호크니</p>
-								<p class="location">대림미술관</p>
-							</div>
-						</a>
-					</li>
-					<li>
-						<a href="#">
-							<img alt="포스터" src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="date">05/20(목) ~ 05/23(일)</p>
-								<p class="dp_list_title">데이비드 호크니</p>
-								<p class="location">대림미술관</p>
-							</div>
-						</a>
-					</li>
+					<c:forEach var="display" items="${list }">
+						<li>
+							<a href="#">
+								<img alt="포스터" src="/semojeon/upload/${display.poster }">
+								<div class="text_area">
+									<p class="date">${display.start_date } ~ ${display.end_date }</p>
+									<p class="dp_list_title">${display.dname }</p>
+									<p class="location">${display.loc }</p>
+								</div>
+							</a>
+						</li>
+					</c:forEach>
 				</ul>
 			</div>
 			

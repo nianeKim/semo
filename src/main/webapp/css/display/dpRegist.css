@@ -15,6 +15,14 @@
 	margin-left: 10px;
 }
 
+.column2:first-child {
+	width: calc(80% - 10px);
+}
+
+.column2:last-child {
+	width: calc(20% - 10px);
+}
+
 .file_label {
 	display: inline-block;
 	width: 100%;
@@ -95,3 +103,4 @@ textarea::placeholder {
 	text-align: center;
 	line-height: 56px;
 }
+
