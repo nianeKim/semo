@@ -7,7 +7,7 @@
 		<pattern>/news/*</pattern>
 	</decorator>
 	<excludes>
-		<pattern>/hello/exclude.jsp</pattern>
-		<pattern>/news/exclude.jsp</pattern>
+		<pattern>/views/login/confirmNick_nm.na</pattern>
+		<pattern>/views/login/idConfirm.na</pattern>
 	</excludes>
 </decorators>

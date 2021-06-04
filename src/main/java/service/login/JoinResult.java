@@ -18,6 +18,7 @@ public class JoinResult implements CommandProcess {
 		String phone = request.getParameter("phone");
 		String gender = request.getParameter("gender");
 		String loc = request.getParameter("loc");
+		String mail_chk = request.getParameter("mail_chk");
 		int age = Integer.parseInt(request.getParameter("age"));
 		
 		Member member = new Member();

@@ -7,81 +7,133 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-	input {
-		font-family: inherit;
-	}
-	
-	.check-id {
-		display: flex;
-		width: 100%;
-		margin-bottom: -10px;
-	}
-	
-	.chk-btn {
-		width:70px;
-		font-weight: 700;
-	}
-	
-	.chk-id-msg {
-		font-size: 12px;
-    	color: #ff5f06;
-	}
-	
-	.check-nick_nm {
-		display: flex;
-		width: 100%;
-	}
-	
-	.radio-left{
-		margin-right: 30px;
-	}
-	
-	.select-gender{
-		margin: 20px 0 20px 0;
-	}
-	select {
-		width: 259px;
-		padding: 1px 1px;
-		font-family: inherit;
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		background: url(../../images/icons/arrow_bottom.png) no-repeat 100% 50%;
-		font-size: 15px;
-		font-weight: 500;
-		color: #aaaaaa;
-		margin: 0;
-		border: 0;
-	}
-	
-	select:focus {
-		color: 0 0 1px 3px #ff5f06;
-	}
-	
-	.loc-age {
-		display: inline-block;
-		margin-top: 15px;
-		margin-bottom: 60px;
-	}
-	
-	.select-loc {
-		margin-right: 18px;
-		border-bottom: 1px solid #000;
-	}
-	
-	.select-age {
-		border-bottom: 1px solid #000;
-	}
-	
-	#err{
-		font-size: 12px;
-    	color: #ff5f06;
-    	margin-top: -10px;
-	}
+input {
+	font-family: inherit;
+}
 
+#chkIdDIV {
+	display: none;
+}
+
+.chk-msg {
+	font-size: 12px;
+	color: #ff5f06;
+	margin-top: -10px;
+}
+
+.chk-btn {
+	width: 90px;
+	line-height: 48px;
+	font-weight: 600;
+	text-align: right;
+	display: inline-block;
+	font-size: 16px;
+	border-bottom: 1px solid #000;
+	height: 48px;
+}
+
+.check {
+	font-size: 0;
+}
+
+.inputBox-left {
+	width: calc(100% - 90px);
+    display: inline-block;
+}
+
+.radio-left {
+	margin-right: 30px;
+}
+
+.select-gender {
+	margin: 20px 0 20px 0;
+}
+
+select {
+	width: 259px;
+	padding: 1px 1px;
+	font-family: inherit;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: url(../../images/icons/arrow_bottom.png) no-repeat 100% 50%;
+	font-size: 15px;
+	font-weight: 500;
+	color: #aaaaaa;
+	margin: 0;
+	border: 0;
+}
+
+select:focus {
+	color: 0 0 1px 3px #ff5f06;
+}
+
+.loc-age {
+	display: inline-block;
+	margin-top: 15px;
+	margin-bottom: 60px;
+}
+
+.select-loc {
+	margin-right: 18px;
+	border-bottom: 1px solid #000;
+}
+
+.select-age {
+	border-bottom: 1px solid #000;
+}
 </style>
 
 <script type="text/javascript">
+function chkId(){
+	var reg_id = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+	if(!frm.id.value) {
+		alert("이메일을 입력하세요")
+		frm.id.focus();
+		return false;
+	}else{
+		if(!reg_id.test(frm.id.value)){
+			alert("올바른 이메일 형식이 아닙니다.");
+			frm.id.focus();
+			return false;
+		}
+	}
+	$.post("idConfirm.na", "id="+frm.id.value, function(data){
+		$('#err_id').html(data);
+	});
+}
+
+/* 여기 안되는거 마저 하기~~ */
+function sendMail(){
+	if(!frm.id.value) {
+		alert("이메일을 입력하세요")
+		frm.id.focus();
+		return false;
+	}
+	$.post("mailResult.na", "id="+frm.id.value);
+}
+
+
+function idChkDisplay() {
+	var con = document.getElementById("chkIdDIV");
+	/* if = 사용가능한 ID입니다 일때   */
+	if(con.style.display=='none'){
+		con.style.display = 'block';
+	}else {
+		con.style.display = 'none';
+	}
+}
+
+function chkPassword() {
+	if(frm.password.value!=frm.confirmPassword.value){
+		alert("비밀번호가 일치하지 않습니다")
+		frm.password.focus();
+		frm.password.value="";
+		frm.confirmPassword.value="";
+		return false;
+	}
+}
+
 function chkNick_nm(){
 	if(!frm.nick_nm.value) {
 		alert("별명을 입력하세요")
@@ -102,35 +154,41 @@ function chkNick_nm(){
 			<h1 class="title">회원가입하기</h1>
 			
 			<!-- 아이디 -->
-			<div class="check-id">
-				<input type="email" name="id" required="required" autofocus="autofocus" placeholder="아이디(이메일)"> 
-				<a class="chk-btn" name="idConfirm_btn" href="">이메일 인증</a>
+			<div class="check">
+				<input type="text" name="id" class="inputBox-left" required="required" autofocus="autofocus" placeholder="아이디(이메일)"> 
+				<a class="chk-btn inputBox-right " onclick="chkId(); idChkDisplay();" onclick="sendMail();">이메일 인증</a>
+			</div> 
+			<div class="chk-msg" id="err_id"></div>
+			
+			<!-- 이메일 인증 -->
+			<div class="check" id="chkIdDIV">
+				<input type="text" name="mail_chk" class="inputBox-left" required="required" placeholder="인증번호 입력">
+				<a class="chk-btn" id="mailConfirm_btn" href="">인증</a> 
 			</div>
-			<div class="chk-id-msg" id="chk-id"></div>
 			
 			<!-- 비밀번호 -->
 			<input type="password" name="password" placeholder="비밀번호" required="required" > 
-			<input type="password" name="confirmPassword" placeholder="비밀번호 확인" required="required"> 
+			<input type="password" name="confirmPassword" placeholder="비밀번호 확인" required="required" onChange="chkPassword()"> 
 			
 			<!-- 이름 -->
 			<input type="text" name="name" placeholder="이름" required="required">
 
 			<!-- 별명 -->
-			<div class="check-nick_nm">
-				<input type="text" name="nick_nm" placeholder="별명" required="required">
-				<a class="chk-btn" name="chk-nick_nm-btn" onclick="chkNick_nm();">중복 확인</a>
+			<div class="check">
+				<input type="text" name="nick_nm" class="inputBox-left" placeholder="별명" required="required">
+				<a class="chk-btn" id="chk-nick_nm-btn" onclick="chkNick_nm();">중복 확인</a>
 			</div>
-			<div id="err"></div>
+			<div class="chk-msg" id="err"></div>
 			
 			<!-- 연락처 -->
 			<input type="tel" name="phone" title="전화번호 형식 : 010-***(*)-****" pattern="\d{3}-\d{3,4}-\d{4}" placeholder="연락처" required="required">
 			
 			<!-- 성별 -->
 			<div class= "select-gender">
-				<input class="magic-radio" type="radio" name="gender" id="mal" checked="checked">
+				<input class="magic-radio" type="radio" name="gender" id="mal" value="m" checked="checked">
 				<label for="mal" class="radio-left">남자</label>
-				<input class="magic-radio" type="radio" name="gender" id="fem">
-				<label for="fem">여자</label>
+				<input class="magic-radio" type="radio" name="gender" id="fem" value="f">
+				<label for="fem" >여자</label>
 			</div>
 
 			<!-- 지역 -->

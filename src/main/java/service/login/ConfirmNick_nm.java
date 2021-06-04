@@ -14,11 +14,10 @@ public class ConfirmNick_nm implements CommandProcess {
 		String nick_nm = request.getParameter("nick_nm");
 		String msg = "";
 		MemberDao md = MemberDao.getInstance();
-		Member member = md.select(nick_nm);
+		Member member = md.confirmNick(nick_nm);
 		if(member==null) msg = "사용가능한 별명입니다";
 		else msg = "이미 사용중인 별명입니다.";
 		request.setAttribute("msg", msg);
 		return "confirmNick_nm";
 	}
-
 }

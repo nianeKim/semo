@@ -21,7 +21,7 @@
 
 <body>
 	<div class="container">
-		<form action="loginResult.na">
+		<form action="loginResult.na" method="post">
 			<h1 class="title">로그인하기</h1>
 			<!-- input -->
 			<input type="text" name="id" required="required"
