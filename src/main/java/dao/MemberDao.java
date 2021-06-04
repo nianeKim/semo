@@ -29,23 +29,25 @@ public class MemberDao {
 				System.out.println(e.getMessage());
 			}
 		}
+		// joinResult, IdConfirm, loginResult
 		public Member select(String id) {
 			return (Member) session.selectOne("memberns.select", id);
 		}
-		
-		public Member selectNick(String nick_nm) {
-			return (Member) session.selectOne("memberns.selectNick", nick_nm);
+		//confirmNick_nm
+		public Member confirmNick(String nick_nm) {
+			return (Member) session.selectOne("memberns.confirmNick", nick_nm);
 		}
-
-
-		public int selectMno(String id) {
-			return (int) session.selectOne("memberns.selectMno", id);
-		}
-
+		// joinResult
 		public int insert(Member member) {			
 			return session.insert("memberns.insert", member);
 		}
-		public Member confirmId(String id) {
-			return (Member) session.selectOne("memberns.confirmId", id);
+
+		// 다른 테이블에서 회원번호를 활용한 닉네임 찾기
+		public Member selectNick(int mno) {
+			return (Member) session.selectOne("memberns.selectNick", mno);
+		}
+		// 다른 테이블에서 세션 아이디를 활용한 회원번호 찾기
+		public int selectMno(String id) {
+			return (int) session.selectOne("memberns.selectMno", id);
 		}
 }
