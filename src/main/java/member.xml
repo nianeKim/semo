@@ -17,7 +17,13 @@
 			#{phone},#{gender},#{age},#{loc},'n',sysdate)
 	</insert>
 	
-
+	<select id="confirmId" parameterType="string" resultType="member">
+		select * from member where id=#{id} and del='n'
+	</select>  
+	
+	<select id="selectNick" parameterType="string" resultType="member">
+		select * from member where nick_nm=#{nick_nm} and del='n'
+	</select>
 	
 	<!-- <update id="update" parameterType="member">
 		update member set password=#{password}, name=#{name}, nick_nm=#{nick_nm},
@@ -34,9 +40,6 @@
 	
 	<select	id="findPassword" parameterType="String" resultType="member">
 		select * from member where id=#{id} and name=#{name}
-	</select>
-	
-	<select id="confirmId" parameterType="String" resultType="">
-		select * from member where id=#{id}
 	</select>  -->
+
 </mapper>

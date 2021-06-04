@@ -32,6 +32,11 @@ public class MemberDao {
 		public Member select(String id) {
 			return (Member) session.selectOne("memberns.select", id);
 		}
+		
+		public Member selectNick(String nick_nm) {
+			return (Member) session.selectOne("memberns.selectNick", nick_nm);
+		}
+
 
 		public int selectMno(String id) {
 			return (int) session.selectOne("memberns.selectMno", id);
@@ -39,5 +44,8 @@ public class MemberDao {
 
 		public int insert(Member member) {			
 			return session.insert("memberns.insert", member);
+		}
+		public Member confirmId(String id) {
+			return (Member) session.selectOne("memberns.confirmId", id);
 		}
 }
