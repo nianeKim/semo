@@ -1,15 +1,13 @@
 package service.board;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dao.BoardDao;
 import dao.MemberDao;
@@ -25,32 +23,32 @@ public class BoardWriteResult implements CommandProcess {
 		String id = (String) session.getAttribute("id");
 		MemberDao md = MemberDao.getInstance();
 		int mno = md.selectMno(id);		
-		
+				
 //		board 생성
 		Board board = new Board();
+
+//		board에 mno 세팅
+		board.setMno(mno);
 		
-//		input 내용 불러오기
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		
-//		파일 업로드
+//		파일 업로드 경로
 		String real = request.getSession().getServletContext().getRealPath("/upload");
+		int maxSize = 1024 * 1024 * 10;
+		
 		try {
-			MultipartRequest mr = new MultipartRequest(request, real, "utf-8");
-			String poster = mr.getFilesystemName("poster");
-			File file = new File(real + "/" + poster);
-			InputStream is = new FileInputStream(file);
-//			board에 poster 세팅
-			board.setPoster(poster);
+			MultipartRequest mr = new MultipartRequest(request, real, maxSize, "utf-8", new DefaultFileRenamePolicy());
+			String thumbnail = mr.getFilesystemName("thumbnail"); // thumbnail input 내용 불러오기
+			
+			String title = mr.getParameter("title");
+			String content = mr.getParameter("content");
+
+//			board 세팅
+			board.setThumbnail(thumbnail);
+			board.setTitle(title);
+			board.setContent(content);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("에러 : " + e.getMessage());;
 		}
-//		board 세팅
-		board.setTitle(title);
-		board.setContent(content);
-		board.setMno(mno);
 		
 //		boardDao 생성 및 insert
 		BoardDao bd = BoardDao.getInstance();
