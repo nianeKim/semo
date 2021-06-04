@@ -43,8 +43,8 @@ public class MemberDao {
 		}
 
 		// 다른 테이블에서 회원번호를 활용한 닉네임 찾기
-		public Member selectNick(int mno) {
-			return (Member) session.selectOne("memberns.selectNick", mno);
+		public String selectNick(int mno) {
+			return (String) session.selectOne("memberns.selectNick", mno);
 		}
 		// 다른 테이블에서 세션 아이디를 활용한 회원번호 찾기
 		public int selectMno(String id) {
