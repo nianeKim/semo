@@ -96,21 +96,17 @@ function chkId(){
 			alert("올바른 이메일 형식이 아닙니다.");
 			frm.id.focus();
 			return false;
-		}
+		}else{
+		} 
+		$.post("mailResult.na", "id="+frm.id.value, function(data){
+			alert("내용"+data);
+			isCertification=true;
+			
+		});
 	}
-	$.post("idConfirm.na", "id="+frm.id.value, function(data){
+	$.post("confirmId.na", "id="+frm.id.value, function(data){
 		$('#err_id').html(data);
 	});
-}
-
-/* 여기 안되는거 마저 하기~~ */
-function sendMail(){
-	if(!frm.id.value) {
-		alert("이메일을 입력하세요")
-		frm.id.focus();
-		return false;
-	}
-	$.post("mailResult.na", "id="+frm.id.value);
 }
 
 
@@ -146,24 +142,39 @@ function chkNick_nm(){
 	});
 	
 }
+
+/* $(".chkIdCode").on("propertychange change keyup paste input", function(){
+	if($(".chkIdCode").val()==key)
+	
+})
+ */
+function chkSubmit(){
+	if(!frm.mail_chk.value){
+		alert("이메일 인증이 완료되지 않았습니다.");
+		return false;
+	}
+}
+
+
 </script>
 </head>
 <body>
-	<form action="joinResult.na" method="post" name="frm" onsubmit="return chk-password()" >
+	<form action="joinResult.na" method="post" name="frm" onsubmit="return chkSubmit()" >
 		<div class="container">
 			<h1 class="title">회원가입하기</h1>
 			
 			<!-- 아이디 -->
 			<div class="check">
 				<input type="text" name="id" class="inputBox-left" required="required" autofocus="autofocus" placeholder="아이디(이메일)"> 
-				<a class="chk-btn inputBox-right " onclick="chkId(); idChkDisplay();" onclick="sendMail();">이메일 인증</a>
+				<a class="chk-btn inputBox-right " onclick="chkId(); idChkDisplay();">이메일 인증</a>
 			</div> 
 			<div class="chk-msg" id="err_id"></div>
 			
 			<!-- 이메일 인증 -->
 			<div class="check" id="chkIdDIV">
-				<input type="text" name="mail_chk" class="inputBox-left" required="required" placeholder="인증번호 입력">
-				<a class="chk-btn" id="mailConfirm_btn" href="">인증</a> 
+				<input type="text" name="mail_chk" class="inputBox-left chkIdCode" required="required" placeholder="인증번호 입력">
+				<a class="chk-btn"  id="mailConfirm_btn" href="">인증</a> 
+				<input type="hidden" id="certificationYN" value="false">
 			</div>
 			
 			<!-- 비밀번호 -->
@@ -227,7 +238,7 @@ function chkNick_nm(){
 			</div>
 
 			<!-- button -->
-			<input type="submit" class="btn" value="회원가입">
+			<input type="submit" class="btn submit-btn" value="회원가입">
 		</div>
 	</form>
 </body>

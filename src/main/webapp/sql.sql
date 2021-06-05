@@ -16,6 +16,7 @@ CREATE TABLE member
 );
 select * from member;
 insert into member values (0, 'admin', '1234', '관리자', '관리자', '010-111-1111', 'f', 0,'0','n', sysdate) 
+alter table member modify(id VARCHAR2(30));
 
 -- 전시
 drop table display;

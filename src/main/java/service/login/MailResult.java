@@ -1,5 +1,7 @@
 package service.login;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,8 +15,20 @@ public class MailResult implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		String to =request.getParameter("id");  
-		String subject = "semojeon";
-		String msg ="msg";  //메시지 내용 함수입력
+		String subject = "세모전 회원가입 인증 메일";
+		
+		
+		//인증 난수 발생 코드
+		Random random = new Random();
+		String key=""; //인증번호
+		
+		for(int i=0; i<3; i++) {
+			int index = random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
+			key+=(char)index;
+		}
+		int numIndex = random.nextInt(9999)+1000; //4자리 랜덤 정수 생성
+		key+=numIndex;		
+		String msg = (String)key;  //메시지 내용 함수입력
 		
 		SimpleEmail se = new SimpleEmail();
 		se.setHostName("smtp.naver.com");
@@ -25,7 +39,7 @@ public class MailResult implements CommandProcess {
 			se.addTo(to);
 			se.setFrom("kny09280@naver.com");
 			se.setSubject(subject);
-			se.setMsg(msg);
+			se.setMsg("인증번호 : " + msg);
 			se.send(); //메일 전송
 			request.setAttribute("msg", "인증메일이 전송되었습니다");
 		} catch (Exception e) {
@@ -34,4 +48,6 @@ public class MailResult implements CommandProcess {
 		}
 		return "mailResult";
 	}
+
+
 }
