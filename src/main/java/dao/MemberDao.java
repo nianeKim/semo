@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -33,21 +34,51 @@ public class MemberDao {
 		public Member select(String id) {
 			return (Member) session.selectOne("memberns.select", id);
 		}
-		//confirmNick_nm
+		
+		// confirmNick_nm
 		public Member confirmNick(String nick_nm) {
 			return (Member) session.selectOne("memberns.confirmNick", nick_nm);
 		}
+		
 		// joinResult
 		public int insert(Member member) {			
 			return session.insert("memberns.insert", member);
 		}
-
+		
+		// FindIdResult
+		public Member findId(String name, String phone) {
+			HashMap<String, String> hm = new HashMap<String, String>();
+			hm.put("name", name);
+			hm.put("phone", phone);
+			return (Member) session.selectOne("memberns.findId", hm);
+		}
+		
+		// FindPwResult
+		public Member findPassword(String id, String name) {
+			HashMap<String, String> hm = new HashMap<String, String>();
+			hm.put("id", id);
+			hm.put("name", name);
+			return (Member) session.selectOne("memberns.findPassword", hm);
+		}
+		
+		// UpdateResult
+		public int update(Member member) {
+			return session.update("memberns.update", member);
+		}
+		
+		// Delete
+		public int delete(String id) {
+			return session.update("memberns.delete", id);
+		}
+		
 		// 다른 테이블에서 회원번호를 활용한 닉네임 찾기
 		public String selectNick(int mno) {
 			return (String) session.selectOne("memberns.selectNick", mno);
 		}
+		
 		// 다른 테이블에서 세션 아이디를 활용한 회원번호 찾기
 		public int selectMno(String id) {
 			return (int) session.selectOne("memberns.selectMno", id);
 		}
+
 }

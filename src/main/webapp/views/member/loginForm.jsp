@@ -32,7 +32,7 @@
 		</form>
 
 		<a class="btn btn_stroke btn_mid btn_left" href="joinForm.na">회원가입</a>
-		<a class="btn btn_stroke btn_mid" href="joinForm.na">아이디/비밀번호 찾기</a>
+		<a class="btn btn_stroke btn_mid" href="findForm.na">아이디/비밀번호 찾기</a>
 	</div>
 </body>
 </html>

@@ -16,14 +16,14 @@
 			</div>
 			<nav>
 				<ul class='nav_sub'>
-					<li><a href="../login/loginForm.na">로그인</a></li>
-					<li><a href="../login/joinForm.na">회원가입</a></li>
+					<li><a href="../member/loginForm.na">로그인</a></li>
+					<li><a href="../member/joinForm.na">회원가입</a></li>
 				</ul>
 				<ul class='nav_main'>
 					<li><a href="../display/dpMain.do">전시</a></li>
 					<li><a href="../board/boardMain.wo">스토리</a></li>
-					<li><a href="../my/myMain.wo">마이페이지</a></li>
-					<li><a href="../my/myBookmarkList.wo"><img alt="북마크" src="../../images/icons/bookmark.png" ></a></li>
+					<li><a href="../myPage/myMain.na">마이페이지</a></li>
+					<li><a href="../myPage/myBookmarkList.wo"><img alt="북마크" src="../../images/icons/bookmark.png" ></a></li>
 					<li><a href="#"><img alt="검색" src="../../images/icons/search.png"></a></li>
 				</ul>
 			</nav>

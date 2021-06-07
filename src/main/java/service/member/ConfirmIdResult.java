@@ -1,11 +1,11 @@
-package service.login;
+package service.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.MemberDao;
 import service.CommandProcess;
-import service.login.MailResult;
+import service.member.MailResult;
 
 public class ConfirmIdResult implements CommandProcess {
 

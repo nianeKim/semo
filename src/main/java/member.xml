@@ -25,21 +25,21 @@
 			#{phone},#{gender},#{age},#{loc},'n',sysdate)
 	</insert>
 	
-	<!-- <update id="update" parameterType="member">
+	<select id="findId" parameterType="hashmap" resultType="member">
+		select * from member where name=#{name} and phone=#{phone}
+	</select>
+	
+	<select	id="findPassword" parameterType="string" resultType="member">
+		select * from member where id=#{id} and name=#{name}
+	</select>  
+	
+	<update id="update" parameterType="member">
 		update member set password=#{password}, name=#{name}, nick_nm=#{nick_nm},
 			phone=#{phone}, gender=#{gender}, age=#{age}, loc=#{loc} where id=#{id}
 	</update>
 	
-	<update id="delete" parameterType="String">
+	<update id="delete" parameterType="string">
 		update member set del='y' where id=#{id}	
-	</update>
+	</update> 
 	
-	<select id="findId" parameterType="String" resultType="member">
-		select * from member where name=#{name} and phone=#{phone}
-	</select>
-	
-	<select	id="findPassword" parameterType="String" resultType="member">
-		select * from member where id=#{id} and name=#{name}
-	</select>  -->
-
 </mapper>

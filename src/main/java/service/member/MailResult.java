@@ -1,4 +1,4 @@
-package service.login;
+package service.member;
 
 import java.util.Random;
 

@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+input {
+	font-family: inherit;
+}
+
+#chkIdDIV {
+	display: none;
+}
+
+.chk-msg {
+	font-size: 12px;
+	color: #ff5f06;
+	margin-top: -10px;
+}
+
+.chk-btn {
+	width: 90px;
+	line-height: 48px;
+	font-weight: 600;
+	text-align: right;
+	display: inline-block;
+	font-size: 16px;
+	border-bottom: 1px solid #000;
+	height: 48px;
+}
+
+.check {
+	font-size: 0;
+}
+
+.inputBox-left {
+	width: calc(100% - 90px);
+    display: inline-block;
+}
+
+.radio-left {
+	margin-right: 30px;
+}
+
+.select-gender {
+	margin: 20px 0 20px 0;
+}
+
+select {
+	width: 259px;
+	padding: 1px 1px;
+	font-family: inherit;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: url(../../images/icons/arrow_bottom.png) no-repeat 100% 50%;
+	font-size: 15px;
+	font-weight: 500;
+	color: #aaaaaa;
+	margin: 0;
+	border: 0;
+}
+
+select:focus {
+	color: 0 0 1px 3px #ff5f06;
+}
+
+.loc-age {
+	display: inline-block;
+	margin-top: 15px;
+	margin-bottom: 60px;
+}
+
+.select-loc {
+	margin-right: 40px;
+	border-bottom: 1px solid #000;
+}
+
+.select-age {
+	border-bottom: 1px solid #000;
+}

@@ -13,6 +13,7 @@ public class Member {
 	private String loc;
 	private String del;
 	private Date reg_date;
+	private String profile;
 	
 	 
 	public int getMno() {
@@ -80,5 +81,11 @@ public class Member {
 	}
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
+	}
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 }
