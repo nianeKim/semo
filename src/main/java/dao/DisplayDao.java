@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -33,5 +34,13 @@ public class DisplayDao {
 	
 	public int insert(Display dp) {
 		return session.insert("displayns.insert", dp); 
+	}
+	
+	public List<Display> list() {
+		return session.selectList("displayns.selectList");
+	}
+	
+	public Display select(String dname) {
+		return (Display) session.selectOne("displayns.select", dname);
 	}
 }

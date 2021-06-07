@@ -16,11 +16,11 @@
 	margin-right: 0;
 }
 
-.display_tab li a.active {
+.display_tab li.active {
 	position: relative;
 }
 
-.display_tab li .active::after {
+.display_tab li.active::after {
 	display: block;
 	content: '';
 	position: absolute;
@@ -84,8 +84,10 @@
 }
 
 .display_list ul li {
+	vertical-align: top;
 	display: inline-block;
 	width: 20%;
+	max-height: max-content;
 	padding: 0 12px 56px 12px;
 }
 
@@ -104,12 +106,18 @@
 	font-size: 18px;
 	font-weight: 600;
 	padding-top: 6px;
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	word-wrap: break-word;
 }
 
 .display_list .text_area .location {
 	font-size: 14px;
 	color: #7b7b7b;
-	padding-top: 8px;
+	padding-top: 12px;
 }
 
 /* paging */
@@ -172,7 +180,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background-color: #fff;
-	width: 60%;
+	width: 34%;
 	min-height: 50vh;
 	padding: 60px;
 }
@@ -191,13 +199,6 @@
 }
 
 /* left content */
-
-.modal_content .left {
-	display: inline-block;
-	width: 50%;
-	padding-right: 16px;
-	vertical-align: top; /* inline-block끼리 높이가 안맞을때 상위 공백 설정 */
-}
 
 .tag_box .label_box {
 	position: relative;
@@ -232,26 +233,12 @@
 	border: 1px solid var(--point-color);
 }
 
-.modal_content .left .block:last-child {
+.modal_content .block:last-child {
 	margin-top: 36px;
 }
 
-/* right content */
-
-.modal_content .right {
-	display: inline-block;
-	width: 50%;
-	padding-left: 16px;
-	vertical-align: top; /* inline-block끼리 높이가 안맞을때 상위 공백 설정 */
-}
-
-.filter_modal .btn {
+.filter_modal .btn_box .btn {
 	margin-bottom: 0;
-	max-width: 60%;
-}
-
-.filter_modal .btn_box {
-	text-align: center;
 }
 
 /* modal : end */
