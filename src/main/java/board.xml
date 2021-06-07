@@ -9,10 +9,30 @@
 	</insert>
 	
 	<select id="list" resultType="board">
-		select * from board order by bno desc
+		select * from board order by reg_date desc 
+	</select>
+	
+	<select id="list2" resultType="board">
+		select * from board order by read_cnt desc, bno desc
+	</select>
+	
+	<select id="list3" resultType="board">
+		select * from board order by likes desc, bno desc
 	</select>
 
 	<select id="selectOne" resultType="board">
 		select * from board where bno=#{bno}
 	</select>
+	
+	<update id="readcountUpdate" parameterType="integer">
+		update board set read_cnt = read_cnt + 1 where bno = #{bno}
+	</update>
+	
+	<update id="likesPlus" parameterType="integer">
+		update board set likes = likes + 1 where bno = #{bno}
+	</update>
+	
+	<update id="likesMinus" parameterType="integer">
+		update board set likes = likes - 1 where bno = #{bno}
+	</update>
 </mapper>

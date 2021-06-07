@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bdlikesns">
+	<select id="select" resultType="integer">
+		select count(*) from bdlikes where bno=#{bno} and mno=#{mno}
+	</select>
+	
+	<insert id="insert" parameterType="bdlikes">
+		insert into bdlikes values(#{mno}, #{bno})
+	</insert>
+	
+	<delete id="delete">
+		delete from bdlikes where bno=#{bno} and mno=#{mno}
+	</delete>
+</mapper>

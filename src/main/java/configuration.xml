@@ -5,11 +5,12 @@
 	<typeAliases>
 		<typeAlias alias="member" type="model.Member" />
 		<typeAlias alias="display" type="model.Display" />
-		<!-- <typeAlias alias="bookmark" type="model.Bookmark" /> 
+		<typeAlias alias="board" type="model.Board" />
+		<typeAlias alias="bdlikes" type="model.Bdlikes" />
+<!--    <typeAlias alias="bookmark" type="model.Bookmark" /> 
 		<typeAlias alias="reservation" type="model.Reservation" /> 
 		<typeAlias alias="review" type="model.Review" /> -->
-		<typeAlias alias="board" type="model.Board" />
-		<!-- <typeAlias alias="reply" type="model.Reply" /> -->
+		<typeAlias alias="reply" type="model.Reply" />
 
 	</typeAliases>
 	<environments default="development">
@@ -25,11 +26,12 @@
 	</environments>
 	<mappers>
 		<mapper resource="member.xml" />
-<!-- 		<mapper resource="display.xml" />
-		<mapper resource="bookmark.xml" />
-		<mapper resource="reservation.xml" />
-		<mapper resource="review.xml" />
+		<mapper resource="display.xml" />
 		<mapper resource="board.xml" />
-		<mapper resource="reply.xml" /> -->
+		<mapper resource="bdlikes.xml" />
+<!-- 	<mapper resource="bookmark.xml" />
+		<mapper resource="reservation.xml" />
+		<mapper resource="review.xml" /> -->
+		<mapper resource="reply.xml" />
 	</mappers>
 </configuration>

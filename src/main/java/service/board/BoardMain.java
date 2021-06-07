@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.BoardDao;
 import dao.MemberDao;
+import dao.ReplyDao;
 import model.Board;
 import model.Member;
 import service.CommandProcess;
@@ -17,16 +18,25 @@ public class BoardMain implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		Board board = new Board();
+		int bno = board.getBno();
 		int mno = board.getMno();
 		
 		BoardDao bd = BoardDao.getInstance();
-		List<Board> list = bd.list();
-		
+		List<Board> list = bd.list(); // order by bno (최신순)
+		List<Board> list2 = bd.list2(); // order by read_cnt (조회순)
+		List<Board> list3 = bd.list3(); // order by likes (인기순)
+
 		MemberDao md = MemberDao.getInstance();
 		String nick_nm = md.selectNick(mno); 
+		
+		ReplyDao rd = ReplyDao.getInstance();
+		int reply_cnt = rd.count(bno);
 
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
+		request.setAttribute("list3", list3);
 		request.setAttribute("nick_nm", nick_nm);
+		request.setAttribute("reply_cnt", reply_cnt);
 
 		return "boardMain";
 	}

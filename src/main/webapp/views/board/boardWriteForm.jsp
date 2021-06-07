@@ -26,11 +26,11 @@ input[name="title"] {
 	width: 100%;
 	line-height: 43px;
 	border: none;
-	border: 1px solid var(- -point-color);
+	border: 1px solid var(--point-color);
 	outline: 0;
 	font-size: 15px;
 	text-align: center;
-	color: var(- -point-color);
+	color: var(--point-color);
 	cursor: pointer;
 	padding: 2px 12px;
 }
@@ -70,7 +70,8 @@ input[type="file"] { /* input 사라지게 */
 
 		$("#f1").on('change', function() {
 			var fileName = $(this).val();
-			$(".file_label").text(fileName);
+			var realFileName = fileName.split("\\");
+			$(".file_label").text(realFileName[2]);
 		});
 	});
 </script>
