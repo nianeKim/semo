@@ -6,8 +6,9 @@
 				select nvl(max(dno), 0) + 1 dno from display
 		</selectKey>
 		insert into display values(#{dno}, #{dname}, #{start_date}, #{end_date},
-		#{loc}, #{poster}, #{tag,jdbcType=VARCHAR}, #{intro}, #{detail_img,jdbcType=VARCHAR}, #{detail_txt,jdbcType=VARCHAR}, #{hours},
-		#{fee,jdbcType=INTEGER}, #{fee_adult,jdbcType=INTEGER}, #{fee_teen,jdbcType=INTEGER},
+		#{loc}, #{poster}, #{tag,jdbcType=VARCHAR}, #{intro}, #{detail_img,jdbcType=VARCHAR},
+		#{detail_txt,jdbcType=VARCHAR}, #{hours}, #{fee,jdbcType=INTEGER},
+		#{fee_adult,jdbcType=INTEGER}, #{fee_teen,jdbcType=INTEGER},
 		#{fee_child,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, #{artist,jdbcType=VARCHAR},
 		#{tel,jdbcType=VARCHAR}, #{home_pg,jdbcType=VARCHAR}, 'n', #{mno})
 	</insert>
@@ -17,6 +18,6 @@
 	</select>
 	
 	<select id="select" parameterType="string" resultType="display">
-		select * from display where dname = #{dname}
+		select * from display where dname = #{dname,jdbcType=VARCHAR} and del='n'
 	</select>
-</mapper>
+</mapper> 

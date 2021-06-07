@@ -37,7 +37,6 @@ public class DpRegistResult implements CommandProcess {
 			String poster = mr.getFilesystemName("poster");
 			
 			String dname = mr.getParameter("dname");
-			
 			Date start_date = Date.valueOf(mr.getParameter("start_date"));
 			Date end_date = Date.valueOf(mr.getParameter("end_date"));
 			String hours = mr.getParameter("hours");

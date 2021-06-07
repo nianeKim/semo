@@ -5,11 +5,11 @@
 	<typeAliases>
 		<typeAlias alias="member" type="model.Member" />
 		<typeAlias alias="display" type="model.Display" />
-		<!-- <typeAlias alias="bookmark" type="model.Bookmark" />
-		<typeAlias alias="reservation" type="model.Reservation" />
-		<typeAlias alias="review" type="model.Review" />  -->
+		<!-- <typeAlias alias="bookmark" type="model.Bookmark" /> <typeAlias alias="reservation" 
+			type="model.Reservation" /> <typeAlias alias="review" type="model.Review" 
+			/> -->
 		<typeAlias alias="board" type="model.Board" />
-	<!-- 	<typeAlias alias="reply" type="model.Reply" />  -->
+		<!-- <typeAlias alias="reply" type="model.Reply" /> -->
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">

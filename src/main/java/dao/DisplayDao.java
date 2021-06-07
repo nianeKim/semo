@@ -39,8 +39,8 @@ public class DisplayDao {
 	public List<Display> list() {
 		return session.selectList("displayns.selectList");
 	}
+	
 	public Display select(String dname) {
-		System.out.println("dao : "+dname);
 		return (Display) session.selectOne("displayns.select", dname);
 	}
 }
