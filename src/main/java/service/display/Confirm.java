@@ -15,18 +15,14 @@ public class Confirm implements CommandProcess {
 		String msg = "";
 		
 		DisplayDao dd = DisplayDao.getInstance();
-		Display display = dd.select(dname);
+		Display dp = dd.select(dname);
 		
-		System.out.println("java: "+dname);
-		
-		if (display == null) {
+		if (dp == null) {
 			msg = "등록 가능한 전시입니다.";
-		}
-		else {
+		} else if (dp.getDname().equals(dname)) {
 			msg = "이미 등록된 전시입니다.";
 		}
-		System.out.println("msg: "+msg);
-		
+
 		request.setAttribute("msg", msg);
 		
 		return "confirm";

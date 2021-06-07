@@ -5,10 +5,14 @@
 		<selectKey keyProperty="bno" order="BEFORE" resultType="integer">
 			select nvl(max(bno), 0) + 1 bno from board
 		</selectKey>
-		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0, 'n', #{mno}, #{poster, jdbcType=VARCHAR}})
+		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0, 'n', #{mno}, #{thumbnail})
 	</insert>
 	
-	<select id="select" resultType="board">
+	<select id="list" resultType="board">
 		select * from board order by bno desc
+	</select>
+
+	<select id="selectOne" resultType="board">
+		select * from board where bno=#{bno}
 	</select>
 </mapper>

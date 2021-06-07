@@ -16,7 +16,8 @@
 		// upload file name change
 		$('input[type="file"]').on('change', function() {
 			var fileName = $(this).val();
-			$(this).siblings('label').text(fileName); 
+			var realFileName = fileName.split("\\");
+			$(this).siblings('label').text(realFileName[2]); 
 		})
 	})
 	
@@ -64,10 +65,12 @@
 		<p class="title">전시 등록하기</p>
 		<form action="dpRegistResult.do" method="post" name="frm" onsubmit="return valueChk()" enctype="multipart/form-data">
 			<div class="column_box column_box2">
-				<input type="text" class="column column2" name="dname" placeholder="전시명 *" required autofocus>
+				<div class="column column2">
+					<input type="text" name="dname" placeholder="전시명 *" required autofocus>
+					<p class="err"></p>				
+				</div>
 				<input type="button" class="btn btn_stroke column column2" onclick="confirm()" value="중복 체크">
 			</div>
-			<p class="err"></p>
 			<div class="column_box">			
 				<input type="text" class="column" name="start_date" placeholder="시작일 *" onfocus="(this.type='date')" required>
 				<input type="text" class="column" name="end_date" placeholder="종료일 *" onfocus="(this.type='date')" required>
@@ -119,7 +122,7 @@
 			
 			<div class="column_box">
 				<input type="submit" class="btn" value="등록하기">
-				<p class="btn btn_stroke" onclick="history.go(-1)">취소</p>
+				<input type="button" class="btn btn_stroke reset" onclick="history.go(-1)" value="취소">
 			</div>
 		</form>
 	</div>

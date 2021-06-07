@@ -40,14 +40,18 @@
 
 .board_list>ul>li>a>img {
 	width: 100%;
-	height: 100%;
-	vertical-align: middle;
+	height: 13.4vw;
+	object-fit: cover;
 }
 
 .board_list .text_area .bd_text_title {
+	width: 100%;
 	font-size: 18px;
 	font-weight: 600;
 	padding-top: 6px;
+	overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
 .board_list .text_area .bd_text_content {

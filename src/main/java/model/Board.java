@@ -11,14 +11,14 @@ public class Board {
 	private int likes;
 	private String del;
 	private int mno;
-	private String poster;
+	private String thumbnail;
 
-	public String getPoster() {
-		return poster;
+	public String getThumbnail() {
+		return thumbnail;
 	}
 
-	public void setPoster(String poster) {
-		this.poster = poster;
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public int getBno() {

@@ -35,13 +35,19 @@ public class BoardDao {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	// BoardWriteResult.java
 	public int insert(Board board) {
 		return session.insert("boardns.insert", board);
 	}
-
+	// BoardMain.java
 	public List<Board> list() {
-		return session.selectList("boardns.select");
+		return session.selectList("boardns.list");
 	}
+	// BoardView.java
+	public Board select(int bno) {
+		return (Board) session.selectOne("boardns.selectOne", bno);
+	}
+	
+	
 	
 }

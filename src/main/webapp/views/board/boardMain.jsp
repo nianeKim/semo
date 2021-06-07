@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../css/bdMain.css">
+<link rel="stylesheet" type="text/css" href="../../css/board/bdMain.css">
 </head>
 <body>
 	<div class="container_wide">
@@ -25,19 +25,19 @@
 		<div class="board_list">
 			<ul>
 				<c:forEach var="board" items="${list}">
-					<li><a href="#"> <img alt="포스터"
-							src="../../images/dummy.gif">
-							<div class="text_area">
-								<p class="bd_text_title">${board.title}</p>
-								<pre class="bd_text_content">${board.content}</pre>
-								<div class="bd_text_bottom">
-									<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes }</span>
-									<img alt="댓글" src="../../images/icons/comment.png"> <span>0</span>
-									<div class="bd_text_bottom_right">
-										<img alt="댓글" src="../../images/icons/by.svg"> <span>닉네임</span>
-									</div>
+					<li><a href="boardView.wo?bno=${board.bno}">
+						<img alt="포스터" src="../../upload/${board.thumbnail}">
+						<div class="text_area">
+							<p class="bd_text_title">${board.title}</p>
+							<pre class="bd_text_content">${board.content}</pre>
+							<div class="bd_text_bottom">
+								<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes }</span>
+								<img alt="댓글" src="../../images/icons/comment.png"> <span>0</span>
+								<div class="bd_text_bottom_right">
+									<img alt="닉네임" src="../../images/icons/by.svg"> <span>${nick_nm }</span>
 								</div>
 							</div>
+						</div>
 					</a></li>
 				</c:forEach>
 			</ul>
