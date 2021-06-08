@@ -10,8 +10,7 @@
 <body>
 	<c:if test="${result>0 }">
 		<script>
-			alert("로그인 되었습니다")
-			location.href="../display/dpMain.do";
+			location.href="../display/dpMain.do?tab=1";
 		</script>
 	</c:if>
 	
