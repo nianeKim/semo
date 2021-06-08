@@ -73,7 +73,7 @@ textarea {
 	padding: 10px 12px;
 	line-height: 22px;
 	margin-bottom: 16px;
-	font-family: inherit;
+	font-family: 'Apple SD Gothic Neo', 'AppleSDGothicNeo';
 }
 
 textarea::placeholder {

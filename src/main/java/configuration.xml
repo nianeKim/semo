@@ -7,10 +7,10 @@
 		<typeAlias alias="display" type="model.Display" />
 		<typeAlias alias="board" type="model.Board" />
 		<typeAlias alias="bdlikes" type="model.Bdlikes" />
-<!--    <typeAlias alias="bookmark" type="model.Bookmark" /> 
-		<typeAlias alias="reservation" type="model.Reservation" /> 
-		<typeAlias alias="review" type="model.Review" /> -->
+		<typeAlias alias="review" type="model.Review" />
 		<typeAlias alias="reply" type="model.Reply" />
+<!--    <typeAlias alias="bookmark" type="model.Bookmark" /> 
+		<typeAlias alias="reservation" type="model.Reservation" />  -->
 
 	</typeAliases>
 	<environments default="development">
@@ -29,9 +29,9 @@
 		<mapper resource="display.xml" />
 		<mapper resource="board.xml" />
 		<mapper resource="bdlikes.xml" />
-<!-- 	<mapper resource="bookmark.xml" />
-		<mapper resource="reservation.xml" />
-		<mapper resource="review.xml" /> -->
+		<mapper resource="review.xml" />
 		<mapper resource="reply.xml" />
+<!-- 	<mapper resource="bookmark.xml" />
+		<mapper resource="reservation.xml" />-->
 	</mappers>
 </configuration>

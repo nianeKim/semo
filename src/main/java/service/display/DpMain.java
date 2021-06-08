@@ -19,6 +19,8 @@ public class DpMain implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		DisplayDao dd = DisplayDao.getInstance();
 		List<Display> list = dd.list();
+		String tab = request.getParameter("tab");
+		
 		Date today = Date.valueOf(LocalDate.now());
 		Date todayAfter7 = null;
 		
@@ -34,12 +36,11 @@ public class DpMain implements CommandProcess {
 		
 		// sql date로 변환
 		todayAfter7 = Date.valueOf(strTodayAfter7);
-		// System.out.println(todayAfter7);
 		
 		request.setAttribute("today", today);
 		request.setAttribute("todayAfter7", todayAfter7);
+		request.setAttribute("tab", tab);
 		request.setAttribute("list", list);
-		//request.setAttribute("servletPath", request.getServletPath());
 		
 		return "dpMain";
 	}

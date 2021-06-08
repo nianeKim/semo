@@ -32,15 +32,23 @@ public class DisplayDao {
 		}
 	}
 	
+	// 전시 등록
 	public int insert(Display dp) {
 		return session.insert("displayns.insert", dp); 
 	}
 	
+	// 전시 리스트 통합 조회
 	public List<Display> list() {
 		return session.selectList("displayns.selectList");
 	}
 	
+	// dname 중복 체크
 	public Display select(String dname) {
 		return (Display) session.selectOne("displayns.select", dname);
+	}
+	
+	// 전시 상세 select
+	public Display select(int dno) {
+		return (Display) session.selectOne("displayns.selectView", dno);
 	}
 }

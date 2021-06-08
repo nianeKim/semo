@@ -106,7 +106,7 @@
 			
 			<!-- 상세 내용 -->
 			<p class="option_title">상세 내용</p>
-			<textarea name="detail_txt" placeholder="상세 정보에 대한 내용이 있다면 입력해주세요."></textarea>
+			<textarea wrap="hard" name="detail_txt" placeholder="상세 정보에 대한 내용이 있다면 입력해주세요."></textarea>
 			
 			<!-- 이미지 업로드 -->
 			<div class="column_box pd">

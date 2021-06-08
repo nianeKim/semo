@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="displayns">
+	<!-- 전시 등록 -->
 	<insert id="insert" parameterType="display">
 		<selectKey keyProperty="dno" order="BEFORE" resultType="integer">
 				select nvl(max(dno), 0) + 1 dno from display
@@ -13,11 +14,18 @@
 		#{tel,jdbcType=VARCHAR}, #{home_pg,jdbcType=VARCHAR}, 'n', #{mno})
 	</insert>
 	
+	<!-- 전시 통합 리스트 -->
 	<select id="selectList" resultType="display">
-		select * from display order by dno desc
+		select * from display where del = 'n' order by dno desc 
 	</select>
 	
+	<!-- dname 중복 체크 -->
 	<select id="select" parameterType="string" resultType="display">
 		select * from display where dname = #{dname,jdbcType=VARCHAR} and del='n'
+	</select>
+	
+	<!-- 전시 상세 select -->
+	<select id="selectView" parameterType="integer" resultType="display">
+		select * from display where dno = #{dno} and del='n'
 	</select>
 </mapper> 

@@ -6,19 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-@import url("../../css/display/dpMain.css");
-</style>
+<style type="text/css">@import url("../../css/display/dpMain.css");</style>
 <script type="text/javascript">
 	$(function() {
-		// tab active
-		$('.display_tab li').on('click', function() {
-			if (!$(this).hasClass('active')) {
-				$('.display_tab li').removeClass('active');
-				$(this).addClass('active');
-			}
-		})
-
 		// filter modal open
 		$('.filter').on('click', function() {
 			$('.filter_modal').show();
@@ -49,56 +39,42 @@
 			}
 		})
 	})
-
-	// tab 페이지 새로고침 없이 url 변경
-	/* function uriRedirect1() {
-		var url = "dpMain.do?tab=1";
-		history.pushState(null, null, url);
-		
+	
+	// tab active : page가 로드됐을때 바로 실행
+	window.onload = function() {
+		$('.display_tab li').removeClass('active');
+		$('#tab'+${tab}).addClass('active');
 	}
-
-	function uriRedirect2() {
-		var url = "dpMain.do?tab=2";
-		history.pushState(null, null, url);
-	}
-
-	function uriRedirect3() {
-		var url = "dpMain.do?tab=3";
-		history.pushState(null, null, url);
-	} */
-	// console.log(${servletPath}) /views/display/dpMain.do
 </script>
 </head>
 <body>
 	<div class="container_wide">
 		<section class="display_main">
 			<ul class="display_tab">
-				<li class="title active" onclick="location.href='dpMain.do?tab=1'">전시중</li>
-				<li class="title" onclick="uriRedirect2()">종료 예정</li>
-				<li class="title" onclick="uriRedirect3()">예정 전시</li>
+				<li class="title" id="tab1" onclick="location.href='dpMain.do?tab=1'">전시중</li>
+				<li class="title" id="tab2" onclick="location.href='dpMain.do?tab=2'">종료 예정</li>
+				<li class="title" id="tab3" onclick="location.href='dpMain.do?tab=3'">예정 전시</li>
 			</ul>
 
 			<div class="button_box">
 				<!-- 필터 -->
-				<a href="#" class="filter"> <img alt="필터"
-					src="../../images/icons/filter.png"> <span>필터</span>
+				<a href="#" class="filter"> <img alt="필터" src="../../images/icons/filter.png"> <span>필터</span>
 				</a>
 				<!-- 전시 등록 버튼 -->
 				<div class="confirm_btn">
-					<button class="btn btn_stroke"
-						onclick="location.href='dpRegistForm.do'">전시 등록하기</button>
+					<button class="btn btn_stroke" onclick="location.href='dpRegistForm.do'">전시 등록하기</button>
 				</div>
 			</div>
 
 			<!-- display list -->
 			<div class="display_list">
 				<ul>
-					<c:forEach var="display" items="${list }">
-						<!-- 전시중 -->
-						<c:if test="${display.start_date <= today }">
-							<%-- <c:set var="url" value="${servletPath}" /> --%>
+					<!-- 전시중 -->
+					<c:if test="${tab == 1 }">
+						<c:forEach var="display" items="${list }">
+							<c:if test="${display.start_date <= today }">
 								<li>
-									<a href="#"> 
+									<a href="dpView.do?dno=${display.dno }"> 
 										<img alt="포스터" src="/semojeon/upload/${display.poster }">
 										<div class="text_area">
 											<p class="date">${display.start_date }~ ${display.end_date }</p>
@@ -107,38 +83,43 @@
 										</div>
 									</a>
 								</li>
-						</c:if>
-					</c:forEach>
+							</c:if>
+						</c:forEach>
+					</c:if>
 					<!-- 종료 예정 -->
-					<%-- <c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
+					<c:if test="${tab == 2 }">
 						<c:forEach var="display" items="${list }">
-							<li>
-								<a href="#"> 
-									<img alt="포스터" src="/semojeon/upload/${display.poster }">
-									<div class="text_area">
-										<p class="date">${display.start_date }~ ${display.end_date }</p>
-										<p class="dp_list_title">${display.dname }</p>
-										<p class="location">${display.loc }</p>
-									</div>
-								</a>
-							</li>
+							<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
+								<li>
+									<a href="dpView.do?dno=${display.dno }"> 
+										<img alt="포스터" src="/semojeon/upload/${display.poster }">
+										<div class="text_area">
+											<p class="date">${display.start_date } ~ ${display.end_date }</p>
+											<p class="dp_list_title">${display.dname }</p>
+											<p class="location">${display.loc }</p>
+										</div>
+									</a>
+								</li>
+							</c:if>
 						</c:forEach>
 					</c:if>
 					<!-- 예정 전시 -->
-					<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
+					<c:if test="${tab == 3 }">
 						<c:forEach var="display" items="${list }">
-							<li>
-								<a href="#"> 
-									<img alt="포스터" src="/semojeon/upload/${display.poster }">
-									<div class="text_area">
-										<p class="date">${display.start_date }~ ${display.end_date }</p>
-										<p class="dp_list_title">${display.dname }</p>
-										<p class="location">${display.loc }</p>
-									</div>
-								</a>
-							</li>
+							<c:if test="${display.start_date >= today }">
+								<li>
+									<a href="dpView.do?dno=${display.dno }"> 
+										<img alt="포스터" src="/semojeon/upload/${display.poster }">
+										<div class="text_area">
+											<p class="date">${display.start_date } ~ ${display.end_date }</p>
+											<p class="dp_list_title">${display.dname }</p>
+											<p class="location">${display.loc }</p>
+										</div>
+									</a>
+								</li>
+							</c:if>
 						</c:forEach>
-					</c:if> --%>
+					</c:if>
 				</ul>
 			</div>
 
