@@ -5,7 +5,7 @@
 		<selectKey keyProperty="rv_no" order="BEFORE" resultType="integer">
 			select nvl(max(rv_no), 0) + 1 rv_no from review
 		</selectKey>
-		insert into review values(#{rv_no}, #{content}, sysdate, 0, 'n',
-		#{mno}, #{dno})
+		insert into review values(#{rv_no}, #{star_rate} #{content},
+		sysdate, 0, 'n', #{mno}, #{dno})
 	</insert>
 </mapper>

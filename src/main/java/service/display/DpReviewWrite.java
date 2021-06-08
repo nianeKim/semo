@@ -31,6 +31,11 @@ public class DpReviewWrite implements CommandProcess {
 		review.setDno(dno);
 		review.setMno(mno);
 		
+		System.out.println(content);
+		System.out.println(star_rate);
+		System.out.println(dno);
+		System.out.println(mno);
+		
 		// review table에 insert
 		ReviewDao rd = ReviewDao.getInstance();
 		int result = rd.insert(review);
