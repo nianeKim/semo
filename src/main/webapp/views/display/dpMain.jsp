@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <style type="text/css">@import url("../../css/display/dpMain.css");</style>
 <script type="text/javascript">
+console.log("fff");
 	$(function() {
 		// filter modal open
 		$('.filter').on('click', function() {
@@ -41,10 +42,10 @@
 	})
 	
 	// tab active : page가 로드됐을때 바로 실행
-	window.onload = function() {
-		$('.display_tab li').removeClass('active');
-		$('#tab'+${tab}).addClass('active');
-	}
+	$(document).ready(function() {
+		$('.display_tab li').removeClass("active");
+		$('#tab'+${tab}).addClass("active");
+	})
 </script>
 </head>
 <body>

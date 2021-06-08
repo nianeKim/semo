@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>semojeon</title>
 <link rel="stylesheet" type="text/css" href="../../css/fonts.css">
 <link rel="stylesheet" type="text/css" href="../../css/reset.css">
 <link rel="stylesheet" type="text/css" href="../../css/common.css">

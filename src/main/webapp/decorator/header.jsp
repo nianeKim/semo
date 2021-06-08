@@ -7,8 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	// nav active control
+	$(document).ready(function() { // window.onload보다 document.ready가 더 빠르고 안정적!
+		var curUrl = window.location.href; // 현재 url가져오기
+		var sliceUrl = curUrl.split("/"); // 필요한 부분만 슬라이스
+		
+		$('nav_main a').removeClass("active");
+		$('#'+sliceUrl[5]).addClass("active");
+	})
+</script>
 </head>
-
 <body>
 	<header>
 		<div class='header_inner'>
@@ -32,9 +41,9 @@
 					</c:if>
 				</ul>
 				<ul class='nav_main'>
-					<li><a href="../display/dpMain.do?tab=1">전시</a></li>
-					<li><a href="../board/boardMain.wo">스토리</a></li>
-					<li><a href="../myPage/myMain.na">마이페이지</a></li>
+					<li><a href="../display/dpMain.do?tab=1" id="display">전시</a></li>
+					<li><a href="../board/boardMain.wo" id="board">스토리</a></li>
+					<li><a href="../myPage/myMain.na" id="myPage">마이페이지</a></li>
 					<li><a href="../myPage/myBookmarkList.wo"><img alt="북마크" src="../../images/icons/bookmark.png" ></a></li>
 					<li><a href="#"><img alt="검색" src="../../images/icons/search.png"></a></li>
 				</ul>
