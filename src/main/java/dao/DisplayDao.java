@@ -39,7 +39,7 @@ public class DisplayDao {
 	
 	// 전시 리스트 통합 조회
 	public List<Display> list() {
-		return session.selectList("displayns.selectList");
+		return (List<Display>)session.selectList("displayns.selectList");
 	}
 	
 	// dname 중복 체크
@@ -50,5 +50,15 @@ public class DisplayDao {
 	// 전시 상세 select
 	public Display select(int dno) {
 		return (Display) session.selectOne("displayns.selectView", dno);
+	}
+	
+	// 전시 수정
+	public int update(Display display) {
+		return session.update("displayns.update", display);
+	}
+	
+	// 전시 삭제
+	public int delete(int dno) {
+		return session.delete("displayns.delete", dno);
 	}
 }

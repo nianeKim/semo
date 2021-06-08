@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -30,9 +31,11 @@ public class ReviewDao {
 	}
 	
 	public int insert(Review review) { 
-		System.out.println(review.getStar_rate());
 		return session.insert("reviewns.insert", review);
 	}
 	
+	public List<Review> select(int dno) {
+		return session.selectList("reviewns.select", dno);
+	}
 	
 }

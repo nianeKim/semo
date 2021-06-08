@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">@import url("../../css/display/dpView.css");</style>
+<c:set var="id" value='${sessionScope.id}'></c:set>
+<c:set var="mno" value='${sessionScope.mno}'></c:set>
 <script type="text/javascript">
 	$(function() {
 		// input range rate 조절
@@ -23,6 +25,21 @@
 		    $('#input_span').text($(this).val());
 		})
 	})
+	// submit check
+	function sessionChk() {
+		if (${empty id}) {
+			alert("로그인이 필요합니다.");
+			location.href="/semojeon/views/member/loginForm.na";
+			return false;
+		}
+	}
+	// 전시 삭제 confirm
+	function del() {
+		var con = confirm("전시를 정말 삭제하시겠습니까?");
+		if (con) {
+			location.href="dpDelete.do?dno=${display.dno }";
+		}
+	}
 </script>
 </head>
 <body>
@@ -52,7 +69,7 @@
 						<th style="vertical-align: top;">가격</th>
 						<td>
 							<c:if test="${display.fee != 0 }">
-								<span>${display.fee }</span><br>
+								<span>${display.fee }원</span><br>
 							</c:if>
 							<c:if test="${display.fee_adult != 0 }">
 								성인 : <span>${display.fee_adult }원</span><br>
@@ -79,73 +96,60 @@
 		</div>
 		<!-- 하단 내용, 리뷰, 리뷰 등록 -->
 		<div class="display_view_bottom">
+			<c:if test="${not empty display.artist }">
+				<h4 class="sub_title">작가명</h4>
+				<p class="detail_txt">${display.artist }</p>
+			</c:if>
+			<c:if test="${not empty display.tag }">
+				<h4 class="sub_title">관련 태그</h4>
+				<p class="detail_txt">${display.tag }</p>
+			</c:if>
+			<c:if test="${not empty display.tel }">
+				<h4 class="sub_title">전화번호</h4>
+				<p class="detail_txt">${display.tel }</p>
+			</c:if>
+			<c:if test="${not empty display.home_pg }">
+				<h4 class="sub_title">홈페이지</h4>
+				<p class="detail_txt">${display.home_pg }</p>
+			</c:if>
 			<h4 class="sub_title">입장방식 안내</h4>
 			<p class="detail_txt">현장에서 별도 티켓으로 교환 후 입장</p>
+			
+			<!-- 전시 수정, 삭제 버튼 -->
+			<c:if test="${mno == display.mno }">
+				<div class="container_bottom_right">
+					<a href="dpUpdateForm.do?dno=${display.dno }" class="btn btn_stroke btn_small">수정</a>
+					<a onclick="del()" class="btn btn_stroke btn_small">삭제</a>
+				</div>
+			</c:if>
 			
 			<!-- 리뷰 리스트 : start -->
 			<h4 class="sub_title pd_bottom">리뷰 <span>264</span></h4>
 			<!-- 평균 별점 -->
 			<div class="star_avg">★★★★★ &nbsp;<span class="text">3.4</span>︎︎</div>
 			<ul class="review_list_box">
-				<li>
-					<div class="profile">
-						<img src="../../images/dummy_2.png" alt="프로필">
-						<p class="nick_nm">do5do</p>
-					</div>
-					<p class="detail_txt review">
-						영화와 음악이 함께하는 전시는 뭔가 특이하면서도 익숙했습니다. 도슨트를 들으면 더더 좋다고 들었지만 시간이 맞지 않아 좀 아쉬웠구요. 입장인원도 제한을 두고 해서 쾌적하게 좋은 시간이었습니다.
-					</p>
-					<div class="like_box">
-						<img alt="좋아요" src="../../images/icons/like.png">
-						<p class="count">25</p>
-					</div>
-				</li>
-				<li>
-					<div class="profile">
-						<img src="../../images/dummy_2.png" alt="프로필">
-						<p class="nick_nm">do5do</p>
-					</div>
-					<p class="detail_txt review">
-						영화와 음악이 함께하는 전시는 뭔가 특이하면서도 익숙했습니다. 도슨트를 들으면 더더 좋다고 들었지만 시간이 맞지 않아 좀 아쉬웠구요. 입장인원도 제한을 두고 해서 쾌적하게 좋은 시간이었습니다.
-					</p>
-					<div class="like_box">
-						<img alt="좋아요" src="../../images/icons/like.png">
-						<p class="count">25</p>
-					</div>
-				</li>
-				<li>
-					<div class="profile">
-						<img src="../../images/dummy_2.png" alt="프로필">
-						<p class="nick_nm">do5do</p>
-					</div>
-					<p class="detail_txt review">
-						영화와 음악이 함께하는 전시는 뭔가 특이하면서도 익숙했습니다. 도슨트를 들으면 더더 좋다고 들었지만 시간이 맞지 않아 좀 아쉬웠구요. 입장인원도 제한을 두고 해서 쾌적하게 좋은 시간이었습니다.
-					</p>
-					<div class="like_box">
-						<img alt="좋아요" src="../../images/icons/like.png">
-						<p class="count">25</p>
-					</div>
-				</li>
-				<li>
-					<div class="profile">
-						<img src="../../images/dummy_2.png" alt="프로필">
-						<p class="nick_nm">do5do</p>
-					</div>
-					<p class="detail_txt review">
-						영화와 음악이 함께하는 전시는 뭔가 특이하면서도 익숙했습니다. 도슨트를 들으면 더더 좋다고 들었지만 시간이 맞지 않아 좀 아쉬웠구요. 입장인원도 제한을 두고 해서 쾌적하게 좋은 시간이었습니다.
-					</p>
-					<div class="like_box">
-						<img alt="좋아요" src="../../images/icons/like.png">
-						<p class="count">25</p>
-					</div>
-				</li>
+				<c:forEach var="review" items="${list }">
+					<li>
+						<div class="profile">
+							<img src="../../images/profile.png" alt="프로필">
+							<p class="nick_nm">${review.mno }</p>
+						</div>
+						<p class="detail_txt review">
+							${review.content }
+						</p>
+						<div class="like_box">
+							<img alt="좋아요" src="../../images/icons/like.png">
+							<p class="count">${review.likes }</p>
+						</div>
+					</li>
+				</c:forEach>
 			</ul>
 			<!-- 리뷰 리스트 : end -->
 			
 			<!-- paging -->
 			<div class="paging">
 				<button class="prev">
-					<img alt="이전" src="../../images/icons/arrow_left.png">
+					<img alt="이전" src="../../images/icons/arrow_left1.png">
 				</button>
 				<div class="number">
 					<span class="page_num">1</span> / <span>6</span>
@@ -156,7 +160,7 @@
 			</div>
 			
 			<!-- 리뷰 등록 -->
-			<form action="dpReviewWrite.do?dno=${display.dno }" method="post">
+			<form action="dpReviewWrite.do?dno=${display.dno }" method="post" onsubmit="return sessionChk()">
 				<h4 class="sub_title">리뷰와 별점 등록</h4>
 				<textarea name="content" placeholder="전시가 어떠셨나요? 감상평을 작성해주세요." required autofocus></textarea>
 				<p class="detail_txt pd_bottom">별점을 선택해주세요.</p>

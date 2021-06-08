@@ -6,9 +6,7 @@
 <%@ include file="../sessionChk.jsp" %>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-	@import url("../../css/display/dpRegist.css");
-</style>
+<style type="text/css">@import url("../../css/display/dpRegist.css");</style>
 <script>
 	$(function() {
 		$('textarea[name="tag"]').attr('placeholder', "관련 태그가 있다면 콤마(, )로 구분하여 작성해주세요.\n예시 : 혼자보기좋은전시, 모던한, 디자인");

@@ -1,5 +1,7 @@
 package service.display;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,11 +32,6 @@ public class DpReviewWrite implements CommandProcess {
 		review.setStar_rate(star_rate);
 		review.setDno(dno);
 		review.setMno(mno);
-		
-		System.out.println(content);
-		System.out.println(star_rate);
-		System.out.println(dno);
-		System.out.println(mno);
 		
 		// review table에 insert
 		ReviewDao rd = ReviewDao.getInstance();

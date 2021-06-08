@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="dao.*, model.*, java.util.*"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -77,7 +77,7 @@
 									<a href="dpView.do?dno=${display.dno }"> 
 										<img alt="포스터" src="/semojeon/upload/${display.poster }">
 										<div class="text_area">
-											<p class="date">${display.start_date }~ ${display.end_date }</p>
+											<p class="date">${display.start_date } ~ ${display.end_date }</p>
 											<p class="dp_list_title">${display.dname }</p>
 											<p class="location">${display.loc }</p>
 										</div>
@@ -126,7 +126,7 @@
 			<!-- paging -->
 			<div class="paging">
 				<button class="prev">
-					<img alt="이전" src="../../images/icons/arrow_left.png">
+					<img alt="이전" src="../../images/icons/arrow_left1.png">
 				</button>
 				<div class="number">
 					<span class="page_num">1</span> / <span>6</span>

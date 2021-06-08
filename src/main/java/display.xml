@@ -28,4 +28,27 @@
 	<select id="selectView" parameterType="integer" resultType="display">
 		select * from display where dno = #{dno} and del='n'
 	</select>
+	
+	<!-- 전시 수정 -->
+	<update id="update" parameterType="display">
+		update display set dname=#{dname}, start_date=#{start_date},
+		end_date=#{end_date}, hours=#{hours}, loc=#{loc}, fee=#{fee,jdbcType=INTEGER},
+		discount=#{discount,jdbcType=INTEGER}, fee_adult=#{fee_adult,jdbcType=INTEGER},
+		fee_teen=#{fee_teen,jdbcType=INTEGER}, fee_child=#{fee_child,jdbcType=INTEGER},
+		intro=#{intro}, tag=#{tag,jdbcType=VARCHAR}, artist=#{artist,jdbcType=VARCHAR},
+		tel=#{tel,jdbcType=VARCHAR}, home_pg=#{home_pg,jdbcType=VARCHAR},
+		detail_txt=#{detail_txt,jdbcType=VARCHAR}
+		<if test="detail_img != null and detail_img != ''">
+			,detail_img = #{detail_img}
+		</if>
+		<if test="poster != null and poster != ''">
+			,poster = #{poster}
+		</if>
+		 where dno = #{dno}
+	</update>
+	
+	<!-- 전시 삭제 -->
+	<delete id="delete" parameterType="integer">
+		update display set del = 'y' where dno = #{dno}
+	</delete>
 </mapper> 

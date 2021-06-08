@@ -1,17 +1,13 @@
 package service.display;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DisplayDao;
-import dao.ReviewDao;
 import model.Display;
-import model.Review;
 import service.CommandProcess;
 
-public class DpView implements CommandProcess {
+public class DpUpdateForm implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
@@ -20,16 +16,9 @@ public class DpView implements CommandProcess {
 		DisplayDao dd = DisplayDao.getInstance();
 		Display dp = dd.select(dno);
 		
-		// 해당 전시 리뷰 리스트 셀렉
-		ReviewDao rd = ReviewDao.getInstance();
-		List<Review> list = rd.select(dno);
-		
-		
-		
 		request.setAttribute("display", dp);
-		request.setAttribute("list", list);
 		
-		return "dpView";
+		return "dpUpdateForm";
 	}
 
 }
