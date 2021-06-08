@@ -2,6 +2,7 @@
 
 input {
 	font-family: inherit;
+	margin-bottom: 17px;
 }
 
 #chkIdDIV {
@@ -12,6 +13,7 @@ input {
 	font-size: 12px;
 	color: #ff5f06;
 	margin-top: -10px;
+	margin-bottom: 7px;
 }
 
 .chk-btn {

@@ -10,22 +10,59 @@
 
 <style type="text/css">
 @import url("../../css/member/join.css");
+/* 프로필 */
+#image_container {
+	width: 200px;
+	height: 200px;
+}
 
+#image_container img{
+	width:100%; 
+	height:100%;
+	border-radius: 100px;
+}
+
+.profile{
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.file_profile {
+	display: inline-block;
+	border: none;
+	outline: 0;
+	font-size: 15px;
+	text-align: center;
+	color: var(--point-color);
+	cursor: pointer;
+	padding: 10px 12px;
+}
+
+input[type="file"] { /* input 사라지게 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+}
+
+/* 탈퇴버튼 */
 #del-btn{
     text-align: center;
     color: #aaaaaa;
     text-decoration: underline;
     font-size: 13px;
     cursor: pointer;
-
 }
-
 </style>
 
 
 <script type="text/javascript">
 function chkPassword() {
-	if(frm.password.value!=frm.confirmPassword.value){
+	if(frm2.password.value!=frm2.confirmPassword.value){
 		alert("비밀번호가 일치하지 않습니다")
 		frm.password.focus();
 		frm.password.value="";
@@ -34,39 +71,62 @@ function chkPassword() {
 	}
 }
 
+function setProfile(event) {
+	var reader = new FileReader();
+	
+	reader.onload = function(event) {
+		var img = document.createElement("img");
+		img.setAttribute("src", event.target.result);
+		img.setAttribute("width",200);
+		img.setAttribute("height",200);
+		
+		$('#image_container img').remove();
+		document.querySelector("div#image_container").appendChild(img);
+	};
+	reader.readAsDataURL(event.target.files[0]);
+}
+
 function del() {
 	var con = confirm("탈퇴 하시겠습니까?");
 	if(con) location.href="delete.na";
 	else alert("탈퇴가 취소 되었습니다.");
 }
-
 </script>
 </head>
 
 <body>
-<form action="updateResult.na" method="post" name="frm" onsubmit="return chkPassword()" >
-		<div class="container">
-			<h1 class="title">회원정보 수정</h1>
+<div class="container">
+	<h1 class="title">회원정보 수정</h1>
+
+	<form action="updateResult.na" method="post" name="frm2" onsubmit="return chkPassword()" enctype="multipart/form-data">
 			
+			<!-- 프로필 -->
+			<div class="profile">
+				<div id="image_container">
+					<img src="/semojeon/upload/${member.profile }" alt="프로필사진">
+				</div> 														<!-- 프로필 경로 설정 -->
+				<label for="f1" class="file_profile">프로필 사진 업로드</label>
+				<input type="file" id="f1" name="profile" onchange="setProfile(event)" value="${member.profile}">
+			</div>
 			<!-- 아이디 -->
-			<input type="text" name="id" readonly="readonly" placeholder="${member.id }">
+			<input type="text" name="id" readonly="readonly" value="${member.id }" placeholder="${member.id }">
 			
 			<!-- 비밀번호 -->
 			<input type="password" name="password" placeholder="비밀번호" required="required" > 
 			<input type="password" name="confirmPassword" placeholder="비밀번호 확인" required="required" onChange="chkPassword()"> 
 			
 			<!-- 이름 -->
-			<input type="text" name="name" placeholder="${member.name }">
+			<input type="text" name="name" value="${member.name }" placeholder="${member.name }">
 
 			<!-- 별명 -->
 			<div class="check">
-				<input type="text" name="nick_nm" class="inputBox-left" placeholder="${member.nick_nm }">
+				<input type="text" name="nick_nm" class="inputBox-left" value="${member.nick_nm }" placeholder="${member.nick_nm }">
 				<a class="chk-btn" id="chk-nick_nm-btn" onclick="chkNick_nm();">중복 확인</a>
 			</div>
 			<div class="chk-msg" id="err"></div>
 			
 			<!-- 연락처 -->
-			<input type="tel" name="phone" title="전화번호 형식 : 010-***(*)-****" pattern="\d{3}-\d{3,4}-\d{4}" placeholder="${member.phone }">
+			<input type="tel" name="phone" title="전화번호 형식 : 010-***(*)-****" pattern="\d{3}-\d{3,4}-\d{4}" value="${member.phone }" placeholder="${member.phone }">
 			
 			<!-- 성별 -->
 			<div class= "select-gender">
@@ -114,7 +174,7 @@ function del() {
 			<!-- button -->
 			<input type="submit" class="btn submit-btn" value="회원정보 수정">
 			<a id="del-btn" onclick="del()">회원탈퇴</a>
-		</div>
 	</form>
+</div>
 </body>
 </html>

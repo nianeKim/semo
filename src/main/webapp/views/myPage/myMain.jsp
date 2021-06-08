@@ -9,15 +9,17 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-.container_middle{
-	width: 60%;
-
-}
+ h3{
+ 	margin-top: 28px;
+    margin-bottom: 10px;
+ 
+ }
 .topView{
 	overflow: hidden;
 	width:100%;
 	height: 146px;
-	text:0;
+	margin-bottom: 56px;
+	border-bottom: solid 1px #e6e6e6;
 }
 
 .mp-profile{
@@ -32,19 +34,44 @@
 }
 .profile{
 	float:left;
-	width: 146px;
-	height: 146px;
+	margin-right: 20px;
 }
 
 .profile-right{
 	float:left;
 	text-align: center;
+	width: 100px;
 }
+
+.profileImg{
+	width:136px;
+	height:136px;
+ 	border-radius: 70px;
+ 	margin-right: 20px;
+}
+
 .update-btn{
 	color: #666666;
 	font-size: 13px;
 	text-decoration: underline;
 }
+
+.icons{
+	width: 35px;
+	height: 35px;
+}
+
+.mp-menu ul{
+	list-style:none;
+
+}
+
+.mp-menu li{
+	float:left;
+	margin-right: 50px;
+
+}
+
 
 </style>
 </head>
@@ -57,10 +84,10 @@
 		<!-- 프로필 영역 -->
 		<div class="mp-profile">
 			<div class="profile">
-				<img alt="프로필" src="" >
+				<img class="profileImg" alt="프로필사진" src="/semojeon/upload/${member.profile }" >
 			</div>
 			<div class="profile-right">
-				<h3>${member.name}님,<br>안녕하세요</h3>
+				<h3>${member.nick_nm}님,<br>안녕하세요</h3>
 				<p><a class="update-btn" href="../member/updateForm.na" >내 정보 수정</a></p>
 			</div>
 		</div>
@@ -68,10 +95,19 @@
 		<!-- 메뉴 영역 -->
 		<div class="mp-menu">
 		<ul>
-			<li>북마크
-			<li>구매내역
-			<li>등록한 전시
-			<li>작성한 스토리		
+			<li>
+				<div>
+					<img class="icons" id="bookmark" src="../../images/icons/my_bookmark.png" ><a>북마크</a></div>
+			</li>
+			<li>
+				<div><img class="icons" id="buy_list" src="../../images/icons/buy_list.png" ><a>구매내역</a></div>
+			</li>
+			<li>
+				<div><img class="icons" id="regist_display" src="../../images/icons/regist_display.png" ><a>등록한 전시</a></div>
+			</li>
+			<li>
+				<div><img class="icons" id="written_story" src="../../images/icons/written_story.png" ><a>작성한 스토리</a></div>
+			</li>	
 		</ul>
 		</div>
 	</div>

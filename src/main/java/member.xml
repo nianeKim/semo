@@ -35,7 +35,9 @@
 	
 	<update id="update" parameterType="member">
 		update member set password=#{password}, name=#{name}, nick_nm=#{nick_nm},
-			phone=#{phone}, gender=#{gender}, age=#{age}, loc=#{loc} where id=#{id}
+			phone=#{phone}, gender=#{gender}, age=#{age}, loc=#{loc}
+			<if test="profile != null || profile !=''">, profile=#{profile,jdbcType=VARCHAR}</if>
+			where id=#{id}
 	</update>
 	
 	<update id="delete" parameterType="string">

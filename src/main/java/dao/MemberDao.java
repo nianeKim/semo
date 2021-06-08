@@ -63,9 +63,22 @@ public class MemberDao {
 		
 		// UpdateResult
 		public int update(Member member) {
+			System.out.println(member.getPassword()+ member.getName()+ member.getNick_nm()+ member.getPhone()+ member.getGender()+ member.getLoc()+ member.getAge()+ member.getProfile() );
 			return session.update("memberns.update", member);
 		}
 		
+		// MyMain
+		public String selectNick(String id) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+		// MyMain
+		public String profile(String id) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 		// Delete
 		public int delete(String id) {
 			return session.update("memberns.delete", id);
@@ -80,5 +93,7 @@ public class MemberDao {
 		public int selectMno(String id) {
 			return (int) session.selectOne("memberns.selectMno", id);
 		}
+
+
 
 }

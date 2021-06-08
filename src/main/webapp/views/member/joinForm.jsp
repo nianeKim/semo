@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +12,12 @@
 </style>
 
 <script type="text/javascript">
+
+/* 아이디 중복체크 및 인증메일 전송 */
 function chkId(){
+	/* 이메일 유효성 검사 */
 	var reg_id = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+	
 	if(!frm.id.value) {
 		alert("이메일을 입력하세요")
 		frm.id.focus();
@@ -23,29 +28,32 @@ function chkId(){
 			frm.id.focus();
 			return false;
 		}else{
+			/* 인증메일 전송 */
+			$.post("mailResult.na", "id="+frm.id.value, function(data){
+				alert(data);
+				if(data=="인증메일전송"){
+					var con = document.getElementById("chkIdDIV");
+					con.style.display=='block';
+				}
+			});
+			/* 아이디 중복확인 */
+			$.post("confirmId.na", "id="+frm.id.value, function(data){
+				$('#err_id').html(data);
+			});
 		} 
-		$.post("mailResult.na", "id="+frm.id.value, function(data){
-			alert("내용"+data);
-			isCertification=true;
-			
-		});
 	}
-	$.post("confirmId.na", "id="+frm.id.value, function(data){
-		$('#err_id').html(data);
-	});
 }
 
-
-function idChkDisplay() {
-	var con = document.getElementById("chkIdDIV");
-	/* if = 사용가능한 ID입니다 일때   */
+	
+/* function idChkDisplay() {
+	var con = document.getElementById("chkIdDIV"); 
 	if(con.style.display=='none'){
 		con.style.display = 'block';
 	}else {
 		con.style.display = 'none';
 	}
 }
-
+ */
 function chkPassword() {
 	if(frm.password.value!=frm.confirmPassword.value){
 		alert("비밀번호가 일치하지 않습니다")
@@ -69,11 +77,15 @@ function chkNick_nm(){
 	
 }
 
-/* $(".chkIdCode").on("propertychange change keyup paste input", function(){
-	if($(".chkIdCode").val()==key)
-	
-})
- */
+function chkMail(){
+	if(frm.mail_chk.value!=frm.confirmPassword.value){
+		alert("인증번호가 일치하지 않습니다")
+		frm.mail_chk.focus();
+		frm.mail_chk.value="";
+		return false;
+	}
+}
+
 function chkSubmit(){
 	if(!frm.mail_chk.value){
 		alert("이메일 인증이 완료되지 않았습니다.");
@@ -92,15 +104,14 @@ function chkSubmit(){
 			<!-- 아이디 -->
 			<div class="check">
 				<input type="text" name="id" class="inputBox-left" required="required" autofocus="autofocus" placeholder="아이디(이메일)"> 
-				<a class="chk-btn inputBox-right " onclick="chkId(); idChkDisplay();">이메일 인증</a>
+				<a class="chk-btn inputBox-right " onclick="chkId();">이메일 인증</a>
 			</div> 
 			<div class="chk-msg" id="err_id"></div>
 			
 			<!-- 이메일 인증 -->
 			<div class="check" id="chkIdDIV">
-				<input type="text" name="mail_chk" class="inputBox-left chkIdCode" required="required" placeholder="인증번호 입력">
-				<a class="chk-btn"  id="mailConfirm_btn" href="">인증</a> 
-				<input type="hidden" id="certificationYN" value="false">
+				<input type="text" name="mail_chk" class="inputBox-left chkIdCode" placeholder="인증번호 입력">
+				<a class="chk-btn"  id="mailConfirm_btn" onclick="chkMail();">인증</a> 
 			</div>
 			
 			<!-- 비밀번호 -->
