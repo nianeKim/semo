@@ -29,7 +29,8 @@ public class ReviewDao {
 		}
 	}
 	
-	public int insert(Review review) {
+	public int insert(Review review) { 
+		System.out.println(review.getStar_rate());
 		return session.insert("reviewns.insert", review);
 	}
 	
