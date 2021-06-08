@@ -15,7 +15,7 @@ public class LoginResult implements CommandProcess {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
-		MemberDao md = MemberDao.getInstance(); 
+		MemberDao md = MemberDao.getInstance();  
 		Member member = md.select(id);
 		int mno = member.getMno();
 		
