@@ -16,7 +16,7 @@
 	 function likesCnt() {
 		if (${empty id}) {
 				alert("로그인 후 이용해 주시기 바랍니다.");
-				location.href = "/semojeon/views/login/loginForm.na";
+				location.href = "/semojeon/views/member/loginForm.na";
 		} else {
 			$.post("bdLikesCnt.wo", "bno=${board.bno}", function(data) {
 				$('.likes_cnt').html(data);

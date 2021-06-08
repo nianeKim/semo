@@ -4,6 +4,6 @@
 <c:set var="id" value='${sessionScope.id}'></c:set>
 <c:if test="${empty id }">
 	<script type="text/javascript">
-		location.href="/semojeon/views/login/loginForm.na"
+		location.href="/semojeon/views/member/loginForm.na"
 	</script>
 </c:if>
