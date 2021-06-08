@@ -17,6 +17,7 @@ public class LoginResult implements CommandProcess {
 		
 		MemberDao md = MemberDao.getInstance();
 		Member member = md.select(id);
+		int mno = member.getMno();
 		
 		int result = 0;
 		if(member==null||member.getDel().equals("y")) 
@@ -25,6 +26,7 @@ public class LoginResult implements CommandProcess {
 			if(member.getPassword().equals(password)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
+				session.setAttribute("mno", mno);
 				result = 1;
 			}else result=0;
 		}
