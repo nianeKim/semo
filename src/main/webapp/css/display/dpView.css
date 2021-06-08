@@ -182,6 +182,7 @@ textarea {
 	line-height: 22px;
 	margin-bottom: 16px;
 	font-family: 'Apple SD Gothic Neo', 'AppleSDGothicNeo';
+	resize: none;
 }
 
 textarea::placeholder {

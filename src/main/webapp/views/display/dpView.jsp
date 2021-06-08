@@ -158,11 +158,11 @@
 			<!-- 리뷰 등록 -->
 			<form action="dpReviewWrite.do?dno=${display.dno }" method="post">
 				<h4 class="sub_title">리뷰와 별점 등록</h4>
-				<textarea name="content" placeholder="전시가 어떠셨나요? 감상평을 작성해주세요."></textarea>
+				<textarea name="content" placeholder="전시가 어떠셨나요? 감상평을 작성해주세요." required autofocus></textarea>
 				<p class="detail_txt pd_bottom">별점을 선택해주세요.</p>
 				<!-- 별점 등록 -->
 				<div class="star_avg rate">
-					<input type="range" name="star_rate" min="0" max="5" step="0.5" value="0">
+					<input type="range" name="star_rate" min="0" max="10" step="1" value="0" required>
 					<span class="text" id="input_span">0</span>
 				</div>
 				<div class="submit_box">
