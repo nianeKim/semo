@@ -12,6 +12,24 @@ public class Board {
 	private String del;
 	private int mno;
 	private String thumbnail;
+	private int cnt;
+	private String nick_nm;
+
+	public String getNick_nm() {
+		return nick_nm;
+	}
+
+	public void setNick_nm(String nick_nm) {
+		this.nick_nm = nick_nm;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 
 	public String getThumbnail() {
 		return thumbnail;

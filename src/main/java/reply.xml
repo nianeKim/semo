@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="replyns">
-	<select id="reply_cnt" resultType="integer">
-		select bno, count(bno) c from reply group by bno
-	</select>
-	
 	<!-- 댓글 수 카운트 -->
 	<select id="count" resultType="integer">
 		select count(*) from reply where bno = #{bno}
@@ -16,4 +12,10 @@
 		</selectKey>
 		insert into reply values(#{re_no}, #{content}, sysdate, 0, 0, 0, 0, 'n', #{mno}, #{bno})
 	</insert>
+	
+	<select id="list" parameterType="integer" resultType="reply">
+		select * from reply inner join (select re_no, nick_nm, profile
+		from reply r, member m where r.mno = m.mno) nn on reply.re_no = nn.re_no
+		where reply.bno = #{bno} order by reply.re_no desc
+	</select>
 </mapper>

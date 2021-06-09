@@ -1,5 +1,7 @@
 package service.board;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -9,6 +11,7 @@ import dao.MemberDao;
 import dao.ReplyDao;
 import model.Board;
 import model.Member;
+import model.Reply;
 import service.CommandProcess;
 
 public class BoardView implements CommandProcess {
@@ -28,15 +31,18 @@ public class BoardView implements CommandProcess {
 		MemberDao md = MemberDao.getInstance();
 		String nick_nm = md.selectNick(mno); 
 		
-		// 댓글테이블에서 댓글 수 가져오기
 		ReplyDao rd = ReplyDao.getInstance();
+		// 댓글테이블에서 댓글 수 가져오기
 		int reply_cnt = rd.count(bno);
+		// 댓글 목록
+		List<Reply> list = rd.list(bno);
 		
 		request.setAttribute("bno", bno);
 		request.setAttribute("board", board);
 		request.setAttribute("nick_nm", nick_nm);
 		request.setAttribute("reply_cnt", reply_cnt);
-
+		request.setAttribute("list", list);
+		
 		return "boardView";
 	}
 
