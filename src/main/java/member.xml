@@ -22,7 +22,7 @@
 			select nvl(max(mno), 0) + 1 mno from member
 		</selectKey>
 		insert into member values(#{mno},#{id},#{password},#{name},#{nick_nm},
-			#{phone},#{gender},#{age},#{loc},'n',sysdate)
+			#{phone},#{gender},#{age},#{loc},'n',sysdate, 'user.png')
 	</insert>
 	
 	<select id="findId" parameterType="hashmap" resultType="member">
@@ -36,7 +36,7 @@
 	<update id="update" parameterType="member">
 		update member set password=#{password}, name=#{name}, nick_nm=#{nick_nm},
 			phone=#{phone}, gender=#{gender}, age=#{age}, loc=#{loc}
-			<if test="profile != null || profile !=''">, profile=#{profile,jdbcType=VARCHAR}</if>
+			<if test="profile != null and profile !=''">, profile=#{profile,jdbcType=VARCHAR}</if>
 			where id=#{id}
 	</update>
 	
