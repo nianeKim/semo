@@ -17,6 +17,9 @@ CREATE TABLE member
 select * from member;
 insert into member values (0, 'admin', '1234', '관리자', '관리자', '010-111-1111', 'f', 0,'0','n', sysdate) 
 alter table member modify(id VARCHAR2(30));
+alter table member add(profile VARCHAR2(100) NULL);
+update member set profile='profile_test.jpg' where mno=7;
+
 
 -- 전시
 drop table display;
@@ -27,18 +30,18 @@ CREATE TABLE display
     start_date    DATE NOT NULL,
     end_date    DATE NOT NULL,
     loc    VARCHAR2(50) NOT NULL,
-    poster    BLOB NOT NULL,
-    tag    VARCHAR2(10) NOT NULL,
+    poster    VARCHAR2(100) NOT NULL,
+    tag    VARCHAR2(50),
     intro    VARCHAR2(500) NOT NULL,
-    detail_img  BLOB,
+    detail_img  VARCHAR2(100),
     detail_txt VARCHAR2(1000),
-    hours    DATE NOT NULL,
+    hours    VARCHAR2(50) NOT NULL,
     fee    NUMBER(6),
-    fee_adult   NUMBER(6),
-    fee_teen    NUMBER(6),
-    fee_child   NUMBER(6),
+    fee_adult   NUMBER(6) default 0,
+    fee_teen    NUMBER(6) default 0,
+    fee_child   NUMBER(6) default 0,
     discount    NUMBER(3) default 0,
-    artist    VARCHAR2(20),
+    artist    VARCHAR2(100),
     tel    VARCHAR2(20),
     home_pg    VARCHAR2(100),
     del    CHAR(1) default 'n' NOT NULL,
@@ -46,12 +49,6 @@ CREATE TABLE display
 );
 select * from display;
 
--- display column type 수정
-alter table display modify(hours varchar2(20));
-alter table display modify(fee number(6) default 0);
-alter table display modify(fee_adult number(6) default 0);
-alter table display modify(fee_teen number(6) default 0);
-alter table display modify(fee_child number(6) default 0);
 
 -- 북마크
 drop table bookmark;
@@ -82,7 +79,7 @@ drop table review;
 CREATE TABLE review
 (
     rv_no    NUMBER CONSTRAINT review_rv_no_PK PRIMARY KEY NOT NULL,
-    star_rate    NUMBER(1,1) NOT NULL,
+    star_rate    NUMBER(2) NOT NULL,
     content    VARCHAR2(500) NOT NULL,
     reg_date    DATE NOT NULL,
     likes    NUMBER default 0,
@@ -90,7 +87,9 @@ CREATE TABLE review
     mno    NUMBER constraint review_mno_fk references member NOT NULL,
     dno    NUMBER constraint review_dno_fk references display NOT NULL
 );
+
 select * from review;
+select * from review where dno = 1 order by rv_no desc;
 
 -- 게시판(스토리)
 drop table board;
@@ -107,9 +106,16 @@ CREATE TABLE board
 );
 select * from board;
 delete from board;
-alter table board add(poster VARCHAR2(100) not null);
-alter table board modify(poster VARCHAR2(100) not null);
-alter table board drop column poster;
+alter table board add(thumbnail VARCHAR2(100));
+
+-- 게시판 좋아요
+drop table bdlikes;
+CREATE TABLE bdlikes
+(
+    mno    NUMBER constraint bdlikes_mno_fk references member NOT NULL,
+    bno    NUMBER constraint bdlikes_bno_fk references board NOT NULL
+);
+select * from bdlikes;
 
 -- 게시판에 댓글(답글 포함)
 drop table reply;
