@@ -23,8 +23,24 @@
            	);
 		    // span에 등록한 별점(range value) 넣기
 		    $('#input_span').text($(this).val());
-		})
-	})
+		});
+		
+		// scroll top
+		$('.scroll_top').on('click', function(e) {
+			e.preventDefault();
+			$('html, body').animate({scrollTop: 0}, 200);
+		});
+		
+		// scroll top button show/hide
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 300) {
+				$('.scroll_top').fadeIn(500);
+			} else {
+				$('.scroll_top').fadeOut('slow');
+			}
+		});
+	});
+	
 	// submit check
 	function sessionChk() {
 		if (${empty id}) {
@@ -40,16 +56,28 @@
 			location.href="dpDelete.do?dno=${display.dno }";
 		}
 	}
+	
+	// 전시 예매 session check
+	function reserveChk() {
+		if (${empty id}) {
+			alert("로그인이 필요합니다.");
+			location.href="/semojeon/views/member/loginForm.na";
+			return false;
+		} else {
+			location.href="reserveForm.do?dno=${display.dno}";
+			return true;
+		}
+	}
 </script>
 </head>
 <body>
-	<div class="container_middle">
+	<div class="container_middle display_view_container">
 		<!-- 상단 정보 -->
 		<div class="display_view_top">
 			<img src="../../upload/${display.poster }" alt="포스터">
 			<div class="text_area">
 				<!-- 평균 별점 -->
-				<div class="star_avg">★★★★★︎ &nbsp;<span class="text">3.4</span>︎</div>
+				<div class="star_avg">★★★★★︎ &nbsp;<span class="text">${star_rate }</span>︎</div>
 				<h3 class="dname">${display.dname }</h3>
 				<pre class="intro">${display.intro }</pre>
 				<table class="bottom">
@@ -83,7 +111,7 @@
 						</td>
 					</tr>
 				</table>
-					<button class="btn">예매하기</button>
+					<button class="btn" onclick="reserveChk()">예매하기</button>
 			</div>
 		</div>
 		<!-- 상세 내용, 이미지 -->
@@ -126,7 +154,7 @@
 			<!-- 리뷰 리스트 : start -->
 			<h4 class="sub_title pd_bottom">리뷰 <span>264</span></h4>
 			<!-- 평균 별점 -->
-			<div class="star_avg">★★★★★ &nbsp;<span class="text">3.4</span>︎︎</div>
+			<div class="star_avg">★★★★★ &nbsp;<span class="text">${star_rate }</span>︎︎</div>
 			<ul class="review_list_box">
 				<c:forEach var="review" items="${list }">
 					<li>
@@ -162,7 +190,7 @@
 			<!-- 리뷰 등록 -->
 			<form action="dpReviewWrite.do?dno=${display.dno }" method="post" onsubmit="return sessionChk()">
 				<h4 class="sub_title">리뷰와 별점 등록</h4>
-				<textarea name="content" placeholder="전시가 어떠셨나요? 감상평을 작성해주세요." required autofocus></textarea>
+				<textarea name="content" placeholder="전시가 어떠셨나요? 감상평을 작성해주세요." required></textarea>
 				<p class="detail_txt pd_bottom">별점을 선택해주세요.</p>
 				<!-- 별점 등록 -->
 				<div class="star_avg rate">
@@ -175,5 +203,6 @@
 			</form>
 		</div>
 	</div>
+	<div class="scroll_top"><div class="arrow"></div></div>
 </body>
 </html>

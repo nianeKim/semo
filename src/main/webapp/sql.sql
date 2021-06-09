@@ -48,7 +48,7 @@ CREATE TABLE display
     mno    NUMBER constraint display_mno_fk references member NOT NULL
 );
 select * from display;
-
+alter table display modify(artist VARCHAR2(100));
 
 -- 북마크
 drop table bookmark;

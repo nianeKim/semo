@@ -93,6 +93,11 @@ public class MemberDao {
 		public int selectMno(String id) {
 			return (int) session.selectOne("memberns.selectMno", id);
 		}
+		
+		// mno로 회원 정보 조회
+		public Member select(int mno) {
+			return (Member) session.selectOne("memberns.selectReserve", mno);
+		}
 
 
 

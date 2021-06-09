@@ -13,4 +13,8 @@
 	<select id="select" parameterType="integer" resultType="review">
 		select * from review where dno = #{dno} order by rv_no desc
 	</select>
+	
+	<select id="selectStar" parameterType="integer" resultType="float">
+		select round(avg(star_rate), 1) from review where dno = #{dno}
+	</select>
 </mapper>

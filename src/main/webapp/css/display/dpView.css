@@ -81,7 +81,7 @@
 .star_avg {
 	padding: 8px 0 24px 0;
 	font-size: 20px;
-	color: #aaa;
+	color: var(--point-color);
 }
 
 .star_avg input[type="range"] {
@@ -115,6 +115,7 @@ input[type="range"]::-webkit-slider-thumb {
 	font-size: 16px;
 	font-weight: 600;
 	vertical-align: middle;
+	
 }
 
 .star_avg.rate {
