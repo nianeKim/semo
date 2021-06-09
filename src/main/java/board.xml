@@ -1,38 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardns">
+	<!-- 게시글 입력 -->
 	<insert id="insert" parameterType="board">
 		<selectKey keyProperty="bno" order="BEFORE" resultType="integer">
 			select nvl(max(bno), 0) + 1 bno from board
 		</selectKey>
-		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0, 'n', #{mno}, #{thumbnail})
+		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0, 'n', #{mno}, #{thumbnail,jdbcType=VARCHAR})
 	</insert>
 	
+	<!-- 게시글 목록 최신순 -->
 	<select id="list" resultType="board">
-		select * from board order by reg_date desc 
+		select * from board where del='n' order by reg_date desc
 	</select>
 	
+	<!-- 게시글 목록 조회순 -->
 	<select id="list2" resultType="board">
-		select * from board order by read_cnt desc, bno desc
+		select * from board where del='n' order by read_cnt desc, bno desc
 	</select>
 	
+	<!-- 게시글 목록 인기순 -->
 	<select id="list3" resultType="board">
-		select * from board order by likes desc, bno desc
+		select * from board where del='n' order by likes desc, bno desc
 	</select>
 
+	<!-- 게시글 상세 데이터 가져오기 -->
 	<select id="selectOne" resultType="board">
 		select * from board where bno=#{bno}
 	</select>
 	
+	<!-- 게시글 조회수 증가 -->
 	<update id="readcountUpdate" parameterType="integer">
 		update board set read_cnt = read_cnt + 1 where bno = #{bno}
 	</update>
 	
+	<!-- 게시글 좋아요 증가 -->
 	<update id="likesPlus" parameterType="integer">
 		update board set likes = likes + 1 where bno = #{bno}
 	</update>
 	
+	<!-- 게시글 좋아요 감소 -->
 	<update id="likesMinus" parameterType="integer">
 		update board set likes = likes - 1 where bno = #{bno}
 	</update>
+	
+	<!-- 게시글 삭제 -->
+	<update id="delete" parameterType="integer">
+		update board set del = 'y' where bno = #{bno}
+	</update>
+	
+	<!-- 게시글 썸네일 값 가져오기 -->
+	<select id="selectThumb" parameterType="integer" resultType="string">
+		select thumbnail from board where bno=#{bno}
+	</select>
+
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="board">
+		update board set title = #{title}, content = #{content}
+		<if test="thumbnail != null and thumbnail !=''">
+			,thumbnail = #{thumbnail,jdbcType=VARCHAR}
+		</if> where bno = #{bno}
+	</update>
+	
 </mapper>

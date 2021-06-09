@@ -9,10 +9,11 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../../css/board/bdMain.css">
 <script type="text/javascript">
+	// 페이지 로드 시 board_list1로 세팅
 	window.onload = function() {
 		$('#board_list1').css("display", "block");
 	}
-
+	// 필터 변경 될 때 함수
 	function filterChange() {
 		var filter = document.getElementById("filter");
 		var value = filter.options[filter.selectedIndex].value;
@@ -55,7 +56,10 @@
 									<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes}</span>
 									<img alt="댓글" src="../../images/icons/comment.png"> <span>${reply_cnt}</span>
 									<div class="bd_text_bottom_right">
-										<img alt="닉네임" src="../../images/icons/by.svg"> <span>${nick_nm}</span>
+										<img alt="닉네임" src="../../images/icons/by.svg"> 
+										<c:if test="${board.bno == reply_cnt.bno }">
+											<span>${reply_cnt.c}</span>
+										</c:if>
 									</div>
 								</div>
 							</div> </a></li>

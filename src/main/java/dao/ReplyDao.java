@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import model.Board;
+import model.Reply;
 
 public class ReplyDao {
 	private static ReplyDao instance = new ReplyDao();
@@ -36,9 +37,18 @@ public class ReplyDao {
 		}
 	}
 
+	public List<Reply> reply_cnt() {
+		return session.selectList("replyns.reply_cnt");
+	}
+	// BoardView 각 게시글의 댓글 수
 	public int count(int bno) {
 		return (int) session.selectOne("replyns.count", bno);
 	}
+	// BoardReplyWrite 댓글 입력
+	public int insert(Reply reply) {
+		return session.insert("replyns.insert", reply);
+	}
+
 
 	
 }

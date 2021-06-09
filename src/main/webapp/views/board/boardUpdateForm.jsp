@@ -80,24 +80,24 @@ input[type="file"] { /* input 사라지게 */
 	<div class="container_middle">
 		<h1 class="title">스토리 작성</h1>
 		
-		<form action="boardWriteResult.wo" method="post"
+		<form action="boardUpdateResult.wo?bno=${board.bno}" method="post"
 			enctype="multipart/form-data">
 			<!-- 제목 -->
-			<input type="text" name="title" placeholder="제목">
+			<input type="text" name="title" placeholder="제목" value="${board.title}">
 
 			<!-- 이미지 업로드 버튼 -->
 			<div class="column">
-				<label for="f1" class="file_label">썸네일 이미지 업로드</label> <input
-					type="file" id="f1" name="thumbnail" required="required">
+				<label for="f1" class="file_label">${board.thumbnail}</label>
+				<input type="file" id="f1" name="thumbnail">
 			</div>
 
 			<!-- 내용 작성 -->
-			<textarea id="summernote" name="content"></textarea>
+			<textarea id="summernote" name="content">${board.content}</textarea>
 			
 			<!-- 하단 버튼 영역 -->
 			<div class="btn_area">
-				<input class="btn btn_small" type="submit" value="글작성">
-				<a class="btn btn_stroke btn_small btn_right" href="boardMain.wo">목록</a>
+				<input class="btn btn_small" type="submit" value="수정">
+				<a class="btn btn_stroke btn_small btn_right" onclick="history.back()">취소</a>
 			</div>
 		</form>
 	</div>

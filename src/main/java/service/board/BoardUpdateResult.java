@@ -14,19 +14,13 @@ import dao.MemberDao;
 import model.Board;
 import service.CommandProcess;
 
-public class BoardWriteResult implements CommandProcess {
+public class BoardUpdateResult implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		// 세션으로 mno 가져오기
-		HttpSession session = request.getSession();
-		int mno = (int) session.getAttribute("mno");
-				
-		// board 생성
+		// boardDao, board 생성
 		Board board = new Board();
-
-		// board에 세션에서 가져온 mno 세팅
-		board.setMno(mno);
+		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		// 파일 업로드 경로
 		String real = request.getSession().getServletContext().getRealPath("/upload");
@@ -37,23 +31,24 @@ public class BoardWriteResult implements CommandProcess {
 			String thumbnail = mr.getFilesystemName("thumbnail"); // thumbnail input 내용 불러오기
 			String title = mr.getParameter("title");
 			String content = mr.getParameter("content");
-
+			
 			// board 세팅
 			board.setThumbnail(thumbnail);
 			board.setTitle(title);
+			board.setBno(bno);
 			board.setContent(content);
 
 		} catch (IOException e) {
 			System.out.println("에러 : " + e.getMessage());;
 		}
-		
-		// boardDao 생성 및 insert
+				
 		BoardDao bd = BoardDao.getInstance();
-		int result = bd.insert(board);
+		int result = bd.update(board);		
 		
 		request.setAttribute("result", result);
+		request.setAttribute("bno", bno);
 
-		return "boardWriteResult";
+		return "boardUpdateResult";
 	}
 
 }

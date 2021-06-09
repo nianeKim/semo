@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,12 +10,14 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			location.href = "boardMain.wo";
+			alert("댓글이 입력되었습니다.")
+			location.href="boardView.wo?bno=${bno}"
 		</script>
 	</c:if>
 	
 	<c:if test="${result == 0 }">
 		<script type="text/javascript">
+			alert("댓글 입력에 실패하였습니다.")
 			history.back();
 		</script>
 	</c:if>

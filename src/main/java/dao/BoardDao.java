@@ -75,4 +75,15 @@ public class BoardDao {
 	public void likesMinus(int bno) {
 		session.update("boardns.likesMinus", bno);
 	}
+	
+	// BoardDelete.java 게시글 삭제
+	public int delete(int bno) {
+		return session.update("boardns.delete", bno);
+	}
+
+	// BoardUpdateResult.java 게시글 수정
+	public int update(Board board) {
+		return session.update("boardns.update", board);
+	}
+
 }

@@ -17,35 +17,33 @@ public class BdLikesCnt implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {	
-		// 세션을 통해서 회원번호 가져옴
+		// 세션으로 mno 가져오기
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
-		MemberDao md = MemberDao.getInstance();
-		int mno = md.selectMno(id);		
+		int mno = (int) session.getAttribute("mno");
+
 		// param으로 게시글 번호 가져옴
 		int bno = Integer.parseInt(request.getParameter("bno"));
-		int msg = 0;
 	
-		// board likes 조회
-		BoardDao bd = BoardDao.getInstance();
-		Board board = bd.select(bno);
-		
 		// bdlikes에 회원이 좋아요한 게시글 있는지 조회
 		BdlikesDao bld = BdlikesDao.getInstance();
 		int bdlikes = bld.select(mno, bno);
-
+		
+		// board 테이블의 likes 변경하기 위해 객체 추가
+		BoardDao bd = BoardDao.getInstance();
 		
 		if (bdlikes > 0) { // 좋아요 한 게시글이 있으면
-			bd.likesMinus(bno);
-			bld.delete(mno, bno);
-			msg = board.getLikes();
-		
+			bld.delete(mno, bno); // bdlikes 테이블에서 데이터 삭제
+			bd.likesMinus(bno); // likes - 1
+			
 		} else if (bdlikes == 0) { // 좋아요 한 게시글이 없으면
+			bld.insert(mno, bno); // bdlikes 테이블에 데이터 추가
 			bd.likesPlus(bno); // likes + 1
-			bld.insert(mno, bno);
-			msg = board.getLikes();
 		}			
 		
+		// board 테이블의 현재 likes 조회
+		int msg = 0;
+		Board board = bd.select(bno);
+		msg = board.getLikes();
 		request.setAttribute("msg", msg);
 
 		return "bdLikesCnt";

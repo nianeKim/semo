@@ -69,7 +69,7 @@
 		<div class="reply">
 			<h4 class="sub_title">댓글 ${reply_cnt}</h4>
 			
-			<form action="boardReplyWrite.wo" mehotd="post">
+			<form action="boardReplyWrite.wo?bno=${board.bno}" method="post">
 				<textarea name="content" required></textarea>
 				<div class="submit_box">
 					<input type="submit" class="btn" value="등록하기">
