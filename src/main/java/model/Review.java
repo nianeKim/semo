@@ -11,6 +11,24 @@ public class Review {
 	private String del;
 	private int mno;
 	private int dno;
+	private String profile;
+	private String nick_nm;
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getNick_nm() {
+		return nick_nm;
+	}
+
+	public void setNick_nm(String nick_nm) {
+		this.nick_nm = nick_nm;
+	}
 
 	public int getRv_no() {
 		return rv_no;

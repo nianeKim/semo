@@ -11,7 +11,7 @@
 	
 	<!-- 해당 전시의 review list select -->
 	<select id="select" parameterType="integer" resultType="review">
-		select * from review where dno = #{dno} order by rv_no desc
+		select * from member m, review r where m.mno = r.mno and dno = #{dno} order by rv_no desc
 	</select>
 	
 	<select id="selectStar" parameterType="integer" resultType="float">

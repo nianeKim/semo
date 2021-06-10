@@ -23,11 +23,16 @@ public class DpView implements CommandProcess {
 		// 해당 전시 리뷰 리스트 셀렉
 		ReviewDao rd = ReviewDao.getInstance();
 		List<Review> list = rd.select(dno);
+		
+		// 평균 별점
 		float star_rate = (float) rd.selectStar(dno);
+		// 리뷰 갯수
+		int reviewCnt = list.size();
 		
 		request.setAttribute("display", dp);
 		request.setAttribute("list", list);
 		request.setAttribute("star_rate", star_rate);
+		request.setAttribute("reviewCnt", reviewCnt);
 		
 		return "dpView";
 	}

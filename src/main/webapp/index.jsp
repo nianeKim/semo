@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-메인
+<script type="text/javascript">
+	location.href="/semojeon/views/display/dpMain.do?tab=1";
+</script>
 </body>
 </html>
