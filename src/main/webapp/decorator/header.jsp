@@ -36,14 +36,21 @@
 						</c:if>
 						<c:if test="${id == 'admin'}">
 							<li><a href="../member/logout.na">로그아웃</a></li>
-							<li><a href="../admin/admin.na">관리자페이지</a></li>
+							<li><a href="../admin/adminMain.na">관리자페이지</a></li>
 						</c:if>
 					</c:if>
 				</ul>
 				<ul class='nav_main'>
 					<li><a href="../display/dpMain.do?tab=1" id="display">전시</a></li>
 					<li><a href="../board/boardMain.wo" id="board">스토리</a></li>
-					<li><a href="../myPage/myMain.na" id="myPage">마이페이지</a></li>
+					<li>
+						<c:if test="${not empty id }">
+							<a href="../myPage/myMain.na" id="myPage">마이페이지</a>
+						</c:if>
+						<c:if test="${empty id }" >
+							<a href="../member/loginForm.na" id="myPage">마이페이지</a>
+						</c:if>
+					</li>
 					<li><a href="../myPage/myBookmarkList.wo"><img alt="북마크" src="../../images/icons/bookmark.png" ></a></li>
 					<li><a href="#"><img alt="검색" src="../../images/icons/search.png"></a></li>
 				</ul>
