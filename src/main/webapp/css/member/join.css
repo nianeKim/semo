@@ -7,17 +7,14 @@ input {
 
 select {
 	width: 259px;
+	height: 40px;
 	padding: 1px 1px;
 	margin: 0;
 	border: 0;
-	background: url(../../images/icons/arrow_bottom.png) no-repeat 100% 50%;
 	color: #aaaaaa;
 	font-family: inherit;
 	font-size: 15px;
 	font-weight: 500;
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
 }
 
 select:focus {
