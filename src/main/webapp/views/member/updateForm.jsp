@@ -101,9 +101,9 @@ function chk(){
 	$.post("confirmNick_nm.na", "nick_nm="+frm.nick_nm.value, function(data){
 		var substring = "사용중인";
 		if(data.includes(substring)){
-		frm.nick_nm.focus();
-		frm.nick_nm.value="";
-		return false;
+			frm.nick_nm.value="";
+			frm.nick_nm.focus;
+			return false;
 		}
 	});
 } 
@@ -139,7 +139,12 @@ function del() {
 <div class="container">
 	<h1 class="title">회원정보 수정</h1>
 
-	<form action="updateResult.na" method="post" name="frm" onsubmit="return chk();" enctype="multipart/form-data">
+	<form action="updateResult.na" method="post" name="frm" onsubmit="chk()" enctype="multipart/form-data">
+		<!-- 엔터키 전송 막기 -->
+		<div style="display:none">
+			<input type="submit" onclick="return false"/>
+			<input type="text"/>
+		</div>
 			
 			<!-- 프로필 -->
 			<div class="profile">

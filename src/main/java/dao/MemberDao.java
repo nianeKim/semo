@@ -30,7 +30,7 @@ public class MemberDao {
 				System.out.println(e.getMessage());
 			}
 		}
-		// joinResult, IdConfirm, loginResult
+		// joinResult, IdConfirm, LoginResult
 		public Member select(String id) {
 			return (Member) session.selectOne("memberns.select", id);
 		}

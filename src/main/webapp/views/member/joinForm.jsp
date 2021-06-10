@@ -106,6 +106,12 @@ function chk(){
 </head>
 <body>
 	<form action="joinResult.na" method="post" name="frm" onsubmit="return chk();">
+		<!-- 엔터키 전송 막기 -->
+		<div style="display:none">
+			<input type="submit" onclick="return false"/>
+			<input type="text"/>
+		</div>
+		
 		<div class="container">
 			<h1 class="title">회원가입하기</h1>
 			
@@ -135,8 +141,7 @@ function chk(){
 
 			<!-- 별명 -->
 			<div class="check">
-				<input type="text" name="nick_nm" class="inputBox-left" placeholder="별명" required="required">
-				<a class="chk-btn" id="chk-nick_nm-btn" onclick="chkNick_nm();">중복 확인</a>
+				<input type="text" name="nick_nm" placeholder="별명" required="required" onchange="chkNick_nm();">
 				<input type="hidden" name="checked_nick" value="">
 			</div>
 			<div class="chk-msg" id="err"></div>
