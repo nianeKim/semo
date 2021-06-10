@@ -205,3 +205,32 @@ input::placeholder {
 .paging .number {
 	padding: 0 4px 0 4px;
 }
+
+/* scroll top button */
+body {
+	position: relative;
+}
+
+.scroll_top {
+	display: none;
+	position: fixed;
+	right: 8%;
+	bottom: 5%;
+	width: 48px;
+	height: 48px;
+	background: #fff;
+	box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.18);
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.scroll_top .arrow {
+	position: absolute;
+	top: 58%;
+	left: 50%;
+	width: 14px;
+	height: 14px;
+	border-top: 1px solid #000;
+	border-right: 1px solid #000;
+	transform: translate(-50%, -50%) rotate(-45deg);
+}

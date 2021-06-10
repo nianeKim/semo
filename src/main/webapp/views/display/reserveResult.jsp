@@ -10,13 +10,13 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("리뷰 등록 성공!");
-		location.href="dpView.do?dno=${dno}";
+		alert("예매 완료!");
+		location.href="dpView.do?tab=1"
 	</script>
 </c:if>
 <c:if test="${result <= 0 }">
 	<script type="text/javascript">
-		alert("리뷰 등록 실패");
+		alert("예매 실패");
 		history.go(-1);
 	</script>
 </c:if>

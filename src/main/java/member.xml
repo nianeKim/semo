@@ -44,4 +44,8 @@
 		update member set del='y' where id=#{id}	
 	</update> 
 	
+	<!-- mno로 회원 정보 조회 -->
+	<select id="selectReserve" parameterType="integer" resultType="member">
+		select * from member where mno = #{mno}
+	</select>
 </mapper>

@@ -8,7 +8,6 @@
 <style type="text/css">
 .container {
 	width: 1192px;
-	display: inline-block;
 	font-size: 0;
 }
 

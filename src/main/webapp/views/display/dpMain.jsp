@@ -8,8 +8,11 @@
 <title>Insert title here</title>
 <style type="text/css">@import url("../../css/display/dpMain.css");</style>
 <script type="text/javascript">
-console.log("fff");
 	$(function() {
+		//tab active : page가 로드됐을때 바로 실행
+		$('.display_tab li').removeClass("active");
+		$('#tab'+${tab}).addClass("active");
+		
 		// filter modal open
 		$('.filter').on('click', function() {
 			$('.filter_modal').show();
@@ -39,12 +42,6 @@ console.log("fff");
 				$(this).siblings("label").removeClass('active');
 			}
 		})
-	})
-	
-	// tab active : page가 로드됐을때 바로 실행
-	$(document).ready(function() {
-		$('.display_tab li').removeClass("active");
-		$('#tab'+${tab}).addClass("active");
 	})
 </script>
 </head>
@@ -107,7 +104,7 @@ console.log("fff");
 					<!-- 예정 전시 -->
 					<c:if test="${tab == 3 }">
 						<c:forEach var="display" items="${list }">
-							<c:if test="${display.start_date >= today }">
+							<c:if test="${display.start_date > today }">
 								<li>
 									<a href="dpView.do?dno=${display.dno }"> 
 										<img alt="포스터" src="/semojeon/upload/${display.poster }">
