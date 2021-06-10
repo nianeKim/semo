@@ -17,13 +17,13 @@ public class LoginResult implements CommandProcess {
 		
 		MemberDao md = MemberDao.getInstance();  
 		Member member = md.select(id);
-		int mno = member.getMno();
 		
 		int result = 0;
-		if(member==null||member.getDel().equals("y")) 
-			result = -1;
+		if(member==null||member.getDel().equals("y"))
+			result=-1;
 		else {
 			if(member.getPassword().equals(password)) {
+				int mno = member.getMno();
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
 				session.setAttribute("mno", mno);
