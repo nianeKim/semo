@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../sessionChk.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../../css/board/bdMain.css">
+<c:set var="id" value='${sessionScope.id}'></c:set>
 <script type="text/javascript">
 	// 페이지 로드 시 board_list1로 세팅
 	window.onload = function() {
@@ -19,6 +19,14 @@
 		var value = filter.options[filter.selectedIndex].value;
 		$('.board_list').css("display", "none");
 		$('#board_list' + value).css("display", "block");
+	}
+	
+	// 클릭했을 때 세션 확인
+	function sessionChk() {
+		if (${empty id}) {
+			var con = confirm("로그인 후 이용해 주시기 바랍니다.");
+			if (con) location.href = "/semojeon/views/member/loginForm.na";
+		}
 	}
 </script>
 </head>
@@ -36,9 +44,8 @@
 				</select>
 			</div>
 
-			<a href="boardWriteForm.wo"
-				class="btn btn_stroke btn_small btn_padding"> <img alt="연필"
-				src="../../images/icons/write.png">글쓰기
+			<a href="boardWriteForm.wo"	class="btn btn_stroke btn_small btn_padding" onclick="sessionChk();">
+				<img alt="연필"	src="../../images/icons/write.png">글쓰기
 			</a>
 		</div>
 
@@ -54,12 +61,10 @@
 								<pre class="bd_text_content">${board.content}</pre>
 								<div class="bd_text_bottom">
 									<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes}</span>
-									<img alt="댓글" src="../../images/icons/comment.png"> <span>${reply_cnt}</span>
+									<img alt="댓글" src="../../images/icons/comment.png"> <span>${board.cnt}</span>
 									<div class="bd_text_bottom_right">
 										<img alt="닉네임" src="../../images/icons/by.svg"> 
-										<c:if test="${board.bno == reply_cnt.bno }">
-											<span>${reply_cnt.c}</span>
-										</c:if>
+										<span>${board.nick_nm}</span>
 									</div>
 								</div>
 							</div> </a></li>
@@ -79,9 +84,9 @@
 								<pre class="bd_text_content">${board.content}</pre>
 								<div class="bd_text_bottom">
 									<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes}</span>
-									<img alt="댓글" src="../../images/icons/comment.png"> <span>${reply_cnt}</span>
+									<img alt="댓글" src="../../images/icons/comment.png"> <span>${board.cnt}</span>
 									<div class="bd_text_bottom_right">
-										<img alt="닉네임" src="../../images/icons/by.svg"> <span>${nick_nm}</span>
+										<img alt="닉네임" src="../../images/icons/by.svg"> <span>${board.nick_nm}</span>
 									</div>
 								</div>
 							</div>
@@ -102,9 +107,9 @@
 								<pre class="bd_text_content">${board.content}</pre>
 								<div class="bd_text_bottom">
 									<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes}</span>
-									<img alt="댓글" src="../../images/icons/comment.png"> <span>${reply_cnt}</span>
+									<img alt="댓글" src="../../images/icons/comment.png"> <span>${board.cnt}</span>
 									<div class="bd_text_bottom_right">
-										<img alt="닉네임" src="../../images/icons/by.svg"> <span>${nick_nm}</span>
+										<img alt="닉네임" src="../../images/icons/by.svg"> <span>${board.nick_nm}</span>
 									</div>
 								</div>
 							</div>
@@ -124,7 +129,7 @@
 		<!-- paging -->
 		<div class="paging">
 			<button class="prev">
-				<img alt="이전" src="../../images/icons/arrow_left.png">
+				<img alt="이전" src="../../images/icons/arrow_left1.png">
 			</button>
 			<div class="number">
 				<span class="page_num">1</span> / <span>6</span>

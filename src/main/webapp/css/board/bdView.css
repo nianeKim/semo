@@ -22,9 +22,9 @@
 	height: 100%;
 	position: absolute;
 	z-index: 2;
-	background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.6));
+	background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6));
 }
-  /* 타이틀 */
+/* 타이틀 */
 .container_top>h2 {
 	position: absolute;
 	bottom: 50px;
@@ -33,7 +33,7 @@
 	z-index: 3;
 }
 
-  /* 닉네임 | 작성날짜 */
+/* 닉네임 | 작성날짜 */
 .container_top>h5 {
 	position: absolute;
 	bottom: 30px;
@@ -49,19 +49,19 @@
 }
 
 .contents pre {
-	word-break:keep-all;
-    white-space: pre-wrap;
+	word-break: keep-all;
+	white-space: pre-wrap;
+	font-family: inherit;
 }
 
 /* 하단 버튼 영역 */
 .container_bottom {
 	margin-top: 120px;
 	border-bottom: 1px solid #e4e4e4;
-    padding: 0 0 50px;
-    margin-bottom: 16px;
-  }
-  
-  /* 좋아요, 댓글 수 박스 */
+	padding: 0 0 50px;
+}
+
+/* 좋아요, 댓글 수 박스 */
 .container_bottom>div>p {
 	display: inline-block;
 	border: 1px solid #e4e4e4;
@@ -92,14 +92,16 @@
 	float: right;
 }
 
-  /* btn_small 재설정 */
+/* btn_small 재설정 */
 .btn_small {
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    text-align: center;
-    padding: 7px 0;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+	text-align: center;
+	padding: 7px 0;
 }
+
+/* 게시글 끝 댓글 시작 ******************************************* */
 
 /* 댓글 */
 .reply {
@@ -107,9 +109,12 @@
 }
 
 .reply .sub_title {
-	margin-bottom: 8px;
+	font-size: 18px;
+	font-weight: 700;
+	padding: 25px 0;
 }
 
+/* 댓글 입력 폼 */
 textarea {
 	display: block;
 	width: 100%;
@@ -119,7 +124,6 @@ textarea {
 	font-size: 15px;
 	padding: 10px 12px;
 	line-height: 22px;
-	margin-bottom: 16px;
 	font-family: 'Apple SD Gothic Neo', 'AppleSDGothicNeo';
 	resize: none;
 }
@@ -127,12 +131,141 @@ textarea {
 textarea::placeholder {
 	color: #aaa;
 }
-
+/* submit 버튼 */
 .submit_box {
 	text-align: center;
 }
 
-input[type="submit"] {
+.reply_insert_frm .submit_box input {
 	width: 50%;
 	margin-top: 24px;
+}
+
+/* 댓글 목록 */
+.reply_list {
+	margin-top: 20px;
+	border-top: 1px solid #e4e4e4;
+}
+
+.replys {
+	position: relative;
+	height: 148px;
+	padding: 20px 5px;
+	border-bottom: 1px solid #e4e4e4;
+}
+
+/* 목록 상단 - 프로필, 닉네임, 버튼 */
+.replys .re_top {
+	font-weight: 600;
+}
+
+.replys .re_top img {
+	width: 30px;
+	border-radius: 50%;
+	vertical-align: middle;
+}
+
+/* 수정/삭제 더보기 버튼 */
+.updatebtn_area {
+	display: inline-block;
+	float: right;
+	position: relative;
+}
+
+.updatebtn_area .more_btn {
+    display: inline-block;
+	width: 20px;
+	cursor: pointer;
+    padding-left: 9px;
+}
+
+.updatebtn_area .more_btn .dot {
+	display: block;
+	width: 2px;
+	height: 2px;
+	background-color: #333;
+	border-radius: 50%;
+	margin-bottom: 3px;
+}
+
+.updatebtn_area .more_area {
+	display: none;
+    position: absolute;
+    top: 18px;
+    right: 7px;
+    width: 50px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    border: 1px solid #e4e4e4;
+}
+
+.more_area_txt {
+    display: block;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.more_area_txt:first-child {
+    border-bottom: 1px solid #e4e4e4;
+}
+
+/* 댓글 내용 */
+.replys .re_con {
+	clear: both;
+	width: 90%;
+	font-family: inherit;
+	white-space: pre-wrap;
+	margin: 8px 0 2px;
+}
+
+.replys .re_date {
+	font-size: 13px;
+	color: #444;
+	margin-bottom: 5px;
+}
+
+/* 답글, 좋아요 버튼 */
+.reply_btn_area {
+	height: 30px;
+}
+
+.reply_btn_area>p {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+}
+/* 답글 */
+.replys_btn {
+	border: 1px solid #e4e4e4;
+	float: left;
+	width: 45px;
+	text-align: center;
+}
+
+.like_btn {
+	float: right;
+	padding: 0 5px;
+}
+
+.like_btn img {
+	width: 28px;
+	vertical-align: top;
+}
+
+/* 댓글 수정 폼 */
+.reply_update_frm {
+    display:none;
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 147px;
+    background: #fff4e5;
+    padding: 10px;
+}
+
+.reply_update_frm .submit_box input {
+	margin: 5px 0;
 }

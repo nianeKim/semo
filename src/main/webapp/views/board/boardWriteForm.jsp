@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/views/sessionChk.jsp"%>
+<%@ include file="../sessionChk.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../../css/summernote-lite.css">

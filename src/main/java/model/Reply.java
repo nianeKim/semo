@@ -13,6 +13,24 @@ public class Reply {
 	private String del;
 	private int mno;
 	private int bno;
+	private String nick_nm;
+	private String profile;
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	public String getNick_nm() {
+		return nick_nm;
+	}
+
+	public void setNick_nm(String nick_nm) {
+		this.nick_nm = nick_nm;
+	}
 
 	public int getRe_no() {
 		return re_no;
