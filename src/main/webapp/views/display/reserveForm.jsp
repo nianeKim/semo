@@ -11,6 +11,8 @@
 </style>
 <script type="text/javascript">
 	$(function() {
+		var sumCnt = 0;
+		
 		// 수량 감소
 		$('.minus').on('click', function(e) {
 			e.preventDefault();
@@ -19,19 +21,30 @@
 			var fee = $(this).parent().siblings(".fee").text();
 			var sliceFee = fee.split("원");
 			
+			
 			num -= 1;
 
-			if (num <= 0) {
+			if (num < 0) {
 				num = 0;
-				$(this).siblings(".fee_number").css("color", "#aaa");
 				alert('최저 수량입니다.');
 			}
 			
+			if (num == 0) {
+				$(this).siblings(".fee_number").css("color", "#aaa");
+			}
+			
 			var sumFee = num * sliceFee[0];
+			if (sumCnt <= 0) {
+				sumCnt = 0;
+			} else {
+				sumCnt--;	
+			}
 			
 			$(this).siblings("span").text(num);
 			$(this).siblings("input").val(num);
 			$(this).siblings(".fee_number").text(sumFee+"원");
+			$('.member_info td .sum_count').text(sumCnt);
+			$.totalFee();
 		});
 		
 		// 수량 증가
@@ -44,54 +57,81 @@
 
 			num += 1;
 			
-			if (num >= 20) {
+			if (num > 20) {
 				num = 20;
 				alert('최고 수량입니다.');
 			}
 			
 			var sumFee = num * sliceFee[0];
+			sumCnt++;
+			
 			$(this).siblings("span").text(num);
 			$(this).siblings("input").val(num);
 			$(this).siblings(".fee_number").css("color", "var(--point-color)");
 			$(this).siblings(".fee_number").text(sumFee+"원");
+			$('.member_info td .sum_count').text(sumCnt);
+			$.totalFee();
 		});
 		
-		// cnt null check onsubmit
-		/* $('form').submit(function() {
-			alert("fff");
-			if ($('input[type="hidden"]').val() == null || $('input[type="hidden"]').val() == '') {
-				$('input[type="hidden"]').val(0);
-				alert($('input[type="hidden"]').val());
+		// 전체 가격 찾기
+		$.totalFee = function() {
+			var feeText1 = $("#fee1").text().split("원")[0];
+			var fee1Num = Number(feeText1);
+			
+			var feeText2 = $("#fee2").text().split("원");
+			var fee2 = feeText2[0];
+			var fee2Num = Number(fee2);
+			
+			var feeText3 = $("#fee3").text().split("원");
+			var fee3 = feeText3[0];
+			var fee3Num = Number(fee3);
+			
+			var feeText4 = $("#fee4").text().split("원");
+			var fee4 = feeText4[0];
+			var fee4Num = Number(fee4);
+			
+			var totalFee = 0;
+			
+			if (fee1Num == "" || fee1Num == null) {
+				totalFee = fee2Num + fee3Num + fee4Num;
+			} else {
+				totalFee = fee1Num + fee2Num + fee3Num + fee4Num;
 			}
-		}) */
-	})
+			
+			$('.member_info td .total_fee').text(totalFee+"원");
+		}
+	});
 	
 	// cnt null check onsubmit
 	function submitNullChk() {
-		alert("fff");
-		if (frm.cnt == null || frm.cnt == '') {
-			frm.cnt.value = 0;
+		var inputAll = document.querySelectorAll("input[type='hidden']");
+		var len = inputAll.length;
+		
+		if (len == 3) {
+			if (inputAll[0].value == 0 && inputAll[1].value == 0 && inputAll[2].value == 0) {
+				alert('수량을 입력해주세요.');
+				return false;
+			}
+		} else if (len == 2) {
+			if (inputAll[0].value == 0 && inputAll[1].value == 0) {
+				alert('수량을 입력해주세요.');
+				return false;
+			}
+		} else if (len == 1) {
+			if (inputAll[0].value == 0) {
+				alert('수량을 입력해주세요.');
+				return false;
+			}
 		}
 		
-		if (frm.cnt_adult == null || frm.cnt_adult == '') {
-			frm.cnt_adult.value = 0;
-			alert(frm.cnt_adult.value);
-		}
 		
-		if (frm.cnt_teen == null || frm.cnt_teen == '') {
-			frm.cnt_teen.value = 0;
-		}
-		
-		if (frm.cnt_child == null || frm.cnt_child == '') {
-			frm.cnt_child.value = 0;
-		}
 	}
 </script>
 </head>
 <body>
 	<div class="container">
 		<p class="title">예매하기</p>
-		<form action="reserveResult.do?dno=${display.dno }&mno=${member.mno }" method="post" name="frm" onsubmit="resutn submitNullChk()">
+		<form action="reserveResult.do?dno=${display.dno }&mno=${member.mno }" method="post" name="frm" onsubmit="return submitNullChk()">
 			<div class="section">
 				<!-- 수량 선택 -->
 				<c:if test="${display.fee != 0 }">
@@ -106,12 +146,12 @@
 							<div class="line_box plus">
 								<div class="line"><div class="line vertical"></div></div>
 							</div>
-							<input type="hidden" name="cnt" value="0">
-							<p class="fee_number">0원</p>
+							<input type="hidden" name="cnt" class="input_hidden" value="0">
+							<p class="fee_number" id = "fee1">0원</p>
 						</div>
 					</div>
 				</c:if>
-				<c:if test="${display.fee_adult != 0 }">
+				<c:if test="${display.fee == 0 }">
 					<p class="option_title">성인</p>
 					<div class="fee_box">
 						<p class="fee">${display.fee_adult }원</p>
@@ -123,12 +163,11 @@
 							<div class="line_box plus">
 								<div class="line"><div class="line vertical"></div></div>
 							</div>
-							<input type="hidden" name="cnt_adult" value="0">
-							<p class="fee_number">0원</p>
+							<input type="hidden" name="cnt_adult" class="input_hidden" value="0">
+							<p class="fee_number" id = "fee2">0원</p>
 						</div>
 					</div>
-				</c:if>
-				<c:if test="${display.fee_teen != 0 }">
+				
 					<p class="option_title">청소년</p>
 					<div class="fee_box">
 						<p class="fee">${display.fee_teen }원</p>
@@ -140,12 +179,11 @@
 							<div class="line_box plus">
 								<div class="line"><div class="line vertical"></div></div>
 							</div>
-							<input type="hidden" name="cnt_teen" value="0">
-							<p class="fee_number">0원</p>
+							<input type="hidden" name="cnt_teen" class="input_hidden" value="0">
+							<p class="fee_number" id = "fee3">0원</p>
 						</div>
 					</div>
-				</c:if>
-				<c:if test="${display.fee_child != 0 }">
+				
 					<p class="option_title">어린이</p>
 					<div class="fee_box">
 						<p class="fee">${display.fee_child }원</p>
@@ -157,12 +195,11 @@
 							<div class="line_box plus">
 								<div class="line"><div class="line vertical"></div></div>
 							</div>
-							<input type="hidden" name="cnt_child" value="0">
-							<p class="fee_number">0원</p>
+							<input type="hidden" name="cnt_child" class="input_hidden" value="0">
+							<p class="fee_number" id = "fee4">0원</p>
 						</div>
 					</div>
 				</c:if>
-				<p>총합: </p>
 			</div>
 			<div class="section">
 				<p class="option_title">예매자 정보</p>
@@ -181,7 +218,7 @@
 					</tr>
 					<tr>
 						<th>예매내용</th>
-						<td>${display.dname }, 총 몇매</td>
+						<td>${display.dname }, 총 <span class="sum_count">0</span>매, <span class="total_fee">0원</span></td>
 					</tr>
 				</table>
 			</div>

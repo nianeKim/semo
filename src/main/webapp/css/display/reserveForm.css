@@ -78,6 +78,7 @@
 
 .member_info th {
 	font-weight: 400;
+	width: 110px;
 }
 
 .member_info td {
@@ -98,4 +99,8 @@
 
 input[type="submit"] {
 	margin-top: 20px;
+}
+
+.total_fee {
+	color: var(--point-color);
 }

@@ -30,7 +30,7 @@ public class ReservationDao {
 	}
 	
 	public int insert(Reservation reserve) {
-		return session.insert("reservationns", reserve);
+		return session.insert("reservationns.insert", reserve);
 	}
 	
 	

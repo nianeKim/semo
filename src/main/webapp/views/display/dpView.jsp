@@ -152,15 +152,15 @@
 			</c:if>
 			
 			<!-- 리뷰 리스트 : start -->
-			<h4 class="sub_title pd_bottom">리뷰 <span>264</span></h4>
+			<h4 class="sub_title pd_bottom">리뷰 <span>${reviewCnt }</span></h4>
 			<!-- 평균 별점 -->
 			<div class="star_avg">★★★★★ &nbsp;<span class="text">${star_rate }</span>︎︎</div>
 			<ul class="review_list_box">
 				<c:forEach var="review" items="${list }">
 					<li>
 						<div class="profile">
-							<img src="../../images/profile.png" alt="프로필">
-							<p class="nick_nm">${review.mno }</p>
+							<img src="/semojeon/uploads/${review.profile }" alt="프로필">
+							<p class="nick_nm">${review.nick_nm }</p>
 						</div>
 						<p class="detail_txt review">
 							${review.content }

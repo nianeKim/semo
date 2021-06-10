@@ -19,6 +19,7 @@ insert into member values (0, 'admin', '1234', '관리자', '관리자', '010-11
 alter table member modify(id VARCHAR2(30));
 alter table member add(profile VARCHAR2(100) NULL);
 update member set profile='profile_test.jpg' where mno=7;
+insert into member values (1, 'do', '1111', '도도', '도도', '010-111-1111', 'f', 0,'0','n', sysdate, 'profile.png')
 
 
 -- 전시

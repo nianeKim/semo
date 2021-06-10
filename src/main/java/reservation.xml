@@ -6,7 +6,7 @@
 			select nvl(max(rs_no), 0) + 1 rs_no from reservation
 		</selectKey>
 			insert into reservation values(#{rs_no}, #{cnt,jdbcType=INTEGER},
-			#{cnt_adault,jdbcType=INTEGER}, #{cnt_teen,jdbcType=INTEGER},
+			#{cnt_adult,jdbcType=INTEGER}, #{cnt_teen,jdbcType=INTEGER},
 			#{cnt_child,jdbcType=INTEGER}, #{mno}, #{dno})
 	</insert>
 </mapper>
