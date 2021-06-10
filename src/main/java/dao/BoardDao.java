@@ -86,4 +86,9 @@ public class BoardDao {
 		return session.update("boardns.update", board);
 	}
 
+	// MyBoardList.java 작성한 스토리 목록
+	public List<Board> mpList(int mno) {
+		return session.selectList("boardns.mpList", mno);
+	}
+
 }

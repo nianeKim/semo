@@ -4,12 +4,12 @@
 		<pattern>/views/board/*</pattern>
 		<pattern>/views/display/*</pattern>
 		<pattern>/views/member/*</pattern>
-		<pattern>/views/myPage/*</pattern>
+		<pattern>/views/myPage/myMain.na</pattern>
 	</decorator>
 	<excludes>
 		<pattern>/views/login/confirmNick_nm.na</pattern>
 		<pattern>/views/login/idConfirm.na</pattern>
 		<pattern>/views/display/confirm.*</pattern>
-		<pattern>/views/board/bdLikesCnt.wo</pattern>
+		<pattern>/views/board/bdLikesCnt.*</pattern>
 	</excludes>
 </decorators>

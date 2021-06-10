@@ -43,6 +43,21 @@
 			$(this).parents(".replys").find(".more_area").css("display", "none");
 			$(this).parents(".replys").children(".reply_update_frm").css("display", "none");
 		});
+		
+		// scroll top
+		$('.scroll_top').on('click', function(e) {
+			e.preventDefault();
+			$('html, body').animate({scrollTop: 0}, 200);
+		});
+		
+		// scroll top button show/hide
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 300) {
+				$('.scroll_top').fadeIn(500);
+			} else {
+				$('.scroll_top').fadeOut('slow');
+			}
+		});
 	})
 
 	// 클릭했을 때 세션 확인
@@ -91,6 +106,10 @@
 			<pre>${board.content }</pre>
 			<!-- pre 태그 안에 있는 css 요소 삭제 -->
 			<script type="text/javascript">
+				$(".contents").find("*").css({
+					"font-family" : "'Apple SD Gothic Neo', 'AppleSDGothicNeo'",
+					"line-height" : "1.5em"
+				});
 				$(".contents").find("img").css("width", "100%");
 			</script>
 		</div>
@@ -179,9 +198,8 @@
 					
 				</c:forEach>
 			</div>
-			
 		</div>
-		
 	</div>
+	<div class="scroll_top"><div class="arrow"></div></div>
 </body>
 </html>

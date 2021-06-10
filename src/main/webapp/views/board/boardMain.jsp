@@ -48,8 +48,9 @@
 				</select>
 			</div>
 
-			<a class="btn btn_stroke btn_small btn_padding" onclick="sessionChk();">
-				<img alt="연필"	src="../../images/icons/write.png">글쓰기
+			<a class="btn btn_stroke btn_small btn_padding"
+				onclick="sessionChk();"> <img alt="연필"
+				src="../../images/icons/write.png">글쓰기
 			</a>
 		</div>
 
@@ -57,7 +58,7 @@
 		<div class="board_list" id="board_list1">
 			<ul>
 				<c:forEach var="board" items="${list}">
-					<li><a href="boardView.wo?bno=${board.bno}"><span
+					<li><a href="boardView.wo?bno=${board.bno}"> <span
 							class="bd_text">${board.reg_date } | ${board.read_cnt } 읽음</span>
 							<img alt="포스터" src="../../upload/${board.thumbnail}">
 							<div class="bd_text_area">
@@ -67,11 +68,10 @@
 									<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes}</span>
 									<img alt="댓글" src="../../images/icons/comment.png"> <span>${board.cnt}</span>
 									<div class="bd_text_bottom_right">
-										<img alt="닉네임" src="../../images/icons/by.svg"> 
-										<span>${board.nick_nm}</span>
+										<img alt="닉네임" src="../../images/icons/by.svg"> <span>${board.nick_nm}</span>
 									</div>
 								</div>
-							</div> </a></li>
+							</div></a></li>
 				</c:forEach>
 			</ul>
 		</div>

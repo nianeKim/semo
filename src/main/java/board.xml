@@ -73,4 +73,9 @@
 	<update id="delete" parameterType="integer">
 		update board set del = 'y' where bno = #{bno}
 	</update>
+	
+	<!-- 마이페이지 목록 조회 -->
+	<select id="mpList" parameterType="integer" resultType="board">
+		select * from board where mno=#{mno}
+	</select>
 </mapper>
