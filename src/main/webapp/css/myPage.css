@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.profile {
+	display: inline-block;
+	width: 30%;
+}
+
+.profile>div {
+	display: inline-block;
+}
+.profile_left {
+	width: 40%;
+}
+
+.profile_left img {
+	width: 40%;
+}
+
+.profile_right {
+	width: 60%;
+}
+
+.my_category {
+	display: inline-block;
+	width: 70%;
+	float: right;
+}
+
+.my_category ul li {
+	float: left;
+	width: 25%;
+	text-align: center;
+}

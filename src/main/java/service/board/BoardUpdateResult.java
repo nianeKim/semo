@@ -18,16 +18,17 @@ public class BoardUpdateResult implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		// boardDao, board 생성
-		Board board = new Board();
 		int bno = Integer.parseInt(request.getParameter("bno"));
 		
 		// 파일 업로드 경로
 		String real = request.getSession().getServletContext().getRealPath("/upload");
 		int maxSize = 1024 * 1024 * 10; // 최대 사이즈
 		
+		// board 생성
+		Board board = new Board();
 		try {																			// 같은 파일 이름에 자동으로 숫자 추가
 			MultipartRequest mr = new MultipartRequest(request, real, maxSize, "utf-8", new DefaultFileRenamePolicy());
+			// param 가져오기
 			String thumbnail = mr.getFilesystemName("thumbnail"); // thumbnail input 내용 불러오기
 			String title = mr.getParameter("title");
 			String content = mr.getParameter("content");

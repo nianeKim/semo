@@ -3,8 +3,7 @@
 <mapper namespace="boardns"> 
 	<!-- 게시글 입력 -->
 	<insert id="insert" parameterType="board">
-		<selectKey keyProperty="bno" order="BEFORE"
-			resultType="integer">
+		<selectKey keyProperty="bno" order="BEFORE"	resultType="integer">
 			select nvl(max(bno), 0) + 1 bno from board
 		</selectKey>
 		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0,
@@ -15,7 +14,7 @@
 	<select id="list" resultType="board">
 		select * from board left outer join
 		(select c.bno bno2, c.cnt from BOARD b left outer join (select bno,
-		count(bno) cnt from reply group by bno) c on b.bno = c.bno) re on
+		count(bno) cnt from reply where del = 'n' group by bno) c on b.bno = c.bno) re on
 		board.bno = re.bno2 inner join (select bno bno2, nick_nm from board b,
 		member m where b.mno = m.mno order by bno) nn on board.bno = nn.bno2
 		where del='n' order by reg_date desc
@@ -25,7 +24,7 @@
 	<select id="list2" resultType="board">
 		select * from board left outer join
 		(select c.bno bno2, c.cnt from BOARD b left outer join (select bno,
-		count(bno) cnt from reply group by bno) c on b.bno = c.bno) re on
+		count(bno) cnt from reply where del = 'n' group by bno) c on b.bno = c.bno) re on
 		board.bno = re.bno2 inner join (select bno bno2, nick_nm from board b,
 		member m where b.mno = m.mno order by bno) nn on board.bno = nn.bno2
 		where del='n' order by read_cnt desc, bno desc
@@ -35,7 +34,7 @@
 	<select id="list3" resultType="board">
 		select * from board left outer join
 		(select c.bno bno2, c.cnt from BOARD b left outer join (select bno,
-		count(bno) cnt from reply group by bno) c on b.bno = c.bno) re on
+		count(bno) cnt from reply where del = 'n' group by bno) c on b.bno = c.bno) re on
 		board.bno = re.bno2 inner join (select bno bno2, nick_nm from board b,
 		member m where b.mno = m.mno order by bno) nn on board.bno = nn.bno2
 		where del='n' order by likes desc, bno desc
@@ -43,39 +42,23 @@
 
 	<!-- 게시글 상세 데이터 가져오기 -->
 	<select id="selectOne" resultType="board">
-		select * from board where
-		bno=#{bno}
+		select * from board where bno=#{bno}
 	</select>
 
 	<!-- 게시글 조회수 증가 -->
 	<update id="readcountUpdate" parameterType="integer">
-		update board set
-		read_cnt = read_cnt + 1 where bno = #{bno}
+		update board set read_cnt = read_cnt + 1 where bno = #{bno}
 	</update>
 
 	<!-- 게시글 좋아요 증가 -->
 	<update id="likesPlus" parameterType="integer">
-		update board set likes =
-		likes + 1 where bno = #{bno}
+		update board set likes = likes + 1 where bno = #{bno}
 	</update>
 
 	<!-- 게시글 좋아요 감소 -->
 	<update id="likesMinus" parameterType="integer">
-		update board set likes =
-		likes - 1 where bno = #{bno}
+		update board set likes = likes - 1 where bno = #{bno}
 	</update>
-
-	<!-- 게시글 삭제 -->
-	<update id="delete" parameterType="integer">
-		update board set del = 'y'
-		where bno = #{bno}
-	</update>
-
-	<!-- 게시글 썸네일 값 가져오기 -->
-	<select id="selectThumb" parameterType="integer"
-		resultType="string">
-		select thumbnail from board where bno=#{bno}
-	</select>
 
 	<!-- 게시글 수정 -->
 	<update id="update" parameterType="board">
@@ -86,4 +69,8 @@
 		where bno = #{bno}
 	</update>
 
+	<!-- 게시글 삭제 -->
+	<update id="delete" parameterType="integer">
+		update board set del = 'y' where bno = #{bno}
+	</update>
 </mapper>

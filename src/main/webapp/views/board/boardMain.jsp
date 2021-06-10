@@ -25,7 +25,11 @@
 	function sessionChk() {
 		if (${empty id}) {
 			var con = confirm("로그인 후 이용해 주시기 바랍니다.");
-			if (con) location.href = "/semojeon/views/member/loginForm.na";
+			if (con) {
+				location.href = "/semojeon/views/member/loginForm.na";
+			}
+		} else {
+			location.href="boardWriteForm.wo"	
 		}
 	}
 </script>
@@ -44,7 +48,7 @@
 				</select>
 			</div>
 
-			<a href="boardWriteForm.wo"	class="btn btn_stroke btn_small btn_padding" onclick="sessionChk();">
+			<a class="btn btn_stroke btn_small btn_padding" onclick="sessionChk();">
 				<img alt="연필"	src="../../images/icons/write.png">글쓰기
 			</a>
 		</div>

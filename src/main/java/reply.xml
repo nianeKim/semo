@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="replyns">
-	<!-- 댓글 수 카운트 -->
-	<select id="count" resultType="integer">
-		select count(*) from reply where bno = #{bno}
-	</select>
-	
+	<!-- 댓글 입력 -->
 	<insert id="insert" parameterType="reply">
 		<selectKey keyProperty="re_no" order="BEFORE" resultType="integer">
 			select nvl(max(re_no), 0) + 1 re_no from reply
@@ -13,9 +9,18 @@
 		insert into reply values(#{re_no}, #{content}, sysdate, 0, 0, 0, 0, 'n', #{mno}, #{bno})
 	</insert>
 	
+	<!-- 댓글 조회 -->
 	<select id="list" parameterType="integer" resultType="reply">
-		select * from reply inner join (select re_no, nick_nm, profile
-		from reply r, member m where r.mno = m.mno) nn on reply.re_no = nn.re_no
-		where reply.bno = #{bno} order by reply.re_no desc
+		select * from reply r, member m where r.mno = m.mno and bno = #{bno} and r.del='n' order by re_no desc
 	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="update" parameterType="reply">
+		update reply set content = #{content} where re_no = #{re_no}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<update id="delete" parameterType="integer">
+		update reply set del = 'y' where re_no = #{re_no}
+	</update>
 </mapper>

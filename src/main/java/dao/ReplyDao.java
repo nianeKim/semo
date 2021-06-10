@@ -37,18 +37,28 @@ public class ReplyDao {
 		}
 	}
 
-	// BoardView 각 게시글의 댓글 수
+	// BoardView.java 각 게시글의 댓글 수
 	public int count(int bno) {
 		return (int) session.selectOne("replyns.count", bno);
 	}
-	// BoardReplyWrite 댓글 입력
+	// BoardReplyWrite.java 댓글 입력
 	public int insert(Reply reply) {
 		return session.insert("replyns.insert", reply);
 	}
 
-	// BoardView 댓글 목록
+	// BoardView.java 댓글 목록
 	public List<Reply> list(int bno) {
 		return session.selectList("replyns.list", bno);
+	}
+
+	// BoardReplyDelete.java 댓글 삭제
+	public int delete(int re_no) {
+		return session.update("replyns.delete", re_no);
+	}
+
+	// BoardReplyDelete.java 댓글 수정
+	public int update(Reply reply) {
+		return session.update("replyns.update", reply);
 	}
 
 

@@ -15,6 +15,7 @@
 		if (${empty id}) {
 			$(".reply_insert_frm textarea").attr("placeholder", "댓글을 작성하려면 로그인해 주세요");
 			$(".reply_insert_frm textarea").attr("readonly", true);
+			$(".likes_cnt").siblings("img").attr("src", "../../images/icons/heart.png");
 		} else {
 			$(".reply_insert_frm textarea").attr("placeholder", "댓글을 입력해주세요(주제와 무관한 댓글, 악플은 삭제될 수 있습니다)");
 			$(".reply_insert_frm textarea").attr("readonly", false);
@@ -57,24 +58,22 @@
 			// 좋아요 클릭
 			if (name == "like") {
 				$.post("bdLikesCnt.wo", "bno=${board.bno}", function(data) {
-					$(".likes_cnt").html(data);
+					var likes = data.split(",")[0];
+					var imgSrc = data.split(",")[1];
+					$(".likes_cnt").text(likes);
+					$(".likes_cnt").siblings("img").attr("src", imgSrc);
 				});
 			}
 		}
 	}
 	
 	// 게시글 삭제
-	function del(name) {
+	function delBoard() {
 		var con = confirm("삭제 하시겠습니까?");
 		if(con) {
-			if (name == "board") {
-				location.href="boardDelete.wo?bno=${board.bno}";
-			} else if (name == "reply") {
-				
-			}
+			location.href="boardDelete.wo?bno=${board.bno}";
 		} else alert("삭제가 취소 되었습니다.");
 	}
-	
 </script>
 </head>
 <body>
@@ -90,13 +89,17 @@
 		<!-- 메인(textarea 내용) -->
 		<div class="contents">
 			<pre>${board.content }</pre>
+			<!-- pre 태그 안에 있는 css 요소 삭제 -->
+			<script type="text/javascript">
+				$(".contents").find("img").css("width", "100%");
+			</script>
 		</div>
 
 		<!-- 하단 버튼 -->
 		<div class="container_bottom">
 			<div class="container_bottom_left">
 				<p> <!-- 좋아요 -->
-					<img onclick="sessionChk('like')" alt="하트" src="../../images/icons/heart.png">
+					<img onclick="sessionChk('like')" alt="하트" src="${imgSrc}">
 					<span class="likes_cnt">${board.likes}</span>
 				</p>
 				<p> <!-- 댓글 수 -->
@@ -108,7 +111,7 @@
 			<c:if test="${mno == board.mno}">
 				<div class="container_bottom_right">
 					<a href="boardUpdateForm.wo?bno=${board.bno}" class="btn btn_stroke btn_small">수정</a>
-					<a onclick="del('board')" class="btn btn_stroke btn_small">삭제</a>
+					<a onclick="delBoard()" class="btn btn_stroke btn_small">삭제</a>
 				</div>
 			</c:if>
 		</div>
@@ -117,7 +120,7 @@
 		<div class="reply">
 			<h4 class="sub_title">댓글 ${reply_cnt}</h4>
 			
-			<!-- 입력 폼 -->
+			<!-- 댓글 입력 폼 -->
 			<form action="boardReplyWrite.wo?bno=${board.bno}" method="post" onsubmit="return sessionChk()" class="reply_insert_frm">
 				<pre><textarea name="content" required onclick="sessionChk()"></textarea></pre>
 				<div class="submit_box">
@@ -141,7 +144,15 @@
 									</span>
 									<span class="more_area">
 										<span class="more_area_txt update_frm_show">수정</span>
-										<span class="more_area_txt" onclick="del('reply')">삭제</span>
+										<span class="more_area_txt" onclick="delReply()">삭제</span>
+										<script type="text/javascript">
+											function delReply() {
+												var con = confirm("삭제 하시겠습니까?");
+												if(con) {
+													location.href="boardReplyDelete.wo?bno=${board.bno}&re_no=${reply.re_no}";
+												} else alert("삭제가 취소 되었습니다.");
+											}
+										</script>
 									</span>
 								</span>
 							</c:if>
@@ -157,7 +168,7 @@
 						</div>
 						
 						<!-- 수정 폼 -->
-						<form action="boardReplyUpdate.wo" method="post" class="reply_update_frm">
+						<form action="boardReplyUpdate.wo?bno=${board.bno}&re_no=${reply.re_no}" method="post" class="reply_update_frm">
 							<textarea name="content" required onclick="sessionChk()">${reply.content}</textarea>
 							<div class="submit_box">
 								<input type="submit" class="btn btn_small" value="수정">

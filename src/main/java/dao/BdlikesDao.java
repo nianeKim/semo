@@ -44,20 +44,20 @@ public class BdlikesDao {
 		hm.put("bno", bno);
 		return (int) session.selectOne("bdlikesns.select", hm);
 	}
-
+	
+	// BdLikesCnt.java 회원이 게시글 좋아요 클릭
 	public void insert(int mno, int bno) {
 		HashMap<String, Integer> hm = new HashMap<>();
 		hm.put("mno", mno);
 		hm.put("bno", bno);
 		session.insert("bdlikesns.insert", hm);
 	}
-
+	
+	// BdLikesCnt.java 회원이 게시글 좋아요 취소
 	public void delete(int mno, int bno) {
 		HashMap<String, Integer> hm = new HashMap<>();
 		hm.put("mno", mno);
 		hm.put("bno", bno);
 		session.delete("bdlikesns.delete", hm);	
 	}
-
-	
 }
