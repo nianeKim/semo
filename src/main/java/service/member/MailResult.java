@@ -52,14 +52,14 @@ public class MailResult implements CommandProcess {
 				se.setSubject(subject);
 				se.setMsg("인증번호 : " + msg);
 				se.send(); //메일 전송
-				request.setAttribute("msg", "인증메일전송");
+				request.setAttribute("msg", "send mail success");
 				request.setAttribute("key", msg);
 			} catch (Exception e) {
 				System.out.println("에러"+e.getMessage());
 			}
 		//가입된 이메일이 있는 경우
 		} else {
-			request.setAttribute("msg", "인증메일 전송이 실패했습니다. 다시 시도해주세요");
+			request.setAttribute("msg", "Failed to send mail");
 		}
 		return "mailResult";
 	}

@@ -10,6 +10,10 @@
 
 <style type="text/css">
 @import url("../../css/member/join.css");
+
+input {
+	margin-bottom: 16px;
+}
 /* 프로필 */
 #image_container {
 	width: 200px;
@@ -62,8 +66,28 @@ input[type="file"] { /* input 사라지게 */
 
 
 <script type="text/javascript">
+
+/* 별명 중복체크 */
+function chkNick_nm(){
+	if(!frm.nick_nm.value) {
+		alert("별명을 입력하세요")
+		frm.nick_nm.focus();
+		return false;
+	}else{
+		$.post("confirmNick_nm.na", "nick_nm="+frm.nick_nm.value, function(data){
+			$('#err').html(data);
+			var substring = "사용중인";
+			if(data.includes(substring)){
+			frm.nick_nm.value="";
+			return false;
+			}
+		});
+	}
+}
+
+/* 비밀번호 일치여부 확인 */
 function chkPassword() {
-	if(frm2.password.value!=frm2.confirmPassword.value){
+	if(frm.password.value!=frm.confirmPassword.value){
 		alert("비밀번호가 일치하지 않습니다")
 		frm.password.focus();
 		frm.password.value="";
@@ -72,6 +96,19 @@ function chkPassword() {
 	}
 }
 
+/* 별명중복확인 */ 
+function chk(){
+	$.post("confirmNick_nm.na", "nick_nm="+frm.nick_nm.value, function(data){
+		var substring = "사용중인";
+		if(data.includes(substring)){
+		frm.nick_nm.focus();
+		frm.nick_nm.value="";
+		return false;
+		}
+	});
+} 
+
+/* 프로필 미리보기 */
 function setProfile(event) {
 	var reader = new FileReader();
 	
@@ -87,11 +124,14 @@ function setProfile(event) {
 	reader.readAsDataURL(event.target.files[0]);
 }
 
+/* 회원탈퇴 */
 function del() {
 	var con = confirm("탈퇴 하시겠습니까?");
 	if(con) location.href="delete.na";
 	else alert("탈퇴가 취소 되었습니다.");
 }
+
+
 </script>
 </head>
 
@@ -99,7 +139,7 @@ function del() {
 <div class="container">
 	<h1 class="title">회원정보 수정</h1>
 
-	<form action="updateResult.na" method="post" name="frm2" onsubmit="return chkPassword()" enctype="multipart/form-data">
+	<form action="updateResult.na" method="post" name="frm" onsubmit="return chk();" enctype="multipart/form-data">
 			
 			<!-- 프로필 -->
 			<div class="profile">
@@ -121,8 +161,8 @@ function del() {
 
 			<!-- 별명 -->
 			<div class="check">
-				<input type="text" name="nick_nm" class="inputBox-left" value="${member.nick_nm }" placeholder="${member.nick_nm }">
-				<a class="chk-btn" id="chk-nick_nm-btn" onclick="chkNick_nm();">중복 확인</a>
+				<input type="text" name="nick_nm" value="${member.nick_nm }" placeholder="${member.nick_nm }" onchange="chkNick_nm()" required="required">
+				<input type="hidden" name="checked_nick" value="">
 			</div>
 			<div class="chk-msg" id="err"></div>
 			

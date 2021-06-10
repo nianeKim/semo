@@ -18,10 +18,10 @@ public class MyMain implements CommandProcess {
 		
 		MemberDao md = MemberDao.getInstance();
 		Member member = md.select(id);
-		
+			
 		request.setAttribute("member", member);
-		
+			
 		return "myMain";
+		
 	}
-
 }

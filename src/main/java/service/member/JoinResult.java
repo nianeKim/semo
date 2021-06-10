@@ -11,6 +11,7 @@ public class JoinResult implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("????????");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		String name = request.getParameter("name");
@@ -18,7 +19,7 @@ public class JoinResult implements CommandProcess {
 		String phone = request.getParameter("phone");
 		String gender = request.getParameter("gender");
 		String loc = request.getParameter("loc");
-		String mail_chk = request.getParameter("mail_chk");
+		/* String mail_chk = request.getParameter("mail_chk"); */
 		int age = Integer.parseInt(request.getParameter("age"));
 		
 		Member member = new Member();
