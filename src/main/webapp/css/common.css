@@ -195,6 +195,7 @@ select {
 
 .paging {
 	text-align: center;
+	clear: both;
 }
 
 .paging div,button {
