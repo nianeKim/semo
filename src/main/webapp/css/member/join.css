@@ -27,28 +27,32 @@ select:focus {
 
 .check {
 	font-size: 0;
+	position:relative;
 }
 
 .inputBox-left {
     display: inline-block;
-	width: calc(100% - 90px);
+	width: 100%;
 }
 
 .chk-msg {
-	margin-top: -10px;
-	margin-bottom: 7px;
-	color: #ff5f06;
-	font-size: 12px;
+	position: absolute;
+	bottom: -2px;
+	color: var(--point-color);
+	font-size: 13px;
 }
 
 .chk-btn {
 	display: inline-block;
+	position: absolute;
+    right: 14px;
 	width: 90px;
-	border-bottom: 1px solid #000;
+	height: 48px;
 	line-height: 48px;
 	font-size: 16px;
 	font-weight: 600;
 	text-align: right;
+	cursor: pointer;
 }
 
 .radio-left {

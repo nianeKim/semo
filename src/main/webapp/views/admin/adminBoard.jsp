@@ -19,10 +19,6 @@
 	font-family: inherit;
 }
 
-.container-table{
-	position: absolute;
-	overflow: auto;
-}
 .btn{
 	width: 150px;
 	height: 55px;
@@ -30,18 +26,19 @@
 	text-align: center;
 	line-height: 55px;
 }
-div table{
+table{
+	overflow: auto;
 	white-space:nowrap;
 	border-collapse:collapse;
 }
 
-div table th{
+table th{
 	padding: 0 10px;
 	border-bottom: solid 1px;
 	font-size: 16px;
 }
 
-div table td{
+table td{
 	height: 32px;
 	padding: 0 10px;
 	font-size: 14px;
@@ -53,12 +50,11 @@ div table td{
 
 </head>
 <body>
-<form class="container">
+<div class="container">
 	<h1 class="title">스토리</h1>
 	<div>
 		<a class="btn" href="/semojeon/views/display/dpRegistForm.do">등록</a>	
 	</div>
-	<div class="container container-table">
 		<table>
 		<tr>
 			<th>글번호</th><th>제목</th><th>게시일자</th><th>조회수</th><th>좋아요 수</th><th>작성자</th><th>삭제여부</th><th>수정</th><th>삭제</th>
@@ -76,8 +72,6 @@ div table td{
 			</tr>
 			</c:forEach>
 		</table>
-	</div>
-
-</form>
+</div>
 </body>
 </html>

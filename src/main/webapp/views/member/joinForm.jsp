@@ -44,6 +44,17 @@ function chkId(){
 	}
 }
 
+function chkPass(){
+	var pw = $("#password").val();
+	if(pw.length<8) {
+		$('#err_pass').html("8자리 이상 입력해주세요");
+		frm.password.focus();
+		frm.password.value="";
+		return false;
+	}else {
+		$('#err_pass').html("사용가능한 비밀번호입니다");
+	}
+}
 
 /* 비밀번호 확인 일치여부 체크 */
 function chkPassword() {
@@ -66,7 +77,7 @@ function chkNick_nm(){
 		frm.checked_nick.value="y";
 	}
 	$.post("confirmNick_nm.na", "nick_nm="+frm.nick_nm.value, function(data){
-		console.log(frm.nick_nm.value);
+		/* console.log(frm.nick_nm.value); */
 		$('#err').html(data);
 	});
 	
@@ -118,9 +129,9 @@ function chk(){
 			<!-- 아이디 -->
 			<div class="check">
 				<input type="text" name="id" class="inputBox-left" required="required" autofocus="autofocus" placeholder="아이디(이메일)"> 
-				<a class="chk-btn" onclick="chkId();">이메일 인증</a>
+				<a class="chk-btn" onclick="chkId();" >이메일 인증</a>
+				<div class="chk-msg" id="err_id"></div>
 			</div> 
-			<div class="chk-msg" id="err_id"></div>
 			
 			<!-- 이메일 인증 -->
 			<div class="check" id="chkIdDIV">
@@ -133,9 +144,11 @@ function chk(){
 			</div>
 			
 			<!-- 비밀번호 -->
-			<input type="password" name="password" placeholder="비밀번호" required="required" > 
-			<input type="password" name="confirmPassword" placeholder="비밀번호 확인" required="required" onChange="chkPassword()"> 
-			
+			<div class="check">
+				<input type="password" name="password" id="password" placeholder="비밀번호" required="required" onChange="chkPass()"> 
+				<div class="chk-msg" id="err_pass"></div>
+			</div>
+				<input type="password" name="confirmPassword" placeholder="비밀번호 확인" required="required" onChange="chkPassword()"> 
 			<!-- 이름 -->
 			<input type="text" name="name" placeholder="이름" required="required">
 
@@ -147,7 +160,7 @@ function chk(){
 			<div class="chk-msg" id="err"></div>
 			
 			<!-- 연락처 -->
-			<input type="tel" name="phone" title="전화번호 형식 : 010-***(*)-****" pattern="\d{3}-\d{3,4}-\d{4}" placeholder="연락처" required="required">
+			<input type="tel" name="phone" placeholder="연락처" required="required">
 			
 			<!-- 성별 -->
 			<div class= "select-gender">
