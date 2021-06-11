@@ -5,6 +5,8 @@
 		<pattern>/views/display/*</pattern>
 		<pattern>/views/member/*</pattern>
 		<pattern>/views/myPage/myMain.na</pattern>
+	</decorator>
+	<decorator name="decorator_admin" page="view_admin.jsp">
 		<pattern>/views/admin/*</pattern>
 	</decorator>
 	<excludes>

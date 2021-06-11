@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../sessionChk.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -47,7 +48,7 @@ a{
 		
 		<div class="mng">
 			<a class="txt" href="adminBoard.na">
-				<img alt="게시판 관리" src="../../images/icons/written_story.png">게시판 관리
+				<img alt="" src="../../images/icons/written_story.png">스토리 관리
 			</a>
 		</div>
 	</div>

@@ -16,6 +16,8 @@ public class AdminDisplay implements CommandProcess {
 		DisplayDao dd = DisplayDao.getInstance();
 		List<Display> list = dd.list();
 		
+		request.setAttribute("list", list);
+		
 		return "adminDisplay";
 	}
 

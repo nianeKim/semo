@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="../sessionChk.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -19,6 +20,7 @@
 }
 
 .container-table{
+	position: absolute;
 	overflow: auto;
 }
 .btn{
@@ -31,27 +33,27 @@
 div table{
 	white-space:nowrap;
 	border-collapse:collapse;
-	border: 1px solid
 }
 
 div table th{
-	border: 1px solid;
 	padding: 0 10px;
+	border-bottom: solid 1px;
 	font-size: 16px;
 }
 
 div table td{
+	height: 32px;
+	padding: 0 10px;
 	font-size: 14px;
 	font-weight: 500;
+	text-align: center;
 	
 }
 </style>
-
 </head>
 <body>
 <form class="container">
-	<h1 class="title">전시 관리</h1>
-	
+	<h1 class="title">전시</h1>
 	<div>
 		<a class="btn" href="/semojeon/views/display/dpRegistForm.do">등록</a>	
 	</div>
@@ -61,31 +63,30 @@ div table td{
 		<tr>
 			<th>전시번호</th><th>전시명</th><th>시작일</th><th>종료일</th><th>관람 시간</th><th>관람 장소</th><th>단일 관람료</th><th>할인율</th><th>관람료_성인</th><th>관람료_청소년</th><th>관람료_어린이</th><th>관련 태그</th><th>작가명</th><th>전화번호</th><th>홈페이지</th><th>게시현황</th><th>작성자</th><th>수정</th><th>삭제</th>
 			<c:forEach var="display" items="${list }">
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+			<tr>
+				<td>${display.dno} </td>
+				<td>${display.dname} </td>
+				<td>${display.start_date} </td>
+				<td>${display.end_date} </td>
+				<td>${display.hours} </td>
+				<td>${display.loc} </td>
+				<td>${display.fee} </td>
+				<td>${display.discount} </td>
+				<td>${display.fee_adult} </td>
+				<td>${display.fee_teen} </td>
+				<td>${display.fee_child} </td>
+				<td>${display.tag} </td>
+				<td>${display.artist} </td>
+				<td>${display.tel} </td>
+				<td>${display.home_pg} </td>
+				<td>${display.del} </td>
+				<td>${display.mno} </td>
 				<td>삭제 url</td>
 				<td>수정 url</td>
+			</tr>
 			</c:forEach>
 		</table>
 	</div>
-
-
-
 
 </form>
 </body>
