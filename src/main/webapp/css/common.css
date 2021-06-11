@@ -248,3 +248,11 @@ body {
 	border-right: 1px solid #000;
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
+
+/* err */
+.err {
+	position: absolute;
+	bottom: -6px;
+	color: var(--point-color);
+	font-size: 13px;
+}
