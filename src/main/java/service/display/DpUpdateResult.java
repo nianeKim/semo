@@ -34,7 +34,9 @@ public class DpUpdateResult implements CommandProcess {
 			Date start_date = Date.valueOf(mr.getParameter("start_date"));
 			Date end_date = Date.valueOf(mr.getParameter("end_date"));
 			String hours = mr.getParameter("hours");
+			String spot = mr.getParameter("spot");
 			String loc = mr.getParameter("loc");
+			String address = mr.getParameter("address");
 			int fee = Integer.parseInt(mr.getParameter("fee"));
 			int discount = Integer.parseInt(mr.getParameter("discount"));
 			int fee_adult = Integer.parseInt(mr.getParameter("fee_adult"));
@@ -56,7 +58,9 @@ public class DpUpdateResult implements CommandProcess {
 			dp.setStart_date(start_date);
 			dp.setEnd_date(end_date);
 			dp.setHours(hours);
+			dp.setSpot(spot);
 			dp.setLoc(loc);
+			dp.setAddress(address);
 			dp.setFee(fee);
 			dp.setDiscount(discount);
 			dp.setFee_adult(fee_adult);

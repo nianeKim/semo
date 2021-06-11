@@ -44,7 +44,7 @@
 	// submit check
 	function sessionChk() {
 		if (${empty id}) {
-			alert("로그인이 필요합니다.");
+			confirm("로그인이 필요합니다.");
 			location.href="/semojeon/views/member/loginForm.na";
 			return false;
 		}
@@ -83,6 +83,10 @@
 				<table class="bottom">
 					<tr>
 						<th>장소</th>
+						<td>${display.spot }</td>
+					</tr>
+					<tr>
+						<th>지역</th>
 						<td>${display.loc }</td>
 					</tr>
 					<tr>
@@ -159,7 +163,7 @@
 				<c:forEach var="review" items="${list }">
 					<li>
 						<div class="profile">
-							<img src="/semojeon/uploads/${review.profile }" alt="프로필">
+							<img src="/semojeon/upload/${review.profile }" alt="프로필">
 							<p class="nick_nm">${review.nick_nm }</p>
 						</div>
 						<p class="detail_txt review">

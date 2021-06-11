@@ -7,7 +7,8 @@
 				select nvl(max(dno), 0) + 1 dno from display
 		</selectKey>
 		insert into display values(#{dno}, #{dname}, #{start_date}, #{end_date},
-		#{loc}, #{poster}, #{tag,jdbcType=VARCHAR}, #{intro}, #{detail_img,jdbcType=VARCHAR},
+		#{spot}, #{loc}, #{address}, #{poster}, #{tag,jdbcType=VARCHAR}
+		, #{intro}, #{detail_img,jdbcType=VARCHAR},
 		#{detail_txt,jdbcType=VARCHAR}, #{hours}, #{fee,jdbcType=INTEGER},
 		#{fee_adult,jdbcType=INTEGER}, #{fee_teen,jdbcType=INTEGER},
 		#{fee_child,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, #{artist,jdbcType=VARCHAR},
@@ -32,7 +33,7 @@
 	<!-- 전시 수정 -->
 	<update id="update" parameterType="display">
 		update display set dname=#{dname}, start_date=#{start_date},
-		end_date=#{end_date}, hours=#{hours}, loc=#{loc}, fee=#{fee,jdbcType=INTEGER},
+		end_date=#{end_date}, hours=#{hours}, spot=#{spot}, loc=#{loc}, address=#{address}, fee=#{fee,jdbcType=INTEGER},
 		discount=#{discount,jdbcType=INTEGER}, fee_adult=#{fee_adult,jdbcType=INTEGER},
 		fee_teen=#{fee_teen,jdbcType=INTEGER}, fee_child=#{fee_child,jdbcType=INTEGER},
 		intro=#{intro}, tag=#{tag,jdbcType=VARCHAR}, artist=#{artist,jdbcType=VARCHAR},
@@ -51,4 +52,18 @@
 	<delete id="delete" parameterType="integer">
 		update display set del = 'y' where dno = #{dno}
 	</delete>
+	
+	<!-- 지역 태그로 리스트 조회 -->
+	<select id="selectLoc" resultType="display">
+		select * from display where loc in
+		<foreach collection="array" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+		order by dno desc
+	</select>
+	
+	<!-- 마이페이지 - 등록한 전시 -->
+    <select id="mpList" parameterType="integer" resultType="display">
+       select * from display where mno = #{mno} order by dno desc 
+    </select>
 </mapper> 

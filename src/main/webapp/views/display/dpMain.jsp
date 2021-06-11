@@ -69,54 +69,109 @@
 				<ul>
 					<!-- 전시중 -->
 					<c:if test="${tab == 1 }">
-						<c:forEach var="display" items="${list }">
-							<c:if test="${display.start_date <= today }">
-								<li>
-									<a href="dpView.do?dno=${display.dno }"> 
-										<img alt="포스터" src="/semojeon/upload/${display.poster }">
-										<div class="text_area">
-											<p class="date">${display.start_date } ~ ${display.end_date }</p>
-											<p class="dp_list_title">${display.dname }</p>
-											<p class="location">${display.loc }</p>
-										</div>
-									</a>
-								</li>
-							</c:if>
-						</c:forEach>
+						<c:if test="${empty listLoc }">
+							<c:forEach var="display" items="${list }">
+								<c:if test="${display.start_date <= today }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<!-- 지역별 조회 -->
+						<c:if test="${not empty listLoc }">
+							<c:forEach var="display" items="${listLoc }">
+								<c:if test="${display.start_date <= today }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
 					</c:if>
 					<!-- 종료 예정 -->
 					<c:if test="${tab == 2 }">
-						<c:forEach var="display" items="${list }">
-							<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
-								<li>
-									<a href="dpView.do?dno=${display.dno }"> 
-										<img alt="포스터" src="/semojeon/upload/${display.poster }">
-										<div class="text_area">
-											<p class="date">${display.start_date } ~ ${display.end_date }</p>
-											<p class="dp_list_title">${display.dname }</p>
-											<p class="location">${display.loc }</p>
-										</div>
-									</a>
-								</li>
-							</c:if>
-						</c:forEach>
+						<c:if test="${empty listLoc }">
+							<c:forEach var="display" items="${list }">
+								<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<c:if test="${not empty listLoc }">
+							<c:forEach var="display" items="${listLoc }">
+								<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
 					</c:if>
 					<!-- 예정 전시 -->
 					<c:if test="${tab == 3 }">
-						<c:forEach var="display" items="${list }">
-							<c:if test="${display.start_date > today }">
-								<li>
-									<a href="dpView.do?dno=${display.dno }"> 
-										<img alt="포스터" src="/semojeon/upload/${display.poster }">
-										<div class="text_area">
-											<p class="date">${display.start_date } ~ ${display.end_date }</p>
-											<p class="dp_list_title">${display.dname }</p>
-											<p class="location">${display.loc }</p>
-										</div>
-									</a>
-								</li>
-							</c:if>
-						</c:forEach>
+						<c:if test="${empty listLoc }">
+							<c:forEach var="display" items="${list }">
+								<c:if test="${display.start_date > today }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<c:if test="${not empty listLoc }">
+							<c:forEach var="display" items="${listLoc }">
+								<c:if test="${display.start_date > today }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
 					</c:if>
 				</ul>
 			</div>
@@ -137,7 +192,7 @@
 	</div>
 
 	<!-- modal -->
-	<div class="filter_modal">
+	<form class="filter_modal" action="dpMain.do?tab=${tab }" method="post">
 		<div class="dim_box"></div>
 		<div class="modal_content">
 			<img class="close" src="../../images/icons/close.png"></img>
@@ -148,28 +203,72 @@
 					<div class="tag_box">
 						<!-- tag -->
 						<div class="label_box">
-							<label class="tag active" for="l1">서울</label><input
-								type="checkbox" name="loc" id="l1" value="l1" checked="checked">
+							<label class="tag" for="l1">서울</label><input
+								type="checkbox" name="loc" id="l1" value="서울">
 						</div>
 						<div class="label_box">
-							<label class="tag" for="l2">서울</label><input type="checkbox"
-								name="loc" id="l2" value="l2">
+							<label class="tag" for="l2">세종</label><input type="checkbox"
+								name="loc" id="l2" value="세종">
 						</div>
 						<div class="label_box">
-							<label class="tag" for="l3">서울</label><input type="checkbox"
-								name="loc" id="l3" value="l3">
+							<label class="tag" for="l3">광주</label><input type="checkbox"
+								name="loc" id="l3" value="광주">
 						</div>
 						<div class="label_box">
-							<label class="tag" for="l4">서울</label><input type="checkbox"
-								name="loc" id="l4" value="l4">
+							<label class="tag" for="l4">대구</label><input type="checkbox"
+								name="loc" id="l4" value="대구">
 						</div>
 						<div class="label_box">
-							<label class="tag" for="l5">서울</label><input type="checkbox"
-								name="loc" id="l5" value="l5">
+							<label class="tag" for="l5">대전</label><input type="checkbox"
+								name="loc" id="l5" value="대전">
 						</div>
 						<div class="label_box">
-							<label class="tag" for="l6">서울</label><input type="checkbox"
-								name="loc" id="l6" value="l6">
+							<label class="tag" for="l6">부산</label><input type="checkbox"
+								name="loc" id="l6" value="부산">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l7">울산</label><input type="checkbox"
+								name="loc" id="l7" value="울산">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l8">인천</label><input type="checkbox"
+								name="loc" id="l8" value="인천">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l9">강원</label><input type="checkbox"
+								name="loc" id="l9" value="강원">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l10">경기</label><input type="checkbox"
+								name="loc" id="l10" value="경기">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l11">경북</label><input type="checkbox"
+								name="loc" id="l11" value="경북">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l12">경남</label><input type="checkbox"
+								name="loc" id="l12" value="경남">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l13">전북</label><input type="checkbox"
+								name="loc" id="l13" value="전북">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l14">전남</label><input type="checkbox"
+								name="loc" id="l14" value="전남">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l15">충북</label><input type="checkbox"
+								name="loc" id="l15" value="충북">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l16">충남</label><input type="checkbox"
+								name="loc" id="l16" value="충남">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="l17">제주</label><input type="checkbox"
+								name="loc" id="l17" value="제주">
 						</div>
 					</div>
 				</div>
@@ -178,20 +277,64 @@
 					<div class="tag_box">
 						<!-- tag -->
 						<div class="label_box">
-							<label class="tag active" for="t1">혼자보기좋은</label><input
-								type="checkbox" name="tag" id="t1" value="t1" checked>
+							<label class="tag" for="t1">혼자보기좋은</label><input
+								type="checkbox" name="tag" id="t1" value="혼자보기좋은">
 						</div>
 						<div class="label_box">
-							<label class="tag" for="t2">갬성</label><input type="checkbox"
-								name="tag" id="t2" value="t2">
+							<label class="tag" for="t2">감성</label><input type="checkbox"
+								name="tag" id="t2" value="감성">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t3">미디어</label><input type="checkbox"
+								name="tag" id="t3" value="미디어">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t4">회화</label><input type="checkbox"
+								name="tag" id="t4" value="회화">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t5">사진</label><input type="checkbox"
+								name="tag" id="t5" value="사진">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t6">조각</label><input type="checkbox"
+								name="tag" id="t6" value="조각">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t7">설치미술</label><input type="checkbox"
+								name="tag" id="t7" value="설치미술">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t8">공예</label><input type="checkbox"
+								name="tag" id="t8" value="공예">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t9">디지털</label><input type="checkbox"
+								name="tag" id="t9" value="디지털">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t10">누아르</label><input type="checkbox"
+								name="tag" id="t10" value="누아르">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t11">디자인</label><input type="checkbox"
+								name="tag" id="t11" value="디자인">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t12">예술</label><input type="checkbox"
+								name="tag" id="t12" value="예술">
+						</div>
+						<div class="label_box">
+							<label class="tag" for="t13">공연</label><input type="checkbox"
+								name="tag" id="t13" value="공연">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="btn_box">
-				<button class="btn">확인</button>
+				<input class="btn" type="submit" value="확인">
 			</div>
 		</div>
-	</div>
+	</form>
 </body>
 </html>

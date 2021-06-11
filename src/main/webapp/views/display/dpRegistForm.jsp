@@ -17,6 +17,14 @@
 			var realFileName = fileName.split("\\");
 			$(this).siblings('label').text(realFileName[2]); 
 		})
+		
+		$('input[name="tag"]').on('change', function() {
+			if ($(this).is(":checked")) {
+				$(this).siblings("label").addClass('active');
+			} else {
+				$(this).siblings("label").removeClass('active');
+			}
+		})
 	})
 	
 	// onsubmit
@@ -74,7 +82,28 @@
 				<input type="text" class="column" name="end_date" placeholder="종료일 *" onfocus="(this.type='date')" required>
 			</div>
 			<input type="text" name="hours" placeholder="관람 시간 * (예시 : 오전 10:00 ~ 오후 8:00)" required>
-			<input type="text" name="loc" placeholder="관람 장소 *">
+			<input type="text" name="spot" placeholder="관람 장소 *">
+			<input type="text" name="address" placeholder="주소 *">
+			<select name="loc" required="required">
+				<option>지역</option>
+				<option>서울</option>
+				<option>세종</option>
+				<option>광주</option>
+				<option>대구</option>
+				<option>대전</option>
+				<option>부산</option>
+				<option>울산</option>
+				<option>인천</option>
+				<option>강원</option>
+				<option>경기</option>
+				<option>경북</option>
+				<option>경남</option>
+				<option>전북</option>
+				<option>전남</option>
+				<option>충북</option>
+				<option>충남</option>
+				<option>제주</option>
+			</select> 
 			
 			<!-- 관람료 -->
 			<p class="option_title">단일 관람료</p>
@@ -96,7 +125,61 @@
 			
 			<!-- 관련 태그 -->
 			<p class="option_title">관련 태그</p>
-			<textarea name="tag"></textarea>
+			<div class="tag_box">
+				<!-- tag -->
+				<div class="label_box">
+					<label class="tag" for="t1">혼자보기좋은</label><input
+						type="checkbox" name="tag" id="t1" value="혼자보기좋은">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t2">감성</label><input type="checkbox"
+						name="tag" id="t2" value="감성">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t3">미디어</label><input type="checkbox"
+						name="tag" id="t3" value="미디어">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t4">회화</label><input type="checkbox"
+						name="tag" id="t4" value="회화">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t5">사진</label><input type="checkbox"
+						name="tag" id="t5" value="사진">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t6">조각</label><input type="checkbox"
+						name="tag" id="t6" value="조각">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t7">설치미술</label><input type="checkbox"
+						name="tag" id="t7" value="설치미술">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t8">공예</label><input type="checkbox"
+						name="tag" id="t8" value="공예">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t9">디지털</label><input type="checkbox"
+						name="tag" id="t9" value="디지털">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t10">누아르</label><input type="checkbox"
+						name="tag" id="t10" value="누아르">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t11">디자인</label><input type="checkbox"
+						name="tag" id="t11" value="디자인">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t12">예술</label><input type="checkbox"
+						name="tag" id="t12" value="예술">
+				</div>
+				<div class="label_box">
+					<label class="tag" for="t13">공연</label><input type="checkbox"
+						name="tag" id="t13" value="공연">
+				</div>
+			</div>
 			
 			<input type="text" name="artist" placeholder="작가명">
 			<input type="text" name="tel" placeholder="전화번호 (-없이 입력해주세요.)">

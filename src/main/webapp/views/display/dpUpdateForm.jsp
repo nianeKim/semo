@@ -16,6 +16,10 @@
 			var realFileName = fileName.split("\\");
 			$(this).siblings('label').text(realFileName[2]); 
 		})
+		
+		// select box에 값 세팅
+		var selectValue = "${display.loc}";
+		$('select option[value=' + selectValue + ']').attr('selected', 'selected');
 	})
 	
 	// 전시명 중복 체크
@@ -51,8 +55,29 @@
 					placeholder="종료일" onfocus="(this.type='date')" value="${display.end_date }" required>
 			</div>
 			<input type="text" name="hours" placeholder="관람 시간" value="${display.hours }" required> 
-			<input type="text" name="loc" placeholder="관람 장소" value="${display.loc }" required>
-
+			<input type="text" name="spot" placeholder="관람 장소" value="${display.spot }" required>
+			<input type="text" name="address" placeholder="주소 *" value="${display.address }" required>
+			<select name="loc" required="required">
+				<option>지역</option>
+				<option value="서울">서울</option>
+				<option value="세종">세종</option>
+				<option value="광주">광주</option>
+				<option value="대구">대구</option>
+				<option value="대전">대전</option>
+				<option value="부산">부산</option>
+				<option value="울산">울산</option>
+				<option value="인천">인천</option>
+				<option value="강원">강원</option>
+				<option value="경기">경기</option>
+				<option value="경북">경북</option>
+				<option value="경남">경남</option>
+				<option value="전북">전북</option>
+				<option value="전남">전남</option>
+				<option value="충북">충북</option>
+				<option value="충남">충남</option>
+				<option value="제주">제주</option>
+			</select> 
+			
 			<!-- 관람료 -->
 			<p class="option_title">단일 관람료</p>
 			<div class="column_box">
@@ -75,7 +100,7 @@
 
 			<!-- 관련 태그 -->
 			<p class="option_title">관련 태그</p>
-			<pre><textarea name="tag">${display.tag }</textarea></pre>
+			<%-- <pre><textarea name="tag">${display.tag }</textarea></pre> --%>
 
 			<input type="text" name="artist" placeholder="작가명" value="${display.artist }">
 			<input type="text" name="tel" placeholder="전화번호 (-없이 입력해주세요.)" value="${display.tel }">

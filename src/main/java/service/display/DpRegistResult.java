@@ -40,7 +40,9 @@ public class DpRegistResult implements CommandProcess {
 			Date start_date = Date.valueOf(mr.getParameter("start_date"));
 			Date end_date = Date.valueOf(mr.getParameter("end_date"));
 			String hours = mr.getParameter("hours");
+			String spot = mr.getParameter("spot");
 			String loc = mr.getParameter("loc");
+			String address = mr.getParameter("address");
 			int fee = Integer.parseInt(mr.getParameter("fee"));
 			int discount = Integer.parseInt(mr.getParameter("discount"));
 			int fee_adult = Integer.parseInt(mr.getParameter("fee_adult"));
@@ -52,7 +54,6 @@ public class DpRegistResult implements CommandProcess {
 			String tel = mr.getParameter("tel");
 			String home_pg = mr.getParameter("home_pg");
 			String detail_txt = mr.getParameter("detail_txt");
-			
 			// 이미지 세팅
 			dp.setDetail_img(detail_img);
 			dp.setPoster(poster);
@@ -62,7 +63,9 @@ public class DpRegistResult implements CommandProcess {
 			dp.setStart_date(start_date);
 			dp.setEnd_date(end_date);
 			dp.setHours(hours);
+			dp.setSpot(spot);
 			dp.setLoc(loc);
+			dp.setAddress(address);
 			dp.setFee(fee);
 			dp.setDiscount(discount);
 			dp.setFee_adult(fee_adult);

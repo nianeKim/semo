@@ -17,10 +17,19 @@ public class DpMain implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		// dp 리스트 조회
 		DisplayDao dd = DisplayDao.getInstance();
 		List<Display> list = dd.list();
 		String tab = request.getParameter("tab");
+		String loc[] = request.getParameterValues("loc");
 		
+		// 지역 태그 조회
+		List<Display> listLoc = null;
+		if (loc != null) {
+			listLoc = dd.listLoc(loc);
+		}
+		
+		// 날짜 비교 전달 값 세팅
 		Date today = Date.valueOf(LocalDate.now());
 		Date todayAfter7 = null;
 		
@@ -41,6 +50,8 @@ public class DpMain implements CommandProcess {
 		request.setAttribute("todayAfter7", todayAfter7);
 		request.setAttribute("tab", tab);
 		request.setAttribute("list", list);
+		
+		request.setAttribute("listLoc", listLoc);
 		
 		return "dpMain";
 	}

@@ -25,7 +25,15 @@ public class DpView implements CommandProcess {
 		List<Review> list = rd.select(dno);
 		
 		// 평균 별점
-		float star_rate = (float) rd.selectStar(dno);
+		float star_rate = 0;
+		
+		// 리뷰가 없을때 제어
+		if (list.size() == 0) {
+			star_rate = 0;			
+		} else {
+			star_rate = (float) rd.selectStar(dno);
+		}
+		
 		// 리뷰 갯수
 		int reviewCnt = list.size();
 		

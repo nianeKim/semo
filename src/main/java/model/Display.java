@@ -7,7 +7,9 @@ public class Display {
 	private String dname;
 	private Date start_date;
 	private Date end_date;
+	private String spot;
 	private String loc;
+	private String address;
 	private String poster; // 이름만 넣고 폴더에 이미지 따로 저장
 	private String tag;
 	private String intro;
@@ -57,12 +59,28 @@ public class Display {
 		this.end_date = end_date;
 	}
 
+	public String getSpot() {
+		return spot;
+	}
+	
 	public String getLoc() {
 		return loc;
 	}
 
 	public void setLoc(String loc) {
 		this.loc = loc;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setSpot(String spot) {
+		this.spot = spot;
 	}
 
 	public String getPoster() {

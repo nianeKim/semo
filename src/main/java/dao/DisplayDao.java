@@ -1,7 +1,9 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -60,5 +62,17 @@ public class DisplayDao {
 	// 전시 삭제
 	public int delete(int dno) {
 		return session.delete("displayns.delete", dno);
+	}
+	
+	// 지역 태그로 리스트 조회
+	public List<Display> listLoc(String[] loc) {
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("loc", loc);
+		return session.selectList("displayns.selectLoc", loc);
+	}
+	
+	// 마이페이지 등록한 전시 리스트
+	public List<Display> mpList(int mno) {
+		return session.selectList("displayns.mpList", mno);
 	}
 }
