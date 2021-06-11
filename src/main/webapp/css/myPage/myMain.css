@@ -1,0 +1,173 @@
+@charset "UTF-8";
+/* 상단 영역 */
+.menu {
+	width: 100%;
+	display: table;
+}
+
+.menu>ul {
+	display: table-row;
+}
+
+.menu>ul>li {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/* 프로필 */
+.menu>ul>li:first-child {
+	width: 140px;
+}
+
+.menu>ul>li:first-child img {
+	height: 106px;
+}
+
+/* 연필 이미지 */
+.profile_txt>a>img {
+	width: 22px;
+	vertical-align: bottom;
+}
+
+.profile_txt>a>span {
+	display: inline-block;
+	text-align: center;
+	font-size: 13px;
+	color: #666;
+	padding: 0 3px;
+	margin-top: 7px;
+	margin-left: -8px;
+	text-decoration: underline;
+	text-underline-position: under;
+	text-decoration-color: #AAA;
+	-webkit-text-decoration-color: #AAA;
+}
+
+/* nav */
+.category>ul>li {
+	float: left;
+	width: 25%;
+	font-size: 16px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	position: relative;
+}
+
+.dot {
+	display: none;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background-color: var(--point-color);
+	position: absolute;
+	top: 7%;
+	right: 25%;
+}
+
+/* 아이콘 */
+.category>ul>li>img {
+	display: block;
+	width: 50px;
+	margin: 0 auto;
+}
+
+/* 내용 */
+.content {
+	margin-top: 50px;
+	border-top: 1px solid #e4e4e4;
+	padding-top: 40px;
+}
+
+.content ul {
+	width: 100%;
+	margin-top: 30px;
+}
+
+.content ul li {
+	float: left;
+	width: 50%;
+	margin-bottom: 50px;
+}
+
+.content>ul>li>a {
+	display: inline-block;
+	width: 33%;
+}
+
+/* 썸네일or포스터 */
+.content>ul>li>a>img {
+	width: 100%;
+	height: 10vw;
+	object-fit: cover;
+	vertical-align: middle;
+	cursor: pointer;
+}
+
+/* 텍스트 영역 */
+.txt_area {
+	position: relative;
+	display: inline-block;
+	width: 60%;
+	height: 10vw;
+	vertical-align: middle;
+	margin-left: 2%;
+}
+
+.cursor {
+	cursor: pointer;	
+}
+
+.cursor:hover {
+	text-decoration: underline;
+    text-underline-position: under;
+    text-decoration-color: #AAA;
+    -webkit-text-decoration-color: #AAA;
+}
+
+/* 타이틀 */
+.txt_title {
+	display: block;
+	font-size: 18px;
+	font-weight: 600;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin: 3% 0;
+}
+
+.txt_pre {
+	display: block;
+	height: 5vw;
+	font-family: 'Apple SD Gothic Neo', 'AppleSDGothicNeo';
+	font-size: 14px;
+    word-break: keep-all;
+    text-overflow:ellipsis;
+	white-space: pre-wrap; 
+    overflow:hidden; 
+}
+
+/* 버튼영역 */
+.txt_bottom {
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn_area {
+    width: 80px;
+	position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.btn_small {
+	display: inline-block;
+	width: 36px;
+	height: 25px;
+	font-size: 13px;
+	text-align: center;
+	line-height: 25px;
+	padding: 0;
+	margin: 0;
+}

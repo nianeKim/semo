@@ -90,5 +90,10 @@ public class BoardDao {
 	public List<Board> mpList(int mno) {
 		return session.selectList("boardns.mpList", mno);
 	}
+	
+	// 관리자페이지.java 작성한 스토리 목록
+	public List<Board> adminList() {
+		return session.selectList("boardns.adminList");
+	}
 
 }

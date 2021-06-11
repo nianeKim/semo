@@ -56,20 +56,20 @@
 	width: 20%;
 	padding: 0 12px 56px;
 }
-
+/* 날짜, 조회수 */
 .board_list>ul>li>a>span {
 	display: inline-block;
 	font-size: 13px;
     color: #444;
     margin-bottom: 5px;
 }
-
+/* 썸네일 이미지 */
 .board_list>ul>li>a>img {
 	width: 100%;
 	height: 13.4vw;
 	object-fit: cover;
 }
-
+/* 타이틀 */
 .board_list .bd_text_area .bd_text_title {
 	width: 100%;
 	font-size: 18px;
@@ -79,7 +79,7 @@
     text-overflow:ellipsis;
     white-space:nowrap;
 }
-
+/* 내용 3줄만 보이게 */
 .board_list .bd_text_area .bd_text_content {
 	display:-webkit-box; 
 	width: 100%;

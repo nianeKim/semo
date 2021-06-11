@@ -60,7 +60,7 @@
 				<c:forEach var="board" items="${list}">
 					<li><a href="boardView.wo?bno=${board.bno}"> <span
 							class="bd_text">${board.reg_date } | ${board.read_cnt } 읽음</span>
-							<img alt="포스터" src="../../upload/${board.thumbnail}">
+							<img alt="썸네일" src="../../upload/${board.thumbnail}">
 							<div class="bd_text_area">
 								<p class="bd_text_title">${board.title}</p>
 								<pre class="bd_text_content">${board.content}</pre>

@@ -78,4 +78,9 @@
 	<select id="mpList" parameterType="integer" resultType="board">
 		select * from board where mno=#{mno}
 	</select>
+	
+	<!-- 관리자페이지 목록 조회 -->
+	<select id="adminList">
+		select * from board order by bno desc
+	</select>
 </mapper>
