@@ -150,14 +150,15 @@
 }
 
 .txt_pre {
-	display: block;
-	height: 4vw;
-	font-family: 'Apple SD Gothic Neo', 'AppleSDGothicNeo';
-	font-size: 14px;
+    display: -webkit-box;
+    width: 100%;
+    height: 64px;
     word-break: keep-all;
-    text-overflow:ellipsis;
-	white-space: pre-wrap; 
-    overflow:hidden; 
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 /* 버튼영역 */
