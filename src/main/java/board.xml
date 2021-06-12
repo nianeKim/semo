@@ -76,7 +76,7 @@
 	
 	<!-- 마이페이지 목록 조회 -->
 	<select id="mpList" parameterType="integer" resultType="board">
-		select * from board where mno=#{mno}
+		select * from board where mno=#{mno} and del = 'n' order by bno desc
 	</select>
 	
 	<!-- 관리자페이지 목록 조회 -->

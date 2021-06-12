@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* 상단 영역 */
+/* menu 시작 */
 .menu {
 	width: 100%;
 	display: table;
@@ -21,6 +21,7 @@
 
 .menu>ul>li:first-child img {
 	height: 106px;
+	border-radius: 50%;
 }
 
 /* 연필 이미지 */
@@ -72,6 +73,8 @@
 	margin: 0 auto;
 }
 
+/* menu 끝 ************************************************************** */
+
 /* 내용 */
 .content {
 	margin-top: 50px;
@@ -88,6 +91,16 @@
 	float: left;
 	width: 50%;
 	margin-bottom: 50px;
+}
+
+/* 내용 없을 때 ul */
+.noItems {
+	margin: 0px !important;
+}
+
+.noItems li {
+	width: 100% !important;
+	text-align: center;
 }
 
 .content>ul>li>a {
@@ -138,7 +151,7 @@
 
 .txt_pre {
 	display: block;
-	height: 5vw;
+	height: 4vw;
 	font-family: 'Apple SD Gothic Neo', 'AppleSDGothicNeo';
 	font-size: 14px;
     word-break: keep-all;

@@ -64,7 +64,7 @@ public class MemberDao {
 		
 		// UpdateResult
 		public int update(Member member) {
-			System.out.println(member.getPassword()+ member.getName()+ member.getNick_nm()+ member.getPhone()+ member.getGender()+ member.getLoc()+ member.getAge()+ member.getProfile() );
+			//System.out.println(member.getPassword()+ member.getName()+ member.getNick_nm()+ member.getPhone()+ member.getGender()+ member.getLoc()+ member.getAge()+ member.getProfile() );
 			return session.update("memberns.update", member);
 		}
 		
