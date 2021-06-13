@@ -9,12 +9,24 @@
 		sysdate, 0, 'n', #{mno}, #{dno})
 	</insert>
 	
-	<!-- 해당 전시의 review list select -->
+	<!-- 해당 전시의 review list -->
 	<select id="select" parameterType="integer" resultType="review">
-		select * from member m, review r where m.mno = r.mno and dno = #{dno} order by rv_no desc
+		select * from member m, review r where m.mno = r.mno and dno = #{dno}
+		and r.del = 'n' order by rv_no desc
 	</select>
 	
+	<!-- 평균 별점 -->
 	<select id="selectStar" parameterType="integer" resultType="float">
-		select round(avg(star_rate), 1) from review where dno = #{dno}
+		select round(avg(star_rate), 1) from review where dno = #{dno} and del = 'n'
 	</select>
+	
+	<!-- 리뷰 업데이트 -->
+	<update id="update" parameterType="review">
+		update review set content=#{content} where dno = #{dno}
+	</update>
+	
+	<!-- 리뷰 삭제 -->
+	<update id="delete" parameterType="java.util.Map">
+		update review set del = 'y' where dno = #{dno} and mno = #{mno}
+	</update>
 </mapper>

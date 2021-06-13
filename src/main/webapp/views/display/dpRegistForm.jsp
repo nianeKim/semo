@@ -24,6 +24,10 @@
 			} else {
 				$(this).siblings("label").removeClass('active');
 			}
+			
+			var val = $(this).val();
+			//var sumVal = ","+val;
+			//console.log(sumVal);
 		})
 	})
 	

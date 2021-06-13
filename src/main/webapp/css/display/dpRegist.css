@@ -47,6 +47,9 @@
 	cursor: pointer;
 	padding: 10px 12px;
 	max-height: 65px;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
 }
 
 input[type="file"] { /* input 사라지게 */
