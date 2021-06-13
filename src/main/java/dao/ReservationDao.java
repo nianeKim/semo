@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -31,6 +32,11 @@ public class ReservationDao {
 	
 	public int insert(Reservation reserve) {
 		return session.insert("reservationns.insert", reserve);
+	}
+	
+	// 마이페이지 예매내역 조회
+	public List<Reservation> mpList(int mno) {
+		return session.selectList("reservationns.mpList", mno);
 	}
 	
 	

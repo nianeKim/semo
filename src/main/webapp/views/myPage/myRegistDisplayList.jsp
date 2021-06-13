@@ -12,13 +12,13 @@
 	<ul>
 		<c:forEach var="display" items="${list}">
 			<li>
-				<a href="../board/dpView.wo?dno=${display.dno}">
-					<img alt="포스터"	src="/semojeon/upload/${display.poster}">
+				<a href="../display/dpView.do?dno=${display.dno}">
+					<img alt="포스터" src="/semojeon/upload/${display.poster}"> 
 				</a>
 				<div class="txt_area">
-					<a href="../board/dpView.wo?dno=${display.dno}" class="cursor">
+					<a href="../display/dpView.do?dno=${display.dno}" class="cursor">
 						<span class="txt_title">${display.dname}</span>
-						<span class="txt"><span>장소</span> ${display.loc}</span>
+						<span class="txt"><span>장소</span> ${display.spot}</span>
 						<span class="txt"><span>기간</span> ${display.start_date}~ ${display.end_date}</span>
 						<span class="txt"><span>관람 가능 시간</span><br>${display.hours}</span>
 						<span class="txt"><span>가격</span> ${display.fee}</span>

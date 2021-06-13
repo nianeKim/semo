@@ -55,6 +55,7 @@ CREATE TABLE display
 select * from display;
 alter table display modify(artist VARCHAR2(100));
 alter table display modify(dname VARCHAR2(100));
+alter table display modify(address VARCHAR2(200));
 
 -- 북마크
 drop table bookmark;
