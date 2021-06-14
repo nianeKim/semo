@@ -10,7 +10,11 @@
 <body>
 	<c:if test="${result>0 }">
 		<script>
-			history.go(-2);
+			//var preUrl = document.referrer.slice(21);
+			//console.log(document.referrer.slice(21));
+			//history.go(-2);
+			location.href="/semojeon/views/display/dpMain.do?tab=1"
+			//location.href = preUrl;
 		</script>
 	</c:if>
 	
