@@ -10,7 +10,7 @@
 <body>
 	<c:if test="${result>0 }">
 		<script>
-			location.href="../display/dpMain.do?tab=1";
+			history.go(-2);
 		</script>
 	</c:if>
 	

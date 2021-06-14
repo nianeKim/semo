@@ -10,8 +10,14 @@
 <body>
 <c:if test="${result>0 }">
 	<script type="text/javascript">
+		var preUrl = document.referrer.split("/")[6];
 		alert("삭제 되었습니다");
-		location.href="boardMain.wo"
+ 		if (preUrl == "boardView.wo?bno=${bno}") {
+			location.href="boardMain.wo";
+		}
+		else if (preUrl == "myMain.na") {
+			history.back();
+		}
 	</script>
 </c:if>
 

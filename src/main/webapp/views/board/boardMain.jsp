@@ -21,7 +21,7 @@
 		$('#board_list' + value).css("display", "block");
 	}
 	
-	// 클릭했을 때 세션 확인
+	/* // 클릭했을 때 세션 확인
 	function sessionChk() {
 		if (${empty id}) {
 			var con = confirm("로그인 후 이용해 주시기 바랍니다.");
@@ -31,7 +31,7 @@
 		} else {
 			location.href="boardWriteForm.wo"	
 		}
-	}
+	} */
 </script>
 </head>
 <body>
@@ -48,9 +48,8 @@
 				</select>
 			</div>
 
-			<a class="btn btn_stroke btn_small btn_padding"
-				onclick="sessionChk();"> <img alt="연필"
-				src="../../images/icons/write.png">글쓰기
+			<a href="boardWriteForm.wo" class="btn btn_stroke btn_small btn_padding">
+				<img alt="연필"	src="../../images/icons/write.png">글쓰기
 			</a>
 		</div>
 

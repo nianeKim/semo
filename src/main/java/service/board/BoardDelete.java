@@ -17,6 +17,7 @@ public class BoardDelete implements CommandProcess {
 		int result = bd.delete(bno);
 		
 		request.setAttribute("result", result);
+		request.setAttribute("bno", bno);
 		
 		return "boardDelete";
 	}
