@@ -80,7 +80,7 @@
 	</select>
 	
 	<!-- 관리자페이지 목록 조회 -->
-	<select id="adminList">
+	<select id="adminList" resultType="board">
 		select * from board order by bno desc
 	</select>
 </mapper>
