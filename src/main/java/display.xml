@@ -49,9 +49,9 @@
 	</update>
 	
 	<!-- 전시 삭제 -->
-	<delete id="delete" parameterType="integer">
+	<update id="delete" parameterType="integer">
 		update display set del = 'y' where dno = #{dno}
-	</delete>
+	</update>
 	
 	<!-- 지역 태그로 리스트 조회 -->
 	<select id="selectLoc" resultType="display">
@@ -59,7 +59,7 @@
 		<foreach collection="array" item="item" open="(" close=")" separator=",">
 			#{item}
 		</foreach>
-		order by dno desc
+		and del = 'n' order by dno desc
 	</select>
 	
 	<!-- 마이페이지 - 등록한 전시 -->

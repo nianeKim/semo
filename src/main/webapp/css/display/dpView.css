@@ -7,7 +7,8 @@
 
 .display_view_top img {
 	width: 330px;
-	height: auto;
+	height: 440px;
+	object-fit: cover;
 }
 
 .display_view_top .text_area {
@@ -71,6 +72,7 @@
 	font-size: 14px;
 	line-height: 22px;
 	padding-bottom: 24px;
+	outline:none;
 }
 
 .pd_bottom {
@@ -162,6 +164,10 @@ input[type="range"]::-webkit-slider-thumb {
 	padding-bottom: 8px;
 }
 
+.like_box {
+	position: relative;
+}
+
 .like_box img {
 	width: 27px;
 	vertical-align: middle;
@@ -171,6 +177,34 @@ input[type="range"]::-webkit-slider-thumb {
 	display: inline-block;
 	font-size: 14px;
 	vertical-align: middle;
+}
+
+.rievew_btn {
+	position: absolute;
+	right: 0;
+	bottom: 3px;
+}
+
+.rievew_btn .btn_small {
+	margin-bottom: 0;
+    border: 0;
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 0 0 0 8px;
+    height: inherit;
+    width: inherit;
+    text-align: right;
+    text-decoration: underline;
+}
+
+/* 리뷰 수정시 */
+.rievew_btn .hidden_btn {
+	display: none;
+}
+
+.review_list_box input[type="text"] {
+	display: none;
 }
 
 textarea {

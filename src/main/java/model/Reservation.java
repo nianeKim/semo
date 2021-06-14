@@ -8,6 +8,24 @@ public class Reservation {
 	private int cnt_child;
 	private int mno;
 	private int dno;
+	private String dname;
+	private String poster;
+	
+	public String getDname() {
+		return dname;
+	}
+
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 
 	public int getRs_no() {
 		return rs_no;

@@ -9,4 +9,10 @@
 			#{cnt_adult,jdbcType=INTEGER}, #{cnt_teen,jdbcType=INTEGER},
 			#{cnt_child,jdbcType=INTEGER}, #{mno}, #{dno})
 	</insert>
+	
+	<!-- 마이페이지 - 예매내역 -->
+    <select id="mpList" parameterType="integer" resultType="reservation">
+       select * from reservation r, display d where r.dno = d.dno and r.mno = #{mno}
+       and del = 'n' order by rs_no desc 
+    </select>
 </mapper>

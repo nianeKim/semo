@@ -61,7 +61,7 @@ public class DisplayDao {
 	
 	// 전시 삭제
 	public int delete(int dno) {
-		return session.delete("displayns.delete", dno);
+		return session.update("displayns.delete", dno);
 	}
 	
 	// 지역 태그로 리스트 조회

@@ -39,6 +39,25 @@
 				$('.scroll_top').fadeOut('slow');
 			}
 		});
+		
+		// 리뷰 수정
+		$('.review_update').on('click', function() {
+			/* $(this).parents('.like_box').siblings('.detail_txt').attr('contenteditable', 'true');
+			$(this).parents('.like_box').siblings('.detail_txt').focus(); */
+			$(this).parents('.like_box').siblings('.review').hide();
+			$(this).parents('.like_box').siblings('input').show();
+			$(this).parents('.like_box').siblings('input').focus();
+			$(this).parent().hide(); // .show_btn
+			$(this).parent().siblings().show(); // .hidden_btn
+		});
+		
+		// 리뷰 수정 취소
+		$('.hidden_btn a').on('click', function() {
+			$(this).parent().hide(); // .hidden_btn
+			$(this).parent().siblings().show(); // .show_btn
+			$(this).parents('.like_box').siblings('.review').show();
+			$(this).parents('.like_box').siblings('input').hide();
+		});
 	});
 	
 	// submit check
@@ -66,6 +85,14 @@
 		} else {
 			location.href="reserveForm.do?dno=${display.dno}";
 			return true;
+		}
+	}
+	
+	// 리뷰 삭제 confirm
+	function delReview() {
+		var con = confirm("리뷰를 정말 삭제하시겠습니까?");
+		if (con) {
+			location.href="dpReviewDelete.do?dno=${display.dno }&mno=${mno }";
 		}
 	}
 </script>
@@ -162,17 +189,34 @@
 			<ul class="review_list_box">
 				<c:forEach var="review" items="${list }">
 					<li>
-						<div class="profile">
-							<img src="/semojeon/upload/${review.profile }" alt="프로필">
-							<p class="nick_nm">${review.nick_nm }</p>
-						</div>
-						<p class="detail_txt review">
-							${review.content }
-						</p>
-						<div class="like_box">
-							<img alt="좋아요" src="../../images/icons/like.png">
-							<p class="count">${review.likes }</p>
-						</div>
+						<form action="dpReviewUpdate.do?dno=${display.dno }" method="post">
+							<div class="profile">
+								<img src="/semojeon/upload/${review.profile }" alt="프로필">
+								<p class="nick_nm">${review.nick_nm }</p>
+							</div>
+							<p class="detail_txt review">
+								${review.content }							
+							</p>
+							<!-- 수정 인풋 -->
+							<input type="text" name="content" class="detail_txt review" value="${review.content }">
+							<div class="like_box">
+								<img alt="좋아요" src="../../images/icons/like.png">
+								<p class="count">${review.likes }</p>
+								<c:if test="${mno == review.mno }">
+									<div class="rievew_btn">
+										<div class="show_btn">
+											<a class="btn btn_stroke btn_small review_update">수정</a>
+											<a onclick="delReview()" class="btn btn_stroke btn_small">삭제</a>
+										</div>
+										<!-- 수정시 나타나는 확인 취소 버튼 -->
+										<div class="hidden_btn">								
+											<input type="submit" class="btn btn_stroke btn_small" value="완료">
+											<a class="btn btn_stroke btn_small">취소</a>
+										</div>
+									</div>
+								</c:if>
+							</div>
+						</form>
 					</li>
 				</c:forEach>
 			</ul>

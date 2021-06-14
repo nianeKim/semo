@@ -73,8 +73,8 @@
 							<c:forEach var="display" items="${list }">
 								<c:if test="${display.start_date <= today }">
 									<li>
-										<a href="dpView.do?dno=${display.dno }"> 
-											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+										<a href="dpView.do?dno=${display.dno }">
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
 											<div class="text_area">
 												<p class="date">${display.start_date } ~ ${display.end_date }</p>
 												<p class="dp_list_title">${display.dname }</p>
@@ -91,7 +91,7 @@
 								<c:if test="${display.start_date <= today }">
 									<li>
 										<a href="dpView.do?dno=${display.dno }"> 
-											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
 											<div class="text_area">
 												<p class="date">${display.start_date } ~ ${display.end_date }</p>
 												<p class="dp_list_title">${display.dname }</p>
@@ -110,7 +110,7 @@
 								<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
 									<li>
 										<a href="dpView.do?dno=${display.dno }"> 
-											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
 											<div class="text_area">
 												<p class="date">${display.start_date } ~ ${display.end_date }</p>
 												<p class="dp_list_title">${display.dname }</p>
@@ -126,7 +126,7 @@
 								<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
 									<li>
 										<a href="dpView.do?dno=${display.dno }"> 
-											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
 											<div class="text_area">
 												<p class="date">${display.start_date } ~ ${display.end_date }</p>
 												<p class="dp_list_title">${display.dname }</p>
@@ -145,7 +145,7 @@
 								<c:if test="${display.start_date > today }">
 									<li>
 										<a href="dpView.do?dno=${display.dno }"> 
-											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
 											<div class="text_area">
 												<p class="date">${display.start_date } ~ ${display.end_date }</p>
 												<p class="dp_list_title">${display.dname }</p>
@@ -161,7 +161,7 @@
 								<c:if test="${display.start_date > today }">
 									<li>
 										<a href="dpView.do?dno=${display.dno }"> 
-											<img alt="포스터" src="/semojeon/upload/${display.poster }">
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
 											<div class="text_area">
 												<p class="date">${display.start_date } ~ ${display.end_date }</p>
 												<p class="dp_list_title">${display.dname }</p>
