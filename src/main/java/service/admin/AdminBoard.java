@@ -14,7 +14,7 @@ public class AdminBoard implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		BoardDao bd = BoardDao.getInstance();
-		List<Board> list = bd.list();
+		List<Board> list = bd.adminList();
 		
 		request.setAttribute("list", list);
 		

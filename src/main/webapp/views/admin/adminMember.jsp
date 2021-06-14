@@ -65,7 +65,7 @@ div table td{
 				<td>${member.reg_date}</td>
 				<td>${member.profile}</td>
 				<td>${member.del}</td>
-				<td>수정 url</td>
+				<td><a href="../member/UpdateForm.nambno=${member.mno}" class="btn btn_stroke btn_small">수정</a></td>
 				<td>삭제 url</td>
 			</tr>
 			</c:forEach>

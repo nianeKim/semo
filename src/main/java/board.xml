@@ -81,6 +81,8 @@
 	
 	<!-- 관리자페이지 목록 조회 -->
 	<select id="adminList" resultType="board">
-		select * from board order by bno desc
+		select * from board inner join (select bno bno2, nick_nm from board b,
+		member m where b.mno = m.mno order by bno) nn on board.bno = nn.bno2
+		order by bno desc
 	</select>
 </mapper>

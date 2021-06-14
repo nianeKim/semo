@@ -26,6 +26,21 @@
 	text-align: center;
 	line-height: 55px;
 }
+
+.btn_small {
+	display: contents;
+	width: initial;
+	height: initial;
+	font-size: 14px;
+	text-align: right;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	color: #aaa;
+	font-weight: 500;
+	text-decoration: underline;
+}
+
 table{
 	overflow: auto;
 	white-space:nowrap;
@@ -47,8 +62,16 @@ table td{
 	
 }
 </style>
-
+<script type="text/javascript">
+function del() {
+	var con = confirm("삭제 하시겠습니까?");
+	if(con) {
+		location.href="../board/boardDelete.wo?bno=${board.bno}";
+	}
+}
+</script>
 </head>
+
 <body>
 <div class="container">
 	<h1 class="title">스토리</h1>
@@ -67,8 +90,8 @@ table td{
 				<td>${board.likes} </td>
 				<td>${board.nick_nm} </td>
 				<td>${board.del} </td>
-				<td>수정 url</td>
-				<td>삭제 url</td>
+				<td><a href="../board/boardUpdateForm.wo?bno=${board.bno}" class="btn btn_stroke btn_small">수정</a></td>
+				<td><a onclick="del()" class="btn btn_stroke btn_small">삭제</a></td>
 			</tr>
 			</c:forEach>
 		</table>
