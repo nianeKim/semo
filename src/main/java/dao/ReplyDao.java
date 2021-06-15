@@ -43,6 +43,15 @@ public class ReplyDao {
 	}
 	// BoardReplyWrite.java 댓글 입력
 	public int insert(Reply reply) {
+		int num = (int) session.selectOne("replyns.selectRe_no");
+		if (reply.getRe_no() != 0) {
+			session.update("replyns.updateRef", reply);
+			reply.setRef_step(reply.getRef_step() + 1);
+			reply.setRef_level(reply.getRef_level() + 1);
+		} else {
+			reply.setRef(num);
+			System.out.println("ddd" + num);
+		}
 		return session.insert("replyns.insert", reply);
 	}
 

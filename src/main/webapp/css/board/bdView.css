@@ -107,12 +107,8 @@
 
 /* 게시글 끝 댓글 시작 ******************************************* */
 
-/* 댓글 */
-.reply {
-	clear: both;
-}
-
-.reply .sub_title {
+/* 댓글 타이틀 */
+.sub_title {
 	font-size: 18px;
 	font-weight: 700;
 	padding: 25px 0;
@@ -147,17 +143,35 @@ textarea::placeholder {
 	margin-top: 24px;
 }
 
-/* 댓글 목록 */
-.reply_list {
-	margin-top: 20px;
+/* 댓글 목록 전체 div */
+.reply {
+	clear: both;
 	border-top: 1px solid #e4e4e4;
 }
 
-.reply_list_inner {
-	position: relative;
-	height: 148px;
-	padding: 20px 5px;
+/* 1개의 댓글 div */
+.reply_list {
 	border-bottom: 1px solid #e4e4e4;
+}
+
+/* 답글일 때 배경색 */
+.bgcolorAdd {
+	background: #fffdf9;
+}
+.re_reply_list_inner {
+	display: inline-block;
+    width: calc(100% - 45px);
+    height: 148px;
+	padding: 20px 0;
+	position: relative;
+}
+/* 답글이 아닐 때 */
+.reply_list_inner {
+	display: inline-block;
+    width: 100%;
+    height: 148px;
+	padding: 20px 0;
+	position: relative;
 }
 
 /* 목록 상단 - 프로필, 닉네임, 버튼 */
@@ -204,6 +218,7 @@ textarea::placeholder {
     font-weight: 500;
     text-align: center;
     border: 1px solid #e4e4e4;
+    background: #fff;
 }
 
 .more_area_txt {
@@ -248,6 +263,7 @@ textarea::placeholder {
 	float: left;
 	width: 45px;
 	text-align: center;
+	background: #fff;
 }
 /* 좋아요 버튼 */
 .like_btn {
@@ -267,9 +283,13 @@ textarea::placeholder {
     top: 0;
     left: 0;
     width: 100%;
-    height: 147px;
-    background: #fff4e5;
+    height: 148px;
+    background: #fff;
     padding: 10px;
+}
+
+.re_reply_list_inner .reply_update_frm {
+	background: #fffdf9;
 }
 
 form .submit_box .btn_small {
@@ -282,22 +302,22 @@ form .submit_box .btn_small {
 	clear: both;
     height: 148px;
     padding: 10px;
-    border-bottom: 1px solid #e4e4e4;
-    background: #fff4e5;
+    background: #fffdf9;
+	border-top: 1px solid #e4e4e4;
 }
 
 /* └ 표시 */
 .re {
 	float: left;
     display: inline-block;
-    border-left: 2px solid black;
-	border-bottom: 2px solid black;
-    width: 15px;
-    height: 15px;
-    margin: 15px;
+    border-left: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+    width: 11px;
+    height: 11px;
+    margin: 17px;
 }
 
 .re_form {
 	display: inline-block;
-    width: calc(100% - 45px);
+    width: calc(100% - 55px);
 }

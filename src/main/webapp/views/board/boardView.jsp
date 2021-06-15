@@ -13,12 +13,12 @@
 	$(document).ready(function () {
 		// 로드될 때 댓글 textarea 속성 세팅
 		if (${empty id}) {
-			$(".reply_insert_frm textarea").attr("placeholder", "댓글을 작성하려면 로그인해 주세요");
-			$(".reply_insert_frm textarea").attr("readonly", true);
+			$("textarea").attr("placeholder", "댓글을 작성하려면 로그인해 주세요");
+			$("textarea").attr("readonly", true);
 			$(".likes_cnt").siblings("img").attr("src", "../../images/icons/heart.png");
 		} else {
-			$(".reply_insert_frm textarea").attr("placeholder", "댓글을 입력해주세요(주제와 무관한 댓글, 악플은 삭제될 수 있습니다)");
-			$(".reply_insert_frm textarea").attr("readonly", false);
+			$("textarea").attr("placeholder", "댓글을 입력해주세요(주제와 무관한 댓글, 악플은 삭제될 수 있습니다)");
+			$("textarea").attr("readonly", false);
 		}
 		
 		// 아무곳이나 눌러도 더보기 영역 안보이게
@@ -41,16 +41,16 @@
 		
 		// 댓글 수정 폼 show
 		$(".update_frm_show").click(function() {
-			$(this).parents(".reply_list_inner").children(".reply_update_frm").css("display", "block");
+			$(this).parents(".reply_list").find(".reply_update_frm").css("display", "block");
 		});
 		// 댓글 수정 폼 hide
 		$(".update_frm_hide").click(function() {
-			$(this).parents(".reply_list_inner").children(".reply_update_frm").css("display", "none");
+			$(this).parents(".reply_list").find(".reply_update_frm").css("display", "none");
 		});
 
 		// 답글 버튼 클릭(답글 폼 show/hide)
 		$(".re_reply_btn").click(function() {
-			var re_reply = $(this).parents(".reply_list_inner").siblings(".re_reply");
+			var re_reply = $(this).parents(".reply_list").find(".re_reply");
 			if (re_reply.css("display") == "none") {
 				$(".re_reply").css("display", "none");
 				re_reply.css("display", "block");
@@ -152,83 +152,92 @@
 			</c:if>
 		</div>
 
-		<!-- 댓글 -->
+		<!-- 댓글 시작 -->
+		<h4 class="sub_title">댓글 ${reply_cnt}</h4>
+		
+		<!-- 댓글 입력 폼 -->
+		<form action="boardReplyWrite.wo?bno=${board.bno}&re_no=0&ref=0&ref_level=0&ref_step=0" method="post" class="reply_insert_frm">
+			<pre><textarea name="content" required onclick="sessionChk()"></textarea></pre>
+			<div class="submit_box">
+				<input type="submit" class="btn" value="등록하기">
+			</div>
+		</form>
+			
+		<!-- 댓글 전체 목록 -->
 		<div class="reply">
-			<h4 class="sub_title">댓글 ${reply_cnt}</h4>
-			
-			<!-- 댓글 입력 폼 -->
-			<form action="boardReplyWrite.wo?bno=${board.bno}" method="post" class="reply_insert_frm">
-				<pre><textarea name="content" required onclick="sessionChk()"></textarea></pre>
-				<div class="submit_box">
-					<input type="submit" class="btn" value="등록하기">
-				</div>
-			</form>
-			
-			<!-- 댓글 목록 -->
 			<c:forEach var="reply" items="${list}">
-			
-				<div class="reply_list">
-					<div class="reply_list_inner">
-						<p class="re_top">
-							<img alt="프로필" src="/semojeon/upload/${reply.profile}">
-							<span>${reply.nick_nm}</span>
-							<!-- 댓글의 mno와 세션의 mno가 같으면 수정/삭제 가능 -->
-							<c:if test="${mno == reply.mno}">
-								<span class="updatebtn_area">
-									<span class="more_btn"> <!-- 더보기 버튼 -->
-										<span class="dot"></span><span class="dot"></span><span class="dot"></span>
-									</span>
-									<span class="more_area">
-										<span class="more_area_txt update_frm_show">수정</span>
-										<span class="more_area_txt" onclick="delReply()">삭제</span>
-										<script type="text/javascript">
-											function delReply() {
-												var con = confirm("삭제 하시겠습니까?");
-												if(con) {
-													location.href="boardReplyDelete.wo?bno=${board.bno}&re_no=${reply.re_no}";
-												} else alert("삭제가 취소 되었습니다.");
-											}
-										</script>
-									</span>
-								</span><!-- updatebtn_area 끝 -->
-							</c:if>
-						</p>
-						<pre class="re_con">${reply.content}</pre>
-						<p class="re_date">${reply.reg_date}</p>
-						<div class="reply_btn_area">
-							<p class="re_reply_btn">답글</p>
-							<p class="like_btn">
-								<img alt="좋아요" src="../../images/icons/like.png">
-								<span>${reply.likes}</span>
-							</p>
-						</div>
-						
-						<!-- 댓글 수정 폼 -->
-						<form action="boardReplyUpdate.wo?bno=${board.bno}&re_no=${reply.re_no}" method="post" class="reply_update_frm">
-							<pre><textarea name="content" required onclick="sessionChk()">${reply.content}</textarea></pre>
-							<div class="submit_box">
-								<input type="submit" class="btn btn_small" value="수정">
-								<p class="btn btn_small update_frm_hide" >취소</p>
-							</div>
-						</form>
-					</div><!-- reply_list_inner 끝 -->
-					
-					<!-- 답글 입력 폼 -->
-					<div class="re_reply">
+				<!-- 1개의 댓글 -->			
+				<c:if test="${reply.ref_level != 0 }">
+					<div class="reply_list bgcolorAdd">
 						<div class="re"></div>
-						
-						<div class="re_form">
-							<form  action="boardReplyWrite.wo?bno=${board.bno}&ref=${reply.ref}&ref_level=${reply.ref_level}&ref_step=${ref_step}" method="post" class="re_reply_insert_frm">
-								<pre><textarea name="content" required onclick="sessionChk()"></textarea></pre>
+						<div class="re_reply_list_inner">
+						</c:if>
+				<c:if test="${reply.ref_level == 0 }">
+					<div class="reply_list">
+						<div class="reply_list_inner">
+				</c:if>
+							<p class="re_top">
+								<img alt="프로필" src="/semojeon/upload/${reply.profile}">
+								<span>${reply.nick_nm}</span>
+								<!-- 댓글의 mno와 세션의 mno가 같으면 수정/삭제 가능 -->
+								<c:if test="${mno == reply.mno}">
+									<span class="updatebtn_area">
+										<span class="more_btn"> <!-- 더보기 버튼 -->
+											<span class="dot"></span><span class="dot"></span><span class="dot"></span>
+										</span>
+										<span class="more_area">
+											<span class="more_area_txt update_frm_show">수정</span>
+											<span class="more_area_txt" onclick="delReply()">삭제</span>
+											<script type="text/javascript">
+												function delReply() {
+													var con = confirm("삭제 하시겠습니까?");
+													if(con) {
+														location.href="boardReplyDelete.wo?bno=${board.bno}&re_no=${reply.re_no}";
+													}
+												}
+											</script>
+										</span>
+									</span><!-- updatebtn_area 끝 -->
+								</c:if>
+							</p><!-- re_top -->
+							<!-- 내용, 날짜 -->	
+							<pre class="re_con">${reply.content}</pre>
+							<p class="re_date">${reply.reg_date}</p>
+							<!-- 답글 버튼과 좋아요 버튼 영역 -->
+							<div class="reply_btn_area">
+								<p class="re_reply_btn">답글</p>
+								<p class="like_btn">
+									<img alt="좋아요" src="../../images/icons/like.png">
+									<span>${reply.likes}</span>
+								</p>
+							</div> <!-- reply_btn_area -->
+							
+							<!-- 댓글 수정 폼 -->
+							<form action="boardReplyUpdate.wo?bno=${board.bno}&re_no=${reply.re_no}" method="post" class="reply_update_frm">
+								<pre><textarea name="content" required onclick="sessionChk()">${reply.content}</textarea></pre>
 								<div class="submit_box">
-									<input type="submit" class="btn btn_small" value="입력">
-									<p class="btn btn_small re_reply_frm_hide" >취소</p>
+									<input type="submit" class="btn btn_small" value="수정">
+									<p class="btn btn_small update_frm_hide" >취소</p>
 								</div>
 							</form>
-						</div><!-- re_form 끝 -->
-					</div><!-- re_reply 끝 -->
-				
-				</div><!-- reply_list 끝 -->
+						</div><!-- reply_list_inner 끝 -->
+						
+						<!-- 답글 입력 폼 -->
+						<div class="re_reply">
+							<div class="re"></div>
+							
+							<div class="re_form">
+								<form  action="boardReplyWrite.wo?bno=${board.bno}&re_no=${reply.re_no}&ref=${reply.ref}&ref_level=${reply.ref_level}&ref_step=${reply.ref_step}" method="post" class="re_reply_insert_frm">
+									<pre><textarea name="content" required onclick="sessionChk()"></textarea></pre>
+									<div class="submit_box">
+										<input type="submit" class="btn btn_small" value="입력">
+										<p class="btn btn_small re_reply_frm_hide" >취소</p>
+									</div>
+								</form>
+							</div><!-- re_form 끝 -->
+						</div><!-- re_reply 끝 -->
+					
+					</div><!-- reply_list 끝 -->
 			</c:forEach>
 		</div><!-- reply 끝 -->
 	</div>

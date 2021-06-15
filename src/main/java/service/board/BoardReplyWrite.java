@@ -17,14 +17,26 @@ public class BoardReplyWrite implements CommandProcess {
 		int mno = (int) session.getAttribute("mno");
 		
 		// param으로 데이터 가져오기
-		int bno = Integer.parseInt(request.getParameter("bno"));
 		String content = request.getParameter("content");
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		int re_no = Integer.parseInt(request.getParameter("re_no"));
 		
 		// reply 세팅
 		Reply reply = new Reply();
+		reply.setContent(content);
 		reply.setMno(mno);
 		reply.setBno(bno);
-		reply.setContent(content);
+		reply.setRe_no(re_no);
+		
+		if (re_no != 0) { // 답변글일 때
+			int ref = Integer.parseInt(request.getParameter("ref"));
+			int ref_step = Integer.parseInt(request.getParameter("ref_step"));
+			int ref_level = Integer.parseInt(request.getParameter("ref_level"));
+			reply.setRef(ref);
+			reply.setRef_step(ref_step);
+			reply.setRef_level(ref_level);
+		}
+		
 		
 		ReplyDao rd = ReplyDao.getInstance();
 		int result = rd.insert(reply);
