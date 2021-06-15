@@ -15,16 +15,16 @@
 /* 가로스크롤 생성 */
 .container{
 	display: grid;
-	width: 95%;
+	width: %;
 	font-family: inherit;
 }
 
 .btn{
-	width: 150px;
-	height: 55px;
+	width: 100px;
+	height: 40px;
 	float: right;
 	text-align: center;
-	line-height: 55px;
+	line-height: 40px;
 }
 
 .btn_small {
@@ -41,19 +41,25 @@
 	text-decoration: underline;
 }
 
-table{
+.tableScroll{
+	overflow: auto;
+	height: 400px;
+}
+
+.table {
 	overflow: auto;
 	white-space:nowrap;
 	border-collapse:collapse;
 }
 
-table th{
+.tableTh {
 	padding: 0 10px;
 	border-bottom: solid 1px;
 	font-size: 16px;
 }
 
-table td{
+.tableTd {
+	width:100%;
 	height: 32px;
 	padding: 0 10px;
 	font-size: 14px;
@@ -61,7 +67,9 @@ table td{
 	text-align: center;
 	
 }
+
 </style>
+
 <script type="text/javascript">
 function del() {
 	var con = confirm("삭제 하시겠습니까?");
@@ -78,23 +86,28 @@ function del() {
 	<div>
 		<a class="btn" href="/semojeon/views/display/dpRegistForm.do">등록</a>	
 	</div>
-		<table>
+		<table class="table tableTh">
 		<tr>
 			<th>글번호</th><th>제목</th><th>게시일자</th><th>조회수</th><th>좋아요 수</th><th>작성자</th><th>삭제여부</th><th>수정</th><th>삭제</th>
-			<c:forEach var="board" items="${list }">
-			<tr>
-				<td>${board.bno} </td>
-				<td>${board.title} </td>
-				<td>${board.reg_date} </td>
-				<td>${board.read_cnt} </td>
-				<td>${board.likes} </td>
-				<td>${board.nick_nm} </td>
-				<td>${board.del} </td>
-				<td><a href="../board/boardUpdateForm.wo?bno=${board.bno}" class="btn btn_stroke btn_small">수정</a></td>
-				<td><a onclick="del()" class="btn btn_stroke btn_small">삭제</a></td>
-			</tr>
-			</c:forEach>
+		</tr>
 		</table>
+		<div class="tableScroll">
+			<table class="table tableTd">	
+				<c:forEach var="board" items="${list }">
+				<tr>
+					<td>${board.bno} </td>
+					<td>${board.title} </td>
+					<td>${board.reg_date} </td>
+					<td>${board.read_cnt} </td>
+					<td>${board.likes} </td>
+					<td>${board.nick_nm} </td>
+					<td>${board.del} </td>
+					<td><a href="../board/boardUpdateForm.wo?bno=${board.bno}" class="btn btn_stroke btn_small">수정</a></td>
+					<td><a onclick="del()" class="btn btn_stroke btn_small">삭제</a></td>
+				</tr>
+				</c:forEach>
+			</table>
+		</div>
 </div>
 </body>
 </html>

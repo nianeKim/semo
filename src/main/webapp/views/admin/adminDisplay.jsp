@@ -24,11 +24,11 @@
 	overflow: auto;
 }
 .btn{
-	width: 150px;
-	height: 55px;
+	width: 100px;
+	height: 40px;
 	float: right;
 	text-align: center;
-	line-height: 55px;
+	line-height: 40px;
 }
 div table{
 	white-space:nowrap;

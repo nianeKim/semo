@@ -27,7 +27,13 @@
 	
 	<!-- 전체회원정보 조회 -->
 	<select id="list" resultType="member">
-		select * from member order by mno desc
+		select * from (select rowNum rn, e.* from (select * from member order by mno desc) e) 
+			where rn between #{startRow} and #{EndRow}
+	</select>
+	
+	<!-- 총 회원수 조회 -->
+	<select id="getTotal" resultType="integer">
+		select count(*) from member
 	</select>
 	
 	<select id="findId" parameterType="hashmap" resultType="member">

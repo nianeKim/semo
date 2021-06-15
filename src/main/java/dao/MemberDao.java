@@ -85,9 +85,17 @@ public class MemberDao {
 			return session.update("memberns.delete", id);
 		}
 		
-		//AdminMember
-		public List<Member> list() {
-			return (List<Member>)session.selectList("memberns.list");
+		//AdminMember - 전체 회원정보 조회
+		public List<Member> list(int startRow, int endRow) {
+			HashMap<String, Integer> hm = new HashMap<>();
+			hm.put("startRow", startRow);
+			hm.put("endRow", endRow);
+			return (List<Member>)session.selectList("memberns.list",hm);
+		}
+		
+		//AdminMember - 총 회원수
+		public int getTotal() {
+			return (int) session.selectOne("memberns.getTotal");
 		}
 		
 		// 다른 테이블에서 회원번호를 활용한 닉네임 찾기
@@ -104,8 +112,6 @@ public class MemberDao {
 		public Member select(int mno) {
 			return (Member) session.selectOne("memberns.selectReserve", mno);
 		}
-
-
 
 
 }

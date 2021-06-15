@@ -17,6 +17,7 @@
 		$('#'+sliceUrl[5]).addClass("active");
 	}) 
 </script>
+
 </head>
 <body>
 	<header>
@@ -39,7 +40,7 @@
 				<ul class='nav_main'>
 					<li><a href="../admin/adminDisplay.na">전시 관리</a></li>
 					<li><a href="../admin/adminMember.na">회원 관리</a></li>
-					<li><a href="../admin/adminBoard.na">게시판 관리</a></li>
+					<li><a href="../admin/adminBoard.na">스토리 관리</a></li>
 					<li><a href="#"><img alt="검색" src="../../images/icons/search.png"></a></li>
 				</ul>
 			</nav>
