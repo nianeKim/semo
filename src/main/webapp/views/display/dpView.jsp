@@ -65,11 +65,6 @@
 				$('svg g').css('fill', 'var(--point-color)');
 			}
 		});
-		
-		// review likes
-		$('.like_box img').on('click', function() {
-			$(this).attr('src', '../../images/icons/heart-fill.png');
-		});
 	});
 	
 	// session check
@@ -220,22 +215,27 @@
 							<!-- 수정 인풋 -->
 							<input type="text" name="content" class="detail_txt review" value="${review.content }">
 							<div class="like_box">
-								<img alt="좋아요" src="../../images/icons/heart.png" onclick="reviewLikes()">
+								<!-- 좋아요 제어 -->
 								<script type="text/javascript">
-									function reviewLikes() {
+									function likes(rv_no) {
 										if (${empty id}) {
 											var con = confirm("로그인이 필요합니다.");
 											if (con) {				
 												location.href="/semojeon/views/member/loginForm.na";
 											}
 										} else {
-											$.post("reviewLikes.do", "rv_no=${review.rv_no}", function(data) {
+											$.post("reviewLikes.do", "rv_no=${review.rv_no}&dno=${display.dno}", function(data) {
+												var imgSrc = data.split(',')[0];
+												var likes = data.split(',')[1];
 												
+												$('.like_img'+rv_no).attr('src', imgSrc);
+												$('.like_img'+rv_no).siblings('.count').text(likes);
 											});
 										}
 									}
 								</script>
-								<p class="count">${review.likes }</p>
+								<img class="like_img${review.rv_no }" alt="좋아요" src="../../images/icons/heart.png" onclick="likes(${review.rv_no })">
+								<p class="count">0</p>
 								<c:if test="${mno == review.mno }">
 									<div class="rievew_btn">
 										<div class="show_btn">

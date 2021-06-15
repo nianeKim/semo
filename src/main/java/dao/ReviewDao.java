@@ -60,4 +60,17 @@ public class ReviewDao {
 		return session.update("reviewns.delete", map);
 	}
 	
+	// 해당 리뷰의 좋아요 select
+	public int selectLikes(int rv_no) {
+		return (int) session.selectOne("reviewns.selectLikes", rv_no);
+	}
+	
+	// 리뷰 likes update
+	public void updateLikes(int likes, int rv_no) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("likes", likes);
+		map.put("rv_no", rv_no);
+		session.update("reviewns.updateLikes", map);
+	}
+	
 }

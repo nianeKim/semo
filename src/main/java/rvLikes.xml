@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rvLikesns">
+	<!-- 회원이 리뷰에 좋아요했는지 셀렉 -->
+	<select id="select" parameterType="hashmap" resultType="rvLikes">
+		select * from rvLikes where rv_no = #{rv_no} and mno = #{mno}
+	</select>
+	
+	<!-- 좋아요하면 해당 리뷰에 회원번호 입력 -->
+	<insert id="insert" parameterType="hashmap">
+		insert into rvLikes values(#{mno}, #{rv_no}, #{dno})
+	</insert>
+	
+	<!-- 리뷰 좋아요 했으면 취소 -->
+	<delete id="delete" parameterType="hashmap">
+		delete from rvLikes where rv_no = #{rv_no} and mno = #{mno}
+	</delete>
+</mapper>

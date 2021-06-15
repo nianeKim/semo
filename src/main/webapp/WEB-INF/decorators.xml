@@ -15,5 +15,6 @@
 		<pattern>/views/member/mailResult.na</pattern>
 		<pattern>/views/display/confirm.*</pattern>
 		<pattern>/views/board/bdLikesCnt.*</pattern>
+		<pattern>/views/display/reviewLikes.*</pattern>
 	</excludes>
 </decorators>

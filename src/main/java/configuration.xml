@@ -8,10 +8,10 @@
 		<typeAlias alias="board" type="model.Board" />
 		<typeAlias alias="bdlikes" type="model.Bdlikes" />
 		<typeAlias alias="review" type="model.Review" />
+		<typeAlias alias="rvLikes" type="model.RvLikes" />
 		<typeAlias alias="reply" type="model.Reply" />
 		<typeAlias alias="reservation" type="model.Reservation" />
 <!--    <typeAlias alias="bookmark" type="model.Bookmark" />   -->
-
 	</typeAliases>
 	<environments default="development">
 		<environment id="development">
@@ -30,6 +30,7 @@
 		<mapper resource="board.xml" />
 		<mapper resource="bdlikes.xml" />
 		<mapper resource="review.xml" />
+		<mapper resource="rvLikes.xml" />
 		<mapper resource="reply.xml" />
 		<mapper resource="reservation.xml" />
 <!-- 	<mapper resource="bookmark.xml" />-->
