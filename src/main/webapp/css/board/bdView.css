@@ -102,6 +102,7 @@
 	height: 34px;
 	text-align: center;
 	padding: 7px 0;
+	margin-bottom: 0;
 }
 
 /* 게시글 끝 댓글 시작 ******************************************* */
@@ -117,7 +118,7 @@
 	padding: 25px 0;
 }
 
-/* 댓글 입력 폼 */
+/* 댓글 폼 */
 textarea {
 	display: block;
 	width: 100%;
@@ -134,11 +135,13 @@ textarea {
 textarea::placeholder {
 	color: #aaa;
 }
-/* submit 버튼 */
+
+/* submit 버튼 div */
 .submit_box {
 	text-align: center;
 }
 
+/* 댓글 입력 폼 제출 버튼 */
 .reply_insert_frm .submit_box input {
 	width: 50%;
 	margin-top: 24px;
@@ -150,7 +153,7 @@ textarea::placeholder {
 	border-top: 1px solid #e4e4e4;
 }
 
-.replys {
+.reply_list_inner {
 	position: relative;
 	height: 148px;
 	padding: 20px 5px;
@@ -158,11 +161,11 @@ textarea::placeholder {
 }
 
 /* 목록 상단 - 프로필, 닉네임, 버튼 */
-.replys .re_top {
+.re_top {
 	font-weight: 600;
 }
 
-.replys .re_top img {
+.re_top img {
 	width: 30px;
 	border-radius: 50%;
 	vertical-align: middle;
@@ -213,8 +216,7 @@ textarea::placeholder {
     border-bottom: 1px solid #e4e4e4;
 }
 
-/* 댓글 내용 */
-.replys .re_con {
+.re_con {
 	clear: both;
 	width: 90%;
 	font-family: inherit;
@@ -222,13 +224,13 @@ textarea::placeholder {
 	margin: 8px 0 2px;
 }
 
-.replys .re_date {
+.re_date {
 	font-size: 13px;
 	color: #444;
 	margin-bottom: 5px;
 }
 
-/* 답글, 좋아요 버튼 */
+/* 답글, 좋아요 버튼 영역 */
 .reply_btn_area {
 	height: 30px;
 }
@@ -239,14 +241,15 @@ textarea::placeholder {
 	line-height: 30px;
 	cursor: pointer;
 }
-/* 답글 */
-.replys_btn {
+
+/* 답글 버튼 */
+.re_reply_btn {
 	border: 1px solid #e4e4e4;
 	float: left;
 	width: 45px;
 	text-align: center;
 }
-
+/* 좋아요 버튼 */
 .like_btn {
 	float: right;
 	padding: 0 5px;
@@ -269,6 +272,32 @@ textarea::placeholder {
     padding: 10px;
 }
 
-.reply_update_frm .submit_box input {
-	margin: 5px 0;
+form .submit_box .btn_small {
+	margin-top: 6px;
+}
+
+/* 답글 */
+.re_reply {
+	display: none;
+	clear: both;
+    height: 148px;
+    padding: 10px;
+    border-bottom: 1px solid #e4e4e4;
+    background: #fff4e5;
+}
+
+/* └ 표시 */
+.re {
+	float: left;
+    display: inline-block;
+    border-left: 2px solid black;
+	border-bottom: 2px solid black;
+    width: 15px;
+    height: 15px;
+    margin: 15px;
+}
+
+.re_form {
+	display: inline-block;
+    width: calc(100% - 45px);
 }

@@ -21,27 +21,46 @@
 			$(".reply_insert_frm textarea").attr("readonly", false);
 		}
 		
+		// 아무곳이나 눌러도 더보기 영역 안보이게
+		$('html body').on('click', function (event) {
+			var target = event.target.closest('.more_btn');
+			if (!target) {
+				$('.more_area').css("display", "none");
+			}
+		});
 		// 댓글 더보기 버튼 클릭
-		var show_more_area = false;
 		$(".more_btn").click(function() {
-			if (show_more_area == false) {
+			if ($(this).siblings(".more_area").css("display") == "none") {
+				$(".more_area").css("display", "none");
+				$(".reply_update_frm").css("display", "none");
 				$(this).siblings(".more_area").css("display", "block");
-				show_more_area = true;
 			} else {
-				$(this).siblings(".more_area").css("display", "none");
-				show_more_area = false;
+				$(".more_area").css("display", "none");
 			}
 		});
 		
 		// 댓글 수정 폼 show
 		$(".update_frm_show").click(function() {
-			$(this).parents(".replys").children(".reply_update_frm").css("display", "block");
+			$(this).parents(".reply_list_inner").children(".reply_update_frm").css("display", "block");
 		});
 		// 댓글 수정 폼 hide
 		$(".update_frm_hide").click(function() {
-			show_more_area = false;
-			$(this).parents(".replys").find(".more_area").css("display", "none");
-			$(this).parents(".replys").children(".reply_update_frm").css("display", "none");
+			$(this).parents(".reply_list_inner").children(".reply_update_frm").css("display", "none");
+		});
+
+		// 답글 버튼 클릭(답글 폼 show/hide)
+		$(".re_reply_btn").click(function() {
+			var re_reply = $(this).parents(".reply_list_inner").siblings(".re_reply");
+			if (re_reply.css("display") == "none") {
+				$(".re_reply").css("display", "none");
+				re_reply.css("display", "block");
+			} else {
+				$(".re_reply").css("display", "none");
+			}
+		});
+		// 답글 폼에서 취소 버튼 클릭(답글 폼 hide)
+		$(".re_reply_frm_hide").click(function() {
+			$(this).parents(".re_reply").css("display", "none");
 		});
 		
 		// scroll top
@@ -58,7 +77,7 @@
 				$('.scroll_top').fadeOut('slow');
 			}
 		});
-	})
+	});
 
 	// 클릭했을 때 세션 확인
 	function sessionChk(name) {
@@ -66,9 +85,7 @@
 			var con = confirm("로그인 후 이용해 주시기 바랍니다.");
 			if (con) {
 				location.href = "/semojeon/views/member/loginForm.na";
-			} else {
-				return false;
-			}
+			} 
 		} else {
 			// 좋아요 클릭
 			if (name == "like") {
@@ -87,7 +104,7 @@
 		var con = confirm("삭제 하시겠습니까?");
 		if(con) {
 			location.href="boardDelete.wo?bno=${board.bno}";
-		} else alert("삭제가 취소 되었습니다.");
+		}
 	}
 </script>
 </head>
@@ -140,7 +157,7 @@
 			<h4 class="sub_title">댓글 ${reply_cnt}</h4>
 			
 			<!-- 댓글 입력 폼 -->
-			<form action="boardReplyWrite.wo?bno=${board.bno}" method="post" onsubmit="return sessionChk()" class="reply_insert_frm">
+			<form action="boardReplyWrite.wo?bno=${board.bno}" method="post" class="reply_insert_frm">
 				<pre><textarea name="content" required onclick="sessionChk()"></textarea></pre>
 				<div class="submit_box">
 					<input type="submit" class="btn" value="등록하기">
@@ -148,18 +165,18 @@
 			</form>
 			
 			<!-- 댓글 목록 -->
-			<div class="reply_list">
-				<c:forEach var="reply" items="${list}">
-					<div class="replys">
+			<c:forEach var="reply" items="${list}">
+			
+				<div class="reply_list">
+					<div class="reply_list_inner">
 						<p class="re_top">
 							<img alt="프로필" src="/semojeon/upload/${reply.profile}">
 							<span>${reply.nick_nm}</span>
+							<!-- 댓글의 mno와 세션의 mno가 같으면 수정/삭제 가능 -->
 							<c:if test="${mno == reply.mno}">
 								<span class="updatebtn_area">
-									<span class="more_btn">
-										<span class="dot"></span>
-										<span class="dot"></span>
-										<span class="dot"></span>
+									<span class="more_btn"> <!-- 더보기 버튼 -->
+										<span class="dot"></span><span class="dot"></span><span class="dot"></span>
 									</span>
 									<span class="more_area">
 										<span class="more_area_txt update_frm_show">수정</span>
@@ -173,32 +190,47 @@
 											}
 										</script>
 									</span>
-								</span>
+								</span><!-- updatebtn_area 끝 -->
 							</c:if>
 						</p>
 						<pre class="re_con">${reply.content}</pre>
 						<p class="re_date">${reply.reg_date}</p>
 						<div class="reply_btn_area">
-							<p class="replys_btn">답글</p>
+							<p class="re_reply_btn">답글</p>
 							<p class="like_btn">
 								<img alt="좋아요" src="../../images/icons/like.png">
 								<span>${reply.likes}</span>
 							</p>
 						</div>
 						
-						<!-- 수정 폼 -->
+						<!-- 댓글 수정 폼 -->
 						<form action="boardReplyUpdate.wo?bno=${board.bno}&re_no=${reply.re_no}" method="post" class="reply_update_frm">
-							<textarea name="content" required onclick="sessionChk()">${reply.content}</textarea>
+							<pre><textarea name="content" required onclick="sessionChk()">${reply.content}</textarea></pre>
 							<div class="submit_box">
 								<input type="submit" class="btn btn_small" value="수정">
 								<p class="btn btn_small update_frm_hide" >취소</p>
 							</div>
 						</form>
-					</div>
+					</div><!-- reply_list_inner 끝 -->
 					
-				</c:forEach>
-			</div>
-		</div>
+					<!-- 답글 입력 폼 -->
+					<div class="re_reply">
+						<div class="re"></div>
+						
+						<div class="re_form">
+							<form  action="boardReplyWrite.wo?bno=${board.bno}&ref=${reply.ref}&ref_level=${reply.ref_level}&ref_step=${ref_step}" method="post" class="re_reply_insert_frm">
+								<pre><textarea name="content" required onclick="sessionChk()"></textarea></pre>
+								<div class="submit_box">
+									<input type="submit" class="btn btn_small" value="입력">
+									<p class="btn btn_small re_reply_frm_hide" >취소</p>
+								</div>
+							</form>
+						</div><!-- re_form 끝 -->
+					</div><!-- re_reply 끝 -->
+				
+				</div><!-- reply_list 끝 -->
+			</c:forEach>
+		</div><!-- reply 끝 -->
 	</div>
 	<div class="scroll_top"><div class="arrow"></div></div>
 </body>

@@ -47,7 +47,7 @@ public class BoardView implements CommandProcess {
 			}
 		}
 
-		// 댓글테이블에서 댓글 수 가져오기
+		// 댓글
 		ReplyDao rd = ReplyDao.getInstance();
 		List<Reply> list = rd.list(bno); // 댓글 목록
 		int reply_cnt = list.size(); // 게시글에 해당하는 댓글 수
