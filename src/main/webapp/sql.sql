@@ -94,9 +94,17 @@ CREATE TABLE review
     mno    NUMBER constraint review_mno_fk references member NOT NULL,
     dno    NUMBER constraint review_dno_fk references display NOT NULL
 );
-
 select * from review;
 select * from review where dno = 1 order by rv_no desc;
+
+-- 리뷰 좋아요
+drop table rvLikes;
+CREATE TABLE rvLikes
+(
+    mno    NUMBER constraint rvlikes_mno_fk references member NOT NULL,
+    rv_no    NUMBER constraint rvlikes_rv_no_fk references review NOT NULL
+);
+select * from rvLikes;
 
 -- 게시판(스토리)
 drop table board;

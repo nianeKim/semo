@@ -42,8 +42,6 @@
 		
 		// 리뷰 수정
 		$('.review_update').on('click', function() {
-			/* $(this).parents('.like_box').siblings('.detail_txt').attr('contenteditable', 'true');
-			$(this).parents('.like_box').siblings('.detail_txt').focus(); */
 			$(this).parents('.like_box').siblings('.review').hide();
 			$(this).parents('.like_box').siblings('input').show();
 			$(this).parents('.like_box').siblings('input').focus();
@@ -58,33 +56,42 @@
 			$(this).parents('.like_box').siblings('.review').show();
 			$(this).parents('.like_box').siblings('input').hide();
 		});
+		
+		// bookmark color 교체
+		$('.bookmark').on('click', function() {
+			if ($('svg g').css('fill') != 'none') {
+				$('svg g').css('fill', 'none');
+			} else if($('svg g').css('fill') == 'none') {
+				$('svg g').css('fill', 'var(--point-color)');
+			}
+		});
+		
+		// review likes
+		$('.like_box img').on('click', function() {
+			$(this).attr('src', '../../images/icons/heart-fill.png');
+		});
 	});
 	
-	// submit check
-	function sessionChk() {
+	// session check
+	function sessionChk(name) {
 		if (${empty id}) {
-			confirm("로그인이 필요합니다.");
-			location.href="/semojeon/views/member/loginForm.na";
-			return false;
+			var con = confirm("로그인이 필요합니다.");
+			if (con) {				
+				location.href="/semojeon/views/member/loginForm.na";
+			}
+		} else {
+			// 예매 체크
+			if (name == 'reserve') {
+				location.href="reserveForm.do?dno=${display.dno}";
+			}
 		}
 	}
+	
 	// 전시 삭제 confirm
-	function del() {
+	function del(name) {
 		var con = confirm("전시를 정말 삭제하시겠습니까?");
 		if (con) {
 			location.href="dpDelete.do?dno=${display.dno }";
-		}
-	}
-	
-	// 전시 예매 session check
-	function reserveChk() {
-		if (${empty id}) {
-			alert("로그인이 필요합니다.");
-			location.href="/semojeon/views/member/loginForm.na";
-			return false;
-		} else {
-			location.href="reserveForm.do?dno=${display.dno}";
-			return true;
 		}
 	}
 	
@@ -142,7 +149,20 @@
 						</td>
 					</tr>
 				</table>
-					<button class="btn" onclick="reserveChk()">예매하기</button>
+					<div class="bottom_box">
+						<div class="bookmark">
+							<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+							    <g fill="none" fill-rule="evenodd">
+							        <g stroke="#000" stroke-width="2.5">
+							            <g>
+							                <path d="M27 30L17.499 23.303 8 30 8 4 27 4z" transform="translate(-1642 -119) translate(1642 119)"/>
+							            </g>
+							        </g>
+							    </g>
+							</svg>
+						</div>
+						<button class="btn" onclick="sessionChk('reserve')">예매하기</button>
+					</div>
 			</div>
 		</div>
 		<!-- 상세 내용, 이미지 -->
@@ -189,7 +209,7 @@
 			<ul class="review_list_box">
 				<c:forEach var="review" items="${list }">
 					<li>
-						<form action="dpReviewUpdate.do?dno=${display.dno }" method="post">
+						<form action="dpReviewUpdate.do?dno=${display.dno }&rv_no=${review.rv_no }" method="post">
 							<div class="profile">
 								<img src="/semojeon/upload/${review.profile }" alt="프로필">
 								<p class="nick_nm">${review.nick_nm }</p>
@@ -200,7 +220,21 @@
 							<!-- 수정 인풋 -->
 							<input type="text" name="content" class="detail_txt review" value="${review.content }">
 							<div class="like_box">
-								<img alt="좋아요" src="../../images/icons/like.png">
+								<img alt="좋아요" src="../../images/icons/heart.png" onclick="reviewLikes()">
+								<script type="text/javascript">
+									function reviewLikes() {
+										if (${empty id}) {
+											var con = confirm("로그인이 필요합니다.");
+											if (con) {				
+												location.href="/semojeon/views/member/loginForm.na";
+											}
+										} else {
+											$.post("reviewLikes.do", "rv_no=${review.rv_no}", function(data) {
+												
+											});
+										}
+									}
+								</script>
 								<p class="count">${review.likes }</p>
 								<c:if test="${mno == review.mno }">
 									<div class="rievew_btn">
@@ -236,9 +270,9 @@
 			</div>
 			
 			<!-- 리뷰 등록 -->
-			<form action="dpReviewWrite.do?dno=${display.dno }" method="post" onsubmit="return sessionChk()">
+			<form action="dpReviewWrite.do?dno=${display.dno }" method="post">
 				<h4 class="sub_title">리뷰와 별점 등록</h4>
-				<textarea name="content" placeholder="전시가 어떠셨나요? 감상평을 작성해주세요." required></textarea>
+				<textarea name="content" placeholder="전시가 어떠셨나요? 감상평을 작성해주세요." required onclick="sessionChk()"></textarea>
 				<p class="detail_txt pd_bottom">별점을 선택해주세요.</p>
 				<!-- 별점 등록 -->
 				<div class="star_avg rate">

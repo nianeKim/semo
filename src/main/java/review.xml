@@ -22,7 +22,7 @@
 	
 	<!-- 리뷰 업데이트 -->
 	<update id="update" parameterType="review">
-		update review set content=#{content} where dno = #{dno}
+		update review set content=#{content} where rv_no = #{rv_no}
 	</update>
 	
 	<!-- 리뷰 삭제 -->
