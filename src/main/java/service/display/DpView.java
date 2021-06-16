@@ -42,13 +42,8 @@ public class DpView implements CommandProcess {
 		int reviewCnt = list.size();
 
 		// 회원이 좋아요한 리뷰가 있는지 체크
-		HttpSession session = request.getSession();
 		RvLikesDao rvld = RvLikesDao.getInstance();
 		
-		if (session.getAttribute("mno") != null) {
-			int mno = (int) session.getAttribute("mno");
-//			List<Map<String, Integer>> rvnoList = rvld.selectList(mno, dno);
-		}
 		
 		request.setAttribute("display", dp);
 		request.setAttribute("list", list);

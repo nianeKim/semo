@@ -41,11 +41,10 @@ public class RvLikesDao {
 	}
 	
 	// 리뷰 좋아요한 회원 insert
-	public void insert(int mno, int rv_no, int dno) {
+	public void insert(int mno, int rv_no) {
 		HashMap<String, Integer> hm = new HashMap<String, Integer>();
 		hm.put("mno", mno);
 		hm.put("rv_no", rv_no);
-		hm.put("dno", dno);
 		session.insert("rvLikesns.insert", hm);
 	}
 	

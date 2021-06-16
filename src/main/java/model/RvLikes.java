@@ -3,16 +3,7 @@ package model;
 public class RvLikes {
 	private int mno;
 	private int rv_no;
-	private int dno;
-
-	public int getDno() {
-		return dno;
-	}
-
-	public void setDno(int dno) {
-		this.dno = dno;
-	}
-
+	
 	public int getMno() {
 		return mno;
 	}

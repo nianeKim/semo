@@ -30,13 +30,18 @@
 		update review set del = 'y' where dno = #{dno} and mno = #{mno}
 	</update>
 	
-	<!-- 해당 리뷰의 좋아요 select -->
+	<!-- 리뷰 likes plus -->
+	<update id="updateLikes" parameterType="integer">
+		update review set likes = likes + 1 where rv_no = #{rv_no}
+	</update>
+	
+	<!-- 리뷰 likes minus -->
+	<update id="updateLikes2" parameterType="integer">
+		update review set likes = likes - 1 where rv_no = #{rv_no}
+	</update>
+	
+	<!-- 리뷰 수정된 likes 가져오기 -->
 	<select id="selectLikes" parameterType="integer" resultType="integer">
 		select likes from review where rv_no = #{rv_no}
 	</select>
-	
-	<!-- 리뷰 likes update -->
-	<update id="updateLikes" parameterType="hashmap">
-		update review set likes = #{likes} where rv_no = #{rv_no}
-	</update>
 </mapper>

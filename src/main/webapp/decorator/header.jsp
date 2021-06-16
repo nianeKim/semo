@@ -13,7 +13,7 @@
 		var curUrl = window.location.href; // 현재 url가져오기
 		var sliceUrl = curUrl.split("/"); // 필요한 부분만 슬라이스
 		
-		$('nav_main a').removeClass("active");
+		//$('.nav_main a').removeClass("active");
 		$('#'+sliceUrl[5]).addClass("active");
 	})
 </script>
