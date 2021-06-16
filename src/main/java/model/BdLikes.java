@@ -1,6 +1,6 @@
 package model;
 
-public class Bdlikes {
+public class BdLikes {
 	private int mno;
 	private int bno;
 

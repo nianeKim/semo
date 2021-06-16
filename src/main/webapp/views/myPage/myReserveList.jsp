@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="../../css/myPage/dpList.css">
 <c:if test="${list.size() == 0}">
 	<ul class="noItems">
-		<li><span class="txt_title">등록한 전시가 없습니다.</span></li>
+		<li><span class="txt_title">예매한 전시가 없습니다.</span></li>
 	</ul>
 </c:if>
 <c:if test="${list.size() != 0}">

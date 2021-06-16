@@ -25,8 +25,9 @@
 
 	<!-- 댓글 조회 -->
 	<select id="list" parameterType="integer" resultType="reply">
-		select * from (select rowNum rn, e.* from (select r.*, nick_nm, profile from reply r, member m
-    	where r.mno = m.mno and r.bno = #{bno} and r.del='n' order by ref desc, ref_step)e) order by rn
+		select * from (select rowNum rn, e.* from (select r.*, nick_nm, profile
+		from reply r, member m where r.mno = m.mno 
+		and r.bno = #{bno} and r.del='n' order by ref desc, ref_step) e) order by rn
 	</select>
 
 	<!-- 댓글 수정 -->
@@ -40,4 +41,19 @@
 		update reply set del = 'y'
 		where re_no = #{re_no}
 	</update>
+	
+	<!-- 게시글 좋아요 증가 -->
+	<update id="likesPlus" parameterType="integer">
+		update reply set likes = likes + 1 where re_no = #{re_no}
+	</update>
+
+	<!-- 게시글 좋아요 감소 -->
+	<update id="likesMinus" parameterType="integer">
+		update reply set likes = likes - 1 where re_no = #{re_no}
+	</update>
+	
+	<!-- 좋아요 수 가져오기 -->
+	<select id="selectLikes" parameterType="integer" resultType="integer">
+		select likes from reply where re_no = #{re_no}
+	</select>
 </mapper>

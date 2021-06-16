@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.BdlikesDao;
+import dao.BdLikesDao;
 import dao.BoardDao;
 import dao.MemberDao;
 import dao.ReplyDao;
+import dao.RpLikesDao;
 import model.Board;
 import model.Reply;
+import model.RpLikes;
 import service.CommandProcess;
 
 public class BoardView implements CommandProcess {
@@ -33,7 +35,7 @@ public class BoardView implements CommandProcess {
 		String nick_nm = md.selectNick(mno);
 
 		// bdlikes에 회원이 좋아요한 게시글 있는지 조회
-		BdlikesDao bld = BdlikesDao.getInstance();
+		BdLikesDao bld = BdLikesDao.getInstance();
 		HttpSession session = request.getSession();
 		String imgSrc = "";
 		if (session.getAttribute("mno") != null) {
@@ -41,7 +43,7 @@ public class BoardView implements CommandProcess {
 			int bdlikes = bld.select(mno, bno);
 			if (bdlikes > 0) { // 좋아요 한 게시글이면
 				imgSrc = "../../images/icons/heart-fill.png";
-				
+
 			} else if (bdlikes == 0) { // 좋아요 한 게시글이 아니면
 				imgSrc = "../../images/icons/heart.png";
 			}
@@ -51,11 +53,15 @@ public class BoardView implements CommandProcess {
 		ReplyDao rd = ReplyDao.getInstance();
 		List<Reply> list = rd.list(bno); // 댓글 목록
 		int reply_cnt = list.size(); // 게시글에 해당하는 댓글 수
+		
+		RpLikesDao rld = RpLikesDao.getInstance();
+		List<RpLikes> list2 = rld.list(); // 댓글 좋아요 목록
 
 		request.setAttribute("bno", bno);
 		request.setAttribute("board", board);
 		request.setAttribute("nick_nm", nick_nm);
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
 		request.setAttribute("reply_cnt", reply_cnt);
 		request.setAttribute("imgSrc", imgSrc);
 

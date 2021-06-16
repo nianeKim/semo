@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rpLikesns">
+	<!-- 회원이 댓글 좋아요 했는지 조회 -->
+	<select id="select" resultType="integer">
+		select count(*) from rpLikes where re_no=#{re_no} and mno=#{mno}
+	</select>
+	
+	<!-- 회원이 댓글 좋아요 클릭 -->
+	<insert id="insert" parameterType="hashmap">
+		insert into rpLikes values(#{mno}, #{re_no})
+	</insert>
+	
+	<!-- 회원이 댓글 좋아요 취소 -->
+	<delete id="delete" parameterType="hashmap">
+		delete from rpLikes where re_no=#{re_no} and mno=#{mno}
+	</delete>
+	
+	<select id="list" resultType="rpLikes">
+		select * from rpLikes order by re_no
+	</select>
+</mapper>

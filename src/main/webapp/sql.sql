@@ -124,13 +124,13 @@ delete from board;
 alter table board add(thumbnail VARCHAR2(100));
 
 -- 게시판 좋아요
-drop table bdlikes;
-CREATE TABLE bdlikes
+drop table bdLikes;
+CREATE TABLE bdLikes
 (
     mno    NUMBER constraint bdlikes_mno_fk references member NOT NULL,
     bno    NUMBER constraint bdlikes_bno_fk references board NOT NULL
 );
-select * from bdlikes;
+select * from bdLikes;
 
 -- 게시판에 댓글(답글 포함)
 drop table reply;
@@ -148,3 +148,12 @@ CREATE TABLE reply
     bno    NUMBER constraint reply_bno_fk references board NOT NULL
 );
 select * from reply;
+
+-- 댓글 좋아요
+drop table rpLikes;
+CREATE TABLE rpLikes
+(
+    mno    NUMBER constraint rplikes_mno_fk references member NOT NULL,
+    re_no    NUMBER constraint rplikes_rv_no_fk references reply NOT NULL
+);
+select * from rvLikes;

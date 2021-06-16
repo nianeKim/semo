@@ -9,16 +9,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import model.Bdlikes;
+import model.BdLikes;
 import model.Board;
 
-public class BdlikesDao {
-	private static BdlikesDao instance = new BdlikesDao();
+public class BdLikesDao {
+	private static BdLikesDao instance = new BdLikesDao();
 
-	private BdlikesDao() {
+	private BdLikesDao() {
 	}
 
-	public static BdlikesDao getInstance() {
+	public static BdLikesDao getInstance() {
 		return instance;
 	}
 

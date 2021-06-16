@@ -87,7 +87,7 @@
 				location.href = "/semojeon/views/member/loginForm.na";
 			} 
 		} else {
-			// 좋아요 클릭
+			// 게시글 좋아요 클릭
 			if (name == "like") {
 				$.post("bdLikesCnt.wo", "bno=${board.bno}", function(data) {
 					var likes = data.split(",")[0];
@@ -99,11 +99,36 @@
 		}
 	}
 	
+	// 댓글 좋아요 클릭
+	function reLikes(re_no) {
+		if (${empty id}) {
+			var con = confirm("로그인 후 이용해 주시기 바랍니다.");
+			if (con) {
+				location.href = "/semojeon/views/member/loginForm.na";
+			} 
+		} else {
+			$.post("rpLikesCnt.wo", "re_no=" + re_no, function(data) {
+				var likes = data.split(",")[0];
+				var imgSrc = data.split(",")[1];
+				$(".like_btn" + n + " span").text(likes);
+				$(".like_btn" + n + " img").attr("src", imgSrc);
+			});
+		}
+	}
+	
 	// 게시글 삭제
 	function delBoard() {
 		var con = confirm("삭제 하시겠습니까?");
 		if(con) {
 			location.href="boardDelete.wo?bno=${board.bno}";
+		}
+	}
+	
+	// 댓글 삭제
+	function delReply(re_no) {
+		var con = confirm("삭제 하시겠습니까?");
+		if(con) {
+			location.href="boardReplyDelete.wo?bno=${board.bno}&re_no=" + re_no;
 		}
 	}
 </script>
@@ -161,18 +186,18 @@
 			<div class="submit_box">
 				<input type="submit" class="btn" value="등록하기">
 			</div>
-		</form>
+		</form>	
 			
 		<!-- 댓글 전체 목록 -->
 		<div class="reply">
 			<c:forEach var="reply" items="${list}">
 				<!-- 1개의 댓글 -->			
-				<c:if test="${reply.ref_level != 0 }">
+				<c:if test="${reply.ref_level != 0 }"> <!-- 답글일 때 -->
 					<div class="reply_list bgcolorAdd">
 						<div class="re"></div>
 						<div class="re_reply_list_inner">
-						</c:if>
-				<c:if test="${reply.ref_level == 0 }">
+				</c:if>
+				<c:if test="${reply.ref_level == 0 }"> <!-- 답글이 아닐 때(그냥 댓글) -->
 					<div class="reply_list">
 						<div class="reply_list_inner">
 				</c:if>
@@ -180,22 +205,14 @@
 								<img alt="프로필" src="/semojeon/upload/${reply.profile}">
 								<span>${reply.nick_nm}</span>
 								<!-- 댓글의 mno와 세션의 mno가 같으면 수정/삭제 가능 -->
-								<c:if test="${mno == reply.mno}">
+								<c:if test="${reply.mno == mno}">
 									<span class="updatebtn_area">
 										<span class="more_btn"> <!-- 더보기 버튼 -->
 											<span class="dot"></span><span class="dot"></span><span class="dot"></span>
 										</span>
 										<span class="more_area">
 											<span class="more_area_txt update_frm_show">수정</span>
-											<span class="more_area_txt" onclick="delReply()">삭제</span>
-											<script type="text/javascript">
-												function delReply() {
-													var con = confirm("삭제 하시겠습니까?");
-													if(con) {
-														location.href="boardReplyDelete.wo?bno=${board.bno}&re_no=${reply.re_no}";
-													}
-												}
-											</script>
+											<span class="more_area_txt" onclick="delReply(${reply.re_no})">삭제</span>
 										</span>
 									</span><!-- updatebtn_area 끝 -->
 								</c:if>
@@ -203,12 +220,26 @@
 							<!-- 내용, 날짜 -->	
 							<pre class="re_con">${reply.content}</pre>
 							<p class="re_date">${reply.reg_date}</p>
+							
 							<!-- 답글 버튼과 좋아요 버튼 영역 -->
 							<div class="reply_btn_area">
 								<p class="re_reply_btn">답글</p>
-								<p class="like_btn">
-									<img alt="좋아요" src="../../images/icons/like.png">
+								<p class="like_btn like_btn${reply.re_no}">
+									<img alt="좋아요" src="../../images/icons/heart.png" onclick="reLikes(${reply.re_no})">
 									<span>${reply.likes}</span>
+								
+									<c:forEach var="rplikes" items="${list2}">
+										<%-- 댓글번호 == 좋아요누른댓글번호 --%>
+										<c:if test="${mno == rplikes.mno}">
+											<%-- 세션회원번호 == 좋아요누른회원번호 --%>
+											<c:if test="${reply.re_no == rplikes.re_no}">
+												<script type="text/javascript">
+													console.log("??");
+													$(".like_btn" + ${reply.re_no} + " img").attr("src", "../../images/icons/heart-fill.png");
+												</script>
+											</c:if>
+										</c:if>
+									</c:forEach>
 								</p>
 							</div> <!-- reply_btn_area -->
 							

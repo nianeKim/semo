@@ -6,10 +6,11 @@
 		<typeAlias alias="member" type="model.Member" />
 		<typeAlias alias="display" type="model.Display" />
 		<typeAlias alias="board" type="model.Board" />
-		<typeAlias alias="bdlikes" type="model.Bdlikes" />
+		<typeAlias alias="bdlikes" type="model.BdLikes" />
 		<typeAlias alias="review" type="model.Review" />
 		<typeAlias alias="rvLikes" type="model.RvLikes" />
 		<typeAlias alias="reply" type="model.Reply" />
+		<typeAlias alias="rpLikes" type="model.RpLikes" />
 		<typeAlias alias="reservation" type="model.Reservation" />
 <!--    <typeAlias alias="bookmark" type="model.Bookmark" />   -->
 	</typeAliases>
@@ -28,10 +29,11 @@
 		<mapper resource="member.xml" />
 		<mapper resource="display.xml" />
 		<mapper resource="board.xml" />
-		<mapper resource="bdlikes.xml" />
+		<mapper resource="bdLikes.xml" />
 		<mapper resource="review.xml" />
 		<mapper resource="rvLikes.xml" />
 		<mapper resource="reply.xml" />
+		<mapper resource="rpLikes.xml" />
 		<mapper resource="reservation.xml" />
 <!-- 	<mapper resource="bookmark.xml" />-->
 	</mappers>

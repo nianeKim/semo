@@ -8,12 +8,14 @@ import dao.BdLikesDao;
 import dao.BoardDao;
 import dao.MemberDao;
 import dao.ReplyDao;
+import dao.RpLikesDao;
 import model.BdLikes;
 import model.Board;
 import model.Member;
+import model.Reply;
 import service.CommandProcess;
 
-public class BdLikesCnt implements CommandProcess {
+public class RpLikesCnt implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {	
@@ -21,34 +23,33 @@ public class BdLikesCnt implements CommandProcess {
 		HttpSession session = request.getSession();
 		int mno = (int) session.getAttribute("mno");
 
-		// param으로 bno 가져옴
-		int bno = Integer.parseInt(request.getParameter("bno"));
-	
-		// bdlikes에 회원이 좋아요한 게시글 있는지 조회
-		BdLikesDao bld = BdLikesDao.getInstance();
-		int bdlikes = bld.select(mno, bno);
+		// param으로 re_no 가져옴
+		int re_no = Integer.parseInt(request.getParameter("re_no"));
 		
-		// bdLikesCnt.jsp에 보내줄 변수 생성
+		// rplikes에 회원이 좋아요한 게시글 있는지 조회
+		RpLikesDao rld = RpLikesDao.getInstance();
+		int rplikes = rld.select(mno, re_no);
+		
+		// rpLikesCnt.jsp에 보내줄 변수 생성
 		String imgSrc = "";
 		int likes = 0;
 
-		// board 테이블의 likes 변경하기 위해 객체 추가
-		BoardDao bd = BoardDao.getInstance();
+		// reply 테이블의 likes 변경하기 위해 객체 추가
+		ReplyDao rd = ReplyDao.getInstance();
 		
-		if (bdlikes > 0) { // 좋아요 한 게시글이 있으면
-			bld.delete(mno, bno); // bdlikes 테이블에서 데이터 삭제
-			bd.likesMinus(bno); // likes - 1
+		if (rplikes > 0) { // 좋아요 한 게시글이 있으면
+			rld.delete(mno, re_no); // bdlikes 테이블에서 데이터 삭제
+			rd.likesMinus(re_no); // likes - 1
 			imgSrc = "../../images/icons/heart.png";
 
-		} else if (bdlikes == 0) { // 좋아요 한 게시글이 없으면
-			bld.insert(mno, bno); // bdlikes 테이블에 데이터 추가
-			bd.likesPlus(bno); // likes + 1
+		} else if (rplikes == 0) { // 좋아요 한 게시글이 없으면
+			rld.insert(mno, re_no); // bdlikes 테이블에 데이터 추가
+			rd.likesPlus(re_no); // likes + 1
 			imgSrc = "../../images/icons/heart-fill.png";
 		}			
 		
 		// board 테이블의 현재 likes 조회
-		Board board = bd.select(bno);
-		likes = board.getLikes();
+		likes = rd.selectLikes(re_no);
 		
 		request.setAttribute("likes", likes);
 		request.setAttribute("imgSrc", imgSrc);
