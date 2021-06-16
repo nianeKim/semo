@@ -11,8 +11,8 @@
 	
 	<!-- 해당 전시의 review list -->
 	<select id="select" parameterType="integer" resultType="review">
-		select * from member m, review r where m.mno = r.mno and dno = #{dno}
-		and r.del = 'n' order by rv_no desc
+		select r.*, nick_nm, profile from member m, review r
+		where m.mno = r.mno and dno = #{dno} and r.del = 'n' order by rv_no desc
 	</select>
 	
 	<!-- 평균 별점 -->

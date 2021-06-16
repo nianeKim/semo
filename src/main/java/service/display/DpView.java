@@ -43,12 +43,13 @@ public class DpView implements CommandProcess {
 
 		// 회원이 좋아요한 리뷰가 있는지 체크
 		RvLikesDao rvld = RvLikesDao.getInstance();
-		
+		List<RvLikes> rvList = rvld.select();
 		
 		request.setAttribute("display", dp);
 		request.setAttribute("list", list);
 		request.setAttribute("star_rate", star_rate);
 		request.setAttribute("reviewCnt", reviewCnt);
+		request.setAttribute("rvList", rvList);	
 
 		return "dpView";
 	}

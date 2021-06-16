@@ -15,4 +15,9 @@
 	<delete id="delete" parameterType="hashmap">
 		delete from rvLikes where rv_no = #{rv_no} and mno = #{mno}
 	</delete>
+	
+	<!-- 리뷰 좋아요를 체크를 위한 리스트 조회 -->
+	<select id="selectList" resultType="rvLikes">
+		select * from rvLikes
+	</select>
 </mapper>

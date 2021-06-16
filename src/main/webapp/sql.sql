@@ -105,6 +105,7 @@ CREATE TABLE rvLikes
     rv_no    NUMBER constraint rvlikes_rv_no_fk references review NOT NULL
 );
 select * from rvLikes;
+delete from rvLikes where mno = 0;
 
 -- 게시판(스토리)
 drop table board;
