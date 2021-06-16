@@ -75,4 +75,17 @@ public class DisplayDao {
 	public List<Display> mpList(int mno) {
 		return session.selectList("displayns.mpList", mno);
 	}
+	
+	// 전시 리스트 통합 조회(관리자페이지)
+   public List<Display> adminlist(int startRow, int endRow) {
+      HashMap<String, Integer> hm = new HashMap<>();
+      hm.put("startRow", startRow);
+      hm.put("endRow", endRow);
+      return (List<Display>)session.selectList("displayns.adminlist", hm);
+   }
+   
+   //AdminMember - 총 전시수
+   public int getTotal() {
+      return (int) session.selectOne("displayns.getTotal");
+   }
 }

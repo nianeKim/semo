@@ -66,4 +66,15 @@
     <select id="mpList" parameterType="integer" resultType="display">
        select * from display where mno = #{mno} and del = 'n' order by dno desc 
     </select>
+    
+    <!-- 전체전시 조회(페이징) -->
+   <select id="adminlist" parameterType="hashmap" resultType="display">
+      select * from (select rowNum rn, e.* from (select * from display order by dno desc) e) 
+         where rn between #{startRow} and #{endRow}
+   </select>
+   
+   <!-- 총 전시수 조회 -->
+   <select id="getTotal" resultType="integer">
+      select count(*) from display
+   </select>
 </mapper> 
