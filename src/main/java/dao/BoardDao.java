@@ -91,9 +91,17 @@ public class BoardDao {
 		return session.selectList("boardns.mpList", mno);
 	}
 	
-	// 관리자페이지.java 작성한 스토리 목록
-	public List<Board> adminList() {
-		return session.selectList("boardns.adminList");
+	// AdminBoard.java 작성한 스토리 목록
+	public List<Board> adminList(int startRow, int endRow) {
+	   HashMap<String, Integer> hm = new HashMap<>();
+	      hm.put("startRow", startRow);
+	      hm.put("endRow", endRow);
+	      return (List<Board>)session.selectList("boardns.adminList",hm);
+	}
+
+	// AdminBoard.java 게시글 전체 개수 조회(페이징)
+	public int getTotal() {
+	      return (int) session.selectOne("boardns.getTotal");
 	}
 
 }
