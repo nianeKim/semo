@@ -236,6 +236,14 @@
 							<input type="text" name="content" class="detail_txt review" value="${review.content }">
 							<div class="like_box">
 								<img class="like_img${review.rv_no }" alt="좋아요" src="../../images/icons/heart.png" onclick="likes(${review.rv_no })">
+								<!-- review 좋아요 한 회원일때 빨간하트로 세팅 -->
+								<c:forEach var="rvList" items="${rvList }">
+									<c:if test="${rvList.rv_no == review.rv_no }">
+										<c:if test="${rvList.mno == mno }">
+											<script type="text/javascript">$('.like_img'+${review.rv_no}).attr('src', '../../images/icons/heart-fill.png');</script>
+										</c:if>
+									</c:if>
+								</c:forEach>
 								<p class="count">${review.likes }</p>
 								<c:if test="${mno == review.mno }">
 									<div class="rievew_btn">

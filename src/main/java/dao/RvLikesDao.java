@@ -56,9 +56,9 @@ public class RvLikesDao {
 		session.delete("rvLikesns.delete", hm);
 	}
 	
-	// 해당 전시에
-//	public List<Map<String, Integer>> selectList(int mno, int dno) {
-//		return session.delete("rvLikesns.selectRvno", );
-//	}
+	// 리뷰 좋아요를 체크를 위한 리스트 조회
+	public List<RvLikes> select() {
+		return session.selectList("rvLikesns.selectList");
+	}
 	
 }

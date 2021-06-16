@@ -18,27 +18,22 @@ public class ReviewLikes implements CommandProcess {
 		HttpSession session = request.getSession();
 		int mno = (int) session.getAttribute("mno");
 		int rv_no = Integer.parseInt(request.getParameter("rv_no"));
-		System.out.println(rv_no);
 		
 		// 해당 리뷰에 해당 회원이 있는지 조회
 		RvLikesDao rvld = RvLikesDao.getInstance();
 		RvLikes rvlikes = rvld.select(mno, rv_no);
-		System.out.println(rvlikes);
+		
 		String imgSrc = "";
 		
 		ReviewDao rd = ReviewDao.getInstance();
 		
 		if (rvlikes == null) { // 회원이 없으면 -> 좋아요 함
 			rvld.insert(mno, rv_no);
-			System.out.println("likes/plus 이전");
 			rd.likesPlus(rv_no);
-			System.out.println("likes/plus 다음");
 			imgSrc = "../../images/icons/heart-fill.png";
 		} else { // 회원이 있으면 -> 좋아요 취소
 			rvld.delete(mno, rv_no);
-			System.out.println("likes/minus 이전");
 			rd.likesMinus(rv_no);
-			System.out.println("likes/minus 다음");
 			imgSrc = "../../images/icons/heart.png";
 		}
 		
