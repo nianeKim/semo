@@ -9,47 +9,19 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-.title{
-	margin-bottom: 10px;
-}
-/* 가로스크롤 생성 */
-.container{
-	display: grid;
-	width: 95%;
-	font-family: inherit;
-}
-
-.container-table{
-	position: absolute;
-	overflow: auto;
-}
-.btn{
-	width: 100px;
-	height: 40px;
-	float: right;
-	text-align: center;
-	line-height: 40px;
-}
-div table{
-	white-space:nowrap;
-	border-collapse:collapse;
-}
-
-div table th{
-	padding: 0 10px;
-	border-bottom: solid 1px;
-	font-size: 16px;
-}
-
-div table td{
-	height: 32px;
-	padding: 0 10px;
-	font-size: 14px;
-	font-weight: 500;
-	text-align: center;
-	
-}
+@import url("../../css/admin/admins.css");
 </style>
+
+<script type="text/javascript">
+function del() {
+	var con = confirm("해당 전시를 삭제 하시겠습니까?");
+	if(con) {
+		location.href="../display/dpDelete.do?dno=${display.dno}";
+	}
+}
+</script>
+
+
 </head>
 <body>
 <form class="container">
@@ -61,7 +33,7 @@ div table td{
 	
 		<table>
 		<tr>
-			<th>전시번호</th><th>전시명</th><th>시작일</th><th>종료일</th><th>관람 시간</th><th>관람 장소</th><th>단일 관람료</th><th>할인율</th><th>관람료_성인</th><th>관람료_청소년</th><th>관람료_어린이</th><th>관련 태그</th><th>작가명</th><th>전화번호</th><th>홈페이지</th><th>게시현황</th><th>작성자</th><th>수정</th><th>삭제</th>
+			<th>전시번호</th><th>전시명</th><th>시작일</th><th>종료일</th><th>관람 시간</th><th>관람 장소</th><th>단일 관람료</th><th>할인율</th><th>관람료_성인</th><th>관람료_청소년</th><th>관람료_어린이</th><th>관련 태그</th><th>작가명</th><th>전화번호</th><th>홈페이지</th><th>삭제여부</th><th>작성자</th><th>수정</th><th>삭제</th>
 			<c:forEach var="display" items="${list }">
 			<tr>
 				<td>${display.dno} </td>
@@ -81,11 +53,23 @@ div table td{
 				<td>${display.home_pg} </td>
 				<td>${display.del} </td>
 				<td>${display.mno} </td>
-				<td>삭제 url</td>
-				<td>수정 url</td>
+				<td><a href="../display/dpUpdateForm.do?dno=${display.dno}" class="btn btn_stroke btn_small">수정</a></td>
+				<td><a onclick="del()" class="btn btn_small">삭제</a></td>
 			</tr>
 			</c:forEach>
 		</table>
+	</div>
+	
+	<div class="nums">
+		<c:if test="${startPage > PAGE_PER_BLOCK }">
+			<a onclick="location.href='adminDisplay.na?pageNum=${startPage-1}'" class="pageNums" >이전</a>
+		</c:if>
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<a onclick="location.href='adminDisplay.na?pageNum=${i}'" class="pageNums" >${i}　　</a>
+		</c:forEach>
+		<c:if test="${endPage < totalPage }">
+			<a onclick="location.href='adminDisplay.na?pageNum=${endPage+1}'" class="pageNums">다음</a>
+		</c:if>	
 	</div>
 
 </form>

@@ -13,13 +13,21 @@ public class Delete implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		
+		int mno = 0;
+		int result = 0;
 		MemberDao md = MemberDao.getInstance();
-		if(id!=null) {
-			int result = md.delete(id);
-			if(result>0) session.invalidate();
-			request.setAttribute("result", result);
+		if (id.equals("admin")) {
+			mno = Integer.parseInt(request.getParameter("mno"));
+			result = md.delete(mno);
+			
+		} else {
+			if(id!=null) {
+				mno = (int) session.getAttribute("mno");
+				result = md.delete(mno);
+				if(result>0) session.invalidate();
+			}
 		}
+		request.setAttribute("result", result);
 		return "delete";
 	}
 }

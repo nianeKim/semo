@@ -7,13 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.title{
-	margin-bottom: 10px;
-}
+@import url("../../css/admin/admins.css");
+
 /* 가로스크롤 생성 */
 .container{
 	display: grid;
-	width: 95%;
+	width: 80%;
 	font-family: inherit;
 	overflow: auto;
 }
@@ -22,53 +21,13 @@
 	position: absolute;
 }
 
-.btn{
-	width: 150px;
-	height: 55px;
-	float: right;
-	text-align: center;
-	line-height: 55px;
-}
-
-.btn_small {
-	display: contents;
-	width: initial;
-	height: initial;
-	font-size: 14px;
-	text-align: right;
-	padding: 0;
-	margin: 0;
-	border: 0;
-	color: #aaa;
-	font-weight: 500;
-	text-decoration: underline;
-}
-
-div table{
-	white-space:nowrap;
-	border-collapse:collapse;
-}
-
-div table th{
-	padding: 0 10px;
-	border-bottom: solid 1px;
-	font-size: 16px;
-}
-
-div table td{
-	height: 32px;
-	padding: 0 10px;
-	font-size: 14px;
-	font-weight: 500;
-	text-align: center;
-}
 </style>
 
 <script type="text/javascript">
-function del() {
+function del(delMno) {
 	var con = confirm("탈퇴처리 하시겠습니까?");
 	if(con) {
-		location.href="../member/delete.na?mno=${member.mno}";
+		location.href="../member/delete.na?mno="+delMno;
 	}
 }
 </script>
@@ -100,8 +59,8 @@ function del() {
 						<td>${member.reg_date}</td>
 						<td>${member.profile}</td>
 						<td>${member.del}</td>
-						<td><a href="../member/updateForm.na?mno=${member.mno}" class="btn btn_stroke btn_small">수정</a></td>
-						<td><a onclick="del()" class="btn btn_stroke btn_small">탈퇴</a></td>
+						<td><a href="../member/updateForm.na?id=${member.id}" class="btn btn_small">수정</a></td>
+						<td><a onclick="del(${member.mno})" class="btn btn_small">탈퇴</a></td>
 					</tr>
 				</c:forEach>
 			</c:if>
@@ -109,16 +68,15 @@ function del() {
 		</table>
 	</div>
 	
-	<div align="center">
-	<c:if test="${startPage > PAGE_PER_BLOCK }">
-		<button onclick="location.href='adminMember.na?pageNum=${startPage-1}'">이전</button>
-	</c:if>
+	<div class="nums">
+		<c:if test="${startPage > PAGE_PER_BLOCK }">
+			<a onclick="location.href='adminMember.na?pageNum=${startPage-1}'" class="pageNums" >이전</a>
+		</c:if>
 		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<button onclick="location.href='adminMember.na?pageNum=${i}'">${i }</button>
+			<a onclick="location.href='adminMember.na?pageNum=${i}'" class="pageNums" >${i}　　</a>
 		</c:forEach>
-		<!-- 보여줄 것이 남아있다 -->
 		<c:if test="${endPage < totalPage }">
-			<button onclick="location.href='adminMember.na?pageNum=${endPage+1}'">다음</button>
+			<a onclick="location.href='adminMember.na?pageNum=${endPage+1}'" class="pageNums">다음</a>
 		</c:if>	
 	</div>
 </div>

@@ -10,8 +10,14 @@
 <body>
 <c:if test="${result>0 }">
 	<script type="text/javascript">
-		alert("정상적으로 탈퇴처리 되었습니다");
-		location.href="loginForm.na"
+		var preUrl = document.referrer.split("/")[6];
+		alert("탈퇴처리 되었습니다");
+			
+		if(preUrl == "adminMember.na") {
+			history.back();
+		}else if (preUrl == "updateForm.na") {
+			location.href="/index.jsp";
+		}
 	</script>
 </c:if>
 

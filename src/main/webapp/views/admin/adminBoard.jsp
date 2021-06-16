@@ -7,72 +7,13 @@
 <%@ include file="../sessionChk.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
-.title{
-	margin-bottom: 10px;
-}
-/* 가로스크롤 생성 */
-.container{
-	display: grid;
-	width: %;
-	font-family: inherit;
-}
-
-.btn{
-	width: 100px;
-	height: 40px;
-	float: right;
-	text-align: center;
-	line-height: 40px;
-}
-
-.btn_small {
-	display: contents;
-	width: initial;
-	height: initial;
-	font-size: 14px;
-	text-align: right;
-	padding: 0;
-	margin: 0;
-	border: 0;
-	color: #aaa;
-	font-weight: 500;
-	text-decoration: underline;
-}
-
-.tableScroll{
-	overflow: auto;
-	height: 400px;
-}
-
-.table {
-	overflow: auto;
-	white-space:nowrap;
-	border-collapse:collapse;
-}
-
-.tableTh {
-	padding: 0 10px;
-	border-bottom: solid 1px;
-	font-size: 16px;
-}
-
-.tableTd {
-	width:100%;
-	height: 32px;
-	padding: 0 10px;
-	font-size: 14px;
-	font-weight: 500;
-	text-align: center;
-	
-}
-
+@import url("../../css/admin/admins.css");
 </style>
 
 <script type="text/javascript">
 function del() {
-	var con = confirm("삭제 하시겠습니까?");
+	var con = confirm("해당 스토리를 삭제 하시겠습니까?");
 	if(con) {
 		location.href="../board/boardDelete.wo?bno=${board.bno}";
 	}
@@ -86,28 +27,43 @@ function del() {
 	<div>
 		<a class="btn" href="/semojeon/views/display/dpRegistForm.do">등록</a>	
 	</div>
-		<table class="table tableTh">
-		<tr>
+	
+	<div class="container container-table">
+		<table>
+			<tr>
 			<th>글번호</th><th>제목</th><th>게시일자</th><th>조회수</th><th>좋아요 수</th><th>작성자</th><th>삭제여부</th><th>수정</th><th>삭제</th>
-		</tr>
-		</table>
-		<div class="tableScroll">
-			<table class="table tableTd">	
+			<c:if test="${empty list} ">
+				<tr><th colspan="7">데이터가 존재하지 않습니다</th></tr>
+			</c:if>
+				
+			<c:if test="${not empty list }">
 				<c:forEach var="board" items="${list }">
-				<tr>
-					<td>${board.bno} </td>
-					<td>${board.title} </td>
-					<td>${board.reg_date} </td>
-					<td>${board.read_cnt} </td>
-					<td>${board.likes} </td>
-					<td>${board.nick_nm} </td>
-					<td>${board.del} </td>
-					<td><a href="../board/boardUpdateForm.wo?bno=${board.bno}" class="btn btn_stroke btn_small">수정</a></td>
-					<td><a onclick="del()" class="btn btn_stroke btn_small">삭제</a></td>
-				</tr>
+					<tr>
+						<td>${board.bno} </td>
+						<td>${board.title} </td>
+						<td>${board.reg_date} </td>
+						<td>${board.read_cnt} </td>
+						<td>${board.likes} </td>
+						<td>${board.nick_nm} </td>
+						<td>${board.del} </td>
+						<td><a href="../board/boardUpdateForm.wo?bno=${board.bno}" class="btn btn_stroke btn_small">수정</a></td>
+						<td><a onclick="del()" class="btn btn_small">삭제</a></td>
+					</tr>
 				</c:forEach>
-			</table>
-		</div>
+			</c:if>		
+		</table>
+	</div>
+	<div class="nums">
+		<c:if test="${startPage > PAGE_PER_BLOCK }">
+			<a onclick="location.href='adminBoard.na?pageNum=${startPage-1}'" class="pageNums" >이전</a>
+		</c:if>
+		<c:forEach var="i" begin="${startPage }" end="${endPage }">
+			<a onclick="location.href='adminBoard.na?pageNum=${i}'" class="pageNums" >${i}　　</a>
+		</c:forEach>
+		<c:if test="${endPage < totalPage }">
+			<a onclick="location.href='adminBoard.na?pageNum=${endPage+1}'" class="pageNums">다음</a>
+		</c:if>	
+	</div>
 </div>
 </body>
 </html>

@@ -81,8 +81,10 @@ public class MemberDao {
 		}
 
 		// Delete
-		public int delete(String id) {
-			return session.update("memberns.delete", id);
+		public int delete(int mno) {
+			return session.update("memberns.delete", mno 
+					
+					);
 		}
 		
 		//AdminMember - 전체 회원정보 조회

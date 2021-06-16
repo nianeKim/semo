@@ -13,11 +13,10 @@ public class AdminMember implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		final int ROW_PER_PAGE = 10;
+		final int ROW_PER_PAGE = 5;
 		final int PAGE_PER_BLOCK = 10;
 		
-		String pageNum = null;
-		
+		String pageNum = request.getParameter("pageNum");		
 		if (pageNum == null || pageNum.equals("")) pageNum="1";
 		int currentPage = Integer.parseInt(pageNum);
 		MemberDao md = MemberDao.getInstance();
@@ -25,7 +24,6 @@ public class AdminMember implements CommandProcess {
 		int total = md.getTotal();
 		int startRow = (currentPage-1)*ROW_PER_PAGE+1;
 		int endRow = startRow + ROW_PER_PAGE-1;
-		
 		List<Member> list = md.list(startRow, endRow);
 		int number = total - startRow + 1;
 		int totalPage = (int)Math.ceil((double)total/ROW_PER_PAGE);
