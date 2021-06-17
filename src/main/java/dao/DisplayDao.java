@@ -40,8 +40,11 @@ public class DisplayDao {
 	}
 	
 	// 전시 리스트 통합 조회
-	public List<Display> list() {
-		return (List<Display>)session.selectList("displayns.selectList");
+	public List<Display> list(int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		return (List<Display>)session.selectList("displayns.selectList", hm);
 	}
 	
 	// dname 중복 체크
@@ -65,10 +68,12 @@ public class DisplayDao {
 	}
 	
 	// 지역 태그로 리스트 조회
-	public List<Display> listLoc(String[] loc) {
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("loc", loc);
-		return session.selectList("displayns.selectLoc", loc);
+	public List<Display> listLoc(String[] loc, int startRow, int endRow) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		hm.put("loc", loc);
+		return session.selectList("displayns.selectLoc", hm);
 	}
 	
 	// 마이페이지 등록한 전시 리스트
@@ -77,15 +82,20 @@ public class DisplayDao {
 	}
 	
 	// 전시 리스트 통합 조회(관리자페이지)
-   public List<Display> adminlist(int startRow, int endRow) {
-      HashMap<String, Integer> hm = new HashMap<>();
-      hm.put("startRow", startRow);
-      hm.put("endRow", endRow);
-      return (List<Display>)session.selectList("displayns.adminlist", hm);
-   }
+	public List<Display> adminlist(int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		return (List<Display>) session.selectList("displayns.adminlist", hm);
+	}
    
-   //AdminMember - 총 전시수
-   public int getTotal() {
-      return (int) session.selectOne("displayns.getTotal");
-   }
+	// AdminMember - 총 전시수
+	public int getTotal() {
+		return (int) session.selectOne("displayns.getTotal");
+	}
+   
+	// display paging total
+	public int getTotalD() {
+		return (int) session.selectOne("displayns.getTotalD");
+	}
 }

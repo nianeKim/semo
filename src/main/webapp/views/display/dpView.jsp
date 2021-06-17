@@ -121,15 +121,6 @@
 			});
 		}
 	}
-	
-	/* // bookmark color 교체
-	$('.bookmark').on('click', function() {
-		if ($('svg g').css('fill') != 'none') {
-			$('svg g').css('fill', 'none');
-		} else if($('svg g').css('fill') == 'none') {
-			$('svg g').css('fill', 'var(--point-color)');
-		}
-	}); */
 </script>
 </head>
 <body>

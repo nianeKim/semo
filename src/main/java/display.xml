@@ -4,39 +4,50 @@
 	<!-- 전시 등록 -->
 	<insert id="insert" parameterType="display">
 		<selectKey keyProperty="dno" order="BEFORE" resultType="integer">
-				select nvl(max(dno), 0) + 1 dno from display
+			select nvl(max(dno), 0) + 1 dno from display
 		</selectKey>
-		insert into display values(#{dno}, #{dname}, #{start_date}, #{end_date},
-		#{spot}, #{loc}, #{address}, #{poster}, #{tag,jdbcType=VARCHAR}
+		insert into display values(#{dno}, #{dname}, #{start_date},
+		#{end_date},
+		#{spot}, #{loc}, #{address}, #{poster},
+		#{tag,jdbcType=VARCHAR}
 		, #{intro}, #{detail_img,jdbcType=VARCHAR},
 		#{detail_txt,jdbcType=VARCHAR}, #{hours}, #{fee,jdbcType=INTEGER},
 		#{fee_adult,jdbcType=INTEGER}, #{fee_teen,jdbcType=INTEGER},
-		#{fee_child,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER}, #{artist,jdbcType=VARCHAR},
-		#{tel,jdbcType=VARCHAR}, #{home_pg,jdbcType=VARCHAR}, 'n', #{mno})
+		#{fee_child,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER},
+		#{artist,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR},
+		#{home_pg,jdbcType=VARCHAR}, 'n', #{mno})
 	</insert>
-	
+
 	<!-- 전시 통합 리스트 -->
 	<select id="selectList" resultType="display">
-		select * from display where del = 'n' order by dno desc 
+		select * from (select rownum rn, e.* from (
+		select * from display where del = 'n' order by dno desc) e)
+		where rn between #{startRow} and #{endRow}
 	</select>
-	
+
 	<!-- dname 중복 체크 -->
 	<select id="select" parameterType="string" resultType="display">
-		select * from display where dname = #{dname,jdbcType=VARCHAR} and del='n'
+		select *
+		from display where dname = #{dname,jdbcType=VARCHAR} and del='n'
 	</select>
-	
+
 	<!-- 전시 상세 select -->
 	<select id="selectView" parameterType="integer" resultType="display">
 		select * from display where dno = #{dno} and del='n'
 	</select>
-	
+
 	<!-- 전시 수정 -->
 	<update id="update" parameterType="display">
 		update display set dname=#{dname}, start_date=#{start_date},
-		end_date=#{end_date}, hours=#{hours}, spot=#{spot}, loc=#{loc}, address=#{address}, fee=#{fee,jdbcType=INTEGER},
-		discount=#{discount,jdbcType=INTEGER}, fee_adult=#{fee_adult,jdbcType=INTEGER},
-		fee_teen=#{fee_teen,jdbcType=INTEGER}, fee_child=#{fee_child,jdbcType=INTEGER},
-		intro=#{intro}, tag=#{tag,jdbcType=VARCHAR}, artist=#{artist,jdbcType=VARCHAR},
+		end_date=#{end_date}, hours=#{hours}, spot=#{spot}, loc=#{loc},
+		address=#{address}, fee=#{fee,jdbcType=INTEGER},
+		discount=#{discount,jdbcType=INTEGER},
+		fee_adult=#{fee_adult,jdbcType=INTEGER},
+		fee_teen=#{fee_teen,jdbcType=INTEGER},
+		fee_child=#{fee_child,jdbcType=INTEGER},
+		intro=#{intro},
+		tag=#{tag,jdbcType=VARCHAR}, artist=#{artist,jdbcType=VARCHAR},
 		tel=#{tel,jdbcType=VARCHAR}, home_pg=#{home_pg,jdbcType=VARCHAR},
 		detail_txt=#{detail_txt,jdbcType=VARCHAR}
 		<if test="detail_img != null and detail_img != ''">
@@ -45,36 +56,45 @@
 		<if test="poster != null and poster != ''">
 			,poster = #{poster}
 		</if>
-		 where dno = #{dno}
+		where dno = #{dno}
 	</update>
-	
+
 	<!-- 전시 삭제 -->
 	<update id="delete" parameterType="integer">
-		update display set del = 'y' where dno = #{dno}
+		update display set del = 'y'
+		where dno = #{dno}
 	</update>
-	
+
 	<!-- 지역 태그로 리스트 조회 -->
 	<select id="selectLoc" resultType="display">
+		select * from (select rownum rn, e.* from (
 		select * from display where loc in
-		<foreach collection="array" item="item" open="(" close=")" separator=",">
+		<foreach collection="loc" item="item" open="(" close=")" separator=",">
 			#{item}
 		</foreach>
-		and del = 'n' order by dno desc
+		and del = 'n' order by dno desc) e)
+		where rn between #{startRow} and #{endRow}
 	</select>
-	
+
 	<!-- 마이페이지 - 등록한 전시 -->
-    <select id="mpList" parameterType="integer" resultType="display">
-       select * from display where mno = #{mno} and del = 'n' order by dno desc 
-    </select>
-    
-    <!-- 전체전시 조회(페이징) -->
-   <select id="adminlist" parameterType="hashmap" resultType="display">
-      select * from (select rowNum rn, e.* from (select * from display order by dno desc) e) 
-         where rn between #{startRow} and #{endRow}
-   </select>
-   
-   <!-- 총 전시수 조회 -->
-   <select id="getTotal" resultType="integer">
-      select count(*) from display
-   </select>
+	<select id="mpList" parameterType="integer" resultType="display">
+		select * from display where mno = #{mno} and del = 'n' order by dno desc
+	</select>
+
+	<!-- 전체전시 조회(페이징) -->
+	<select id="adminlist" parameterType="hashmap" resultType="display">
+		select * from (select rowNum rn, e.* from (select * from display order by
+		dno desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 총 전시수 조회 -->
+	<select id="getTotal" resultType="integer">
+		select count(*) from display
+	</select>
+
+	<!-- display main paging -->
+	<select id="getTotalD" resultType="integer">
+		select count(*) from display where del = 'n'
+	</select>
 </mapper> 
