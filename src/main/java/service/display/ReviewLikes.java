@@ -38,7 +38,6 @@ public class ReviewLikes implements CommandProcess {
 		}
 		
 		int likes = rd.selectLikes(rv_no);
-		System.out.println("update likes"+ likes);
 		
 		request.setAttribute("likes", likes);
 		request.setAttribute("imgSrc", imgSrc);

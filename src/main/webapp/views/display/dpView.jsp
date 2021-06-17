@@ -56,15 +56,6 @@
 			$(this).parents('.like_box').siblings('.review').show();
 			$(this).parents('.like_box').siblings('input').hide();
 		});
-		
-		// bookmark color 교체
-		$('.bookmark').on('click', function() {
-			if ($('svg g').css('fill') != 'none') {
-				$('svg g').css('fill', 'none');
-			} else if($('svg g').css('fill') == 'none') {
-				$('svg g').css('fill', 'var(--point-color)');
-			}
-		});
 	});
 	
 	// session check
@@ -112,11 +103,33 @@
 				
 				$('.like_img'+rv_no).attr('src', imgSrc);
 				$('.like_img'+rv_no).siblings('.count').text(likes);
-				console.log(imgSrc);
-				console.log(likes);
 			});
 		}
 	}
+	
+	// 북마크 제어
+	function bookmark() {
+		if (${empty id}) {
+			var con = confirm("로그인이 필요합니다.");
+			if (con) {				
+				location.href="/semojeon/views/member/loginForm.na";
+			}
+		} else {
+			$.post("bookmarkUpdate.do", "dno=${display.dno}", function(data) {
+				$('.bookmark svg g').css('fill', data);
+				console.log(data);
+			});
+		}
+	}
+	
+	/* // bookmark color 교체
+	$('.bookmark').on('click', function() {
+		if ($('svg g').css('fill') != 'none') {
+			$('svg g').css('fill', 'none');
+		} else if($('svg g').css('fill') == 'none') {
+			$('svg g').css('fill', 'var(--point-color)');
+		}
+	}); */
 </script>
 </head>
 <body>
@@ -165,9 +178,9 @@
 					</tr>
 				</table>
 					<div class="bottom_box">
-						<div class="bookmark">
+						<div class="bookmark" onclick="bookmark()">
 							<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
-							    <g fill="none" fill-rule="evenodd">
+							    <g fill="${color }" fill-rule="evenodd">
 							        <g stroke="#000" stroke-width="2.5">
 							            <g>
 							                <path d="M27 30L17.499 23.303 8 30 8 4 27 4z" transform="translate(-1642 -119) translate(1642 119)"/>

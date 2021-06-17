@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.BookmarkDao;
 import dao.DisplayDao;
 import dao.ReviewDao;
 import dao.RvLikesDao;
+import model.Bookmark;
 import model.Display;
 import model.Review;
 import model.RvLikes;
@@ -45,11 +47,28 @@ public class DpView implements CommandProcess {
 		RvLikesDao rvld = RvLikesDao.getInstance();
 		List<RvLikes> rvList = rvld.select();
 		
+		// 회원이 북마크했는지 체크
+		BookmarkDao bmd = BookmarkDao.getInstance();
+		HttpSession session = request.getSession();
+		String color = "";
+		
+		if (session.getAttribute("mno") != null) {
+			int mno = (int) session.getAttribute("mno");
+			Bookmark bm = bmd.select(dno, mno);
+			
+			if (bm == null) {
+				color = "var(--point-color)";
+			} else {
+				color = "none";
+			}
+		}
+		
 		request.setAttribute("display", dp);
 		request.setAttribute("list", list);
 		request.setAttribute("star_rate", star_rate);
 		request.setAttribute("reviewCnt", reviewCnt);
 		request.setAttribute("rvList", rvList);	
+		request.setAttribute("color", color);	
 
 		return "dpView";
 	}

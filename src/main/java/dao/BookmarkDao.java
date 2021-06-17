@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import model.BdLikes;
 import model.Board;
+import model.Bookmark;
+import service.display.BookmarkUpdate;
 
 public class BookmarkDao {
 	private static BookmarkDao instance = new BookmarkDao();
@@ -36,28 +38,30 @@ public class BookmarkDao {
 			System.out.println(e.getMessage());
 		}
 	}
-	
-	// BdLikesCnt.java mno가 좋아요 한 bno 있는지 확인
-	public int select(int mno, int dno) {
-		HashMap<String, Integer> hm = new HashMap<>();
-		hm.put("mno", mno);
+
+	// 회원이 해당 전시를 북마크 했는지 체크
+	public Bookmark select(int dno, int mno) {
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
 		hm.put("dno", dno);
-		return (int) session.selectOne("bookmarkns.select", hm);
+		hm.put("mno", mno);
+		return (Bookmark) session.selectOne("bookmarkns.select", hm);
 	}
-	
-	// BdLikesCnt.java 회원이 게시글 좋아요 클릭
-	public void insert(int mno, int dno) {
-		HashMap<String, Integer> hm = new HashMap<>();
-		hm.put("mno", mno);
+
+	// 북마크하면 insert
+	public void insert(int dno, int mno) {
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
 		hm.put("dno", dno);
+		hm.put("mno", mno);
 		session.insert("bookmarkns.insert", hm);
 	}
-	
-	// BdLikesCnt.java 회원이 게시글 좋아요 취소
-	public void delete(int mno, int dno) {
-		HashMap<String, Integer> hm = new HashMap<>();
-		hm.put("mno", mno);
+
+	// 북마크 취소
+	public void delete(int dno, int mno) {
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
 		hm.put("dno", dno);
-		session.delete("bookmarkns.delete", hm);	
+		hm.put("mno", mno);
+		session.delete("bookmarkns.delete", hm);
 	}
+	
+	
 }
