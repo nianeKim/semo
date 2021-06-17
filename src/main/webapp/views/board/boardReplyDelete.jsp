@@ -10,7 +10,6 @@
 <body>
 <c:if test="${result>0 }">
 	<script type="text/javascript">
-		alert("삭제 되었습니다");
 		location.href="boardView.wo?bno=${bno}"
 	</script>
 </c:if>

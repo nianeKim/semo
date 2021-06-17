@@ -110,8 +110,8 @@
 			$.post("rpLikesCnt.wo", "re_no=" + re_no, function(data) {
 				var likes = data.split(",")[0];
 				var imgSrc = data.split(",")[1];
-				$(".like_btn" + n + " span").text(likes);
-				$(".like_btn" + n + " img").attr("src", imgSrc);
+				$(".like_btn" + re_no + " span").text(likes);
+				$(".like_btn" + re_no + " img").attr("src", imgSrc);
 			});
 		}
 	}
@@ -234,7 +234,6 @@
 											<%-- 세션회원번호 == 좋아요누른회원번호 --%>
 											<c:if test="${reply.re_no == rplikes.re_no}">
 												<script type="text/javascript">
-													console.log("??");
 													$(".like_btn" + ${reply.re_no} + " img").attr("src", "../../images/icons/heart-fill.png");
 												</script>
 											</c:if>

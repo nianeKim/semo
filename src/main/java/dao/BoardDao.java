@@ -42,18 +42,27 @@ public class BoardDao {
 	}
 
 	// BoardMain.java : order by bno desc
-	public List<Board> list() {
-		return session.selectList("boardns.list");
+	public List<Board> list(int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+	    hm.put("startRow", startRow);
+	    hm.put("endRow", endRow);
+	    return session.selectList("boardns.list", hm);
 	}
 
 	// BoardMain.java : order by read_cnt desc
-	public List<Board> list2() {
-		return session.selectList("boardns.list2");
+	public List<Board> list2(int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+	    hm.put("startRow", startRow);
+	    hm.put("endRow", endRow);
+	    return session.selectList("boardns.list2", hm);
 	}
 
 	// BoardMain.java : order by likes desc
-	public List<Board> list3() {
-		return session.selectList("boardns.list3");
+	public List<Board> list3(int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+	    hm.put("startRow", startRow);
+	    hm.put("endRow", endRow);
+	    return session.selectList("boardns.list3", hm);
 	}
 
 	// BoardView.java
@@ -93,10 +102,10 @@ public class BoardDao {
 	
 	// AdminBoard.java 작성한 스토리 목록
 	public List<Board> adminList(int startRow, int endRow) {
-	   HashMap<String, Integer> hm = new HashMap<>();
-	      hm.put("startRow", startRow);
-	      hm.put("endRow", endRow);
-	      return (List<Board>)session.selectList("boardns.adminList",hm);
+		HashMap<String, Integer> hm = new HashMap<>();
+	    hm.put("startRow", startRow);
+	    hm.put("endRow", endRow);
+	    return (List<Board>)session.selectList("boardns.adminList",hm);
 	}
 
 	// AdminBoard.java 게시글 전체 개수 조회(페이징)

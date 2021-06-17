@@ -11,7 +11,6 @@
 <c:if test="${result>0 }">
 	<script type="text/javascript">
 		var preUrl = document.referrer.split("/")[6];
-		alert("삭제 되었습니다");
  		if (preUrl == "boardView.wo?bno=${bno}") {
 			location.href="boardMain.wo";
 		}

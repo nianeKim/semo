@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="../../css/myPage/bdList.css">
+
 <c:if test="${list.size() == 0}">
 	<ul class="noItems">
 		<li><span class="txt_title">작성된 스토리가 없습니다.<br>첫 스토리를 올려보세요.</span></li>
@@ -53,13 +55,17 @@
 
 <!-- paging -->
 <div class="paging">
-	<button class="prev">
-		<img alt="이전" src="../../images/icons/arrow_left1.png">
-	</button>
+	<c:if test="${currentPage > 1}">
+		<button class="prev" onclick="location.href='myMain.na?pageNum=${currentPage - 1}'">
+			<img alt="이전" src="../../images/icons/arrow_left1.png">
+		</button> 
+	</c:if>
 	<div class="number">
-		<span class="page_num">1</span> / <span>6</span>
+		<span class="page_num">${pageNum} / ${totalPage}</span>
 	</div>
-	<button class="next">
-		<img alt="이전" src="../../images/icons/arrow_right.png">
-	</button>
+	<c:if test="${currentPage < totalPage}">
+		<button class="next" onclick="location.href='myMain.na?pageNum=${currentPage + 1}'">
+			<img alt="이전" src="../../images/icons/arrow_right.png">
+		</button>
+	</c:if>
 </div>

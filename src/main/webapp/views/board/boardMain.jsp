@@ -20,18 +20,6 @@
 		$('.board_list').css("display", "none");
 		$('#board_list' + value).css("display", "block");
 	}
-	
-	/* // 클릭했을 때 세션 확인
-	function sessionChk() {
-		if (${empty id}) {
-			var con = confirm("로그인 후 이용해 주시기 바랍니다.");
-			if (con) {
-				location.href = "/semojeon/views/member/loginForm.na";
-			}
-		} else {
-			location.href="boardWriteForm.wo"	
-		}
-	} */
 </script>
 </head>
 <body>
@@ -131,15 +119,19 @@
 
 		<!-- paging -->
 		<div class="paging">
-			<button class="prev">
-				<img alt="이전" src="../../images/icons/arrow_left1.png">
-			</button>
+			<c:if test="${currentPage > 1}">
+				<button class="prev" onclick="location.href='boardMain.wo?pageNum=${currentPage - 1}'">
+					<img alt="이전" src="../../images/icons/arrow_left1.png">
+				</button> 
+			</c:if>
 			<div class="number">
-				<span class="page_num">1</span> / <span>6</span>
+				<span class="page_num">${pageNum} / ${totalPage}</span>
 			</div>
-			<button class="next">
-				<img alt="이전" src="../../images/icons/arrow_right.png">
-			</button>
+			<c:if test="${currentPage < totalPage}">
+				<button class="next" onclick="location.href='boardMain.wo?pageNum=${currentPage + 1}'">
+					<img alt="이전" src="../../images/icons/arrow_right.png">
+				</button>
+			</c:if>
 		</div>
 	</div>
 </body>
