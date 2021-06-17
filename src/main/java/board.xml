@@ -11,6 +11,11 @@
 		'n', #{mno}, #{thumbnail,jdbcType=VARCHAR})
 	</insert>
 
+	<!-- 삭제되지 않은 전체 게시글 수 -->
+	<select id="getTotalNoDelete" resultType="integer">
+		select count(*) from board where del='n'
+	</select>
+
 	<!-- 게시글 목록 최신순 -->
 	<select id="list" resultType="board">
 		select * from (select rowNum rn, e.* from (
@@ -74,23 +79,28 @@
 	<update id="delete" parameterType="integer">
 		update board set del = 'y' where bno = #{bno}
 	</update>
+	
+	<!-- 마이페이지 - 특정 회원이 쓴 삭제 되지 않은 게시글 수 -->
+	<select id="getTotalNoDeleteMno" parameterType="integer" resultType="integer">
+		select count(*) from board where del='n' and mno=#{mno}
+	</select>
 
-	<!-- 마이페이지 목록 조회 -->
+	<!-- 마이페이지 - 목록 조회 -->
 	<select id="mpList" parameterType="integer" resultType="board">
 		select * from (select rowNum rn, e.* from (
-		select * from board where mno = #{mno} and del = 'n' order by bno desc) e)
+		select * from board where mno = #{mno} and del='n' order by bno desc) e)
 		where rn between #{startRow} and #{endRow}
 	</select>
 
-	<!-- 관리자페이지 목록 조회(페이징) -->
+	<!-- 관리자페이지 - 전체 게시글 수 -->
+	<select id="getTotal" resultType="integer">
+		select count(*) from board
+	</select>
+
+	<!-- 관리자페이지 - 목록 조회(페이징) -->
 	<select id="adminList" resultType="board">
 		select * from (select rowNum rn, e.* from (
 		select b.*, nick_nm from board b, member m where b.mno = m.mno order by bno desc) e)
-		where rn between #{startRow} and	#{endRow}
-	</select>
-
-	<!-- 관리자페이지 목록 조회(전체 게시글 수) -->
-	<select id="getTotal" resultType="integer">
-		select count(*) from board
+		where rn between #{startRow} and #{endRow}
 	</select>
 </mapper>

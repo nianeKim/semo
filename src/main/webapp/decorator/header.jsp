@@ -42,7 +42,7 @@
 				</ul>
 				<ul class='nav_main'>
 					<li><a href="../display/dpMain.do?tab=1" id="display">전시</a></li>
-					<li><a href="../board/boardMain.wo" id="board">스토리</a></li>
+					<li><a href="../board/boardMain.wo?pageNum=1" id="board">스토리</a></li>
 					<li>
 						<c:if test="${not empty id }">
 							<a href="../myPage/myMain.wo" id="myPage">마이페이지</a>

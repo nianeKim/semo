@@ -64,6 +64,11 @@ public class BoardDao {
 	    hm.put("endRow", endRow);
 	    return session.selectList("boardns.list3", hm);
 	}
+	
+	// BoardMain.java 삭제되지 않은 게시글 수
+	public int getTotalNoDelete() {
+		return (int) session.selectOne("boardns.getTotalNoDelete");
+	}
 
 	// BoardView.java
 	public Board select(int bno) {
@@ -104,6 +109,11 @@ public class BoardDao {
 		return session.selectList("boardns.mpList", hm);
 	}
 	
+	// MyBoardList.java 특정 회원의 삭제되지 않은 게시글 수
+	public int getTotalNoDeleteMno(int mno) {
+		return (int) session.selectOne("boardns.getTotalNoDeleteMno", mno);
+	}
+
 	// AdminBoard.java 작성한 스토리 목록
 	public List<Board> adminList(int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<>();
@@ -114,7 +124,7 @@ public class BoardDao {
 
 	// AdminBoard.java 게시글 전체 개수 조회(페이징)
 	public int getTotal() {
-	      return (int) session.selectOne("boardns.getTotal");
+	    return (int) session.selectOne("boardns.getTotal");
 	}
 
 }
