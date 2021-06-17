@@ -15,36 +15,10 @@
 			"color" : "var(--point-color)",
 			"font-weight" : "700"
 		});
+		
+		console.log("startP = ${startPage}");
+		console.log("endP = ${endPage}");
 	});
-	
-	// 페이징
-	function paging(n) {
-		if (n == "prev") {
-			if (${currentPage} > 1) {
-				location.href='myBoardList.wo?pageNum=' + ${currentPage - 1};
-			} else {
-				alert("첫 번째 페이지 입니다");
-			}
-		} else if (n == "next") {
-			if (${currentPage} < ${totalPage}) {
-				location.href='myBoardList.wo?pageNum=' + ${currentPage + 1}
-			} else {
-				alert("마지막 페이지 입니다");
-			}
-		} else if (n == "first") {
-			if (${startPage > PAGE_PER_BLOCK}) {
-				location.href='myBoardList.wo?pageNum=' + ${startPage - 1}
-			} else {
-				alert("마지막 페이지 입니다");
-			}
-		} else if (n == "last") {
-			if (${endPage < totalPage}) {
-				location.href='myBoardList.wo?pageNum=' + ${endPage + 1}
-			} else {
-				alert("마지막 페이지 입니다");
-			}
-		}
-	}
 </script>
 </head>
 <body>
@@ -108,13 +82,13 @@
 			<div class="items">
 				<div class="prev_btn">
 					<c:if test="${startPage > PAGE_PER_BLOCK}">
-						<button class="first" onclick="paging('first')">
+						<button class="first" onclick="location.href='myBoardList.wo?pageNum=${startPage - 1}'">
 							<img alt="이전" src="../../images/icons/arrow_left1.png">
 							<img alt="이전" src="../../images/icons/arrow_left1.png">
 						</button> 
 					</c:if>
-					<c:if test="${currentPage > 1}">
-						<button class="prev" onclick="paging('prev')">
+					<c:if test="${pageNum > 1}">
+						<button class="prev" onclick="location.href='myBoardList.wo?pageNum=${currentPage - 1}'">
 							<img alt="이전" src="../../images/icons/arrow_left1.png">
 						</button>
 					</c:if>
@@ -124,14 +98,14 @@
 				</c:forEach>
 				<div class="next_btn">
 					<c:if test="${currentPage < totalPage}">
-						<button class="next" onclick="paging('next')">
-							<img alt="이전" src="../../images/icons/arrow_right.png">
+						<button class="next" onclick="location.href='myBoardList.wo?pageNum=${currentPage + 1}'">
+							<img alt="다음" src="../../images/icons/arrow_right.png">
 						</button>
 					</c:if>
 					<c:if test="${endPage < totalPage}">
-						<button class=last onclick="paging('last')">
-							<img alt="이전" src="../../images/icons/arrow_right.png">
-							<img alt="이전" src="../../images/icons/arrow_right.png">
+						<button class=last onclick="location.href='myBoardList.wo?pageNum=${endPage + 1}'">
+							<img alt="다음" src="../../images/icons/arrow_right.png">
+							<img alt="다음" src="../../images/icons/arrow_right.png">
 						</button> 
 					</c:if>
 				</div> <!-- next_btn -->
