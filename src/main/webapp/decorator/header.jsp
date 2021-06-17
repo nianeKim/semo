@@ -45,7 +45,7 @@
 					<li><a href="../board/boardMain.wo" id="board">스토리</a></li>
 					<li>
 						<c:if test="${not empty id }">
-							<a href="../myPage/myMain.na" id="myPage">마이페이지</a>
+							<a href="../myPage/myMain.wo" id="myPage">마이페이지</a>
 						</c:if>
 						<c:if test="${empty id }" >
 							<a href="../member/loginForm.na" id="myPage">마이페이지</a>

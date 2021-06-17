@@ -14,7 +14,7 @@
  		if (preUrl == "boardView.wo?bno=${bno}") {
 			location.href="boardMain.wo";
 		}
-		else if (preUrl == "myMain.na") {
+		else if (preUrl == "myBoardList.wo") {
 			history.back();
 		}
 	</script>

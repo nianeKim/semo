@@ -12,15 +12,14 @@ public class MyMain implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		//세션에서 id 가져옴
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
+		int mno = (int) session.getAttribute("mno"); // session mno
 		
 		MemberDao md = MemberDao.getInstance();
-		Member member = md.select(id);
-			
+		Member member = md.select(mno);
+	
 		request.setAttribute("member", member);
-			
+
 		return "myMain";
 		
 	}

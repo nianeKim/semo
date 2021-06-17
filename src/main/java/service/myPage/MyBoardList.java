@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.BoardDao;
+import dao.MemberDao;
 import model.Board;
+import model.Member;
 import service.CommandProcess;
 
 public class MyBoardList implements CommandProcess {
@@ -17,6 +19,9 @@ public class MyBoardList implements CommandProcess {
 		HttpSession session = request.getSession();
 		int mno = (int) session.getAttribute("mno"); // session mno
 		
+		MemberDao md = MemberDao.getInstance();
+		Member member = md.select(mno);
+			
 		BoardDao bd = BoardDao.getInstance();
 		
 		final int ROW_PER_PAGE = 6; // 한 페이지에 게시글 10개 씩
@@ -32,8 +37,9 @@ public class MyBoardList implements CommandProcess {
 		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1; // 게시글의 시작 번호(변수 num의 제일 마지막)
 		int endRow = startRow + ROW_PER_PAGE - 1; // 게시글의 마지막 번호(변수 num = 1)
 		
-		List<Board> list = bd.mpList(mno);
+		List<Board> list = bd.mpList(mno, startRow, endRow);
 		
+		request.setAttribute("member", member);
 		request.setAttribute("list", list);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("currentPage", currentPage);

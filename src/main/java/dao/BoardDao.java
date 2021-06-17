@@ -96,8 +96,12 @@ public class BoardDao {
 	}
 
 	// MyBoardList.java 작성한 스토리 목록
-	public List<Board> mpList(int mno) {
-		return session.selectList("boardns.mpList", mno);
+	public List<Board> mpList(int mno, int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+		hm.put("mno", mno);
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		return session.selectList("boardns.mpList", hm);
 	}
 	
 	// AdminBoard.java 작성한 스토리 목록

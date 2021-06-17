@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.DisplayDao;
+import dao.MemberDao;
 import model.Display;
+import model.Member;
 
 public class MyRegistDisplayList implements CommandProcess {
 	@Override
@@ -16,9 +18,13 @@ public class MyRegistDisplayList implements CommandProcess {
 		HttpSession session = request.getSession();
 		int mno = (int) session.getAttribute("mno"); // session mno
 
+		MemberDao md = MemberDao.getInstance();
+		Member member = md.select(mno);
+		
 		DisplayDao bd = DisplayDao.getInstance();
 		List<Display> list = bd.mpList(mno);
 
+		request.setAttribute("member", member);
 		request.setAttribute("list", list);
 
 		return "myRegistDisplayList";
