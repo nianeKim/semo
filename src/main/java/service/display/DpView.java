@@ -57,10 +57,12 @@ public class DpView implements CommandProcess {
 			Bookmark bm = bmd.select(dno, mno);
 			
 			if (bm == null) {
-				color = "var(--point-color)";
-			} else {
 				color = "none";
+			} else {
+				color = "var(--point-color)";
 			}
+		} else {
+			color = "none";
 		}
 		
 		request.setAttribute("display", dp);

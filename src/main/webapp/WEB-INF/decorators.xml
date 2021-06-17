@@ -17,7 +17,7 @@
 		<pattern>/views/board/bdLikesCnt.*</pattern>
 		<pattern>/views/board/rpLikesCnt.*</pattern>
 		<pattern>/views/display/reviewLikes.*</pattern>
-		<pattern>/views/display/bookmark.*</pattern>
+		<pattern>/views/display/bookmarkUpdate.*</pattern>
 		<pattern>/views/myPage/myMainMenu.*</pattern>
 	</excludes>
 </decorators>

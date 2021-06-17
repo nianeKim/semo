@@ -35,7 +35,7 @@ public class BookmarkUpdate implements CommandProcess {
 		
 		request.setAttribute("color", color);
 		
-		return "bookmark";
+		return "bookmarkUpdate";
 	}
 
 }
