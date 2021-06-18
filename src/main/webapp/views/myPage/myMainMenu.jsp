@@ -14,7 +14,7 @@
 		<li><img alt="프로필사진" src="/semojeon/upload/${member.profile}"></li>
 		<li class="profile_txt">
 			<h2>${member.nick_nm}님,<br>안녕하세요.</h2>
-			<a href="../member/updateForm.na">
+			<a href="../member/updateForm.na?mno=${member.mno}">
 				<img alt="연필" src="../../images/icons/write-gray.png">
 				<span>내 정보 수정</span>
 			</a>

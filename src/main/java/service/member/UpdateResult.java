@@ -17,29 +17,18 @@ public class UpdateResult implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-		
-		//세션에서 id 가져옴
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
 		//member 생성
 		Member member = new Member();
-		
-		
+				
 		//프로필 파일 업로드
 		String real = request.getSession().getServletContext().getRealPath("/upload");
 		int maxSize = 1024 * 1024 * 2;
 		
+		String id = null;
+		
 		try {
 			MultipartRequest mr = new MultipartRequest(request, real, maxSize, "utf-8", new DefaultFileRenamePolicy());
-			
-			//관리자가 수정할 경우 
-			if(id.equals("admin")) {
-				id = mr.getParameter("id");
-				member.setId(id);
-			} else {
-				id = mr.getParameter("id");
-				member.setId(id);
-			}
+			id = mr.getParameter("id");
 			String password=mr.getParameter("password");
 			String name=mr.getParameter("name");
 			String nick_nm=mr.getParameter("nick_nm");
@@ -51,6 +40,7 @@ public class UpdateResult implements CommandProcess {
 			
 			//member에 수정내용 세팅
 			
+			member.setId(id);
 			member.setPassword(password);
 			member.setName(name);
 			member.setNick_nm(nick_nm);
@@ -63,6 +53,11 @@ public class UpdateResult implements CommandProcess {
 		} catch (IOException e) {
 			System.out.println("에러:" + e.getMessage());
 		}
+		
+		
+		//세션에서 id 가져옴
+		HttpSession session = request.getSession();
+		id = (String)session.getAttribute("id");
 		
 		//memberDao 생성 및 update
 		MemberDao md = MemberDao.getInstance();
