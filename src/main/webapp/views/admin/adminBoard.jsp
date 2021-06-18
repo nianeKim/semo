@@ -29,16 +29,16 @@ $(document).ready(function() {
 </head>
 
 <body>
-<div class="container">
+<section class="container_wide">
 	<h1 class="title">스토리</h1>
-	<div>
-		<a class="btn" href="/semojeon/views/display/dpRegistForm.do">등록</a>	
+	<div class="btn_box">
+		<a class="btn btn_stroke" href="/semojeon/views/board/boardWriteForm.wo">등록</a>	
 	</div>
-	
-	<div class="container container-table">
+	<div class="container-table">
 		<table>
 			<tr>
-			<th>글번호</th><th>제목</th><th>게시일자</th><th>조회수</th><th>좋아요 수</th><th>작성자</th><th>삭제여부</th><th>수정</th><th>삭제</th>
+				<th>글번호</th><th>제목</th><th>게시일자</th><th>조회수</th><th>좋아요 수</th><th>작성자</th><th>삭제여부</th><th>수정</th><th>삭제</th>
+			</tr>
 			<c:if test="${empty list} ">
 				<tr><th colspan="7">데이터가 존재하지 않습니다</th></tr>
 			</c:if>
@@ -94,6 +94,6 @@ $(document).ready(function() {
 			</div> <!-- next_btn -->
 		</div> <!-- number -->
 	</div> <!-- paging -->
-</div>
+</section>
 </body>
 </html>

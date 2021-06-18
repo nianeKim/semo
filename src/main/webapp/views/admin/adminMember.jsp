@@ -41,9 +41,12 @@ $(document).ready(function() {
 
 </head>
 <body>
-<div class = "container">
-<h1 class="title">회원</h1>
-	<div class="container container-table">
+<section class="container_wide">
+	<h1 class="title">회원</h1>
+	<div class="btn_box">
+		<a class="btn btn_stroke" href="/semojeon/views/member/joinForm.do">등록</a>	
+	</div>
+	<div class="container-table">
 		<table>
 			<tr>
 				<th>회원번호</th><th>Id</th><th>비밀번호</th><th>이름</th><th>별명</th><th>연락처</th><th>성별</th><th>연령대</th><th>지역</th><th>회원가입일</th><th>프로필</th><th>탈퇴여부</th><th>수정</th><th>탈퇴</th>
@@ -108,6 +111,6 @@ $(document).ready(function() {
 			</div> <!-- next_btn -->
 		</div> <!-- number -->
 	</div> <!-- paging -->	
-</div>
+</section>
 </body>
 </html>
