@@ -11,7 +11,7 @@
 	</insert>
 	
 	<!-- 마이페이지 - 예매내역 -->
-    <select id="mpList" parameterType="hashmap" resultType="reservation">
+    <select id="myList" parameterType="hashmap" resultType="reservation">
        select * from (select rowNum rn, e.* from (
        select r.*, dname from reservation r, display d where r.dno = d.dno and r.mno = #{mno}
        and del = 'n' order by rs_no desc) e)
@@ -19,7 +19,7 @@
     </select>
     
     <!-- 마이페이지 - 전체 게시글 수 -->
-	<select id="getTotal" parameterType="integer" resultType="integer">
+	<select id="getTotalMy" parameterType="integer" resultType="integer">
 		select count(*) from reservation where mno=#{mno}
 	</select>
 </mapper>

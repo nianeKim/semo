@@ -17,12 +17,15 @@ public class MyBoardList implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		// session mno
 		HttpSession session = request.getSession();
-		int mno = (int) session.getAttribute("mno"); // session mno
+		int mno = (int) session.getAttribute("mno");
 		
+		// 로그인 한 회원 정보 가져오기
 		MemberDao md = MemberDao.getInstance();
 		Member member = md.select(mno);
-			
+		
+		// 북마크 개수
 		BookmarkDao bmd = BookmarkDao.getInstance();
 		int bmTotal = bmd.getTotalMy(mno); // 총 게시글 수
 		
@@ -36,6 +39,7 @@ public class MyBoardList implements CommandProcess {
 			pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum); // 현재 페이지
 
+		int total_save = bd.getTotalMySave(mno); // 총 게시글 수
 		int total = bd.getTotalMy(mno); // 총 게시글 수
 		int totalPage = (int) Math.ceil((double)total/ROW_PER_PAGE); // 총 페이지 수
 		
@@ -47,13 +51,16 @@ public class MyBoardList implements CommandProcess {
 		
 		if (endPage > totalPage) endPage = totalPage; // 마지막 페이지가 총 페이지 수 보다 클 경우
 		
-		List<Board> list = bd.mpList(mno, startRow, endRow);
+		List<Board> list = bd.myList(mno, startRow, endRow);
+		List<Board> list_save = bd.myList_save(mno, startRow, endRow);
 				
 		request.setAttribute("member", member);
 		request.setAttribute("list", list);
+		request.setAttribute("list_save", list_save);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("totalPage", totalPage);
+		request.setAttribute("total_save", total_save);
 		request.setAttribute("total", total);
 		request.setAttribute("bmTotal", bmTotal);
 		request.setAttribute("startPage", startPage);

@@ -24,13 +24,30 @@
 		<jsp:include page="myMainMenu.jsp"></jsp:include>
 		<!-- 내용 -->
 		<div class="content">
+			<h3>저장한 스토리 ${total_save}</h3>
+			<c:if test="${list_save.size() == 0}">
+				<ul class="noItems">
+					<li><span class="txt_title">저장한 스토리가 없습니다.</span></li>
+				</ul>
+			</c:if>
+			<c:if test="${list_save.size() != 0}">
+				<ul>
+					<c:forEach var="save" items="${list_save}">
+						${save.thumbnail }
+						${save.reg_date }
+						${save.title }
+						${save.content }
+					</c:forEach>
+				</ul>
+			</c:if>			
+			
+			<h3>작성한 스토리 ${total}</h3>
 			<c:if test="${list.size() == 0}">
 				<ul class="noItems">
 					<li><span class="txt_title">작성된 스토리가 없습니다.<br>첫 스토리를 올려보세요.</span></li>
 				</ul>
 			</c:if>
 			<c:if test="${list.size() != 0}">
-				<h3>작성한 스토리 ${total}</h3>
 				<ul>
 					<c:forEach var="board" items="${list}">
 						<li>

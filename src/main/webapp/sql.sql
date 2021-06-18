@@ -123,6 +123,7 @@ CREATE TABLE board
 select * from board;
 delete from board;
 alter table board add(thumbnail VARCHAR2(100));
+alter table board add(tempSave char(1) default 'n' not null);
 
 -- 게시판 좋아요
 drop table bdLikes;

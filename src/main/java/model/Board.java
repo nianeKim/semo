@@ -12,8 +12,17 @@ public class Board {
 	private String del;
 	private int mno;
 	private String thumbnail;
+	private String tempSave;
 	private int cnt;
 	private String nick_nm;
+
+	public String getTempSave() {
+		return tempSave;
+	}
+
+	public void setTempSave(String tempSave) {
+		this.tempSave = tempSave;
+	}
 
 	public String getNick_nm() {
 		return nick_nm;

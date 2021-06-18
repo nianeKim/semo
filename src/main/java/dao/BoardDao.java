@@ -41,6 +41,11 @@ public class BoardDao {
 		return session.insert("boardns.insert", board);
 	}
 
+	// BoardWriteSave.java 임시저장
+	public int save(Board board) {
+		return session.insert("boardns.save", board);
+	}
+	
 	// BoardMain.java : order by bno desc
 	public List<Board> list(int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<>();
@@ -100,18 +105,32 @@ public class BoardDao {
 		return session.update("boardns.update", board);
 	}
 
-	// MyBoardList.java 작성한 스토리 목록
-	public List<Board> mpList(int mno, int startRow, int endRow) {
+	// MyBoardList.java 작성한 게시글 목록
+	public List<Board> myList(int mno, int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<>();
 		hm.put("mno", mno);
 		hm.put("startRow", startRow);
 		hm.put("endRow", endRow);
-		return session.selectList("boardns.mpList", hm);
+		return session.selectList("boardns.myList", hm);
+	}
+
+	// MyBoardList.java 저장한 게시글 목록
+	public List<Board> myList_save(int mno, int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+		hm.put("mno", mno);
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		return session.selectList("boardns.myList_save", hm);
 	}
 	
-	// MyBoardList.java 특정 회원의 삭제되지 않은 게시글 수
+	// MyBoardList.java 작성한 게시글 수
 	public int getTotalMy(int mno) {
 		return (int) session.selectOne("boardns.getTotalMy", mno);
+	}
+	
+	// MyBoardList.java 저장한 게시글 수
+	public int getTotalMySave(int mno) {
+		return (int) session.selectOne("boardns.getTotalMySave", mno);
 	}
 
 	// AdminBoard.java 작성한 스토리 목록
@@ -126,5 +145,7 @@ public class BoardDao {
 	public int getTotal() {
 	    return (int) session.selectOne("boardns.getTotal");
 	}
+
+
 
 }

@@ -77,7 +77,7 @@
 	</select>
 
 	<!-- 마이페이지 - 등록한 전시 -->
-	<select id="mpList" parameterType="hashmap" resultType="display">
+	<select id="myList" parameterType="hashmap" resultType="display">
 		select * from (select rowNum rn, e.* from (
 		select * from display where mno = #{mno} and del = 'n' order by dno desc) e)
 		where rn between #{startRow} and #{endRow}

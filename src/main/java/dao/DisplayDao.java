@@ -77,12 +77,12 @@ public class DisplayDao {
 	}
 	
 	// 마이페이지 등록한 전시 리스트
-	public List<Display> mpList(int mno, int startRow, int endRow) {
+	public List<Display> myList(int mno, int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<>();
 		hm.put("mno", mno);
 		hm.put("startRow", startRow);
 		hm.put("endRow", endRow);
-		return session.selectList("displayns.mpList", hm);
+		return session.selectList("displayns.myList", hm);
 	}
 	
 	// 전시 리스트 통합 조회(관리자페이지)

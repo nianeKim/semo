@@ -46,7 +46,7 @@ public class MyRegistDisplayList implements CommandProcess {
 		
 		if (endPage > totalPage) endPage = totalPage; // 마지막 페이지가 총 페이지 수 보다 클 경우
 		
-		List<Display> list = dd.mpList(mno, startRow, endRow);
+		List<Display> list = dd.myList(mno, startRow, endRow);
 
 		request.setAttribute("member", member);
 		request.setAttribute("list", list);

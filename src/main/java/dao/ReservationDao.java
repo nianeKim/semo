@@ -36,17 +36,17 @@ public class ReservationDao {
 	}
 	
 	// 마이페이지 예매내역 조회
-	public List<Reservation> mpList(int mno, int startRow, int endRow) {
+	public List<Reservation> myList(int mno, int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<>();
 		hm.put("mno", mno);
 		hm.put("startRow", startRow);
 	    hm.put("endRow", endRow);
-	    return session.selectList("reservationns.mpList", hm);
+	    return session.selectList("reservationns.myList", hm);
 	}
 	
 	// 마이페이지 총 예매내역 수
-	public int getTotal(int mno) {
-	    return (int) session.selectOne("reservationns.getTotal", mno);
+	public int getTotalMy(int mno) {
+	    return (int) session.selectOne("reservationns.getTotalMy", mno);
 	}
 	
 	

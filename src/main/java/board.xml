@@ -8,12 +8,22 @@
 			select nvl(max(bno), 0) + 1 bno from board
 		</selectKey>
 		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0,
-		'n', #{mno}, #{thumbnail,jdbcType=VARCHAR})
+		'n', #{mno}, #{thumbnail,jdbcType=VARCHAR}, 'n')
+	</insert>
+	
+	<!-- 게시글 저장 -->
+	<insert id="save" parameterType="board">
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="integer">
+			select nvl(max(bno), 0) + 1 bno from board
+		</selectKey>
+		insert into board values(#{bno}, #{title}, #{content}, sysdate, 0, 0,
+		'n', #{mno}, #{thumbnail,jdbcType=VARCHAR}, 'y')
 	</insert>
 
 	<!-- 삭제되지 않은 전체 게시글 수 -->
 	<select id="getTotalB" resultType="integer">
-		select count(*) from board where del='n'
+		select count(*) from board where del='n' and tempSave = 'n'
 	</select>
 
 	<!-- 게시글 목록 최신순 -->
@@ -22,7 +32,7 @@
 		select b.*, c.cnt, nick_nm from
 		BOARD b left outer join (select bno, count(bno) cnt from reply where
 		del = 'n' group by bno) c on b.bno = c.bno, member m where b.mno =
-		m.mno and b.del='n' order by b.reg_date desc) e)
+		m.mno and b.del='n' and b.tempSave='n' order by b.reg_date desc) e)
 		where rn between #{startRow} and #{endRow}
 	</select>
 
@@ -32,7 +42,7 @@
 		select b.*, c.cnt, nick_nm from
 		BOARD b left outer join (select bno, count(bno) cnt from reply where
 		del = 'n' group by bno) c on b.bno = c.bno, member m where b.mno =
-		m.mno and b.del='n' order by b.read_cnt desc, b.bno desc) e)
+		m.mno and b.del='n' and b.tempSave='n' order by b.read_cnt desc, b.bno desc) e)
 		where rn between #{startRow} and #{endRow}
 	</select>
 
@@ -42,7 +52,7 @@
 		select b.*, c.cnt, nick_nm from
 		BOARD b left outer join (select bno, count(bno) cnt from reply where
 		del = 'n' group by bno) c on b.bno = c.bno, member m where b.mno =
-		m.mno and b.del='n' order by b.likes desc, b.bno desc) e)
+		m.mno and b.del='n' and b.tempSave='n' order by b.likes desc, b.bno desc) e)
 		where rn between #{startRow} and #{endRow}
 	</select>
 
@@ -80,15 +90,27 @@
 		update board set del = 'y' where bno = #{bno}
 	</update>
 	
-	<!-- 마이페이지 - 특정 회원이 쓴 삭제 되지 않은 게시글 수 -->
+	<!-- 마이페이지 - 작성한 게시글 수 -->
 	<select id="getTotalMy" parameterType="integer" resultType="integer">
-		select count(*) from board where del='n' and mno=#{mno}
+		select count(*) from board where del='n' and tempSave='n' and mno=#{mno}
 	</select>
 
-	<!-- 마이페이지 - 목록 조회 -->
-	<select id="mpList" parameterType="integer" resultType="board">
+	<!-- 마이페이지 - 작성한 게시글 목록 조회 -->
+	<select id="myList" parameterType="integer" resultType="board">
 		select * from (select rowNum rn, e.* from (
-		select * from board where mno = #{mno} and del='n' order by bno desc) e)
+		select * from board where mno = #{mno} and del='n' and tempSave='n' order by bno desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 마이페이지 - 저장한 게시글 수 -->
+	<select id="getTotalMySave" parameterType="integer" resultType="integer">
+		select count(*) from board where del='n' and tempSave='y' and mno=#{mno}
+	</select>
+	
+	<!-- 마이페이지 - 저장한 게시글 목록 조회 -->
+	<select id="myList_save" parameterType="integer" resultType="board">
+		select * from (select rowNum rn, e.* from (
+		select * from board where mno = #{mno} and del='n' and tempSave='y' order by bno desc) e)
 		where rn between #{startRow} and #{endRow}
 	</select>
 

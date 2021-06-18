@@ -80,8 +80,7 @@ input[type="file"] { /* input 사라지게 */
 	<div class="container_middle">
 		<h1 class="title">스토리 작성</h1>
 		
-		<form action="boardWriteResult.wo" method="post"
-			enctype="multipart/form-data">
+		<form method="post" enctype="multipart/form-data">
 			<!-- 제목 -->
 			<input type="text" name="title" placeholder="제목">
 
@@ -96,7 +95,9 @@ input[type="file"] { /* input 사라지게 */
 			
 			<!-- 하단 버튼 영역 -->
 			<div class="btn_area">
-				<input class="btn btn_small" type="submit" value="글작성">
+				
+				<button type="submit" class="btn btn_small" formaction="boardWriteResult.wo?action=insert">글작성</button>
+				<button type="submit" class="btn btn_small" formaction="boardWriteResult.wo?action=save">저장</button>
 				<a class="btn btn_stroke btn_small btn_right" href="boardMain.wo">목록</a>
 			</div>
 		</form>

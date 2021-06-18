@@ -32,24 +32,32 @@ public class BoardWriteResult implements CommandProcess {
 		String real = request.getSession().getServletContext().getRealPath("/upload");
 		int maxSize = 1024 * 1024 * 10; // 최대 사이즈
 		
+		int result = 0;
 		try {																			// 같은 파일 이름에 자동으로 숫자 추가
 			MultipartRequest mr = new MultipartRequest(request, real, maxSize, "utf-8", new DefaultFileRenamePolicy());
 			String thumbnail = mr.getFilesystemName("thumbnail"); // thumbnail input 내용 불러오기
 			String title = mr.getParameter("title");
 			String content = mr.getParameter("content");
-
+			
 			// board 세팅
 			board.setThumbnail(thumbnail);
 			board.setTitle(title);
 			board.setContent(content);
-
+		
 		} catch (IOException e) {
 			System.out.println("에러 : " + e.getMessage());;
 		}
 		
 		// boardDao 생성 및 insert
 		BoardDao bd = BoardDao.getInstance();
-		int result = bd.insert(board);
+		// insert/save 값 가져오기
+		String action = request.getParameter("action");
+		
+		if (action.equals("insert")) {
+			result = bd.insert(board);
+		} else if (action.equals("save")) {
+			result = bd.save(board);
+		}
 		
 		request.setAttribute("result", result);
 

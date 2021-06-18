@@ -36,7 +36,7 @@ public class MyReserveList implements CommandProcess {
 			pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum); // 현재 페이지
 
-		int total = rd.getTotal(mno); // 총 게시글 수
+		int total = rd.getTotalMy(mno); // 총 게시글 수
 		
 		int totalPage = (int) Math.ceil((double)total/ROW_PER_PAGE); // 총 페이지 수
 		
@@ -48,7 +48,7 @@ public class MyReserveList implements CommandProcess {
 		
 		if (endPage > totalPage) endPage = totalPage; // 마지막 페이지가 총 페이지 수 보다 클 경우
 		
-		List<Reservation> list = rd.mpList(mno, startRow, endRow);
+		List<Reservation> list = rd.myList(mno, startRow, endRow);
 		
 		request.setAttribute("member", member);
 		request.setAttribute("list", list);
