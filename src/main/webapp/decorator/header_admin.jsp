@@ -15,8 +15,6 @@
 		
 		//$('.nav_main a').removeClass("active");
 		$('#'+sliceUrl).addClass("active");
-		console.log(sliceUrl);
-		
 	}) 
 </script>
 
