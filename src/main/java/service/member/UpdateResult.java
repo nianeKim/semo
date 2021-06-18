@@ -18,15 +18,12 @@ public class UpdateResult implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		
-		//세션에서 id 가져옴, form에서 수정내용 받아옴
+		//세션에서 id 가져옴
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		
 		//member 생성
 		Member member = new Member();
 		
-		//member에 수정내용 세팅
-		member.setId(id);
 		
 		//프로필 파일 업로드
 		String real = request.getSession().getServletContext().getRealPath("/upload");
@@ -35,6 +32,13 @@ public class UpdateResult implements CommandProcess {
 		try {
 			MultipartRequest mr = new MultipartRequest(request, real, maxSize, "utf-8", new DefaultFileRenamePolicy());
 			
+			//관리자가 수정할 경우 
+			if(id.equals("admin")) {
+				id = mr.getParameter("id");
+				member.setId(id);
+			} else {
+				member.setId(id);
+			}
 			String password=mr.getParameter("password");
 			String name=mr.getParameter("name");
 			String nick_nm=mr.getParameter("nick_nm");
@@ -62,6 +66,7 @@ public class UpdateResult implements CommandProcess {
 		//memberDao 생성 및 update
 		MemberDao md = MemberDao.getInstance();
 		int result = md.update(member);
+		request.setAttribute("id", id);
 		request.setAttribute("result", result);
 		
 		return "updateResult";

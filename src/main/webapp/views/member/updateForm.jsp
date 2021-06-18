@@ -184,7 +184,7 @@ function del() {
 
 			<!-- 지역 -->
 			<div class="loc-age">
-				<select class="select-loc" name="loc">
+				<select class="select-loc" name="loc" required="required">
 					<option value="">지역</option>
 					<option value="Seoul" <c:if test="${member.loc=='Seoul'}">selected</c:if>>서울</option>
 					<option value="Sejong" <c:if test="${member.loc=='Sejong'}">selected</c:if>>세종</option>
@@ -206,7 +206,7 @@ function del() {
 				</select> 
 				
 			<!-- 나이 -->
-				<select class="select-age" name="age">
+				<select class="select-age" name="age" required="required">
 					<option value="">나이</option>
 					<option value="10" <c:if test="${member.age == 10}">selected</c:if>>10대</option>
 					<option value="20" <c:if test="${member.age == 20}">selected</c:if>>20대</option>

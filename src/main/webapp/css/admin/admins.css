@@ -5,14 +5,13 @@
 }
 /* 가로스크롤 생성 */
 .container{
-	display: grid;
 	width: 80%;
 	font-family: inherit;
 }
 
 .container-table{
-	position: absolute;
-	overflow: auto;
+	overflow: hidden;
+	margin-top: 85px;
 }
 
 .btn{
@@ -39,7 +38,7 @@
 
 .nums {	
 	position: fixed;
-	bottom: 100px;
+	bottom: 40px;
 	width: 80%;
 	text-align: center;
 	cursor: pointer;

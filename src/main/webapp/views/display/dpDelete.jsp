@@ -10,8 +10,13 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
+		var preUrl = document.referrer.split("/")[6];
 		alert("삭제 완료!");
-		location.href="dpMain.do?tab=1";
+		if (preUrl.includes("adminDisplay")){
+			location.href="../admin/adminDisplay.na"
+		}else{
+			location.href="dpMain.do?tab=1";	
+		}
 	</script>
 </c:if>
 <c:if test="${result <= 0 }">

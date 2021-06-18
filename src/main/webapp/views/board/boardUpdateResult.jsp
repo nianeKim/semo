@@ -12,7 +12,12 @@
 	<c:if test="${result>0 }">
 		<script type="text/javascript">
 			alert("수정되었습니다.")
-			location.href = "boardView.wo?bno=${bno}"
+			if ("${id}" == "admin"){
+				location.href="../admin/adminBoard.na";
+			}
+			else {
+				location.href = "boardView.wo?bno=${bno}"
+			}
 		</script>
 	</c:if>
 
