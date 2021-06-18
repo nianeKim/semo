@@ -6,43 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-@import url("../../css/admin/admins.css");
-
-/* 가로스크롤 생성 */
-.container{
-	display: grid;
-	width: 80%;
-	font-family: inherit;
-	overflow: auto;
-}
-
-.container-table{
-	position: absolute;
-}
-
-</style>
-
+<link rel="stylesheet" href="../../css/admin/admins.css">
 <script type="text/javascript">
-function del(delMno) {
-	var con = confirm("탈퇴처리 하시겠습니까?");
-	if(con) {
-		location.href="../member/delete.na?mno="+delMno;
+	function del(delMno) {
+		var con = confirm("탈퇴처리 하시겠습니까?");
+		if(con) {
+			location.href="../member/delete.na?mno="+delMno;
+		}
 	}
-}
-
-$(document).ready(function() {
-	$('#page'+${currentPage}).css({
-		"color" : "var(--point-color)",
-		"font-weight" : "600"
+	
+	$(document).ready(function() {
+		$('#page'+${currentPage}).css({
+			"color" : "var(--point-color)",
+			"font-weight" : "600"
+		});
 	});
-});
 </script>
-
 </head>
 <body>
 <section class="container_wide">
-	<h1 class="title">회원</h1>
 	<div class="btn_box">
 		<a class="btn btn_stroke" href="/semojeon/views/member/joinForm.do">등록</a>	
 	</div>

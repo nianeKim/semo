@@ -12,25 +12,24 @@
 </style>
 
 <script type="text/javascript">
-function del(delBno) {
-	var con = confirm("해당 스토리를 삭제 하시겠습니까?");
-	if(con) {
-		location.href="../board/boardDelete.wo?bno="+delBno;
+	function del(delBno) {
+		var con = confirm("해당 스토리를 삭제 하시겠습니까?");
+		if(con) {
+			location.href="../board/boardDelete.wo?bno="+delBno;
+		}
 	}
-}
-
-$(document).ready(function() {
-	$('#page'+${currentPage}).css({
-		"color" : "var(--point-color)",
-		"font-weight" : "600"
+	
+	$(document).ready(function() {
+		$('#page'+${currentPage}).css({
+			"color" : "var(--point-color)",
+			"font-weight" : "600"
+		});
 	});
-});
 </script>
 </head>
 
 <body>
 <section class="container_wide">
-	<h1 class="title">스토리</h1>
 	<div class="btn_box">
 		<a class="btn btn_stroke" href="/semojeon/views/board/boardWriteForm.wo">등록</a>	
 	</div>

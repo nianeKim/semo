@@ -10,8 +10,8 @@
 }
 
 .container-table{
-	overflow: hidden;
-	margin-top: 15px;
+	overflow: scroll;
+	margin: 15px auto 0 auto;
 }
 
 .btn_box {

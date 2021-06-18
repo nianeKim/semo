@@ -7,35 +7,32 @@
 <%@ include file="../sessionChk.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
 @import url("../../css/admin/admins.css");
 </style>
-
 <script type="text/javascript">
-function del(delDno) {
-	var con = confirm("해당 전시를 삭제 하시겠습니까?");
-	if(con) {
-		location.href="../display/dpDelete.do?dno="+delDno;
+	function del(delDno) {
+		var con = confirm("해당 전시를 삭제 하시겠습니까?");
+		if(con) {
+			location.href="../display/dpDelete.do?dno="+delDno;
+		}
 	}
-}
-
-$(document).ready(function() {
-	$('#page'+${currentPage}).css({
-		"color" : "var(--point-color)",
-		"font-weight" : "600"
-	});
 	
-	console.log(${currentPage});
-	console.log(${pageNum});
-});
+	$(document).ready(function() {
+		$('#page'+${currentPage}).css({
+			"color" : "var(--point-color)",
+			"font-weight" : "600"
+		});
+		
+		console.log(${currentPage});
+		console.log(${pageNum});
+	});
 </script>
 
 
 </head>
 <body>
 <section class="container_wide">
-	<h1 class="title">전시</h1>
 	<div class="btn_box">
 		<a class="btn btn_stroke" href="/semojeon/views/display/dpRegistForm.do">등록</a>	
 	</div>
