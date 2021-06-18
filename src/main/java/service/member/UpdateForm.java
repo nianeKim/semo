@@ -15,11 +15,17 @@ public class UpdateForm implements CommandProcess {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
+		Member member = new Member();
 		MemberDao md = MemberDao.getInstance();
-		Member member = md.select(id);
 		
+		if (id.equals("admin")) {
+			int	mno = Integer.parseInt(request.getParameter("mno"));
+			member = md.select(mno);
+		}
+		else {
+			member = md.select(id);
+		}
 		request.setAttribute("member", member);
-	
 		return "updateForm";
 	}
 }

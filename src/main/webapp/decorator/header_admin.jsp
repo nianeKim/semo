@@ -43,7 +43,6 @@
 					<li><a href="../admin/adminDisplay.na" id="adminDisplay">전시 관리</a></li>
 					<li><a href="../admin/adminMember.na" id="adminMember">회원 관리</a></li>
 					<li><a href="../admin/adminBoard.na" id="adminBoard">스토리 관리</a></li>
-					<li><a href="#"><img alt="검색" src="../../images/icons/search.png"></a></li>
 				</ul>
 			</nav>
 		</div>

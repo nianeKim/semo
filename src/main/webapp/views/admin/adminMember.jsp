@@ -30,6 +30,13 @@ function del(delMno) {
 		location.href="../member/delete.na?mno="+delMno;
 	}
 }
+
+$(document).ready(function() {
+	$('#page'+${currentPage}).css({
+		"color" : "var(--point-color)",
+		"font-weight" : "600"
+	});
+});
 </script>
 
 </head>
@@ -59,7 +66,7 @@ function del(delMno) {
 						<td>${member.reg_date}</td>
 						<td>${member.profile}</td>
 						<td>${member.del}</td>
-						<td><a href="../member/updateForm.na?id=${member.id}" class="btn btn_small">수정</a></td>
+						<td><a href="../member/updateForm.na?mno=${member.mno}" class="btn btn_small">수정</a></td>
 						<td><a onclick="del(${member.mno})" class="btn btn_small">탈퇴</a></td>
 					</tr>
 				</c:forEach>
@@ -67,18 +74,40 @@ function del(delMno) {
 			
 		</table>
 	</div>
-	
-	<div class="nums">
-		<c:if test="${startPage > PAGE_PER_BLOCK }">
-			<a onclick="location.href='adminMember.na?pageNum=${startPage-1}'" class="pageNums" >이전</a>
-		</c:if>
-		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<a onclick="location.href='adminMember.na?pageNum=${i}'" class="pageNums" >${i}　　</a>
-		</c:forEach>
-		<c:if test="${endPage < totalPage }">
-			<a onclick="location.href='adminMember.na?pageNum=${endPage+1}'" class="pageNums">다음</a>
-		</c:if>	
-	</div>
+<!-- paging -->
+	<div class="paging nums">
+		<div class="items">
+			<div class="prev_btn">
+				<c:if test="${startPage > PAGE_PER_BLOCK}">
+					<button class="first" onclick="location.href='adminMember.na?pageNum=${startPage-1}'">
+						<img alt="이전" src="../../images/icons/arrow_left1.png">
+						<img alt="이전" src="../../images/icons/arrow_left1.png">
+					</button> 
+				</c:if>
+				<c:if test="${pageNum > 1}">
+					<button class="prev" onclick="location.href='adminMember.na?pageNum=${currentPage - 1}'">
+						<img alt="이전" src="../../images/icons/arrow_left1.png">
+					</button>
+				</c:if>
+			</div>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<span id="page${i}" class="page_num" onclick="location.href='adminMember.na?pageNum=${i}'">${i}</span>
+			</c:forEach>
+			<div class="next_btn">
+				<c:if test="${currentPage < totalPage}">
+					<button class="next" onclick="location.href='adminMember.na?pageNum=${currentPage + 1}'">
+						<img alt="다음" src="../../images/icons/arrow_right.png">
+					</button>
+				</c:if>
+				<c:if test="${endPage < totalPage}">
+					<button class=last onclick="location.href='adminMember.na?pageNum=${endPage + 1}'">
+						<img alt="다음" src="../../images/icons/arrow_right.png">
+						<img alt="다음" src="../../images/icons/arrow_right.png">
+					</button> 
+				</c:if>
+			</div> <!-- next_btn -->
+		</div> <!-- number -->
+	</div> <!-- paging -->	
 </div>
 </body>
 </html>

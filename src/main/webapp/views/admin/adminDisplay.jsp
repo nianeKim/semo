@@ -13,12 +13,19 @@
 </style>
 
 <script type="text/javascript">
-function del() {
+function del(delDno) {
 	var con = confirm("해당 전시를 삭제 하시겠습니까?");
 	if(con) {
-		location.href="../display/dpDelete.do?dno=${display.dno}";
+		location.href="../display/dpDelete.do?dno="+delDno;
 	}
 }
+
+$(document).ready(function() {
+	$('#page'+${currentPage}).css({
+		"color" : "var(--point-color)",
+		"font-weight" : "600"
+	});
+});
 </script>
 
 
@@ -54,24 +61,45 @@ function del() {
 				<td>${display.del} </td>
 				<td>${display.mno} </td>
 				<td><a href="../display/dpUpdateForm.do?dno=${display.dno}" class="btn btn_stroke btn_small">수정</a></td>
-				<td><a onclick="del()" class="btn btn_small">삭제</a></td>
+				<td><a onclick="del(${display.dno})" class="btn btn_small">삭제</a></td>
 			</tr>
 			</c:forEach>
 		</table>
 	</div>
-	
-	<div class="nums">
-		<c:if test="${startPage > PAGE_PER_BLOCK }">
-			<a onclick="location.href='adminDisplay.na?pageNum=${startPage-1}'" class="pageNums" >이전</a>
-		</c:if>
-		<c:forEach var="i" begin="${startPage }" end="${endPage }">
-			<a onclick="location.href='adminDisplay.na?pageNum=${i}'" class="pageNums" >${i}　　</a>
-		</c:forEach>
-		<c:if test="${endPage < totalPage }">
-			<a onclick="location.href='adminDisplay.na?pageNum=${endPage+1}'" class="pageNums">다음</a>
-		</c:if>	
-	</div>
-
+	<!-- paging -->
+	<div class="paging nums">
+		<div class="items">
+			<div class="prev_btn">
+				<c:if test="${startPage > PAGE_PER_BLOCK}">
+					<button class="first" onclick="location.href='adminDisplay.na?pageNum=${startPage-1}'">
+						<img alt="이전" src="../../images/icons/arrow_left1.png">
+						<img alt="이전" src="../../images/icons/arrow_left1.png">
+					</button> 
+				</c:if>
+				<c:if test="${pageNum > 1}">
+					<button class="prev" onclick="location.href='adminDisplay.na?pageNum=${currentPage - 1}'">
+						<img alt="이전" src="../../images/icons/arrow_left1.png">
+					</button>
+				</c:if>
+			</div>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}">
+				<span id="page${i}" class="page_num" onclick="location.href='adminDisplay.na?pageNum=${i}'">${i}</span>
+			</c:forEach>
+			<div class="next_btn">
+				<c:if test="${currentPage < totalPage}">
+					<button class="next" onclick="location.href='adminDisplay.na?pageNum=${currentPage + 1}'">
+						<img alt="다음" src="../../images/icons/arrow_right.png">
+					</button>
+				</c:if>
+				<c:if test="${endPage < totalPage}">
+					<button class=last onclick="location.href='adminDisplay.na?pageNum=${endPage + 1}'">
+						<img alt="다음" src="../../images/icons/arrow_right.png">
+						<img alt="다음" src="../../images/icons/arrow_right.png">
+					</button> 
+				</c:if>
+			</div> <!-- next_btn -->
+		</div> <!-- number -->
+	</div> <!-- paging -->	
 </form>
 </body>
 </html>

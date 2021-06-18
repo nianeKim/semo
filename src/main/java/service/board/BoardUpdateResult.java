@@ -19,6 +19,9 @@ public class BoardUpdateResult implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		int bno = Integer.parseInt(request.getParameter("bno"));
+		//관리자가 수정하는 경우를 위해 세션체크 추가
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		
 		// 파일 업로드 경로
 		String real = request.getSession().getServletContext().getRealPath("/upload");
@@ -48,6 +51,8 @@ public class BoardUpdateResult implements CommandProcess {
 		
 		request.setAttribute("result", result);
 		request.setAttribute("bno", bno);
+		request.setAttribute("id", id);
+		
 
 		return "boardUpdateResult";
 	}
