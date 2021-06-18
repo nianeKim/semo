@@ -53,6 +53,11 @@
 										<span class="txt"><span>어린이 수량</span> ${reserve.cnt_child}개</span>
 									</c:if>
 								</a>
+								<div class="txt_bottom">
+									<div class="btn_area">
+										<a href="../display/reserveDelete.do?dno=${reserve.dno}" class="btn btn_stroke btn_small">예매 취소</a>
+									</div>
+								</div>
 							</div>
 						</li>
 					</c:forEach>

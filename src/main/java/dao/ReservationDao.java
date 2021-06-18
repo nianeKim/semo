@@ -49,5 +49,10 @@ public class ReservationDao {
 	    return (int) session.selectOne("reservationns.getTotalMy", mno);
 	}
 	
+	// mypage 예매 취소
+	public int delete(int dno) {
+		return session.delete("reservationns.delete", dno);
+	}
+	
 	
 }

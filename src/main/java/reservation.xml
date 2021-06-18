@@ -22,4 +22,9 @@
 	<select id="getTotalMy" parameterType="integer" resultType="integer">
 		select count(*) from reservation where mno=#{mno}
 	</select>
+	
+	<!-- 예매 취소 -->
+	<delete id="delete" parameterType="integer">
+		delete reservation where dno = #{dno}
+	</delete>
 </mapper>
