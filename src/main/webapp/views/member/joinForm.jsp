@@ -156,8 +156,8 @@ function chk(){
 			<div class="check">
 				<input type="text" name="nick_nm" placeholder="별명" required="required" onchange="chkNick_nm();">
 				<input type="hidden" name="checked_nick" value="">
+				<div class="chk-msg" id="err"></div>
 			</div>
-			<div class="chk-msg" id="err"></div>
 			
 			<!-- 연락처 -->
 			<input type="tel" name="phone" placeholder="연락처" required="required">
