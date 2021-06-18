@@ -15,6 +15,6 @@
 </head>
 <body>
 	<jsp:include page="header_admin.jsp"></jsp:include>
-	<deco:body></deco:body>
+	<deco:body></deco:body>    
 </body>
 </html>

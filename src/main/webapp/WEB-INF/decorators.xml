@@ -7,7 +7,7 @@
 		<pattern>/views/myPage/*</pattern>
 	</decorator>
 	<decorator name="decorator_admin" page="view_admin.jsp">
-		<pattern>/views/admin/*</pattern>
+		<pattern>/views/admin/*</pattern>   
 	</decorator>
 	<excludes>
 		<pattern>/views/member/confirmNick_nm.na</pattern>

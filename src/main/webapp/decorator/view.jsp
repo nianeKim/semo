@@ -15,7 +15,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<deco:body></deco:body>
+	<deco:body></deco:body>   
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

@@ -18,7 +18,7 @@
 	})
 </script>
 </head>
-<body>
+<body>   
 	<header>
 		<div class='header_inner'>
 			<div class='header_logo'>
