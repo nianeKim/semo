@@ -37,6 +37,7 @@ public class UpdateResult implements CommandProcess {
 				id = mr.getParameter("id");
 				member.setId(id);
 			} else {
+				id = mr.getParameter("id");
 				member.setId(id);
 			}
 			String password=mr.getParameter("password");

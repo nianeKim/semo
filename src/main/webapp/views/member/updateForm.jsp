@@ -166,13 +166,13 @@ function del() {
 
 			<!-- 별명 -->
 			<div class="check">
-				<input type="text" name="nick_nm" value="${member.nick_nm }" placeholder="${member.nick_nm }" onchange="chkNick_nm()" required="required">
+				<input type="text" name="nick_nm" value="${member.nick_nm }" placeholder="${member.nick_nm }" onChange="chkNick_nm()" required="required">
 				<input type="hidden" name="checked_nick" value="">
+				<div class="chk-msg" id="err"></div>
 			</div>
-			<div class="chk-msg" id="err"></div>
 			
 			<!-- 연락처 -->
-			<input type="tel" name="phone" title="전화번호 형식 : 010-***(*)-****" pattern="\d{3}-\d{3,4}-\d{4}" value="${member.phone }" placeholder="${member.phone }">
+			<input type="tel" name="phone" value="${member.phone }" placeholder="${member.phone }">
 			
 			<!-- 성별 -->
 			<div class= "select-gender">

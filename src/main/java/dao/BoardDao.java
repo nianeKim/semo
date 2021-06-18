@@ -46,6 +46,11 @@ public class BoardDao {
 		return session.insert("boardns.save", board);
 	}
 	
+	// BoardWriteForm.java 임시저장 한 글 데이터 조회
+	public Board select(String bno) {
+		return (Board) session.selectOne("boardns.select", bno);
+	}
+	
 	// BoardMain.java : order by bno desc
 	public List<Board> list(int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<>();
@@ -145,7 +150,5 @@ public class BoardDao {
 	public int getTotal() {
 	    return (int) session.selectOne("boardns.getTotal");
 	}
-
-
 
 }

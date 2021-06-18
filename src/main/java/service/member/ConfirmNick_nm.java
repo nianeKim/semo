@@ -22,7 +22,7 @@ public class ConfirmNick_nm implements CommandProcess {
 			result = 1;
 		}
 		else {
-			msg = "이미 사용중인 별명입니다.";
+			msg = "이미 사용중인 별명입니다";
 			result = 0;
 		}
 		request.setAttribute("msg", msg);
