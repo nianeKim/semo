@@ -23,7 +23,6 @@ insert into member values (1, 'do', '1111', '도도', '도도', '010-111-1111', 
 insert into member values (2, 'wo', '2222', '림림', '림림', '010-111-1111', 'f', 0,'0','n', sysdate, 'profile.png')
 insert into member values (3, 'na', '3333', '나나', '나나', '010-111-1111', 'f', 0,'0','n', sysdate, 'profile.png')
 
-
 -- 전시
 drop table display;
 CREATE TABLE display

@@ -189,6 +189,7 @@ input[type="range"]::-webkit-slider-thumb {
 .profile img {
 	width: 34px;
 	vertical-align: middle;
+	border-radius: 50%;
 }
 
 .profile .nick_nm {
