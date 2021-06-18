@@ -97,7 +97,7 @@ input[type="file"] { /* input 사라지게 */
 			<div class="btn_area">
 				
 				<button type="submit" class="btn btn_small" formaction="boardWriteResult.wo?action=insert">글작성</button>
-				<button type="submit" class="btn btn_small" formaction="boardWriteResult.wo?action=save">저장</button>
+				<button type="submit" class="btn btn_small" formaction="boardWriteResult.wo?action=save">임시저장</button>
 				<a class="btn btn_stroke btn_small btn_right" href="boardMain.wo">목록</a>
 			</div>
 		</form>
