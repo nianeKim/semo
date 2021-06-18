@@ -21,8 +21,7 @@ public class UpdateForm implements CommandProcess {
 		if (id.equals("admin")) {
 			int	mno = Integer.parseInt(request.getParameter("mno"));
 			member = md.select(mno);
-		}
-		else {
+		} else {
 			member = md.select(id);
 		}
 		request.setAttribute("member", member);

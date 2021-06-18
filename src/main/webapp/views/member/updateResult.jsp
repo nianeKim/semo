@@ -11,13 +11,12 @@
 <body>
 <c:if test="${result>0 }">
 	<script type="text/javascript">
-		alert("회원정보가 수정되었습니다.")
+		alert("회원정보가 수정되었습니다.");
 		if("${id}" == "admin") {
 			location.href="../admin/adminMember.na"
 		}else{
-			location.href="../myPage/myMain.na";	
+			location.href="../myPage/myMain.wo";	
 		}
-		
 	</script>
 </c:if>
 
