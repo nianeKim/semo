@@ -77,7 +77,7 @@
 					<c:if test="${tab == 1 }">
 						<c:if test="${empty listLoc }">
 							<c:forEach var="display" items="${list }">
-								<c:if test="${display.start_date <= today }">
+								<c:if test="${display.start_date <= today && display.end_date >= today }">
 									<li>
 										<a href="dpView.do?dno=${display.dno }">
 											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
@@ -94,7 +94,7 @@
 						<!-- 지역별 조회 -->
 						<c:if test="${not empty listLoc }">
 							<c:forEach var="display" items="${listLoc }">
-								<c:if test="${display.start_date <= today }">
+								<c:if test="${display.start_date <= today && display.end_date >= today }">
 									<li>
 										<a href="dpView.do?dno=${display.dno }"> 
 											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
