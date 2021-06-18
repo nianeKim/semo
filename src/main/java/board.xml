@@ -32,7 +32,7 @@
 		select b.*, c.cnt, nick_nm from
 		BOARD b left outer join (select bno, count(bno) cnt from reply where
 		del = 'n' group by bno) c on b.bno = c.bno, member m where b.mno =
-		m.mno and b.del='n' and b.tempSave='n' order by b.reg_date desc) e)
+		m.mno and b.del='n' and b.tempSave='n' order by b.bno desc) e)
 		where rn between #{startRow} and #{endRow}
 	</select>
 
