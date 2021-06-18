@@ -48,6 +48,7 @@ public class DpMain implements CommandProcess {
 		List<Display> listLoc = null;
 		if (loc != null) {
 			listLoc = dd.listLoc(loc, startRow, endRow);
+			total = dd.getTotalLoc(loc);
 		}
 		
 		// Math.ceil : 현재 실수보다 큰 정수
@@ -59,6 +60,7 @@ public class DpMain implements CommandProcess {
 		// 총 페이지보다 큰 endPage는 나올 수 없다.
 		if (endPage > totalPage) endPage = totalPage;
 		// paging : end
+		
 
 		// 날짜 비교 전달 값 세팅
 		Date today = Date.valueOf(LocalDate.now());

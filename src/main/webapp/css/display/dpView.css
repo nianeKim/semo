@@ -86,6 +86,10 @@
 	font-weight: 600;
 }
 
+.text_area .bottom tr {
+	vertical-align: top;
+}
+
 .text_area .bottom td span {
 	font-weight: 600;
 }

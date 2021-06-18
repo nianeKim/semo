@@ -104,4 +104,13 @@
 	<select id="getTotalD" resultType="integer">
 		select count(*) from display where del = 'n'
 	</select>
+	
+	<!-- display loc 필터 total -->
+	<select id="getTotalLoc" resultType="integer">
+		select count(*) from display where loc in
+		<foreach collection="array" item="item" open="(" close=")" separator=",">
+			#{item}
+		</foreach>
+		and del = 'n' order by dno desc
+	</select>
 </mapper> 
