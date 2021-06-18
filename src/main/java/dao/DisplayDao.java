@@ -107,4 +107,9 @@ public class DisplayDao {
 	public int getTotalMy(int mno) {
 		return (int) session.selectOne("displayns.getTotalMy", mno);
 	}
+	
+	// display loc 필터 total
+	public int getTotalLoc(String[] loc) {
+		return (int) session.selectOne("displayns.getTotalLoc", loc);
+	}
 }
