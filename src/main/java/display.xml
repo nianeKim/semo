@@ -77,10 +77,17 @@
 	</select>
 
 	<!-- 마이페이지 - 등록한 전시 -->
-	<select id="mpList" parameterType="integer" resultType="display">
-		select * from display where mno = #{mno} and del = 'n' order by dno desc
+	<select id="mpList" parameterType="hashmap" resultType="display">
+		select * from (select rowNum rn, e.* from (
+		select * from display where mno = #{mno} and del = 'n' order by dno desc) e)
+		where rn between #{startRow} and #{endRow}
 	</select>
 
+	<!-- 마이페이지 - 등록한 전시 수 -->
+	<select id="getTotalMy" parameterType="integer" resultType="integer">
+		select count(*) from display where del = 'n' and mno = #{mno}
+	</select>
+	
 	<!-- 전체전시 조회(페이징) -->
 	<select id="adminlist" parameterType="hashmap" resultType="display">
 		select * from (select rowNum rn, e.* from (select * from display order by

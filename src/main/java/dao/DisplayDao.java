@@ -77,8 +77,12 @@ public class DisplayDao {
 	}
 	
 	// 마이페이지 등록한 전시 리스트
-	public List<Display> mpList(int mno) {
-		return session.selectList("displayns.mpList", mno);
+	public List<Display> mpList(int mno, int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+		hm.put("mno", mno);
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		return session.selectList("displayns.mpList", hm);
 	}
 	
 	// 전시 리스트 통합 조회(관리자페이지)
@@ -97,5 +101,10 @@ public class DisplayDao {
 	// display paging total
 	public int getTotalD() {
 		return (int) session.selectOne("displayns.getTotalD");
+	}
+	
+	// 마이페이지 paging total
+	public int getTotalMy(int mno) {
+		return (int) session.selectOne("displayns.getTotalMy", mno);
 	}
 }

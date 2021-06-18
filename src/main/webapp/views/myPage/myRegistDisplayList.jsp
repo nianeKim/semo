@@ -11,7 +11,11 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#myRegistDisplayList .dot").css("display", "block");
-	})
+		$('#page'+${currentPage}).css({
+			"color" : "var(--point-color)",
+			"font-weight" : "600"
+		});
+	});
 </script>
 </head>
 <body>
@@ -26,7 +30,7 @@
 				</ul>
 			</c:if>
 			<c:if test="${list.size() != 0}">
-				<h3>등록한 전시</h3>
+				<h3>등록한 전시 ${total}</h3>
 				<ul>
 					<c:forEach var="display" items="${list}">
 						<li>
@@ -70,16 +74,38 @@
 
 		<!-- paging -->
 		<div class="paging">
-			<button class="prev">
-				<img alt="이전" src="../../images/icons/arrow_left1.png">
-			</button>
-			<div class="number">
-				<span class="page_num">1</span> / <span>6</span>
-			</div>
-			<button class="next">
-				<img alt="이전" src="../../images/icons/arrow_right.png">
-			</button>
-		</div>
+			<div class="items">
+				<div class="prev_btn">
+					<c:if test="${startPage > PAGE_PER_BLOCK}">
+						<button class="first" onclick="location.href='myRegistDisplayList.wo?pageNum=${startPage - 1}'">
+							<img alt="이전" src="../../images/icons/arrow_left1.png">
+							<img alt="이전" src="../../images/icons/arrow_left1.png">
+						</button> 
+					</c:if>
+					<c:if test="${pageNum > 1}">
+						<button class="prev" onclick="location.href='myRegistDisplayList.wo?pageNum=${currentPage - 1}'">
+							<img alt="이전" src="../../images/icons/arrow_left1.png">
+						</button>
+					</c:if>
+				</div>
+				<c:forEach var="i" begin="${startPage}" end="${endPage}">
+					<span id="page${i}" class="page_num" onclick="location.href='myRegistDisplayList.wo?pageNum=${i}'">${i}</span>
+				</c:forEach>
+				<div class="next_btn">
+					<c:if test="${currentPage < totalPage}">
+						<button class="next" onclick="location.href='myRegistDisplayList.wo?pageNum=${currentPage + 1}'">
+							<img alt="다음" src="../../images/icons/arrow_right.png">
+						</button>
+					</c:if>
+					<c:if test="${endPage < totalPage}">
+						<button class=last onclick="location.href='myRegistDisplayList.wo?pageNum=${endPage + 1}'">
+							<img alt="다음" src="../../images/icons/arrow_right.png">
+							<img alt="다음" src="../../images/icons/arrow_right.png">
+						</button> 
+					</c:if>
+				</div> <!-- next_btn -->
+			</div> <!-- number -->
+		</div> <!-- paging -->
 	</div>
 </body>
 </html>

@@ -1,4 +1,9 @@
 @charset "UTF-8";
+.point-color {
+	color: var(--point-color);
+	font-weight: 600;
+}
+
 /* menu 시작 */
 .menu {
 	width: 100%;

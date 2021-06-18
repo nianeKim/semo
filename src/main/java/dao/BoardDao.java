@@ -66,8 +66,8 @@ public class BoardDao {
 	}
 	
 	// BoardMain.java 삭제되지 않은 게시글 수
-	public int getTotalNoDelete() {
-		return (int) session.selectOne("boardns.getTotalNoDelete");
+	public int getTotalB() {
+		return (int) session.selectOne("boardns.getTotalB");
 	}
 
 	// BoardView.java
@@ -110,8 +110,8 @@ public class BoardDao {
 	}
 	
 	// MyBoardList.java 특정 회원의 삭제되지 않은 게시글 수
-	public int getTotalNoDeleteMno(int mno) {
-		return (int) session.selectOne("boardns.getTotalNoDeleteMno", mno);
+	public int getTotalMy(int mno) {
+		return (int) session.selectOne("boardns.getTotalMy", mno);
 	}
 
 	// AdminBoard.java 작성한 스토리 목록

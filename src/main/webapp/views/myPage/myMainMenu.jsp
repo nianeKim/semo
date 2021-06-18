@@ -23,7 +23,7 @@
 		<li class="category">
 			<ul>
 				<li id="myBookmarkList" onclick="showCon(this.id)">
-					<span class="dot"></span><img src="../../images/icons/my_bookmark.png">북마크
+					<span class="dot"></span><img src="../../images/icons/my_bookmark.png">북마크 <span class="point-color">${bmTotal}</span>
 				</li>
 				<li id="myReserveList" onclick="showCon(this.id)">
 					<span class="dot"></span><img src="../../images/icons/buy_list.png">예매내역

@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import model.BdLikes;
 import model.Board;
 import model.Bookmark;
+import model.Display;
 import service.display.BookmarkUpdate;
 
 public class BookmarkDao {
@@ -61,6 +62,19 @@ public class BookmarkDao {
 		hm.put("dno", dno);
 		hm.put("mno", mno);
 		session.delete("bookmarkns.delete", hm);
+	}
+	
+	// 마이페이지 - 북마크 한 수
+	public int getTotalMy(int mno) {
+		return (int) session.selectOne("bookmarkns.getTotalMy", mno);
+	}
+
+	public List<Display> myList(int mno, int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		hm.put("mno", mno);
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		return session.selectList("bookmarkns.myList", hm);
 	}
 	
 	

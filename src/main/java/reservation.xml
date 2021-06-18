@@ -11,8 +11,15 @@
 	</insert>
 	
 	<!-- 마이페이지 - 예매내역 -->
-    <select id="mpList" parameterType="integer" resultType="reservation">
-       select * from reservation r, display d where r.dno = d.dno and r.mno = #{mno}
-       and del = 'n' order by rs_no desc 
+    <select id="mpList" parameterType="hashmap" resultType="reservation">
+       select * from (select rowNum rn, e.* from (
+       select r.*, dname from reservation r, display d where r.dno = d.dno and r.mno = #{mno}
+       and del = 'n' order by rs_no desc) e)
+       where rn between #{startRow} and #{endRow}
     </select>
+    
+    <!-- 마이페이지 - 전체 게시글 수 -->
+	<select id="getTotal" parameterType="integer" resultType="integer">
+		select count(*) from reservation where mno=#{mno}
+	</select>
 </mapper>

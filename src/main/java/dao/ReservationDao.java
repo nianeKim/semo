@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -35,8 +36,17 @@ public class ReservationDao {
 	}
 	
 	// 마이페이지 예매내역 조회
-	public List<Reservation> mpList(int mno) {
-		return session.selectList("reservationns.mpList", mno);
+	public List<Reservation> mpList(int mno, int startRow, int endRow) {
+		HashMap<String, Integer> hm = new HashMap<>();
+		hm.put("mno", mno);
+		hm.put("startRow", startRow);
+	    hm.put("endRow", endRow);
+	    return session.selectList("reservationns.mpList", hm);
+	}
+	
+	// 마이페이지 총 예매내역 수
+	public int getTotal(int mno) {
+	    return (int) session.selectOne("reservationns.getTotal", mno);
 	}
 	
 	

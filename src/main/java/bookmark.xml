@@ -16,4 +16,17 @@
 	<delete id="delete" parameterType="hashmap">
 		delete bookmark where mno = #{mno} and dno = #{dno}
 	</delete>
+	
+	<!-- 마이페이지 - 북마크 한 수 -->
+	<select id="getTotalMy" parameterType="integer" resultType="integer">
+		select count(*) from bookmark where mno = #{mno}
+	</select>
+	
+	<select id="myList" parameterType="hashmap" resultType="bookmark">
+		select * from (select rowNum rn, e.* from (
+		select b.*, poster, dname, spot, start_date, end_date, hours, fee
+		from bookmark b, display d where b.dno = d.dno and b.mno = #{mno}
+		and d.del='n' order by bm_no desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>

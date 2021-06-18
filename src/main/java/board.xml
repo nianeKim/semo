@@ -12,7 +12,7 @@
 	</insert>
 
 	<!-- 삭제되지 않은 전체 게시글 수 -->
-	<select id="getTotalNoDelete" resultType="integer">
+	<select id="getTotalB" resultType="integer">
 		select count(*) from board where del='n'
 	</select>
 
@@ -81,7 +81,7 @@
 	</update>
 	
 	<!-- 마이페이지 - 특정 회원이 쓴 삭제 되지 않은 게시글 수 -->
-	<select id="getTotalNoDeleteMno" parameterType="integer" resultType="integer">
+	<select id="getTotalMy" parameterType="integer" resultType="integer">
 		select count(*) from board where del='n' and mno=#{mno}
 	</select>
 
