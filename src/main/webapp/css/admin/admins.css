@@ -41,11 +41,7 @@
 }
 
 .nums {	
-	position: fixed;
-	bottom: 40px;
-	width: 80%;
-	text-align: center;
-	cursor: pointer;
+	padding-top: 36px;
 }
 
 table {
