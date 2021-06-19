@@ -10,7 +10,7 @@
 }
 
 .container-table{
-	overflow: scroll;
+	overflow-x: auto;
 	margin: 15px auto 0 auto;
 }
 

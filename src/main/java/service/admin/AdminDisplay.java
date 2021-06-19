@@ -17,7 +17,6 @@ public class AdminDisplay implements CommandProcess {
 		final int PAGE_PER_BLOCK = 5;
 		
 		String pageNum = request.getParameter("pageNum");
-		System.out.println(pageNum);
 		if (pageNum == null || pageNum.equals("")) {
 			pageNum="1";
 		}
