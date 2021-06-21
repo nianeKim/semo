@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>semojeon</title>
-<link rel="stylesheet" type="text/css" href="../../css/fonts.css">
-<link rel="stylesheet" type="text/css" href="../../css/reset.css">
-<link rel="stylesheet" type="text/css" href="../../css/common.css">
-<link rel="stylesheet" type="text/css" href="../../css/magic-check.css">
-<script type="text/javascript" src="../../js/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="/semojeon/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/semojeon/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/semojeon/css/common.css">
+<link rel="stylesheet" type="text/css" href="/semojeon/css/magic-check.css">
+<script type="text/javascript" src="/semojeon/js/jquery.js"></script>
 <deco:head></deco:head>
 </head>
 <body>

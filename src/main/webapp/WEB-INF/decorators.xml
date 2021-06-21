@@ -5,19 +5,20 @@
 		<pattern>/views/display/*</pattern>
 		<pattern>/views/member/*</pattern>
 		<pattern>/views/myPage/*</pattern>
+		<pattern>/views/searchResult.wo</pattern>
 	</decorator>
 	<decorator name="decorator_admin" page="view_admin.jsp">
 		<pattern>/views/admin/*</pattern>   
 	</decorator>
 	<excludes>
-		<pattern>/views/member/confirmNick_nm.na</pattern>
-		<pattern>/views/member/confirmId.na</pattern>
-		<pattern>/views/member/mailResult.na</pattern>
+		<pattern>/views/member/confirmNick_nm.*</pattern>
+		<pattern>/views/member/confirmId.*</pattern>
+		<pattern>/views/member/mailResult.*</pattern>
 		<pattern>/views/display/confirm.*</pattern>
-		<pattern>/views/board/bdLikesCnt.*</pattern>
-		<pattern>/views/board/rpLikesCnt.*</pattern>
 		<pattern>/views/display/reviewLikes.*</pattern>
 		<pattern>/views/display/bookmarkUpdate.*</pattern>
+		<pattern>/views/board/bdLikesCnt.*</pattern>
+		<pattern>/views/board/rpLikesCnt.*</pattern>
 		<pattern>/views/myPage/myMainMenu.*</pattern>
 	</excludes>
 </decorators>

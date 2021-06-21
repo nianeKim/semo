@@ -6,6 +6,7 @@
 		<typeAlias alias="member" type="model.Member" />
 		<typeAlias alias="display" type="model.Display" />
 		<typeAlias alias="board" type="model.Board" />
+		<typeAlias alias="bdSave" type="model.BdSave" />
 		<typeAlias alias="bdlikes" type="model.BdLikes" />
 		<typeAlias alias="review" type="model.Review" />
 		<typeAlias alias="rvLikes" type="model.RvLikes" />
@@ -29,6 +30,7 @@
 		<mapper resource="member.xml" />
 		<mapper resource="display.xml" />
 		<mapper resource="board.xml" />
+		<mapper resource="bdSave.xml" />
 		<mapper resource="bdLikes.xml" />
 		<mapper resource="review.xml" />
 		<mapper resource="rvLikes.xml" />

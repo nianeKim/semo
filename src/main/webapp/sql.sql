@@ -55,6 +55,8 @@ select * from display;
 alter table display modify(artist VARCHAR2(100));
 alter table display modify(dname VARCHAR2(100));
 alter table display modify(address VARCHAR2(200));
+alter table display drop column tag;
+alter table display add(tag VARCHAR2(50));
 
 -- 북마크
 drop table bookmark;
@@ -111,6 +113,7 @@ drop table board;
 CREATE TABLE board
 (
     bno    NUMBER CONSTRAINT board_bno_PK PRIMARY KEY NOT NULL,
+    thumbnail VARCHAR2(100),
     title    VARCHAR2(50) NOT NULL,
     content    VARCHAR2(4000) NOT NULL,
     reg_date    DATE NOT NULL,
@@ -120,9 +123,21 @@ CREATE TABLE board
     mno    NUMBER constraint board_mno_fk references member NOT NULL
 );
 select * from board;
-delete from board;
-alter table board add(thumbnail VARCHAR2(100));
-alter table board add(tempSave char(1) default 'n' not null);
+alter table board modify(title varchar2(100));
+
+-- 게시판(스토리) 임시저장
+drop table bdSave;
+CREATE TABLE bdSave
+(
+    bs_no    NUMBER CONSTRAINT bdSave_bs_no_PK PRIMARY KEY NOT NULL,
+    thumbnail VARCHAR2(100),
+    title    VARCHAR2(50),
+    content    VARCHAR2(4000),
+    reg_date    DATE NOT NULL,
+    mno    NUMBER constraint bdSave_bs_no_fk references member NOT NULL
+);
+select * from bdSave;
+alter table bdSave modify(title varchar2(100));
 
 -- 게시판 좋아요
 drop table bdLikes;

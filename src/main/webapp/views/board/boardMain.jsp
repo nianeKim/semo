@@ -18,12 +18,24 @@
 		});
 	});
 	
-	// 필터 변경 될 때 함수
+	// 필터 변경
 	function filterChange() {
 		var filter = document.getElementById("filter");
 		var value = filter.options[filter.selectedIndex].value;
 		$('.board_list').css("display", "none");
 		$('#board_list' + value).css("display", "block");
+	}
+	
+	// 세션 확인
+	function sessionChk() {
+		if (${empty id}) {
+			var con = confirm("로그인 후 이용해 주시기 바랍니다.");
+			if (con) {
+				location.href = "/semojeon/views/board/boardWriteForm.wo?action=insert";
+			}
+		} else {
+			location.href = "/semojeon/views/board/boardWriteForm.wo?action=insert";
+		}
 	}
 </script>
 </head>
@@ -41,7 +53,7 @@
 				</select>
 			</div>
 
-			<a href="boardWriteForm.wo" class="btn btn_stroke btn_small btn_padding">
+			<a class="btn btn_stroke btn_small btn_padding" onclick="sessionChk()">
 				<img alt="연필"	src="../../images/icons/write.png">글쓰기
 			</a>
 		</div>

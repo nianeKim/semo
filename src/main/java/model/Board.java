@@ -15,6 +15,60 @@ public class Board {
 	private String tempSave;
 	private int cnt;
 	private String nick_nm;
+	private int dno;
+	private String poster;
+	private Date start_date;
+	private Date end_date;
+	private String dname;
+	private String spot;
+
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+
+	public Date getStart_date() {
+		return start_date;
+	}
+
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
+	}
+
+	public Date getEnd_date() {
+		return end_date;
+	}
+
+	public void setEnd_date(Date end_date) {
+		this.end_date = end_date;
+	}
+
+	public String getDname() {
+		return dname;
+	}
+
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+
+	public String getSpot() {
+		return spot;
+	}
+
+	public void setSpot(String spot) {
+		this.spot = spot;
+	}
+
+	public int getDno() {
+		return dno;
+	}
+
+	public void setDno(int dno) {
+		this.dno = dno;
+	}
 
 	public String getTempSave() {
 		return tempSave;

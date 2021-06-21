@@ -10,7 +10,12 @@
 <body>
 	<c:if test="${result > 0 }">
 		<script type="text/javascript">
-			location.href = "boardMain.wo?pageNum=1";
+			if (${action == 'insert' || action == 'save_delete'}) { // 글작성 + 임시저장 삭제
+				location.href = "boardMain.wo?pageNum=1";
+			} else { // 임시저장
+				alert("저장되었습니다");
+				location.href = "boardWriteForm.wo?action=insert";
+			}
 		</script>
 	</c:if>
 	

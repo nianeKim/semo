@@ -10,7 +10,16 @@ public class Reservation {
 	private int dno;
 	private String dname;
 	private String poster;
+	private int cnt_total;
 	
+	public int getCnt_total() {
+		return cnt_total;
+	}
+
+	public void setCnt_total(int cnt_total) {
+		this.cnt_total = cnt_total;
+	}
+
 	public String getDname() {
 		return dname;
 	}

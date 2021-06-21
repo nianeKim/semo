@@ -12,6 +12,8 @@ public class LoginResult implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		String prevUrl = request.getParameter("prevUrl");
+		
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		
@@ -31,6 +33,7 @@ public class LoginResult implements CommandProcess {
 			}else result=0;
 		}
 		request.setAttribute("result", result);
+		request.setAttribute("prevUrl", prevUrl);
 		return "loginResult";
 	}
 }

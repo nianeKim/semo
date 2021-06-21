@@ -13,7 +13,7 @@ public class Bookmark {
 	private Date end_date;
 	private String hours;
 	private int fee;
-
+	
 	public String getPoster() {
 		return poster;
 	}

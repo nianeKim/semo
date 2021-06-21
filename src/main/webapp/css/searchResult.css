@@ -1,50 +1,67 @@
 @charset "UTF-8";
-/* write button */
-.button_box {
-	width: 100%;
-	height: 50px;
+
+/* common */
+.container_inner {
+	margin-bottom: 80px;
 }
 
-/* 필터 */
-.button_box .filter {
-	display: inline-block;
-    float: left;
-    height: 50px;
-    padding: 16px 0;
+.title {
+	text-align: left;
+	margin-bottom: 15px;
 }
 
-.button_box .filter select {
-	vertical-align: middle;
-    border: none;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 600;
-    width: 80px;
-    outline:none;
-}
-
-.button_box .filter select option {
-    font-size: 14px;
-}
-
-.button_box .btn_padding {
-	float: right;
-	padding: 12px 0;
-	margin: 0;
-}
-
-.button_box a img {
-	width: 25px;
-    margin-left: -10px;
-   	margin-right: 2px;
-	vertical-align: middle;
-}
-
-/* board list */
-.board_list {
-	clear: both;
+/* display list */
+.display_list {
 	padding-top: 20px;
-	display: none;
+}
+
+.display_list ul {
+	margin: 0 -12px 0 -12px;
+}
+
+.display_list ul li {
+	vertical-align: top;
+	display: inline-block;
+	width: 20%;
+	max-height: max-content;
+	padding: 0 12px 56px 12px;
+}
+
+.display_list ul li img {
+	width: 100%;
+	padding-bottom: 133%;
+	/* vertical-align: middle;
+	object-fit: cover;
+	height: 18vw; */
+}
+
+.display_list .dp_text_area .date {
+	font-size: 14px;
+	padding-top: 16px;
+}
+
+.display_list .dp_text_area .dp_list_title {
+	font-size: 18px;
+	font-weight: 600;
+	padding-top: 6px;
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	word-wrap: break-word;
+}
+
+.display_list .dp_text_area .location {
+	font-size: 14px;
+	color: #7b7b7b;
+	padding-top: 12px;
+}
+
+
+/* board_list */
+.board_list {
+	padding-top: 20px;
 }
 
 .board_list ul {
@@ -118,7 +135,3 @@
 	float: right;
 	display: inline-block;
 } 
-
-.paging {
-	clear: both;
-}

@@ -3,11 +3,6 @@ h3 {
 	clear: both;	
 }
 
-.thumb {
-	display: inline-block;
-	width: 33%;
-}
-
 .txt_small {
 	font-size: 13px;
     color: #444;

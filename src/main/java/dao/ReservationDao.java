@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import model.Display;
 import model.Reservation;
 
 public class ReservationDao {
@@ -33,6 +34,11 @@ public class ReservationDao {
 	
 	public int insert(Reservation reserve) {
 		return session.insert("reservationns.insert", reserve);
+	}
+	
+	// 마이페이지 - 메인
+	public List<Reservation> myMain(int mno) {
+		return session.selectList("reservationns.myMain", mno);
 	}
 	
 	// 마이페이지 예매내역 조회

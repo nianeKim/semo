@@ -9,6 +9,12 @@ public class LoginForm implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		// 이전 주소 경로 가져오기
+		String prevUrl = request.getHeader("Referer");
+		prevUrl = prevUrl.substring(21);
+
+		request.setAttribute("prevUrl", prevUrl);
+		
 		return "loginForm";
 	}
 

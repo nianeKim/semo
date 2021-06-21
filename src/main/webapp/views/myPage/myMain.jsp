@@ -3,10 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<%@ include file="/views/sessionChk.jsp"%>
+<%@ include file="../sessionChk.jsp"%>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="../../css/myPage/myMain.css">
 </head>
 <body>
 	<div class="container_middle">
@@ -14,87 +15,91 @@
 		<jsp:include page="myMainMenu.jsp"></jsp:include>
 		<!-- 내용 -->
 		<div class="content">
-			<%-- <ul>
+			<ul class="content_main">
 				<li>
 					<h3>북마크</h3>
-					<ul>
-						<c:forEach items="${bmList}" var="bookmark">
-							<li>
-								<a href="dpView.do?dno=${bookmark.dno}"> 
-									<img alt="포스터" src="/semojeon/upload/${bookmark.poster }">
-								</a>
-								<div class="text_area">
-									<a href="dpView.do?dno=${bookmark.dno}">
-										<span class="date">${bookmark.start_date } ~ ${bookmark.end_date }</span>
-										<span class="dp_list_title">${bookmark.dname }</span>
-										<span class="location">${bookmark.loc }</span>
-									</a>
-								</div>
-							</li>
-						</c:forEach>
-					</ul>
+					<c:if test="${bmList.size() == 0}">
+						<p>북마크한 전시가 없습니다.</p>
+					</c:if>
+					<c:if test="${bmList.size() != 0}">
+						<a href="myBookmarkList.wo">+ 자세히 보기</a>
+						<table>
+							<tr>
+								<th>전시명</th>
+								<th>장소</th>
+							</tr>
+							<c:forEach items="${bmList}" var="bookmark">
+								<tr>
+									<td><a href="/semojeon/views/display/dpView.do?dno=${bookmark.dno}">${bookmark.dname}</a></td>
+									<td><a href="/semojeon/views/display/dpView.do?dno=${bookmark.dno}">${bookmark.spot}</a></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:if>
 				</li>
 				<li>
 					<h3>예매내역</h3>
-					<ul>
-						<c:forEach items="${rsvList}" var="reservation">
-							<li>
-								<a href="dpView.do?dno=${reservation.dno}"> 
-									<img alt="포스터" src="/semojeon/upload/${reservation.poster }">
-								</a>
-								<div class="text_area">
-									<a href="dpView.do?dno=${reservation.dno}">
-										<span class="date">${reservation.start_date } ~ ${reservation.end_date }</span>
-										<span class="dp_list_title">${reservation.dname }</span>
-										<span class="location">${reservation.loc }</span>
-									</a>
-								</div>
-							</li>
-						</c:forEach>
-					</ul>
-				</li>
+					<c:if test="${rsvList.size() == 0}">
+						<p>예매한 전시가 없습니다.</p>
+					</c:if>
+					<c:if test="${rsvList.size() != 0}">
+						<a href="myReserveList.wo">+ 자세히 보기</a>
+						<table>
+							<tr>
+								<th>전시명</th>
+								<th>수량</th>
+							</tr>
+							<c:forEach items="${rsvList}" var="reservation">
+								<tr>
+									<td><a href="/semojeon/views/display/dpView.do?dno=${reservation.dno}">${reservation.dname}</a></td>
+									<td><a href="/semojeon/views/display/dpView.do?dno=${reservation.dno}">${reservation.cnt_total}</a></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:if>
 				<li>
 					<h3>등록한 전시</h3>
-					<c:forEach items="${dpList}" var="display">
-						<li>
-							<a href="dpView.do?dno=${display.dno}"> 
-								<img alt="포스터" src="/semojeon/upload/${display.poster }">
-							</a>
-							<div class="text_area">
-								<a href="dpView.do?dno=${display.dno}">
-									<span class="date">${display.start_date } ~ ${display.end_date }</span>
-									<span class="dp_list_title">${display.dname }</span>
-									<span class="location">${display.loc }</span>
-								</a>
-							</div>
-						</li>
-					</c:forEach>
+					<c:if test="${dpList.size() == 0}">
+						<p>등록한 전시가 없습니다.</p>
+					</c:if>
+					<c:if test="${dpList.size() != 0}">
+						<a href="myRegistDisplayList.wo">+ 자세히 보기</a>
+						<table>
+							<tr>
+								<th>전시명</th>
+								<th>장소</th>
+							</tr>
+							<c:forEach items="${dpList}" var="display">
+								<tr>
+									<td><a href="/semojeon/views/display/dpView.do?dno=${display.dno}">${display.dname}</a></td>
+									<td><a href="/semojeon/views/display/dpView.do?dno=${display.dno}">${display.spot}</a></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:if>
 				</li>
 				<li>
 					<h3>작성한 스토리</h3>
-					<c:forEach items="${bdList}" var="board">
-						<li>
-							<a href="boardView.wo?bno=${board.bno}"> 
-								<img alt="포스터" src="/semojeon/upload/${board.thumbnail }">
-							</a>
-							<div class="text_area">
-								<a href="boardView.wo?bno=${board.bno}">
-									<span class="date">${board.reg_date } | ${board.read_cnt } 읽음</span>
-									<span class="txt_title">${board.title}</span>
-									<span class="txt_con">${board.content}</span>
-								</a>
-								<div class="txt_bottom">
-									<img alt="하트" src="../../images/icons/heart.png"> <span>${board.likes}</span>
-									<div class="btn_area">
-										<a href="../board/boardUpdateForm.wo?bno=${board.bno}" class="btn btn_stroke btn_small">수정</a>
-										<a onclick="delBoard()" class="btn btn_stroke btn_small">삭제</a>
-									</div>
-								</div>
-							</div>
-						</li>
-					</c:forEach>
+					<c:if test="${bdList.size() == 0}">
+						<p>작성한 스토리가 없습니다.</p>
+					</c:if>
+					<c:if test="${bdList.size() != 0}">
+						<a href="myBoardList.wo">+ 자세히 보기</a>
+						<table>
+							<tr>
+								<th>제목</th>
+								<th>작성날짜</th>
+							</tr>
+							<c:forEach items="${bdList}" var="board">
+								<tr>
+									<td><a href="/semojeon/views/board/boardView.wo?bno=${board.bno}">${board.title}</a></td>
+									<td><a href="/semojeon/views/board/boardView.wo?bno=${board.bno}">${board.reg_date}</a></td>
+								</tr>
+							</c:forEach>
+						</table>
+					</c:if>
 				</li>
-			</ul> --%>
+			</ul>
 		</div>
 	</div>
 </body>

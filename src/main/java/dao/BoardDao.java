@@ -40,16 +40,6 @@ public class BoardDao {
 	public int insert(Board board) {
 		return session.insert("boardns.insert", board);
 	}
-
-	// BoardWriteSave.java 임시저장
-	public int save(Board board) {
-		return session.insert("boardns.save", board);
-	}
-	
-	// BoardWriteForm.java 임시저장 한 글 데이터 조회
-	public Board select(String bno) {
-		return (Board) session.selectOne("boardns.select", bno);
-	}
 	
 	// BoardMain.java : order by bno desc
 	public List<Board> list(int startRow, int endRow) {
@@ -75,27 +65,27 @@ public class BoardDao {
 	    return session.selectList("boardns.list3", hm);
 	}
 	
-	// BoardMain.java 삭제되지 않은 게시글 수
+	// BoardMain.java 게시글 메인페이지 게시글 수
 	public int getTotalB() {
 		return (int) session.selectOne("boardns.getTotalB");
 	}
 
-	// BoardView.java
+	// BoardView.java 게시글 상세 페이지
 	public Board select(int bno) {
 		return (Board) session.selectOne("boardns.selectOne", bno);
 	}
 
-	// BoardView.java (조회수 업데이트)
+	// BoardView.java 조회수 업데이트
 	public void readcountUpdate(int bno) {
 		session.update("boardns.readcountUpdate", bno);
 	}
 
-	// BdLikesCnt.java (좋아요수 +1)
+	// BdLikesCnt.java 좋아요수 +1
 	public void likesPlus(int bno) {
 		session.update("boardns.likesPlus", bno);
 	}
 
-	// BdLikesCnt.java (좋아요수 -1)
+	// BdLikesCnt.java 좋아요수 -1
 	public void likesMinus(int bno) {
 		session.update("boardns.likesMinus", bno);
 	}
@@ -110,7 +100,12 @@ public class BoardDao {
 		return session.update("boardns.update", board);
 	}
 
-	// MyBoardList.java 작성한 게시글 목록
+	// MyMain.java 마이페이지 - 메인
+	public List<Board> myMain(int mno) {
+		return session.selectList("boardns.myMain", mno);
+	}
+	
+	// MyBoardList.java 회원이 작성한 게시글 목록
 	public List<Board> myList(int mno, int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<>();
 		hm.put("mno", mno);
@@ -118,27 +113,13 @@ public class BoardDao {
 		hm.put("endRow", endRow);
 		return session.selectList("boardns.myList", hm);
 	}
-
-	// MyBoardList.java 저장한 게시글 목록
-	public List<Board> myList_save(int mno, int startRow, int endRow) {
-		HashMap<String, Integer> hm = new HashMap<>();
-		hm.put("mno", mno);
-		hm.put("startRow", startRow);
-		hm.put("endRow", endRow);
-		return session.selectList("boardns.myList_save", hm);
-	}
 	
-	// MyBoardList.java 작성한 게시글 수
+	// MyBoardList.java 회원이 작성한 게시글 수
 	public int getTotalMy(int mno) {
 		return (int) session.selectOne("boardns.getTotalMy", mno);
 	}
-	
-	// MyBoardList.java 저장한 게시글 수
-	public int getTotalMySave(int mno) {
-		return (int) session.selectOne("boardns.getTotalMySave", mno);
-	}
 
-	// AdminBoard.java 작성한 스토리 목록
+	// AdminBoard.java 전체 게시글 목록(관리자)
 	public List<Board> adminList(int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<>();
 	    hm.put("startRow", startRow);
@@ -146,9 +127,22 @@ public class BoardDao {
 	    return (List<Board>)session.selectList("boardns.adminList",hm);
 	}
 
-	// AdminBoard.java 게시글 전체 개수 조회(페이징)
+	// AdminBoard.java 전체 게시글 수(관리자)
 	public int getTotal() {
 	    return (int) session.selectOne("boardns.getTotal");
+	}
+	
+	// adminFindBoard.java 관리자계정으로 board 검색
+	public List<Board> searchBoard(String searchKey, String searchValue) {
+		HashMap<String, String> hm = new HashMap<>();
+		hm.put("searchKey", searchKey);
+		hm.put("searchValue", searchValue);
+		return (List<Board>)session.selectList("memberns.searchBoard",hm);
+	}
+
+	// SearchResult.java 검색
+	public List<Board> search(String srch) {
+		return session.selectList("boardns.search", srch);
 	}
 
 }

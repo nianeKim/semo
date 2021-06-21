@@ -9,8 +9,17 @@
 			#{cnt_adult,jdbcType=INTEGER}, #{cnt_teen,jdbcType=INTEGER},
 			#{cnt_child,jdbcType=INTEGER}, #{mno}, #{dno})
 	</insert>
-	
-	<!-- 마이페이지 - 예매내역 -->
+
+	<!-- 마이페이지 - 메인 -->
+    <select id="myMain" parameterType="integer" resultType="reservation">
+       select * from (select rowNum rn, e.* from (
+       select r.*, cnt+cnt_adult+cnt_teen+cnt_child cnt_total, dname
+       from reservation r, display d where r.dno = d.dno and r.mno = #{mno}
+       and del = 'n' order by rs_no desc) e)
+       where rn between 1 and 4
+    </select>
+    
+    <!-- 마이페이지 - 예매내역 -->
     <select id="myList" parameterType="hashmap" resultType="reservation">
        select * from (select rowNum rn, e.* from (
        select r.*, dname, poster from reservation r, display d where r.dno = d.dno and r.mno = #{mno}

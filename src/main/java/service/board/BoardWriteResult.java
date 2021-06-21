@@ -9,8 +9,10 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import dao.BdSaveDao;
 import dao.BoardDao;
 import dao.MemberDao;
+import model.BdSave;
 import model.Board;
 import service.CommandProcess;
 
@@ -22,11 +24,13 @@ public class BoardWriteResult implements CommandProcess {
 		HttpSession session = request.getSession();
 		int mno = (int) session.getAttribute("mno");
 				
-		// board 생성
+		// board, bdSave 생성
 		Board board = new Board();
+		BdSave bdSave = new BdSave();
 
-		// board에 세션에서 가져온 mno 세팅
+		// board, bdSave에 세션에서 가져온 mno 세팅
 		board.setMno(mno);
+		bdSave.setMno(mno);
 		
 		// 파일 업로드 경로
 		String real = request.getSession().getServletContext().getRealPath("/upload");
@@ -43,23 +47,45 @@ public class BoardWriteResult implements CommandProcess {
 			board.setThumbnail(thumbnail);
 			board.setTitle(title);
 			board.setContent(content);
+
+			// bdSave 세팅
+			bdSave.setThumbnail(thumbnail);
+			bdSave.setTitle(title);
+			bdSave.setContent(content);
 		
 		} catch (IOException e) {
 			System.out.println("에러 : " + e.getMessage());;
 		}
 		
-		// boardDao 생성 및 insert
+		// boardDao, bdSaveDao 생성 및 insert
 		BoardDao bd = BoardDao.getInstance();
-		// insert/save 값 가져오기
+		BdSaveDao bsd = BdSaveDao.getInstance();
+	
+		// action 값 가져오기
 		String action = request.getParameter("action");
 		
-		if (action.equals("insert")) {
+		if (action.equals("insert")) { // 글작성
 			result = bd.insert(board);
-		} else if (action.equals("save")) {
-			result = bd.save(board);
+		
+		} else if (action.equals("save_delete")) { // 글작성 + 임시저장 삭제
+			result = bd.insert(board);
+			int bs_no = Integer.parseInt(request.getParameter("bs_no"));
+			bsd.deleteOne(bs_no);
+			
+		} else if (action.equals("save_first")) { // 임시저장 처음
+			result = bsd.insert(bdSave);
+			int bs_no = bsd.selectBsno();
+			request.setAttribute("bs_no", bs_no);
+		
+		} else if (action.equals("save_again")) { // 임시저장 또
+			int bs_no = Integer.parseInt(request.getParameter("bs_no"));
+			bdSave.setBs_no(bs_no);
+			result = bsd.update(bdSave);
+			request.setAttribute("bs_no", bs_no);
 		}
 		
 		request.setAttribute("result", result);
+		request.setAttribute("action", action);
 
 		return "boardWriteResult";
 	}

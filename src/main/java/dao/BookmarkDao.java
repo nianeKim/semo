@@ -13,6 +13,7 @@ import model.BdLikes;
 import model.Board;
 import model.Bookmark;
 import model.Display;
+import model.Reservation;
 import service.display.BookmarkUpdate;
 
 public class BookmarkDao {
@@ -64,12 +65,13 @@ public class BookmarkDao {
 		session.delete("bookmarkns.delete", hm);
 	}
 	
-	// 마이페이지 - 북마크 한 수
-	public int getTotalMy(int mno) {
-		return (int) session.selectOne("bookmarkns.getTotalMy", mno);
+	// 마이페이지 - 메인
+	public List<Bookmark> myMain(int mno) {
+		return session.selectList("bookmarkns.myMain", mno);
 	}
 
-	public List<Display> myList(int mno, int startRow, int endRow) {
+	// 마이페이지 북마크 조회
+	public List<Bookmark> myList(int mno, int startRow, int endRow) {
 		HashMap<String, Integer> hm = new HashMap<String, Integer>();
 		hm.put("mno", mno);
 		hm.put("startRow", startRow);
@@ -77,5 +79,8 @@ public class BookmarkDao {
 		return session.selectList("bookmarkns.myList", hm);
 	}
 	
-	
+	// 마이페이지 - 북마크 한 수
+	public int getTotalMy(int mno) {
+		return (int) session.selectOne("bookmarkns.getTotalMy", mno);
+	}	
 }

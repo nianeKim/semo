@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" type="text/css" href="../../css/myPage/myMain.css">
+<%@ include file="../sessionChk.jsp" %>
+<link rel="stylesheet" type="text/css" href="../../css/myPage/myCommon.css">
 <script type="text/javascript">
 	function showCon(id) {
 		location.href = id + ".wo";

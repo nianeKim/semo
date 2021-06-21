@@ -10,16 +10,7 @@
 <body>
 <c:if test="${result>0 }">
 	<script type="text/javascript">
-		var preUrl = document.referrer.split("/")[6];
- 		if (preUrl == "boardView.wo?bno=${bno}") {
-			location.href="boardMain.wo";
-		}
-		else if (preUrl == "myBoardList.wo") {
-			location.href="myBoardList.wo";
-		}
-		else if (preUrl.includes("adminBoard")){
-			location.href="../admin/adminBoard.na"
-		}
+		location.href="boardWriteForm.wo?action=insert";
 	</script>
 </c:if>
 
