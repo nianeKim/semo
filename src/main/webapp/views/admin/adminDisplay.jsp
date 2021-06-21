@@ -9,6 +9,19 @@
 <title>Insert title here</title>
 <style type="text/css">
 @import url("../../css/admin/admins.css");
+select {
+	border: none;
+    width: 80px;
+    height: 40px;
+    border-bottom: 1px solid #000;
+}
+
+input {
+	width: 170px;
+	height: 40px;
+	border: none;
+	border-bottom: 1px solid #000;
+}
 </style>
 <script type="text/javascript">
 	function del(delDno) {
@@ -23,18 +36,37 @@
 			"color" : "var(--point-color)",
 			"font-weight" : "600"
 		});
-		
-		console.log(${currentPage});
-		console.log(${pageNum});
 	});
+	
+	function chk(){
+		if(!frm.searchValue.value){
+			alert("검색어를 입력하세요");
+			frm.searchValue.focus();
+			return false;
+		}
+	}
 </script>
 
 
 </head>
 <body>
 <section class="container_wide">
-	<div class="btn_box">
-		<a class="btn btn_stroke" href="/semojeon/views/display/dpRegistForm.do">등록</a>	
+	<div class="top">
+		<div class="searchForm">
+			<form action="" name="frm" onsubmit="return chk();" >
+				<select name="searchKey" class="searchTab">
+					<option value="dname" >전시명</option>
+					<option value="tag">관련 태그</option>
+					<option value="artist">작가명</option>
+					<option value="mno">작성자</option>
+				</select>
+				<input type="text" name="searchValue" class="searchTab">
+				<input type="submit" value="검색" class="searchTab">
+			</form>
+		</div>
+		<div class="btn_box">
+			<a class="btn btn_stroke" href="/semojeon/views/display/dpRegistForm.do">등록</a>	
+		</div>
 	</div>
 	<div class="container-table">
 		<table>

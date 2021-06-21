@@ -82,9 +82,7 @@ public class MemberDao {
 
 		// Delete
 		public int delete(int mno) {
-			return session.update("memberns.delete", mno 
-					
-					);
+			return session.update("memberns.delete", mno);
 		}
 		
 		//AdminMember - 전체 회원정보 조회
@@ -114,6 +112,13 @@ public class MemberDao {
 		public Member select(int mno) {
 			return (Member) session.selectOne("memberns.selectReserve", mno);
 		}
-
+		
+		// adminFindMember 관리자계정으로 member 검색
+		public List<Member> searchMember(String searchKey, String searchValue) {
+			HashMap<String, String> hm = new HashMap<>();
+			hm.put("searchKey", searchKey);
+			hm.put("searchValue", searchValue);
+			return (List<Member>)session.selectList("memberns.searchMember",hm);
+		}
 
 }

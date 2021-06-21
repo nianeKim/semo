@@ -137,7 +137,7 @@ public class BoardDao {
 		HashMap<String, String> hm = new HashMap<>();
 		hm.put("searchKey", searchKey);
 		hm.put("searchValue", searchValue);
-		return (List<Board>)session.selectList("memberns.searchBoard",hm);
+		return (List<Board>)session.selectList("boardns.searchBoard",hm);
 	}
 
 	// SearchResult.java 검색

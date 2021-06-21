@@ -1,47 +1,9 @@
 @charset "UTF-8";
 
-.title{
-	margin-bottom: 10px;
-}
-/* 가로스크롤 생성 */
-.container{
-	width: 80%;
-	font-family: inherit;
-}
-
+/* 회원조회 테이블 */
 .container-table{
 	overflow-x: auto;
-	margin: 15px auto 0 auto;
-}
-
-.btn_box {
-	text-align: right;
-}
-
-.btn{
-	width: 100px;
-	height: 40px;
-	text-align: center;
-	line-height: 40px;
-	display:inline-block;
-}
-
-.btn_small {
-	display: contents;
-	width: initial;
-	height: initial;
-	font-size: 14px;
-	text-align: right;
-	padding: 0;
-	margin: 0;
-	border: 0;
-	color: #aaa;
-	font-weight: 500;
-	text-decoration: underline;
-}
-
-.nums {	
-	padding-top: 36px;
+	margin: 75px auto 0 auto;	
 }
 
 table {
@@ -68,7 +30,66 @@ table td {
 	overflow:hidden;
 }
 
-.pageNums {
-	display: inline;
-	cursor: pointer;
+
+/* 검색창 */
+.top {
+	position: relative;
+}
+
+.searchForm {
+	position: absolute;
+	overflow: hidden;
+}
+
+.searchTab {
+	float:left;
+}
+
+
+/* 등록버튼 */
+.btn_box {
+	position: absolute;
+	right:0px;
+	text-align: right;
+}
+
+.btn{
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	display:inline-block;
+}
+
+input[type=submit] {
+ 	background: none;
+ 	width: 50px;
+ }
+
+
+/* 회원수정버튼 */
+.btn_small {
+	display: contents;
+	width: initial;
+	height: initial;
+	font-size: 14px;
+	text-align: right;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	color: #aaa;
+	font-weight: 500;
+	text-decoration: underline;
+}
+
+
+/* 페이징 */
+.nums {	
+	padding-top: 36px;
+}
+
+/* 이전버튼 */
+.backDiv{
+	margin-top: 30px;
+	text-align: center;
 }
