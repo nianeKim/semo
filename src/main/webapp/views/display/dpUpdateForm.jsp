@@ -100,7 +100,7 @@
 
 			<!-- 관련 태그 -->
 			<p class="option_title">관련 태그</p>
-			<%-- <pre><textarea name="tag">${display.tag }</textarea></pre> --%>
+			<pre><textarea name="tag">${display.tag }</textarea></pre>
 
 			<input type="text" name="artist" placeholder="작가명" value="${display.artist }">
 			<input type="text" name="tel" placeholder="전화번호 (-없이 입력해주세요.)" value="${display.tel }">

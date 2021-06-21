@@ -49,11 +49,24 @@ public class DpRegistResult implements CommandProcess {
 			int fee_teen = Integer.parseInt(mr.getParameter("fee_teen"));
 			int fee_child = Integer.parseInt(mr.getParameter("fee_child"));
 			String intro = mr.getParameter("intro");
-			String tag = mr.getParameter("tag");
 			String artist = mr.getParameter("artist");
 			String tel = mr.getParameter("tel");
 			String home_pg = mr.getParameter("home_pg");
 			String detail_txt = mr.getParameter("detail_txt");
+			
+			// 태그 세팅
+			String[] tag = mr.getParameterValues("tag");
+			String tags = "";
+			
+			for (int i = 0; i < tag.length; i++) {				
+				if (i == tag.length - 1) {
+					tags += tag[i];
+				} else {					
+					tags += tag[i]+",";
+				}
+			}
+			dp.setTag(tags);
+			
 			// 이미지 세팅
 			dp.setDetail_img(detail_img);
 			dp.setPoster(poster);
@@ -72,7 +85,6 @@ public class DpRegistResult implements CommandProcess {
 			dp.setFee_teen(fee_teen);
 			dp.setFee_child(fee_child);
 			dp.setIntro(intro);
-			dp.setTag(tag);
 			dp.setArtist(artist);
 			dp.setTel(tel);
 			dp.setHome_pg(home_pg);

@@ -117,10 +117,16 @@
 		} else {
 			$.post("bookmarkUpdate.do", "dno=${display.dno}", function(data) {
 				$('.bookmark svg g').css('fill', data);
-				console.log(data);
 			});
 		}
 	}
+
+	// 리뷰 페이징 스크롤 높이
+	document.addEventListener("DOMContentLoaded", function() { // html load 이후
+		if (${pageNum} > 1) {			
+			window.scrollTo(0, $('.scrollTop').position().top);
+		}
+	})
 </script>
 </head>
 <body>
@@ -210,7 +216,7 @@
 				<h4 class="sub_title">홈페이지</h4>
 				<p class="detail_txt">${display.home_pg }</p>
 			</c:if>
-			<h4 class="sub_title">입장방식 안내</h4>
+			<h4 class="sub_title scrollTop">입장방식 안내</h4>
 			<p class="detail_txt">현장에서 별도 티켓으로 교환 후 입장</p>
 			
 			<!-- 전시 수정, 삭제 버튼 -->
@@ -271,16 +277,26 @@
 			
 			<!-- paging -->
 			<div class="paging">
-				<button class="prev">
-					<img alt="이전" src="../../images/icons/arrow_left1.png">
-				</button>
-				<div class="number">
-					<span class="page_num">1</span> / <span>6</span>
-				</div>
-				<button class="next">
-					<img alt="이전" src="../../images/icons/arrow_right.png">
-				</button>
-			</div>
+				<div class="items">
+					<div class="prev_btn">
+						<c:if test="${pageNum > 1}">
+							<button class="prev" onclick="location.href='dpView.do?dno=${display.dno }&pageNum=${currentPage - 1}'">
+								<img alt="이전" src="../../images/icons/arrow_left1.png">
+							</button>
+						</c:if>
+					</div>
+					<span class="page_num">${pageNum}</span>
+					<span>/</span>
+					<span class="page_num">${totalPage}</span>
+					<div class="next_btn">
+						<c:if test="${currentPage < totalPage}">
+							<button class="next" onclick="location.href='dpView.do?dno=${display.dno }&pageNum=${currentPage + 1}'">
+								<img alt="다음" src="../../images/icons/arrow_right.png">
+							</button>
+						</c:if>
+					</div> <!-- next_btn -->
+				</div> <!-- number -->
+			</div> <!-- paging -->
 			
 			<!-- 리뷰 등록 -->
 			<form action="dpReviewWrite.do?dno=${display.dno }" method="post">

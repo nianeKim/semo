@@ -14,7 +14,7 @@
 		Review review = new Review();
 		
 		review.setStar_rate(8);
-		review.setContent("커밋 백번째");
+		review.setContent("커밋 백번째 "+i);
 		review.setMno(1);
 		review.setDno(210);
 		review.setProfile("profile.png");

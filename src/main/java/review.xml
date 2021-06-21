@@ -10,9 +10,11 @@
 	</insert>
 	
 	<!-- 해당 전시의 review list -->
-	<select id="select" parameterType="integer" resultType="review">
-		select r.*, nick_nm, profile from member m, review r
-		where m.mno = r.mno and dno = #{dno} and r.del = 'n' order by rv_no desc
+	<select id="select" resultType="review">
+		select * from (select rownum rn, a.* from
+		(select r.*, nick_nm, profile from member m, review r
+		where m.mno = r.mno and dno = #{dno} and r.del = 'n' order by rv_no desc) a)
+		where rn between #{startRow} and #{endRow}
 	</select>
 	
 	<!-- 평균 별점 -->
@@ -43,5 +45,10 @@
 	<!-- 리뷰 수정된 likes 가져오기 -->
 	<select id="selectLikes" parameterType="integer" resultType="integer">
 		select likes from review where rv_no = #{rv_no}
+	</select>
+	
+	<!-- 해당 전시의 총 리뷰 갯수 -->
+	<select id="selectTotal" resultType="integer">
+		select count(*) from review where dno = #{dno} and del = 'n'
 	</select>
 </mapper>

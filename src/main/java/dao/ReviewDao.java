@@ -38,8 +38,12 @@ public class ReviewDao {
 	}
 	
 	// 해당 전시의 review list
-	public List<Review> select(int dno) {
-		return session.selectList("reviewns.select", dno);
+	public List<Review> select(int dno, int startRow, int endRow) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("dno", dno);
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		return session.selectList("reviewns.select", map);
 	}
 	
 	// 평균 별점 가져오기
@@ -73,6 +77,11 @@ public class ReviewDao {
 	// 리뷰 수정된 likes 가져오기
 	public int selectLikes(int rv_no) {
 		return (int) session.selectOne("reviewns.selectLikes", rv_no);
+	}
+	
+	// 해당 전시의 총 리뷰 갯수
+	public int getTotal(int dno) {
+		return (int) session.selectOne("reviewns.selectTotal", dno);
 	}
 	
 }

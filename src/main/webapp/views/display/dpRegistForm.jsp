@@ -60,7 +60,6 @@
 		}
 		
 		$.post("confirm.do", "dname="+frm.dname.value, function(data) {
-			console.log(data);
 			$('.err').html(data);
 		})
 	}

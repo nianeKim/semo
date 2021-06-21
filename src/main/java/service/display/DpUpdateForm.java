@@ -15,6 +15,7 @@ public class DpUpdateForm implements CommandProcess {
 		//관리자가 수정하는 경우를 위해 세션체크 추가
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		
 		int dno = Integer.parseInt(request.getParameter("dno"));
 		
 		DisplayDao dd = DisplayDao.getInstance();

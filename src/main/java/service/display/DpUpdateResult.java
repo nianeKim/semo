@@ -18,9 +18,11 @@ public class DpUpdateResult implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		int dno = Integer.parseInt(request.getParameter("dno"));
+		
 		//관리자가 수정하는 경우를 위해 세션체크 추가
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		
 		Display dp = new Display();
 
 		// file upload
@@ -46,11 +48,23 @@ public class DpUpdateResult implements CommandProcess {
 			int fee_teen = Integer.parseInt(mr.getParameter("fee_teen"));
 			int fee_child = Integer.parseInt(mr.getParameter("fee_child"));
 			String intro = mr.getParameter("intro");
-			String tag = mr.getParameter("tag");
 			String artist = mr.getParameter("artist");
 			String tel = mr.getParameter("tel");
 			String home_pg = mr.getParameter("home_pg");
 			String detail_txt = mr.getParameter("detail_txt");
+			
+			// 태그 세팅
+			String[] tag = mr.getParameterValues("tag");
+			String tags = "";
+			
+			for (int i = 0; i < tag.length; i++) {				
+				if (i == tag.length - 1) {
+					tags += tag[i];
+				} else {					
+					tags += tag[i]+",";
+				}
+			}
+			dp.setTag(tags);
 
 			// 이미지 세팅
 			dp.setDetail_img(detail_img);
@@ -70,7 +84,6 @@ public class DpUpdateResult implements CommandProcess {
 			dp.setFee_teen(fee_teen);
 			dp.setFee_child(fee_child);
 			dp.setIntro(intro);
-			dp.setTag(tag);
 			dp.setArtist(artist);
 			dp.setTel(tel);
 			dp.setHome_pg(home_pg);

@@ -11,7 +11,6 @@ public class Display {
 	private String loc;
 	private String address;
 	private String poster; // 이름만 넣고 폴더에 이미지 따로 저장
-	private String tag;
 	private String intro;
 	private String detail_img;
 	private String detail_txt;
@@ -26,7 +25,16 @@ public class Display {
 	private String home_pg;
 	private String del;
 	private int mno;
+	private String tag;
 
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+	
 	public int getDno() {
 		return dno;
 	}
@@ -89,14 +97,6 @@ public class Display {
 
 	public void setPoster(String poster) {
 		this.poster = poster;
-	}
-
-	public String getTag() {
-		return tag;
-	}
-
-	public void setTag(String tag) {
-		this.tag = tag;
 	}
 
 	public String getIntro() {

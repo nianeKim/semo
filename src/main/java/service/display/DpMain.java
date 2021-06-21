@@ -3,6 +3,7 @@ package service.display;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -21,13 +22,14 @@ public class DpMain implements CommandProcess {
 		DisplayDao dd = DisplayDao.getInstance();
 		String tab = request.getParameter("tab");
 		String loc[] = request.getParameterValues("loc"); // 지역 태그
+		String tag[] = request.getParameterValues("tag"); // 태그별
 
 		// paging : start
 		final int ROW_PER_PAGE = 10; // 한 페이지에 10개씩
-		final int PAGE_PER_BLOCK = 5; // 한 블럭에 10페이지
+		final int PAGE_PER_BLOCK = 5; // 한 블럭에 5페이지
 
 		String pageNum = request.getParameter("pageNum");
-		if (pageNum == null || pageNum == "") {
+		if (pageNum == null || pageNum.equals("")) {
 			pageNum = "1";
 		}
 		// 현재 페이지
@@ -36,19 +38,42 @@ public class DpMain implements CommandProcess {
 		// 총 갯수
 		int total = dd.getTotalD();
 
-		// 시작번호 : (페이지번호 - 1) * 페이지당 갯수+ 1
+		// 시작번호 : (페이지번호 - 1) * 페이지당 갯수 + 1
 		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
 		// 끝번호 : 시작번호 + 페이지당개수 - 1
 		int endRow = startRow + ROW_PER_PAGE - 1;
 		
-		// 페이징 리스트로 기존 리스트 수정
+		// 페이징 리스트로 기존 리스트 수정(전체 리스트)
 		List<Display> list = dd.list(startRow, endRow);
 
-		// 지역 태그 조회
+		// 지역 태그만 조회
 		List<Display> listLoc = null;
-		if (loc != null) {
+		if (loc != null && tag == null) {
 			listLoc = dd.listLoc(loc, startRow, endRow);
 			total = dd.getTotalLoc(loc);
+			System.out.println("listloc"+ listLoc);
+		}
+		
+		// 태그만 조회
+		List<Display> listTag = null;
+		if (tag != null && loc == null) {
+			listTag = dd.listTag(tag, startRow, endRow);
+			total = dd.getTotalTag(tag);
+		}
+		
+		// 지역, 태그 둘다 조회
+		List<Display> listJoin = null;
+		if (tag != null && loc != null) {
+			listLoc = dd.listLoc(loc, startRow, endRow);
+			total = dd.getTotalLoc(loc);
+			
+			listTag = dd.listTag(tag, startRow, endRow);
+			total += dd.getTotalTag(tag);
+			
+			listJoin = new ArrayList<Display>();
+			listJoin.addAll(listLoc);
+			listJoin.addAll(listTag);
+			System.out.println("listJoin"+ listJoin);
 		}
 		
 		// Math.ceil : 현재 실수보다 큰 정수
@@ -56,12 +81,11 @@ public class DpMain implements CommandProcess {
 		// 시작페이지 : 현재페이지 - (현재페이지 - 1) % 10			
 		int startPage = currentPage - (currentPage - 1) % PAGE_PER_BLOCK;
 		// 끝페이지 : 시작페이지 + 블록당페이지 수 -1			
-		int endPage = startPage + PAGE_PER_BLOCK -1;
+		int endPage = startPage + PAGE_PER_BLOCK - 1;
 		// 총 페이지보다 큰 endPage는 나올 수 없다.
 		if (endPage > totalPage) endPage = totalPage;
 		// paging : end
 		
-
 		// 날짜 비교 전달 값 세팅
 		Date today = Date.valueOf(LocalDate.now());
 		Date todayAfter7 = null;
@@ -83,10 +107,12 @@ public class DpMain implements CommandProcess {
 		request.setAttribute("todayAfter7", todayAfter7);
 		request.setAttribute("tab", tab);
 		request.setAttribute("list", list);
-
 		request.setAttribute("listLoc", listLoc);
+		request.setAttribute("listTag", listTag);
+		request.setAttribute("listJoin", listJoin);
 		
 		// paging param
+		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("currentPage", currentPage);
 		request.setAttribute("PAGE_PER_BLOCK", PAGE_PER_BLOCK);
 		request.setAttribute("startPage", startPage);

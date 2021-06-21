@@ -9,14 +9,13 @@
 		insert into display values(#{dno}, #{dname}, #{start_date},
 		#{end_date},
 		#{spot}, #{loc}, #{address}, #{poster},
-		#{tag,jdbcType=VARCHAR}
-		, #{intro}, #{detail_img,jdbcType=VARCHAR},
+		#{intro}, #{detail_img,jdbcType=VARCHAR},
 		#{detail_txt,jdbcType=VARCHAR}, #{hours}, #{fee,jdbcType=INTEGER},
 		#{fee_adult,jdbcType=INTEGER}, #{fee_teen,jdbcType=INTEGER},
 		#{fee_child,jdbcType=INTEGER}, #{discount,jdbcType=INTEGER},
 		#{artist,jdbcType=VARCHAR},
 		#{tel,jdbcType=VARCHAR},
-		#{home_pg,jdbcType=VARCHAR}, 'n', #{mno})
+		#{home_pg,jdbcType=VARCHAR}, 'n', #{mno}, #{tag,jdbcType=VARCHAR})
 	</insert>
 
 	<!-- 전시 통합 리스트 -->
@@ -46,8 +45,8 @@
 		fee_adult=#{fee_adult,jdbcType=INTEGER},
 		fee_teen=#{fee_teen,jdbcType=INTEGER},
 		fee_child=#{fee_child,jdbcType=INTEGER},
-		intro=#{intro},
-		tag=#{tag,jdbcType=VARCHAR}, artist=#{artist,jdbcType=VARCHAR},
+		intro=#{intro}, tag=#{tag,jdbcType=VARCHAR},
+		artist=#{artist,jdbcType=VARCHAR},
 		tel=#{tel,jdbcType=VARCHAR}, home_pg=#{home_pg,jdbcType=VARCHAR},
 		detail_txt=#{detail_txt,jdbcType=VARCHAR}
 		<if test="detail_img != null and detail_img != ''">
@@ -100,7 +99,7 @@
 		select count(*) from display
 	</select>
 
-	<!-- display main paging -->
+	<!-- display main total -->
 	<select id="getTotalD" resultType="integer">
 		select count(*) from display where del = 'n'
 	</select>
@@ -112,5 +111,51 @@
 			#{item}
 		</foreach>
 		and del = 'n' order by dno desc
+	</select>
+	
+	<!-- 태그로 리스트 조회 -->
+	<select id="selectTag" resultType="display" parameterType="hashmap">
+		select * from (select rownum rn, e.* from (
+		select * from display where
+		<foreach collection="tag" item="item" open="(" close=")" separator="or">
+			tag like '%'||#{item}||'%'
+		</foreach>
+		and del = 'n' order by dno desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- display tag 필터 total -->
+	<select id="getTotalTag" resultType="integer">
+		select count(*) from display where
+		<foreach collection="array" item="item" open="(">
+			tag like '%'||#{item}||'%' or
+		</foreach>
+		1 = 0) and del = 'n' order by dno desc
+	</select>
+	
+	<!-- 전시 검색(관리자) -->
+	<select id="searchDisplay" parameterType="hashmap" resultType="display">
+		select * from display  
+		<choose>
+			<when test="searchKey.equals('dname')">where dname like '%'||#{searchValue}||'%'</when> 
+			<when test="searchKey.equals('tag')">where tag like '%'||#{searchValue}||'%'</when> 
+			<when test="searchKey.equals('artist')">where artist like '%'||#{searchValue}||'%'</when> 
+			<otherwise>where mno like '%'||#{searchValue}||'%'</otherwise>
+		</choose>
+			 order by dno desc
+	</select>
+	
+	<!-- 마이페이지 - 메인 -->
+	<select id="myMain" parameterType="integer" resultType="display">
+	   select * from (select rowNum rn, e.* from (
+	   select * from display where mno = #{mno} and del = 'n' order by dno desc) e)
+	   where rn between 1 and 4
+	</select>
+	
+	<!-- 검색 -->
+	<select id="search" parameterType="string" resultType="board">
+	   select * from display where dname like '%'||#{srch}||'%' or spot like '%'||#{srch}||'%'
+	   or loc like '%'||#{srch}||'%' or intro like '%'||#{srch}||'%' or detail_txt like '%'||#{srch}||'%'
+	   or artist like '%'||#{srch}||'%'
 	</select>
 </mapper> 

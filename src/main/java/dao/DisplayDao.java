@@ -3,7 +3,6 @@ package dao;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -111,5 +110,37 @@ public class DisplayDao {
 	// display loc 필터 total
 	public int getTotalLoc(String[] loc) {
 		return (int) session.selectOne("displayns.getTotalLoc", loc);
+	}
+	
+	// 태그로 리스트 조회
+	public List<Display> listTag(String[] tag, int startRow, int endRow) {
+		HashMap<String, Object> hm = new HashMap<>();
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+		hm.put("tag", tag);
+		return session.selectList("displayns.selectTag", hm);
+	}
+	
+	// tag total
+	public int getTotalTag(String[] tag) {
+		return (int) session.selectOne("displayns.getTotalTag", tag);
+	}
+	
+	//AdminFindDisplay 
+	public List<Display> searchDisplay(String searchKey, String searchValue) {
+		HashMap<String, String> hm = new HashMap<>();
+		hm.put("searchKey", searchKey);
+		hm.put("searchValue", searchValue);
+		return (List<Display>)session.selectList("displayns.searchDisplay",hm);
+	}
+	
+	// 마이페이지 - 메인
+	public List<Display> myMain(int mno) {
+		return session.selectList("displayns.myMain", mno);
+	}
+
+	// 검색
+	public List<Display> search(String srch) {
+		return session.selectList("displayns.search", srch);
 	}
 }

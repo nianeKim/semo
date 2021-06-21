@@ -62,7 +62,7 @@
 
 			<div class="button_box">
 				<!-- 필터 -->
-				<a href="#" class="filter"> <img alt="필터" src="../../images/icons/filter.png"> <span>필터</span>
+				<a class="filter"> <img alt="필터" src="../../images/icons/filter.png"> <span>필터</span>
 				</a>
 				<!-- 전시 등록 버튼 -->
 				<div class="confirm_btn">
@@ -73,9 +73,9 @@
 			<!-- display list -->
 			<div class="display_list">
 				<ul>
-					<!-- 전시중 -->
+					<!-- 전체 전시중 -->
 					<c:if test="${tab == 1 }">
-						<c:if test="${empty listLoc }">
+						<c:if test="${empty listLoc && empty listTag }">
 							<c:forEach var="display" items="${list }">
 								<c:if test="${display.start_date <= today && display.end_date >= today }">
 									<li>
@@ -92,7 +92,7 @@
 							</c:forEach>
 						</c:if>
 						<!-- 지역별 조회 -->
-						<c:if test="${not empty listLoc }">
+						<c:if test="${not empty listLoc && empty listTag }">
 							<c:forEach var="display" items="${listLoc }">
 								<c:if test="${display.start_date <= today && display.end_date >= today }">
 									<li>
@@ -108,10 +108,45 @@
 								</c:if>
 							</c:forEach>
 						</c:if>
+						<!-- 태그별 조회 -->
+						<c:if test="${empty listLoc && not empty listTag }">
+							<c:forEach var="display" items="${listTag }">
+								<c:if test="${display.start_date <= today && display.end_date >= today }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<!-- 태그, 지역 둘다 조회 -->
+						<c:if test="${not empty listLoc && not empty listTag }">
+							<c:forEach var="display" items="${listJoin }">
+								<c:if test="${display.start_date <= today && display.end_date >= today }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
 					</c:if>
+					
 					<!-- 종료 예정 -->
 					<c:if test="${tab == 2 }">
-						<c:if test="${empty listLoc }">
+						<c:if test="${empty listLoc && empty listTag }">
 							<c:forEach var="display" items="${list }">
 								<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
 									<li>
@@ -127,7 +162,8 @@
 								</c:if>
 							</c:forEach>
 						</c:if>
-						<c:if test="${not empty listLoc }">
+						<!-- 지역별 조회 -->
+						<c:if test="${not empty listLoc && empty listTag }">
 							<c:forEach var="display" items="${listLoc }">
 								<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
 									<li>
@@ -143,10 +179,45 @@
 								</c:if>
 							</c:forEach>
 						</c:if>
+						<!-- 태그별 조회 -->
+						<c:if test="${empty listLoc && not empty listTag }">
+							<c:forEach var="display" items="${listTag }">
+								<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<!-- 태그, 지역 둘다 조회 -->
+						<c:if test="${not empty listLoc && not empty listTag }">
+							<c:forEach var="display" items="${listJoin }">
+								<c:if test="${display.end_date >= today && display.end_date <= todayAfter7 }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
 					</c:if>
+					
 					<!-- 예정 전시 -->
 					<c:if test="${tab == 3 }">
-						<c:if test="${empty listLoc }">
+						<c:if test="${empty listLoc && empty listTag }">
 							<c:forEach var="display" items="${list }">
 								<c:if test="${display.start_date > today }">
 									<li>
@@ -162,8 +233,43 @@
 								</c:if>
 							</c:forEach>
 						</c:if>
-						<c:if test="${not empty listLoc }">
+						<!-- 지역별 조회 -->
+						<c:if test="${not empty listLoc && empty listTag }">
 							<c:forEach var="display" items="${listLoc }">
+								<c:if test="${display.start_date > today }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<!-- 태그별 조회 -->
+						<c:if test="${empty listLoc && not empty listTag }">
+							<c:forEach var="display" items="${listTag }">
+								<c:if test="${display.start_date > today }">
+									<li>
+										<a href="dpView.do?dno=${display.dno }"> 
+											<img style="background: url(/semojeon/upload/${display.poster }) no-repeat center; background-size: cover;">
+											<div class="text_area">
+												<p class="date">${display.start_date } ~ ${display.end_date }</p>
+												<p class="dp_list_title">${display.dname }</p>
+												<p class="location">${display.spot }</p>
+											</div>
+										</a>
+									</li>
+								</c:if>
+							</c:forEach>
+						</c:if>
+						<!-- 태그, 지역 둘다 조회 -->
+						<c:if test="${not empty listLoc && not empty listTag }">
+							<c:forEach var="display" items="${listJoin }">
 								<c:if test="${display.start_date > today }">
 									<li>
 										<a href="dpView.do?dno=${display.dno }"> 
