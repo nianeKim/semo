@@ -124,6 +124,6 @@
 	
 	<!-- 전체 검색 -->
 	<select id="search" parameterType="string" resultType="board">
-		select * from board where title like '%'||#{srch}||'%' or content like '%'||#{srch}||'%'
+		select b.*, nick_nm from board b, member m where b.mno=m.mno and title like '%'||#{srch}||'%' or content like '%'||#{srch}||'%'
 	</select>
 </mapper>
