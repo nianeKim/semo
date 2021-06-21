@@ -14,7 +14,7 @@
 				location.href = "boardMain.wo?pageNum=1";
 			} else { // 임시저장
 				alert("저장되었습니다");
-				location.href = "boardWriteForm.wo?action=insert";
+				location.href = "boardWriteForm.wo?action=save_again&bs_no=${bdsave.bs_no}";
 			}
 		</script>
 	</c:if>
