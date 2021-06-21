@@ -49,6 +49,18 @@
 			}
 		})
 	})
+	
+	// 세션 확인
+   function sessionChk() {
+      if (${empty id}) {
+         var con = confirm("로그인 후 이용해 주시기 바랍니다.");
+         if (con) {
+            location.href='dpRegistForm.do';
+         }
+      } else {
+         location.href='dpRegistForm.do';
+      }
+   }
 </script>
 </head>
 <body>
@@ -66,7 +78,7 @@
 				</a>
 				<!-- 전시 등록 버튼 -->
 				<div class="confirm_btn">
-					<button class="btn btn_stroke" onclick="location.href='dpRegistForm.do'">전시 등록하기</button>
+					<button class="btn btn_stroke" onclick="sessionChk()">전시 등록하기</button>
 				</div>
 			</div>
 
