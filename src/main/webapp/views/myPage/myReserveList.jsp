@@ -30,7 +30,7 @@
 				</ul>
 			</c:if>
 			<c:if test="${list.size() != 0}">
-				<h3>예한 전시 ${total}</h3>
+				<h3>예매한 전시 ${total}</h3>
 				<ul>
 					<c:forEach var="reserve" items="${list}">
 						<li>
