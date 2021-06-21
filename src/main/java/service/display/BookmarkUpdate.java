@@ -15,13 +15,11 @@ public class BookmarkUpdate implements CommandProcess {
 		int dno = Integer.parseInt(request.getParameter("dno"));
 		HttpSession session = request.getSession();
 		int mno = (int) session.getAttribute("mno");
-		System.out.println(dno);
 		
 		// 회원이 해당 전시를 북마크 했는지 체크
 		BookmarkDao bmd = BookmarkDao.getInstance();
 		Bookmark bm = bmd.select(dno, mno);
 		String color = "";
-		System.out.println(bm);
 		
 		if (bm == null) { // 북마크 해줌
 			bmd.insert(dno, mno);
@@ -30,8 +28,6 @@ public class BookmarkUpdate implements CommandProcess {
 			bmd.delete(dno, mno);
 			color = "none";
 		}
-		
-		System.out.println("마지막 실행");
 		
 		request.setAttribute("color", color);
 		

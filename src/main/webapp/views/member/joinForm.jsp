@@ -77,7 +77,6 @@ function chkNick_nm(){
 		frm.checked_nick.value="y";
 	}
 	$.post("confirmNick_nm.na", "nick_nm="+frm.nick_nm.value, function(data){
-		/* console.log(frm.nick_nm.value); */
 		$('#err').html(data);
 	});
 	

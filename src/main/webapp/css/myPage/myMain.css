@@ -8,7 +8,7 @@
 
 .content ul li {
 	width: 48% !important;
-	max-height: 13vw;
+	min-height: 11vw;
 	margin-bottom: 3vw !important;
 	height: 100px !important;
 }

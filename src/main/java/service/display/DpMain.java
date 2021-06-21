@@ -51,7 +51,6 @@ public class DpMain implements CommandProcess {
 		if (loc != null && tag == null) {
 			listLoc = dd.listLoc(loc, startRow, endRow);
 			total = dd.getTotalLoc(loc);
-			System.out.println("listloc"+ listLoc);
 		}
 		
 		// 태그만 조회
@@ -73,7 +72,6 @@ public class DpMain implements CommandProcess {
 			listJoin = new ArrayList<Display>();
 			listJoin.addAll(listLoc);
 			listJoin.addAll(listTag);
-			System.out.println("listJoin"+ listJoin);
 		}
 		
 		// Math.ceil : 현재 실수보다 큰 정수

@@ -27,15 +27,8 @@
 			</div>
 			<nav>
 				<ul class='nav_sub'>
-					<c:if test="${empty id }">
-						<li><a href="../member/loginForm.na">로그인</a></li>
-					</c:if>
-					<c:if test="${not empty id }">
-						<c:if test="${id != 'admin'}">
-							<li><a href="../member/logout.na">로그아웃</a></li>
-						</c:if>
-					</c:if>
-							<li><a href="/semojeon/views/display/dpMain.do?tab=1">세모전 홈페이지</a></li>
+					<li><a href="../member/logout.na">로그아웃</a></li>
+					<li><a href="/semojeon/views/display/dpMain.do?tab=1">세모전 홈페이지</a></li>
 				</ul>
 				<ul class='nav_main'>
 					<li><a href="../admin/adminDisplay.na" id="adminDisplay">전시 관리</a></li>
