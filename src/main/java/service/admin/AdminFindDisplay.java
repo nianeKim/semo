@@ -1,12 +1,9 @@
 package service.admin;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DisplayDao;
-import model.Display;
 import service.CommandProcess;
 
 public class AdminFindDisplay implements CommandProcess {

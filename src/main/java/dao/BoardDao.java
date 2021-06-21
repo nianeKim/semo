@@ -140,7 +140,7 @@ public class BoardDao {
 		return (List<Board>)session.selectList("boardns.searchBoard",hm);
 	}
 
-	// SearchResult.java 검색
+	// SearchResult.java 검색 
 	public List<Board> search(String srch) {
 		return session.selectList("boardns.search", srch);
 	}
