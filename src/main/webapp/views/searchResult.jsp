@@ -15,7 +15,7 @@
 			<h1 class="title">전시</h1>
 			<div class="display_list">
 				<c:if test="${dpList.size() == 0}">
-					<h4>검색 결과가 없습니다.<br>다른 검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요.</h4>
+					<p class="search_text">검색 결과가 없습니다.<br>다른 검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요.</p>
 				</c:if>
 				<c:if test="${dpList.size() != 0}">
 					<ul>
@@ -69,5 +69,13 @@
 			</div> <!-- board_list -->
 		</div> <!-- container_inner -->
 	</div> <!-- container_wide -->
+	
+	<!-- pre 태그 안에 있는 css 요소 삭제 -->
+	<script type="text/javascript">
+		$(".bd_text_content").find("*").css({
+			"all" : "unset",
+			"color" : "#000"
+		})
+	</script>
 </body>
 </html>
