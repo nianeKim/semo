@@ -53,7 +53,7 @@ input {
 <section class="container_wide">
 	<div class="top">
 		<div class="searchForm">
-			<form action="" name="frm" onsubmit="return chk();" >
+			<form action="adminFindDisplay.na" name="frm" onsubmit="return chk();" >
 				<select name="searchKey" class="searchTab">
 					<option value="dname" >전시명</option>
 					<option value="tag">관련 태그</option>

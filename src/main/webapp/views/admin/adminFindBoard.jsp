@@ -22,7 +22,6 @@ function del(delBno) {
 		location.href="../board/boardDelete.wo?bno"+delBno;
 	}
 }
-
 </script>
 
 </head>
