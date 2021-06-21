@@ -16,20 +16,15 @@
 	}
 </style>
 <script type="text/javascript">
-	function del(delBno) {
-		var con = confirm("해당 스토리를 삭제 하시겠습니까?");
-		if(con) {
-			location.href="../board/boardDelete.wo?bno="+delBno;
-		}
+function del(delBno) {
+	var con = confirm("해당 스토리를 삭제 하시겠습니까?");
+	if(con){
+		location.href="../board/boardDelete.wo?bno"+delBno;
 	}
-	
-	$(document).ready(function() {
-		$('#page'+${currentPage}).css({
-			"color" : "var(--point-color)",
-			"font-weight" : "600"
-		});
-	});
+}
+
 </script>
+
 </head>
 <body>
 <section class="container_wide">

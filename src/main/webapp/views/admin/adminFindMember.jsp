@@ -23,13 +23,6 @@
 		}
 	}
 	
-	$(document).ready(function() {
-		$('#page'+${currentPage}).css({
-			"color" : "var(--point-color)",
-			"font-weight" : "600"
-		});
-	});
-
 </script>
 </head>
 <body>
