@@ -8,8 +8,9 @@
 
 .content ul li {
 	width: 48% !important;
-	height: 13vw;
+	max-height: 13vw;
 	margin-bottom: 3vw !important;
+	height: 100px !important;
 }
 
 .content ul li:nth-child(2), .content ul li:nth-child(4) {

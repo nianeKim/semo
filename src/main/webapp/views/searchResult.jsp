@@ -41,7 +41,7 @@
 			<h1 class="title">세모들의 이야기</h1>
 			<div class="board_list" id="board_list1">
 				<c:if test="${bdList.size() == 0}">
-					<h4>검색 결과가 없습니다.<br>다른 검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요.</h4>
+					<p class="search_text">검색 결과가 없습니다.<br>다른 검색어를 입력하시거나 철자와 띄어쓰기를 확인해보세요.</p>
 				</c:if>
 				<c:if test="${bdList.size() != 0}">
 					<ul>

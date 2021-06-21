@@ -18,6 +18,8 @@ public class DpUpdateResult implements CommandProcess {
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		int dno = Integer.parseInt(request.getParameter("dno"));
+		// 이전 주소
+		String prevUrl = request.getParameter("prevUrl");
 		
 		//관리자가 수정하는 경우를 위해 세션체크 추가
 		HttpSession session = request.getSession();
@@ -101,7 +103,9 @@ public class DpUpdateResult implements CommandProcess {
 		request.setAttribute("result", result);
 		request.setAttribute("dno", dno);
 		request.setAttribute("id", id);
-
+		
+		request.setAttribute("prevUrl", prevUrl);
+	
 		return "dpUpdateResult";
 	}
 

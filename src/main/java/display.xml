@@ -153,7 +153,7 @@
 	</select>
 	
 	<!-- 검색 -->
-	<select id="search" parameterType="string" resultType="board">
+	<select id="search" parameterType="string" resultType="display">
 	   select * from display where dname like '%'||#{srch}||'%' or spot like '%'||#{srch}||'%'
 	   or loc like '%'||#{srch}||'%' or intro like '%'||#{srch}||'%' or detail_txt like '%'||#{srch}||'%'
 	   or artist like '%'||#{srch}||'%'

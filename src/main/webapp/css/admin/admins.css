@@ -3,7 +3,7 @@
 /* 회원조회 테이블 */
 .container-table{
 	overflow-x: auto;
-	margin: 75px auto 0 auto;	
+	margin: 90px auto 0 auto;	
 }
 
 table {
@@ -39,10 +39,16 @@ table td {
 .searchForm {
 	position: absolute;
 	overflow: hidden;
+	width: 50%;
 }
 
 .searchTab {
 	float:left;
+}
+
+input[type="text"] {
+	padding-left: 8px;
+	width: 60%;
 }
 
 
@@ -85,7 +91,7 @@ input[type=submit] {
 
 /* 페이징 */
 .nums {	
-	padding-top: 36px;
+	padding-top: 48px;
 }
 
 /* 이전버튼 */

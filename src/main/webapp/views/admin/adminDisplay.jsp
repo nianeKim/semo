@@ -60,7 +60,7 @@ input {
 					<option value="artist">작가명</option>
 					<option value="mno">작성자</option>
 				</select>
-				<input type="text" name="searchValue" class="searchTab">
+				<input type="text" name="searchValue" class="searchTab" placeholder="검색어를 입력해주세요.">
 				<input type="submit" value="검색" class="searchTab">
 			</form>
 		</div>

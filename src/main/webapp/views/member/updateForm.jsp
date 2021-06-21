@@ -139,7 +139,7 @@ function del() {
 <div class="container">
 	<h1 class="title">회원정보 수정</h1>
 
-	<form action="updateResult.na" method="post" name="frm" onsubmit="chk()" enctype="multipart/form-data">
+	<form action="updateResult.na?prevUrl=${prevUrl }" method="post" name="frm" onsubmit="chk()" enctype="multipart/form-data">
 		<!-- 엔터키 전송 막기 -->
 		<div style="display:none">
 			<input type="submit" onclick="return false"/>

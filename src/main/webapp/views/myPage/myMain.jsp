@@ -22,7 +22,7 @@
 						<p>북마크한 전시가 없습니다.</p>
 					</c:if>
 					<c:if test="${bmList.size() != 0}">
-						<a href="myBookmarkList.wo">+ 자세히 보기</a>
+						<a href="myBookmarkList.wo">+ 자세히</a>
 						<table>
 							<tr>
 								<th>전시명</th>
@@ -43,7 +43,7 @@
 						<p>예매한 전시가 없습니다.</p>
 					</c:if>
 					<c:if test="${rsvList.size() != 0}">
-						<a href="myReserveList.wo">+ 자세히 보기</a>
+						<a href="myReserveList.wo">+ 자세히</a>
 						<table>
 							<tr>
 								<th>전시명</th>
@@ -63,7 +63,7 @@
 						<p>등록한 전시가 없습니다.</p>
 					</c:if>
 					<c:if test="${dpList.size() != 0}">
-						<a href="myRegistDisplayList.wo">+ 자세히 보기</a>
+						<a href="myRegistDisplayList.wo">+ 자세히</a>
 						<table>
 							<tr>
 								<th>전시명</th>
@@ -84,7 +84,7 @@
 						<p>작성한 스토리가 없습니다.</p>
 					</c:if>
 					<c:if test="${bdList.size() != 0}">
-						<a href="myBoardList.wo">+ 자세히 보기</a>
+						<a href="myBoardList.wo">+ 자세히</a>
 						<table>
 							<tr>
 								<th>제목</th>

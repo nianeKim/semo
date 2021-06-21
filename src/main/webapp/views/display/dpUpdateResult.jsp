@@ -10,13 +10,8 @@
 <body>
 <c:if test="${result > 0 }">
 	<script type="text/javascript">
-		alert("수정 완료!");
-		if("${id}" == "admin"){
-			location.href="../admin/adminDisplay.na";
-		}else{
-			location.href="dpView.do?dno=${dno}"		
-		}
-		
+		alert("수정 완료!"); 
+		location.href="${prevUrl}";
 	</script>
 </c:if>
 <c:if test="${result <= 0 }">

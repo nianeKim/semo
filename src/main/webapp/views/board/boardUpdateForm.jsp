@@ -80,7 +80,7 @@ input[type="file"] { /* input 사라지게 */
 	<div class="container_middle">
 		<h1 class="title">스토리 작성</h1>
 		
-		<form action="boardUpdateResult.wo?bno=${board.bno}" method="post"
+		<form action="boardUpdateResult.wo?bno=${board.bno}&prevUrl=${prevUrl}" method="post"
 			enctype="multipart/form-data">
 			<!-- 제목 -->
 			<input type="text" name="title" placeholder="제목" value="${board.title}">

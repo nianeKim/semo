@@ -40,7 +40,7 @@
 <body>
 	<div class="container">
 		<p class="title">전시 수정하기</p>
-		<form action="dpUpdateResult.do?dno=${display.dno }" method="post" name="frm" onsubmit="return valueChk()" enctype="multipart/form-data">
+		<form action="dpUpdateResult.do?dno=${display.dno }&prevUrl=${prevUrl}" method="post" name="frm" onsubmit="return valueChk()" enctype="multipart/form-data">
 			<div class="column_box column_box2">
 				<div class="column column2">
 					<input type="text" name="dname" placeholder="전시명" autofocus value="${display.dname }" required>

@@ -59,7 +59,7 @@ input {
 					<option value="name">이름</option>
 					<option value="nick_nm">별명</option>
 				</select>
-				<input type="text" name="searchValue" class="searchTab">
+				<input type="text" name="searchValue" class="searchTab" placeholder="검색어를 입력해주세요.">
 				<input type="submit" value="검색" class="searchTab">
 			</form>
 		</div>
