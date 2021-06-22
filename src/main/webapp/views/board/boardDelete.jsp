@@ -15,7 +15,7 @@
 			location.href="boardMain.wo";
 		}
 		else if (preUrl == "myBoardList.wo") {
-			location.href="myBoardList.wo";
+			location.href="/semojeon/views/myPage/myBoardList.wo";
 		}
 		else if (preUrl.includes("adminBoard")){
 			location.href="../admin/adminBoard.na"
