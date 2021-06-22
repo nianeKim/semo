@@ -37,6 +37,13 @@ public class DpMain implements CommandProcess {
 		
 		// 총 갯수
 		int total = dd.getTotalD();
+		if (tab.equals("1")) {
+			total = dd.getTotalD();
+		} else if (tab.equals("2")) {
+			total = dd.getTotalDTab2();
+		} else if (tab.equals("3")) {
+			total = dd.getTotalDTab3();
+		}
 
 		// 시작번호 : (페이지번호 - 1) * 페이지당 갯수 + 1
 		int startRow = (currentPage - 1) * ROW_PER_PAGE + 1;
