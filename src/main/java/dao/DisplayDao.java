@@ -143,4 +143,14 @@ public class DisplayDao {
 	public List<Display> search(String srch) {
 		return session.selectList("displayns.search", srch);
 	}
+	
+	// 전시 탭2(종료예정) total
+	public int getTotalDTab2() {
+		return (int) session.selectOne("displayns.getTotalDTab2");
+	}
+	
+	// 전시 탭3(예정전시) total
+	public int getTotalDTab3() {
+		return (int) session.selectOne("displayns.getTotalDTab3");
+	}
 }

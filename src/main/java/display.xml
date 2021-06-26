@@ -158,4 +158,14 @@
 	   or loc like '%'||#{srch}||'%' or intro like '%'||#{srch}||'%' or detail_txt like '%'||#{srch}||'%'
 	   or artist like '%'||#{srch}||'%'
 	</select>
+	
+	<!-- 전시 탭2(종료예정) total -->
+	<select id="getTotalDTab2" resultType="integer">
+		<![CDATA[  select count(*) from display where end_date >= sysdate and end_date <= sysdate + 7  ]]>
+	</select>
+	
+	<!-- 전시 탭3(예정전시) total -->
+	<select id="getTotalDTab3" resultType="integer">
+		select count(*) from display where start_date > sysdate
+	</select>
 </mapper> 
