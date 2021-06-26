@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardns">
+	<!-- 게시글 입력 -->
+	<insert id="insert" parameterType="board">
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="integer">
+			select nvl(max(bno), 0) + 1 bno from board
+		</selectKey>
+		insert into board values(#{bno}, #{thumbnail,jdbcType=VARCHAR}, #{title}, #{content}, sysdate, 0, 0, 'n', #{mno})
+	</insert>
+
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="board">
+		update board set title = #{title}, content = #{content}
+		<if test="thumbnail != null and thumbnail !=''">
+			,thumbnail = #{thumbnail,jdbcType=VARCHAR}
+		</if>
+		where bno = #{bno}
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<update id="delete" parameterType="integer">
+		update board set del = 'y' where bno = #{bno}
+	</update>
+
+	<!-- 게시글 조회수 증가 -->
+	<update id="readcountUpdate" parameterType="integer">
+		update board set read_cnt = read_cnt + 1 where bno = #{bno}
+	</update>
+
+	<!-- 게시글 좋아요 증가 -->
+	<update id="likesPlus" parameterType="integer">
+		update board set likes = likes + 1 where bno = #{bno}
+	</update>
+
+	<!-- 게시글 좋아요 감소 -->
+	<update id="likesMinus" parameterType="integer">
+		update board set likes = likes - 1 where bno = #{bno}
+	</update>
+
+	<!-- 메인페이지 - 게시글 수 -->
+	<select id="getTotalB" resultType="integer">
+		select count(*) from board where del='n'
+	</select>
+
+	<!-- 메인페이지 - 게시글 목록 최신순 -->
+	<select id="list" resultType="board">
+		select * from (select rowNum rn, e.* from (
+		select b.*, c.cnt, nick_nm from
+		BOARD b left outer join (select bno, count(bno) cnt from reply where
+		del = 'n' group by bno) c on b.bno = c.bno, member m where b.mno =
+		m.mno and b.del='n' order by b.bno desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 메인페이지 - 게시글 목록 조회순 -->
+	<select id="list2" resultType="board">
+		select * from (select rowNum rn, e.* from (
+		select b.*, c.cnt, nick_nm from
+		BOARD b left outer join (select bno, count(bno) cnt from reply where
+		del = 'n' group by bno) c on b.bno = c.bno, member m where b.mno =
+		m.mno and b.del='n' order by b.read_cnt desc, b.bno desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 메인페이지 - 게시글 목록 인기순 -->
+	<select id="list3" resultType="board">
+		select * from (select rowNum rn, e.* from (
+		select b.*, c.cnt, nick_nm from
+		BOARD b left outer join (select bno, count(bno) cnt from reply where
+		del = 'n' group by bno) c on b.bno = c.bno, member m where b.mno =
+		m.mno and b.del='n' order by b.likes desc, b.bno desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 상세페이지 - 데이터 조회 -->
+	<select id="selectOne" resultType="board">
+		select * from board where bno=#{bno}
+	</select>
+
+	<!-- 마이페이지 - 작성한 게시글 수 -->
+	<select id="getTotalMy" parameterType="integer" resultType="integer">
+		select count(*) from board where del='n' and mno=#{mno}
+	</select>
+
+	<!-- 마이페이지 - 메인 -->
+	<select id="myMain" parameterType="integer" resultType="board">
+		select * from (select rowNum rn, e.* from (
+		select * from board where mno = #{mno} and del='n' order by bno desc) e)
+		where rn between 1 and 4
+	</select>
+	
+	<!-- 마이페이지 - 작성한 게시글 목록 조회 -->
+	<select id="myList" parameterType="integer" resultType="board">
+		select * from (select rowNum rn, e.* from (
+		select * from board where mno = #{mno} and del='n' order by bno desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+
+	<!-- 관리자페이지 - 전체 게시글 수 -->
+	<select id="getTotal" resultType="integer">
+		select count(*) from board
+	</select>
+
+	<!-- 관리자페이지 - 목록 조회(페이징) -->
+	<select id="adminList" resultType="board">
+		select * from (select rowNum rn, e.* from (
+		select b.*, nick_nm from board b, member m where b.mno = m.mno order by bno desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 관리자페이지 - 검색 -->
+	<select id="searchBoard" parameterType="hashmap" resultType="board">
+		select b.*, nick_nm from board b, member m 
+		where b.mno = m.mno and
+		<choose>
+			<when test="searchKey.equals('title')"> title like '%'||#{searchValue}||'%'</when> 
+			<otherwise> nick_nm like '%'||#{searchValue}||'%'
+			</otherwise>
+		</choose>
+		order by bno desc
+	</select>
+	
+	<!-- 전체 검색 -->
+	<select id="search" parameterType="string" resultType="board">
+		select * from (select b.*, nick_nm from board b, member m where b.mno=m.mno)
+		where title like '%'||#{srch}||'%' or content like '%'||#{srch}||'%'
+	</select>
+</mapper>

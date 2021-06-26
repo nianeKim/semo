@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+/* 회원조회 테이블 */
+.container-table{
+	overflow-x: auto;
+	margin: 90px auto 0 auto;	
+}
+
+table {
+	border-collapse:collapse;
+	table-layout: fixed;
+}
+
+table th {
+	border-bottom: solid 1px;
+	font-size: 16px;
+	height: 48px;
+	min-width: 100px;
+}
+
+table td {
+	height: 48px;
+	font-size: 14px;
+	font-weight: 500;
+	text-align: center;
+	width: 30%;
+	border-bottom: 1px solid #e6e6e6;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+
+
+/* 검색창 */
+.top {
+	position: relative;
+}
+
+.searchForm {
+	position: absolute;
+	overflow: hidden;
+	width: 50%;
+}
+
+.searchTab {
+	float:left;
+}
+
+input[type="text"] {
+	padding-left: 8px;
+	width: 60%;
+}
+
+
+/* 등록버튼 */
+.btn_box {
+	position: absolute;
+	right:0px;
+	text-align: right;
+}
+
+.btn{
+	width: 100px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	display:inline-block;
+}
+
+input[type=submit] {
+ 	background: none;
+ 	width: 50px;
+ }
+
+
+/* 회원수정버튼 */
+.btn_small {
+	display: contents;
+	width: initial;
+	height: initial;
+	font-size: 14px;
+	text-align: right;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	color: #aaa;
+	font-weight: 500;
+	text-decoration: underline;
+}
+
+
+/* 페이징 */
+.nums {	
+	padding-top: 48px;
+}
+
+/* 이전버튼 */
+.backDiv{
+	margin-top: 30px;
+	text-align: center;
+}

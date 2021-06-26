@@ -1,0 +1,23 @@
+@charset "UTF-8";
+h3 {
+	clear: both;	
+}
+
+.txt_small {
+	font-size: 13px;
+    color: #444;
+}
+
+/* 하트 */
+.txt_bottom img {
+	width: 20px;
+	vertical-align: middle;
+}
+
+/* 좋아요 숫자 */
+.txt_bottom span {
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 14px;
+	color: #7b7b7b;
+}

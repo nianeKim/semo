@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bookmarkns">
+	<!-- 회원이 해당 전시를 북마크 했는지 체크 -->
+	<select id="select" resultType="bookmark">
+		select * from bookmark where mno = #{mno} and dno = #{dno}
+	</select>
+	
+	<insert id="insert" parameterType="hashmap">
+		<selectKey keyProperty="bm_no" order="BEFORE" resultType="integer">
+				select nvl(max(bm_no), 0) + 1 bm_no from bookmark
+		</selectKey>
+		insert into bookmark values(#{bm_no}, #{mno}, #{dno})
+	</insert>
+	
+	<delete id="delete" parameterType="hashmap">
+		delete bookmark where mno = #{mno} and dno = #{dno}
+	</delete>
+	
+	<!-- 마이페이지 - 북마크 한 수 -->
+	<select id="getTotalMy" parameterType="integer" resultType="integer">
+		select count(*) from bookmark where mno = #{mno}
+	</select>
+	
+	<!-- 마이페이지 - 메인 -->
+	<select id="myMain" parameterType="integer" resultType="bookmark">
+		select * from (select rowNum rn, e.* from (
+		select b.*, dname, spot
+		from bookmark b, display d where b.dno = d.dno and b.mno = #{mno}
+		and d.del='n' order by bm_no desc) e)
+		where rn between 1 and 4
+	</select>
+	
+	<!-- 마이페이지 - 북마크 리스트 -->
+	<select id="myList" parameterType="hashmap" resultType="bookmark">
+		select * from (select rowNum rn, e.* from (
+		select b.*, poster, dname, spot, start_date, end_date, hours, fee
+		from bookmark b, display d where b.dno = d.dno and b.mno = #{mno}
+		and d.del='n' order by bm_no desc) e)
+		where rn between #{startRow} and #{endRow}
+	</select>
+</mapper>

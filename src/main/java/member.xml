@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="memberns">
+
+	<!-- 회원 아이디 조회 -->
+	<select id="select" parameterType="string" resultType="member">
+		select * from member where id=#{id} and del='n'
+	</select>
+	
+	<!-- id로 회원번호 조회 -->
+	<select id="selectMno" parameterType="string" resultType="integer">
+		select mno from member where id=#{id}
+	</select>
+	
+	<!-- mno로 별명 조회 -->
+	<select id="selectNick" parameterType="integer" resultType="string">
+		select nick_nm from member where mno=#{mno}
+	</select>
+	
+	<!-- mno로 회원 정보 조회 -->
+	<select id="selectReserve" parameterType="integer" resultType="member">
+		select * from member where mno = #{mno}
+	</select>
+
+	<!-- 닉네임 중복확인 -->
+	<select id="confirmNick" parameterType="string" resultType="member">
+		select * from member where nick_nm=#{nick_nm} and del='n'
+	</select>
+
+	<!-- 회원 가입 -->
+	<insert id="insert" parameterType="member">
+		<selectKey keyProperty="mno" order="BEFORE" resultType="integer">
+			select nvl(max(mno), 0) + 1 mno from member
+		</selectKey>
+		insert into member values(#{mno},#{id},#{password},#{name},#{nick_nm},
+			#{phone},#{gender},#{age},#{loc},'n',sysdate, 'user.png')
+	</insert>
+	
+	<!-- 전체회원정보 조회 -->
+	<select id="list" parameterType="hashmap" resultType="member">
+		select * from (select rowNum rn, e.* from (select * from member order by mno desc) e) 
+			where rn between #{startRow} and #{endRow}
+	</select>
+	
+	
+	<!-- 총 회원수 조회 -->
+	<select id="getTotal" resultType="integer">
+		select count(*) from member
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findId" parameterType="hashmap" resultType="member">
+		select * from member where name=#{name} and phone=#{phone}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select	id="findPassword" parameterType="string" resultType="member">
+		select * from member where id=#{id} and name=#{name}
+	</select> 
+	
+	<!-- 회원 검색(관리자) -->
+	 <select id="searchMember" parameterType="hashmap" resultType="member">
+		select * from member where
+		<choose>
+			<when test="searchKey.equals('id')"> id like '%'||#{searchValue}||'%'</when> 
+			<when test="searchKey.equals('name')"> name like '%'||#{searchValue}||'%'</when> 
+			<otherwise> nick_nm like '%'||#{searchValue}||'%'
+			</otherwise>
+		</choose>
+			 order by mno desc
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="member">
+		update member set password=#{password}, name=#{name}, nick_nm=#{nick_nm},
+			phone=#{phone}, gender=#{gender}, age=#{age}, loc=#{loc}
+			<if test="profile != null and profile !=''">, profile=#{profile,jdbcType=VARCHAR}</if>
+			where id=#{id}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<update id="delete" parameterType="integer">
+		update member set del='y' where mno=#{mno}	
+	</update> 
+</mapper>

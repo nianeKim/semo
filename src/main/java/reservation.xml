@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reservationns">
+	<insert id="insert" parameterType="reservation">
+		<selectKey keyProperty="rs_no" order="BEFORE" resultType="integer">
+			select nvl(max(rs_no), 0) + 1 rs_no from reservation
+		</selectKey>
+			insert into reservation values(#{rs_no}, #{cnt,jdbcType=INTEGER},
+			#{cnt_adult,jdbcType=INTEGER}, #{cnt_teen,jdbcType=INTEGER},
+			#{cnt_child,jdbcType=INTEGER}, #{mno}, #{dno})
+	</insert>
+
+	<!-- 마이페이지 - 메인 -->
+    <select id="myMain" parameterType="integer" resultType="reservation">
+       select * from (select rowNum rn, e.* from (
+       select r.*, cnt+cnt_adult+cnt_teen+cnt_child cnt_total, dname
+       from reservation r, display d where r.dno = d.dno and r.mno = #{mno}
+       and del = 'n' order by rs_no desc) e)
+       where rn between 1 and 4
+    </select>
+    
+    <!-- 마이페이지 - 예매내역 -->
+    <select id="myList" parameterType="hashmap" resultType="reservation">
+       select * from (select rowNum rn, e.* from (
+       select r.*, dname, poster from reservation r, display d where r.dno = d.dno and r.mno = #{mno}
+       and del = 'n' order by rs_no desc) e)
+       where rn between #{startRow} and #{endRow}
+    </select>
+    
+    <!-- 마이페이지 - 전체 게시글 수 -->
+	<select id="getTotalMy" parameterType="integer" resultType="integer">
+		select count(*) from reservation where mno=#{mno}
+	</select>
+	
+	<!-- 예매 취소 -->
+	<delete id="delete" parameterType="integer">
+		delete reservation where dno = #{dno}
+	</delete>
+</mapper>

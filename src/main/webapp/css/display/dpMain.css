@@ -1,0 +1,219 @@
+@charset "UTF-8";
+
+/* tab */
+
+.display_tab {
+	text-align: center;
+}
+
+.display_tab li {
+	display: inline-block;
+	margin-right: 70px;
+	cursor: pointer;
+}
+
+.display_tab li:last-child {
+	margin-right: 0;
+}
+
+.display_tab li.active {
+	position: relative;
+}
+
+.display_tab li.active::after {
+	display: block;
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 49%;
+	background-color: var(--point-color);
+	opacity: 0.3;
+	transform: translate(-50%, -50%) rotate(4deg);
+	padding: 0 8px 0 8px;
+}
+
+/* filter */
+
+.filter {
+	cursor: pointer;
+	flex: none;
+}
+
+.filter img {
+	width: 22px;
+	margin-right: 2px;
+	vertical-align: bottom;
+}
+
+.filter span {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+/* 전시 등록 버튼 */
+
+.confirm_btn {
+	flex: none;
+	width: 150px;
+	margin-left: auto;
+}
+
+.confirm_btn .btn {
+	margin-bottom: 0;
+	height: 50px;
+	font-size: 15px;
+}
+
+.button_box {
+	display: flex;
+	align-items: center;
+}
+
+/* display list */
+
+.display_list {
+	padding-top: 20px;
+}
+
+.display_list ul {
+	font-size: 0;
+	margin: 0 -12px 0 -12px;
+}
+
+.display_list ul li {
+	vertical-align: top;
+	display: inline-block;
+	width: 20%;
+	max-height: max-content;
+	padding: 0 12px 56px 12px;
+}
+
+.display_list ul li img {
+	width: 100%;
+	padding-bottom: 133%;
+	/* vertical-align: middle;
+	object-fit: cover;
+	height: 18vw; */
+}
+
+.display_list .text_area .date {
+	font-size: 14px;
+	padding-top: 16px;
+}
+
+.display_list .text_area .dp_list_title {
+	font-size: 18px;
+	font-weight: 600;
+	padding-top: 6px;
+	display: -webkit-box;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	word-wrap: break-word;
+}
+
+.display_list .text_area .location {
+	font-size: 14px;
+	color: #7b7b7b;
+	padding-top: 12px;
+}
+
+/* modal : start */
+
+.filter_modal {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100vh;
+	z-index: 100;
+	top: 0;
+}
+
+.filter_modal .dim_box {
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	opacity: 0.5;
+}
+
+.filter_modal .close {
+	position: absolute;
+	width: 20px;
+	top: 24px;
+	right: 24px;
+	cursor: pointer;
+}
+
+.filter_modal .modal_content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: #fff;
+	width: 34%;
+	min-height: 50vh;
+	padding: 60px;
+}
+
+.modal_content .content_inner {
+	width: 100%;
+	height: 100%;
+	font-size: 0;
+	padding-bottom: 56px;
+}
+
+.modal_content .modal_title {
+	font-size: 20px;
+	font-weight: 600;
+	padding-bottom: 20px;
+}
+
+/* left content */
+
+.tag_box .label_box {
+	position: relative;
+	display: inline-block;
+	margin: 0 8px 10px 0;
+	padding-bottom: 12px;
+}
+
+.tag_box .tag {
+	color: #666;
+	border: 1px solid #e6e6e6;
+	padding: 6px 12px 4px 12px;
+	border-radius: 16px;
+	font-size: 14px;
+	cursor: pointer;
+	background: #fff;
+}
+
+.tag_box input {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: inherit;
+	height: inherit;
+	margin-bottom: 0;
+	z-index: -1;
+}
+
+.tag_box .tag.active {
+	color: var(--point-color);
+	border: 1px solid var(--point-color);
+}
+
+.modal_content .block:last-child {
+	margin-top: 36px;
+}
+
+.filter_modal .btn_box .btn {
+	margin-bottom: 0;
+}
+
+/* modal : end */
+

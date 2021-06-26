@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+.column_box {
+	font-size: 0;
+}
+
+.column_box .column {
+	display: inline-block;
+	width: calc(50% - 10px);
+	margin-right: 10px;
+}
+
+.column_box .column:last-child {
+	margin-right: 0;
+	margin-left: 10px;
+}
+
+.column2:first-child {
+	position: relative;
+	width: calc(80% - 10px);
+}
+
+.column2:last-child {
+	width: calc(20% - 10px);
+	height: 48px;
+	vertical-align: top;
+}
+
+.err {
+	position: absolute;
+	bottom: -6px;
+	color: var(--point-color);
+	font-size: 13px;
+}
+
+.file_label {
+	display: inline-block;
+	width: 100%;
+	line-height: 43px;
+	border: none;
+	border: 1px solid var(--point-color);
+	outline: 0;
+	font-size: 15px;
+	text-align: center;
+	color: var(--point-color);
+	margin-bottom: 16px;
+	cursor: pointer;
+	padding: 10px 12px;
+	max-height: 65px;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+
+input[type="file"] { /* input 사라지게 */
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+}
+
+input[type="number"]::-webkit-inner-spin-button { /* number 화살표 가리 */
+	-webkit-appearance: none;
+}
+
+textarea {
+	display: block;
+	width: 100%;
+	height: 90px;
+	border: 1px solid #000;
+	outline: 0;
+	font-size: 15px;
+	padding: 10px 12px;
+	line-height: 22px;
+	margin-bottom: 16px;
+	font-family: 'Apple SD Gothic Neo', 'AppleSDGothicNeo';
+}
+
+textarea::placeholder {
+	color: #aaa;
+}
+
+.option_title {
+	display: block;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 16px 0 8px 0;
+}
+
+.fee_box {
+	display: flex;
+	justify-content: center;
+}
+
+.fee_box input {
+	width: calc(33.333% - 10px);
+	margin-right: 10px;
+}
+
+.fee_box input:nth-child(2) {
+	margin-left: 10px;
+}
+
+.fee_box input:last-child {
+	margin-right: 0;
+	margin-left: 10px;
+}
+
+.pd {
+	margin-bottom: 24px;
+}
+
+.column_box .reset {
+	text-align: center;
+	line-height: 56px;
+}
+
+/* tag */
+
+.tag_box {
+	padding-top: 14px;
+}
+
+.tag_box .label_box {
+	position: relative;
+	display: inline-block;
+	margin: 0 8px 10px 0;
+	padding-bottom: 12px;
+}
+
+.tag_box .tag {
+	color: #666;
+	border: 1px solid #e6e6e6;
+	padding: 6px 12px 4px 12px;
+	border-radius: 16px;
+	font-size: 14px;
+	cursor: pointer;
+	background: #fff;
+}
+
+.tag_box input {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: inherit;
+	height: inherit;
+	margin-bottom: 0;
+	z-index: -1;
+}
+
+.tag_box .tag.active {
+	color: var(--point-color);
+	border: 1px solid var(--point-color);
+}
+
+

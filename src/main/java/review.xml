@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reviewns">
+	<insert id="insert" parameterType="review">
+		<selectKey keyProperty="rv_no" order="BEFORE" resultType="integer">
+			select nvl(max(rv_no), 0) + 1 rv_no from review
+		</selectKey>
+		insert into review values(#{rv_no}, #{star_rate}, #{content},
+		sysdate, 0, 'n', #{mno}, #{dno})
+	</insert>
+	
+	<!-- 해당 전시의 review list -->
+	<select id="select" resultType="review">
+		select * from (select rownum rn, a.* from
+		(select r.*, nick_nm, profile from member m, review r
+		where m.mno = r.mno and dno = #{dno} and r.del = 'n' order by rv_no desc) a)
+		where rn between #{startRow} and #{endRow}
+	</select>
+	
+	<!-- 평균 별점 -->
+	<select id="selectStar" parameterType="integer" resultType="float">
+		select round(avg(star_rate), 1) from review where dno = #{dno} and del = 'n'
+	</select>
+	
+	<!-- 리뷰 업데이트 -->
+	<update id="update" parameterType="review">
+		update review set content=#{content} where rv_no = #{rv_no}
+	</update>
+	
+	<!-- 리뷰 삭제 -->
+	<update id="delete" parameterType="java.util.Map">
+		update review set del = 'y' where dno = #{dno} and mno = #{mno}
+	</update>
+	
+	<!-- 리뷰 likes plus -->
+	<update id="updateLikes" parameterType="integer">
+		update review set likes = likes + 1 where rv_no = #{rv_no}
+	</update>
+	
+	<!-- 리뷰 likes minus -->
+	<update id="updateLikes2" parameterType="integer">
+		update review set likes = likes - 1 where rv_no = #{rv_no}
+	</update>
+	
+	<!-- 리뷰 수정된 likes 가져오기 -->
+	<select id="selectLikes" parameterType="integer" resultType="integer">
+		select likes from review where rv_no = #{rv_no}
+	</select>
+	
+	<!-- 해당 전시의 총 리뷰 갯수 -->
+	<select id="selectTotal" resultType="integer">
+		select count(*) from review where dno = #{dno} and del = 'n'
+	</select>
+</mapper>

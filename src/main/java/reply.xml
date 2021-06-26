@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="replyns">
+	<!-- 댓글 입력 시작 -->
+	<select id="selectRe_no" resultType="integer">
+		select nvl(max(re_no), 0) +
+		1 re_no from reply
+	</select>
+
+	<update id="updateRef">
+		update reply set ref_step = ref_step + 1
+		where ref =
+		#{ref} and ref_step > #{ref_step}
+	</update>
+
+	<insert id="insert" parameterType="reply">
+		<selectKey keyProperty="re_no" order="BEFORE"
+			resultType="integer">
+			select nvl(max(re_no), 0) + 1 re_no from reply
+		</selectKey>
+		insert into reply values(#{re_no}, #{content}, sysdate, #{ref},
+		#{ref_level}, #{ref_step}, 0, 'n', #{mno}, #{bno})
+	</insert>
+	<!-- 댓글 입력 끝 -->
+
+	<!-- 댓글 조회 -->
+	<select id="list" parameterType="integer" resultType="reply">
+		select * from (select rowNum rn, e.* from (select r.*, nick_nm, profile
+		from reply r, member m where r.mno = m.mno 
+		and r.bno = #{bno} and r.del='n' order by ref desc, ref_step) e) order by rn
+	</select>
+
+	<!-- 댓글 수정 -->
+	<update id="update" parameterType="reply">
+		update reply set content =
+		#{content} where re_no = #{re_no}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<update id="delete" parameterType="integer">
+		update reply set del = 'y'
+		where re_no = #{re_no}
+	</update>
+	
+	<!-- 게시글 좋아요 증가 -->
+	<update id="likesPlus" parameterType="integer">
+		update reply set likes = likes + 1 where re_no = #{re_no}
+	</update>
+
+	<!-- 게시글 좋아요 감소 -->
+	<update id="likesMinus" parameterType="integer">
+		update reply set likes = likes - 1 where re_no = #{re_no}
+	</update>
+	
+	<!-- 좋아요 수 가져오기 -->
+	<select id="selectLikes" parameterType="integer" resultType="integer">
+		select likes from reply where re_no = #{re_no}
+	</select>
+</mapper>
