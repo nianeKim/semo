@@ -10,7 +10,10 @@
 <body>
 	<c:if test="${result>0 }">
 		<script>
-			location.href="${prevUrl}";
+			if (${prevUrl == "/semojeon/views/member/loginForm.na"})
+				location.href="/semojeon/views/display/dpMain.do?tab=1";
+			else
+				location.href="${prevUrl}";
 		</script>
 	</c:if>
 	

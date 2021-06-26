@@ -7,19 +7,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-
+.text {
+	text-align: center;
+}
 </style>
 </head>
 <body>
 <div class="container">
 	<h1 class="title">아이디 찾기 결과</h1>
+	<p class="text">
 		<c:if test="${member != null }">
 			아이디는 ${member.id } 입니다.
 		</c:if>
-
 		<c:if test="${member == null }">
 			존재하지 않는 회원정보 입니다.
 		</c:if>
+	</p>
 </div>
 		
 </body>
